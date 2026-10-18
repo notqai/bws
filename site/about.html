@@ -144,23 +144,23 @@
   <div class="container">
     <div class="section-head section-head--split">
       <div><p class="eyebrow"><span class="panels" aria-hidden="true"><i></i><i></i><i></i></span>Organisation</p><h2 id="org-title">Organisation chart</h2></div>
-      <p class="lead">Led by shareholders who serve on the Board of Directors and in Management.</p>
+      <p class="lead">The Managing Director leads five sections, with HSE reporting directly to the top.</p>
     </div>
-    <!-- PLACEHOLDER ORG CHART: replace the boxes below with the real structure,
-         or swap the whole <div class="org"> for an image:
-         <img src="assets/img/org-chart.webp" alt="BWS Engineering organisation chart" width="1600" height="900" loading="lazy"> -->
-    <div class="org" role="img" aria-label="Organisation chart placeholder: Board of Directors, Management, and departments to be confirmed">
-      <div class="org-row"><div class="org-node">Board of Directors<span>Shareholders</span></div></div>
-      <div class="org-line"></div>
-      <div class="org-row"><div class="org-node">Management<span>Shareholders</span></div></div>
-      <div class="org-line"></div>
-      <div class="org-row">
-        <div class="org-node" style="border-style:dashed">[Department]<span>To be supplied</span></div>
-        <div class="org-node" style="border-style:dashed">[Department]<span>To be supplied</span></div>
-        <div class="org-node" style="border-style:dashed">[Department]<span>To be supplied</span></div>
-        <div class="org-node" style="border-style:dashed">[Department]<span>To be supplied</span></div>
+    <!-- ORGANISATION CHART: from BWS's own chart on the old website (page /about2).
+         Each column is one section; edit the <li> text to update roles. -->
+    <figure class="org" aria-labelledby="org-title">
+      <div class="org-top">
+        <div class="org-node org-node--lead">Managing Director</div>
+        <div class="org-staff"><span class="org-staff-line" aria-hidden="true"></span><div class="org-node org-node--staff">HSE Secretary</div></div>
       </div>
-    </div>
+      <ul class="org-sections" role="list">
+        <li><ol class="org-chain"><li class="org-node org-node--section">Personnel &amp; Administration Section</li><li class="org-node">Personnel &amp; Administration Manager</li><li class="org-node">Administration Support</li><li class="org-split"><span class="org-node org-node--leaf">Miri Office</span><span class="org-node org-node--leaf">Bintulu Office</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Account Section</li><li class="org-node">Accounts Manager</li><li class="org-node">Accounts Assistants</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Project Section</li><li class="org-node">Project Manager</li><li class="org-node">Project Team</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Contract / Procurement Section</li><li class="org-node">Contract / Procurement Manager</li><li class="org-node">Contract / Procurement Support</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Quality Assurance Section</li><li class="org-node">Quality Management Representative (QMR)</li></ol></li>
+      </ul>
+    </figure>
   </div>
 </section>
 

@@ -20,7 +20,7 @@ If the domain changes, search and replace `https://www.bwsengineeringsb.com` acr
 ```
 site/
 ├── index.html          Home
-├── about.html          Company profile, objective, facilities, organisation chart, licences
+├── about.html          Company profile, objective, facilities, organisation chart (from BWS's own chart), licences
 ├── services.html       One section per service line (#plant #mechanical #civil #electrical)
 ├── clients.html        Main clients (logo cards)
 ├── projects.html       Filterable photo gallery with lightbox
@@ -122,7 +122,6 @@ See the list below. Each placeholder is marked in the HTML with a `PLACEHOLDER` 
 | # | Where | What to supply |
 |---|---|---|
 | 1 | `careers.html` | **Real job openings** (3 example roles are shown now). Remove or replace before launch |
-| 2 | `about.html` | **Organisation chart**: real departments/roles, or an image of the chart |
 | 3 | `hse.html` | **ISO 9001:2015 certificate** scan (TÜV NORD) |
 | 4 | `projects.html` | Photos of **cable laying / termination**, **instrument calibration** and **blasting & painting** at the Bintulu yard |
 | 5 | `contact.html` | **Formspree form ID** (or keep the email fallback) |

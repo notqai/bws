@@ -417,12 +417,40 @@ a.card--media:hover .card-photo img { transform: scale(1.05); }
 @keyframes pulse { 0%, 100% { opacity: .25; transform: scaleY(.6); } 50% { opacity: 1; transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) { .loader .panels i { animation: none; opacity: .7; } }
 
-/* ---------- Org chart (placeholder) ---------- */
-.org { display: grid; gap: var(--space-4); justify-items: center; }
-.org-row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); position: relative; }
-.org-node { min-width: 11rem; padding: var(--space-4); text-align: center; background: var(--white); border: 1px solid var(--steel-200); border-top: 3px solid var(--brand-blue); border-radius: var(--radius); font-weight: 600; color: var(--ink); font-size: var(--fs-sm); }
-.org-node span { display: block; font-weight: 400; color: var(--steel-600); font-size: var(--fs-xs); }
-.org-line { width: 2px; height: 24px; background: var(--steel-400); }
+/* ---------- Org chart ---------- */
+.org { --line: var(--steel-400); --gap: 1.5rem; margin: 0; }
+.org-node { display: block; padding: .75rem 1rem; background: var(--white); border: 1px solid var(--steel-200); border-top: 3px solid var(--brand-sky); border-radius: var(--radius); font-weight: 600; font-size: var(--fs-sm); line-height: 1.3; color: var(--ink); text-align: center; }
+.org-node--lead { background: var(--ink); border-color: var(--ink); border-top-color: var(--brand-blue); color: var(--white); font-family: var(--font-head); font-size: 1.15rem; padding: 1rem 2rem; }
+.org-node--section { background: var(--brand-blue); border-color: var(--brand-blue); color: var(--white); }
+.org-node--staff { border-top-color: var(--safety); }
+.org-node--leaf { font-weight: 400; color: var(--steel-800); }
+.org-top { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); padding-bottom: var(--gap); }
+.org-staff { display: flex; align-items: center; }
+.org-staff-line { display: none; }
+.org-sections, .org-chain { list-style: none; margin: 0; padding: 0; }
+.org-sections { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.org-chain { display: grid; gap: var(--gap); }
+.org-chain > li { position: relative; }
+.org-chain > li + li::before { content: ""; position: absolute; left: 50%; top: calc(var(--gap) * -1); height: var(--gap); border-left: 1px solid var(--line); }
+.org-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+
+@media (min-width: 64rem) {
+  /* Tree view: MD on top, HSE Secretary as a staff role to the side, five sections on one bus line */
+  .org-top::after { content: ""; position: absolute; left: 50%; bottom: 0; height: var(--gap); border-left: 1px solid var(--line); }
+  .org-top { display: block; text-align: center; }
+  .org-node--lead { display: inline-block; min-width: 16rem; }
+  .org-staff { position: absolute; left: 50%; top: 100%; transform: translate(calc(-100% - 2.5rem), -125%); }
+  .org-staff-line { display: block; position: absolute; right: -2.5rem; top: 50%; width: 2.5rem; border-top: 1px solid var(--line); }
+  .org-top { padding-bottom: 5.5rem; }
+  .org-top::after { height: 5.5rem; }
+  .org-sections { grid-template-columns: repeat(5, 1fr); gap: 0 var(--space-4); padding-top: var(--gap); }
+  .org-sections > li { position: relative; }
+  .org-sections > li::before { content: ""; position: absolute; left: 50%; top: calc(var(--gap) * -1); height: var(--gap); border-left: 1px solid var(--line); }
+  .org-sections > li::after { content: ""; position: absolute; top: calc(var(--gap) * -1); left: calc(var(--space-4) / -2); right: calc(var(--space-4) / -2); border-top: 1px solid var(--line); }
+  .org-sections > li:first-child::after { left: 50%; }
+  .org-sections > li:last-child::after { right: 50%; }
+  .org-node--section { min-height: 4.2rem; display: grid; place-items: center; }
+}
 
 /* ---------- Timeline / values ---------- */
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--space-4); margin: 0; }
