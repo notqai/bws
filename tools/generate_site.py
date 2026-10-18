@@ -355,13 +355,13 @@ TRUST = f'''
 def home():
     svc_cards = "".join(f'''
       <a class="card card--media" href="services.html#{sid}">
-        <span class="card-photo">{img(ph[0], "", ph[2], ph[3], "(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw")}</span>
-        <span class="card-body">
+        <div class="card-photo">{img(ph[0], "", ph[2], ph[3], "(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw")}</div>
+        <div class="card-body">
           <span class="card-icon">{icon(ic)}</span>
           <h3>{t}</h3>
           <p>{blurb}</p>
           <span class="link-arrow">View scope</span>
-        </span>
+        </div>
       </a>''' for (sid, ic, t, blurb, _sc, _in, ph) in SERVICES)
     marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, n if alt else "")}</li>' for n, logo, w, h, _ in CLIENTS)
     return head("index.html",
