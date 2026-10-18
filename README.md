@@ -97,6 +97,9 @@ The form is on `contact.html` (search for `CONTACT FORM`).
   `action="https://formspree.io/f/YOUR_FORM_ID"`. The form then sends in the background and shows a thank-you message. Spam protection (a hidden "honeypot" field) is already included.
 - Netlify users can instead add `data-netlify="true"` and `name="enquiry"` to the `<form>` and remove the `action`.
 
+### Map pins
+The two maps on `contact.html` are pinned to the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`), and "Open in Google Maps" opens those listings. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, or edit the `q=` coordinates in the iframe `src` and the link `href` in `contact.html`.
+
 ### Change colours or fonts
 Edit the variables at the top of `site/assets/css/styles.css`. If you change fonts, update the Google Fonts `<link>` in each page's `<head>`.
 
@@ -126,5 +129,4 @@ See the list below. Each placeholder is marked in the HTML with a `PLACEHOLDER` 
 | 6 | Everywhere | **Higher-resolution / newer site photos**. Current photos come from the old website; many are small (448–1024 px) and some have date stamps burned in |
 | 7 | `clients.html`, home | A sharper **ASEAN Bintulu Fertilizer** logo, and confirmation BWS is happy to display client logos |
 | 8 | Home / footer | Confirm the stats (20+ years, 2 bases, 4 disciplines, 10+ clients) and that the **CIDB grade/categories** and **PETRONAS licence** wording is as BWS wants it shown |
-| 9 | `contact.html` | Check the **Bintulu map pin**. The address search lands near Jalan Tanjung Kidurong; if BWS has a Google Business listing for the yard, use its name in the map query instead |
-| 10 | Logo | If an original vector logo exists (from the printer/sign maker), swap it in for the rebuilt SVG |
+| 9 | Logo | If an original vector logo exists (from the printer/sign maker), swap it in for the rebuilt SVG |

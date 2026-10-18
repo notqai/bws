@@ -89,11 +89,13 @@ ORG_LD = {
         {"@type": "LocalBusiness", "@id": SITE + "/#miri", "name": "BWS Engineering Sdn Bhd: Main Office cum Workshop (Miri)",
          "image": SITE + "/assets/img/facility-miri-hq-1600.webp", "telephone": "+60-85-652743", "faxNumber": "+60-85-652709", "email": "bwsesb@gmail.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1",
-                     "addressLocality": "Miri", "postalCode": "98000", "addressRegion": "Sarawak", "addressCountry": "MY"}},
+                     "addressLocality": "Miri", "postalCode": "98000", "addressRegion": "Sarawak", "addressCountry": "MY"},
+         "geo": {"@type": "GeoCoordinates", "latitude": 4.446917, "longitude": 114.011563}, "hasMap": "https://www.google.com/maps?cid=4214669276461699859"},
         {"@type": "LocalBusiness", "@id": SITE + "/#bintulu", "name": "BWS Engineering Sdn Bhd: Bintulu Office cum Fabrication Yard",
          "image": SITE + "/assets/img/facility-bintulu-yard-1600.webp", "telephone": "+60-86-252476", "email": "bwsesb@gmail.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong",
-                     "addressLocality": "Bintulu", "postalCode": "97007", "addressRegion": "Sarawak", "addressCountry": "MY"}},
+                     "addressLocality": "Bintulu", "postalCode": "97007", "addressRegion": "Sarawak", "addressCountry": "MY"},
+         "geo": {"@type": "GeoCoordinates", "latitude": 3.2724729, "longitude": 113.0802423}, "hasMap": "https://www.google.com/maps?cid=6044021619715074034"},
     ],
 }
 
@@ -869,8 +871,13 @@ def careers():
 {CTA}''' + footer()
 
 # ================================================================ CONTACT
-def maps_embed(q):
-    return f"https://www.google.com/maps?q={quote(q)}&output=embed"
+# Exact pins: coordinates and listings of BWS's own Google Maps business entries (verified Oct 2026).
+MIRI_LL, BTU_LL = "4.446917,114.011563", "3.2724729,113.0802423"
+MIRI_PLACE = "https://www.google.com/maps/place/Bws+Engineering+Sdn.+Bhd./@4.446917,114.011563,17z/data=!4m6!3m5!1s0x321f4eff4ad03523:0x3a7d83606d409313!8m2!3d4.446917!4d114.011563"
+BTU_PLACE = "https://www.google.com/maps/place/BWS+Engineering+Sdn.+Bhd./@3.2724729,113.0802423,17z/data=!4m6!3m5!1s0x321dc31223ffffff:0x53e0ada3f9e5e7f2!8m2!3d3.2724729!4d113.0802423"
+
+def maps_embed(ll):
+    return f"https://maps.google.com/maps?q={ll}&z=17&hl=en&output=embed"
 
 def contact():
     miri_q = "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak"
@@ -897,9 +904,9 @@ def contact():
             <li>{icon("fax")}<span>Fax: 085-652709</span></li>
             <li>{icon("mail")}<a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
           </ul>
-          <p class="mt-5 mb-0"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query={quote(miri_q)}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+          <p class="mt-5 mb-0"><a class="link-arrow" href="{MIRI_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
-        <div class="map-wrap"><iframe class="map" src="{maps_embed(miri_q)}" title="Map: BWS Engineering main office, Piasau Industrial Estate, Miri" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="map-wrap"><iframe class="map" src="{maps_embed(MIRI_LL)}" title="Map: BWS Engineering main office, Piasau Industrial Estate, Miri" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       </article>
       <article class="office" aria-labelledby="btu-title">
         <div class="office-body">
@@ -910,9 +917,9 @@ def contact():
             <li>{icon("phone")}<a href="tel:+6086252476">086-252476</a></li>
             <li>{icon("mail")}<a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
           </ul>
-          <p class="mt-5 mb-0"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query={quote(btu_q)}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+          <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
-        <div class="map-wrap"><iframe class="map" src="{maps_embed(btu_q)}" title="Map: BWS Engineering fabrication yard, Kidurong, Bintulu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="map-wrap"><iframe class="map" src="{maps_embed(BTU_LL)}" title="Map: BWS Engineering fabrication yard, Kidurong, Bintulu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       </article>
     </div>
   </div>
