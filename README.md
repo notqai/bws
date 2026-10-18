@@ -51,7 +51,7 @@ Every page repeats the same header and footer. If you change a phone number, a m
 | `--steel-*` | greys | Body text `#2C3440`, secondary text `#5B6675` |
 | `--safety` | `#F2A900` | **HSE callouts only** |
 
-- **Fonts** (Google Fonts): *Source Serif 4* Bold for headings, *Source Sans 3* for body text, *Noto Naskh Arabic* for the Jawi company name. Only the letters in the Jawi name are downloaded, so that font costs almost nothing.
+- **Fonts:** *Source Serif 4* Bold (headings) and *Source Sans 3* (body) are **self-hosted** in `site/assets/fonts/` and preloaded, so text never jumps when they load. *Noto Naskh Arabic* for the Jawi name comes from Google Fonts and downloads only the letters in that name.
 - **Logo:** `logo.svg` is a clean rebuild of the original mark: same three panels and proportions, the sky-blue glow behind the "W", and white serif capitals converted to outlines (no font needed). `logo-white.svg` is a single-colour version for dark backgrounds. `favicon.svg` is just the three panels.
 
 ## Common edits
@@ -101,7 +101,7 @@ The form is on `contact.html` (search for `CONTACT FORM`).
 The two maps on `contact.html` are pinned to the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`), and "Open in Google Maps" opens those listings. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, or edit the `q=` coordinates in the iframe `src` and the link `href` in `contact.html`.
 
 ### Change colours or fonts
-Edit the variables at the top of `site/assets/css/styles.css`. If you change fonts, update the Google Fonts `<link>` in each page's `<head>`.
+Edit the variables at the top of `site/assets/css/styles.css`. To change fonts, replace the `.woff2` files in `site/assets/fonts/`, update the `@font-face` rules at the top of the CSS, and update the preload `<link>`s in each page's `<head>`.
 
 ### Certificate & licence details
 All checked October 2026. Update the dates when they're renewed.
@@ -119,7 +119,8 @@ The site is English-only for now, with all text in the HTML (none in the JS). To
 - WCAG AA contrast throughout, a skip link, visible focus outlines, a keyboard-operable menu (Esc closes, focus is trapped while open) and lightbox (← → Esc). Labelled form fields with error messages.
 - Animations (reveal-on-scroll, counters, client marquee) switch off when the visitor's device asks for reduced motion.
 - Images are WebP with fixed `width`/`height` (no layout jumping), lazy-loaded below the fold, and use `srcset` so phones get smaller files.
-- Lighthouse (mobile, local test server): **Performance 91–99, Accessibility 100, Best Practices 100, SEO 100** on every page. Real hosting with compression should be equal or better.
+- Lighthouse (mobile, local test server): **Performance 98–99, Accessibility 100, Best Practices 100, SEO 100**, layout shift 0, blocking time 0 ms.
+- Scrolling is kept cheap: no backdrop blur or blend modes, only opacity/transform animations, and a throttled scroll handler. It measured a steady 60 fps.
 
 ## Tools (optional)
 - `tools/generate_site.py` is the script that generated the HTML pages from shared header/footer templates. Use it **or** hand-edit the HTML, not both: running it overwrites every page. Run with `python3 tools/generate_site.py`.

@@ -29,9 +29,9 @@
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" href="assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@700&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500&display=swap&text=%D9%83%D8%AC%D8%B1%D9%88%D8%AA%D8%B1%D8%A7%D9%86%D8%A8%D9%8A%D8%AF%D8%A8%D9%84%D9%8A%D9%88%D8%A5%D9%8A%D8%B3%D8%B3%D9%86%D8%AF%DB%8C%D8%B1%DB%8C%D8%A7%D9%86%D8%A8%D8%B1%D8%AD%D8%AF">
 <link rel="preload" as="image" href="assets/img/hero-column-erection-800.webp" imagesrcset="assets/img/hero-column-erection-480.webp 480w, assets/img/hero-column-erection-800.webp 800w, assets/img/hero-column-erection-1600.webp 1600w" imagesizes="(min-width: 60rem) 45vw, 100vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/styles.css">
@@ -39,6 +39,12 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.bwsengineeringsb.com/#organization","name":"BWS Engineering Sdn Bhd","alternateName":["BWS Engineering Sdn. Bhd.","كجروتران بي دبليو إيس سندیریان برحد"],"url":"https://www.bwsengineeringsb.com/","logo":"https://www.bwsengineeringsb.com/assets/logo/logo.svg","image":"https://www.bwsengineeringsb.com/assets/img/og-image.jpg","description":"Bumiputera engineering construction and maintenance contractor for the oil and gas industries, based in Miri and Bintulu, Sarawak. PETRONAS licensed, CIDB registered, ISO 9001:2015 certified by TÜV NORD.","foundingDate":"2002-10","email":"bwsesb@gmail.com","telephone":"+60-85-652743","faxNumber":"+60-85-652709","areaServed":"Malaysia","knowsAbout":["Industrial plant construction and maintenance","Mechanical and piping work","Civil, building and structural steel construction","Electrical and instrumentation work"],"address":{"@type":"PostalAddress","streetAddress":"Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1","addressLocality":"Miri","postalCode":"98000","addressRegion":"Sarawak","addressCountry":"MY"},"subOrganization":[{"@type":"LocalBusiness","@id":"https://www.bwsengineeringsb.com/#miri","name":"BWS Engineering Sdn Bhd: Main Office cum Workshop (Miri)","image":"https://www.bwsengineeringsb.com/assets/img/facility-miri-hq-1600.webp","telephone":"+60-85-652743","faxNumber":"+60-85-652709","email":"bwsesb@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1","addressLocality":"Miri","postalCode":"98000","addressRegion":"Sarawak","addressCountry":"MY"},"geo":{"@type":"GeoCoordinates","latitude":4.446917,"longitude":114.011563},"hasMap":"https://www.google.com/maps?cid=4214669276461699859"},{"@type":"LocalBusiness","@id":"https://www.bwsengineeringsb.com/#bintulu","name":"BWS Engineering Sdn Bhd: Bintulu Office cum Fabrication Yard","image":"https://www.bwsengineeringsb.com/assets/img/facility-bintulu-yard-1600.webp","telephone":"+60-86-252476","email":"bwsesb@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong","addressLocality":"Bintulu","postalCode":"97007","addressRegion":"Sarawak","addressCountry":"MY"},"geo":{"@type":"GeoCoordinates","latitude":3.2724729,"longitude":113.0802423},"hasMap":"https://www.google.com/maps?cid=6044021619715074034"}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="topbar on-dark">
+  <div class="container topbar-inner">
+    <p class="topbar-contact">Miri <a href="tel:+6085652743">085-652743</a><span aria-hidden="true">·</span>Bintulu <a href="tel:+6086252476">086-252476</a><span aria-hidden="true">·</span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></p>
+    <p class="topbar-creds">ISO 9001:2015<span aria-hidden="true">·</span>CIDB G7<span aria-hidden="true">·</span>PETRONAS Licensed</p>
+  </div>
+</div>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-current="page">
@@ -72,7 +78,7 @@
   <div class="container hero-grid">
   <div class="hero-inner">
     <p class="eyebrow"><span class="panels" aria-hidden="true"><i></i><i></i><i></i></span> Miri &amp; Bintulu, Sarawak</p>
-    <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil &amp; Gas, <span class="accent">Since 2002.</span></h1>
+    <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil&nbsp;&amp;&nbsp;Gas, <span class="accent">Since&nbsp;2002.</span></h1>
     <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak. <b>PETRONAS licensed · CIDB registered · ISO 9001:2015.</b></p>
     <div class="btn-row">
       <a class="btn btn--primary" href="services.html">Our Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -135,7 +141,7 @@
         </div>
       </a>
       <a class="card card--media" href="services.html#civil">
-        <div class="card-photo"><img src="assets/img/civil-rebar-800.webp" srcset="assets/img/civil-rebar-480.webp 480w, assets/img/civil-rebar-800.webp 800w" sizes="(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw" width="800" height="541" alt="" loading="lazy" decoding="async"></div>
+        <div class="card-photo"><img src="assets/img/civil-rebar-800.webp" srcset="assets/img/civil-rebar-480.webp 480w, assets/img/civil-rebar-800.webp 800w" sizes="(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw" width="800" height="460" alt="" loading="lazy" decoding="async"></div>
         <div class="card-body">
           <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6M9 11h6"/></svg></span>
           <h3>Civil, Building and Structural Steel Construction</h3>
@@ -168,6 +174,21 @@
     <figure class="media media--framed ratio-4x3 reveal">
       <img src="assets/img/hse-site-walk-800.webp" srcset="assets/img/hse-site-walk-480.webp 480w, assets/img/hse-site-walk-800.webp 800w" sizes="(min-width: 60rem) 50vw, 100vw" width="577" height="564" alt="BWS supervisors in hard hats and coveralls walking a cleared construction site" loading="lazy" decoding="async">
     </figure>
+  </div>
+</section>
+
+<section class="section section--work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div><p class="eyebrow"><span class="panels" aria-hidden="true"><i></i><i></i><i></i></span>On site</p><h2 id="work-title">Recent work from our teams</h2></div>
+      <p class="lead">Plant, mechanical, civil and E&amp;I work across Sarawak. <a href="projects.html">View the full gallery</a></p>
+    </div>
+    <ul class="work-strip reveal-stagger" role="list">
+      <li><a class="work-item" href="projects.html"><img src="assets/img/plant-tanks-piping-800.webp" srcset="assets/img/plant-tanks-piping-480.webp 480w, assets/img/plant-tanks-piping-800.webp 800w" sizes="(min-width: 60rem) 25vw, 50vw" width="800" height="468" alt="Storage tanks and piping" loading="lazy" decoding="async"><span class="cap"><span>Plant</span>Storage tanks and piping</span></a></li>
+      <li><a class="work-item" href="projects.html"><img src="assets/img/civil-foundation-slab-800.webp" srcset="assets/img/civil-foundation-slab-480.webp 480w, assets/img/civil-foundation-slab-800.webp 800w" sizes="(min-width: 60rem) 25vw, 50vw" width="800" height="488" alt="Concrete foundation slab" loading="lazy" decoding="async"><span class="cap"><span>Civil &amp; Structural</span>Concrete foundation slab</span></a></li>
+      <li><a class="work-item" href="projects.html"><img src="assets/img/plant-firewater-tank-800.webp" srcset="assets/img/plant-firewater-tank-480.webp 480w, assets/img/plant-firewater-tank-800.webp 800w" sizes="(min-width: 60rem) 25vw, 50vw" width="800" height="473" alt="Firewater tank and pump shelter" loading="lazy" decoding="async"><span class="cap"><span>Plant</span>Firewater tank and pump shelter</span></a></li>
+      <li><a class="work-item" href="projects.html"><img src="assets/img/building-scaffold-800.webp" srcset="assets/img/building-scaffold-480.webp 480w, assets/img/building-scaffold-800.webp 800w" sizes="(min-width: 60rem) 25vw, 50vw" width="800" height="600" alt="Building construction" loading="lazy" decoding="async"><span class="cap"><span>Civil &amp; Structural</span>Building construction</span></a></li>
+    </ul>
   </div>
 </section>
 

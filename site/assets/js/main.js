@@ -15,9 +15,16 @@
   /* ---- Header shadow on scroll ---- */
   var header = document.querySelector(".site-header");
   if (header) {
-    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > 8); };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    var scrolled = null, ticking = false;
+    var update = function () {
+      ticking = false;
+      var now = window.scrollY > 8;
+      if (now !== scrolled) { scrolled = now; header.classList.toggle("is-scrolled", now); }
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   }
 
   /* ---- Mobile menu (full screen, focus-trapped, Esc to close) ---- */

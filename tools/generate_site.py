@@ -142,9 +142,9 @@ def head(page, title, desc, extra_ld=None):
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" href="assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONTS}">
 <link rel="stylesheet" href="{FONT_JAWI}">
 {preload}<link rel="stylesheet" href="assets/css/styles.css">
 <script src="assets/js/main.js" defer></script>
@@ -160,6 +160,12 @@ def header(page):
         for i, (h, t) in enumerate(NAV, 1))
     return f'''<body>
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="topbar on-dark">
+  <div class="container topbar-inner">
+    <p class="topbar-contact">Miri <a href="tel:+6085652743">085-652743</a><span aria-hidden="true">·</span>Bintulu <a href="tel:+6086252476">086-252476</a><span aria-hidden="true">·</span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></p>
+    <p class="topbar-creds">ISO 9001:2015<span aria-hidden="true">·</span>CIDB G7<span aria-hidden="true">·</span>PETRONAS Licensed</p>
+  </div>
+</div>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html"{' aria-current="page"' if page == "index.html" else ""}>
@@ -303,7 +309,7 @@ SERVICES = [
      "From site clearing and earthwork to foundations, industrial buildings, warehouses and jetties.",
      ["Site clearing", "Earthwork", "Foundations", "Industrial buildings and warehouses", "Jetties"],
      "From site clearing and earthwork through to foundations, we deliver the civil works that industrial facilities depend on. Our scope extends to industrial buildings, warehouses, structural steel and jetties. BWS is registered with the Construction Industry Development Board (CIDB) for various categories of construction activities.",
-     ("civil-rebar", "Construction crew in coveralls tying reinforcement steel for a foundation, with an excavator behind", 800, 541)),
+     ("civil-rebar", "Construction crew in coveralls tying reinforcement steel for a foundation, with an excavator behind", 800, 460)),
     ("electrical", "ei", "Electrical and Instrumentation Work",
      "Cable laying, equipment installation, instrument calibration and testing, and commissioning assistance.",
      ["Cable laying and testing", "Electrical equipment installation and testing", "Instrument calibration, installation and testing", "Commissioning assistance"],
@@ -363,6 +369,14 @@ def home():
           <span class="link-arrow">View scope</span>
         </div>
       </a>''' for (sid, ic, t, blurb, _sc, _in, ph) in SERVICES)
+    work = [("plant-tanks-piping", 800, 468, "Plant", "Storage tanks and piping"),
+            ("civil-foundation-slab", 800, 488, "Civil &amp; Structural", "Concrete foundation slab"),
+            ("plant-firewater-tank", 800, 473, "Plant", "Firewater tank and pump shelter"),
+            ("building-scaffold", 800, 600, "Civil &amp; Structural", "Building construction")]
+    work_items = "".join(
+        f'''
+      <li><a class="work-item" href="projects.html">{img(k, t, w, h, "(min-width: 60rem) 25vw, 50vw")}<span class="cap"><span>{c}</span>{t}</span></a></li>'''
+        for k, w, h, c, t in work)
     marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, n if alt else "")}</li>' for n, logo, w, h, _ in CLIENTS)
     return head("index.html",
         "BWS Engineering Sdn Bhd | Oil &amp; Gas Construction &amp; Maintenance Contractor, Miri, Sarawak",
@@ -371,7 +385,7 @@ def home():
   <div class="container hero-grid">
   <div class="hero-inner">
     <p class="eyebrow">{PANELS} Miri &amp; Bintulu, Sarawak</p>
-    <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil &amp; Gas, <span class="accent">Since 2002.</span></h1>
+    <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil&nbsp;&amp;&nbsp;Gas, <span class="accent">Since&nbsp;2002.</span></h1>
     <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak. <b>PETRONAS licensed · CIDB registered · ISO 9001:2015.</b></p>
     <div class="btn-row">
       <a class="btn btn--primary" href="services.html">Our Services {icon("arrow")}</a>
@@ -420,6 +434,17 @@ def home():
     <figure class="media media--framed ratio-4x3 reveal">
       {img("hse-site-walk", "BWS supervisors in hard hats and coveralls walking a cleared construction site", 577, 564)}
     </figure>
+  </div>
+</section>
+
+<section class="section section--work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "On site")}<h2 id="work-title">Recent work from our teams</h2></div>
+      <p class="lead">Plant, mechanical, civil and E&amp;I work across Sarawak. <a href="projects.html">View the full gallery</a></p>
+    </div>
+    <ul class="work-strip reveal-stagger" role="list">{work_items}
+    </ul>
   </div>
 </section>
 
@@ -661,20 +686,20 @@ def clients():
 GALLERY = [
     # (category, image key, w, h, title, alt) or (category, None, ..., placeholder text)
     ("plant", "hero-column-erection", 800, 600, "Process column erection", "Crane lifting a process column into position inside its scaffolding"),
-    ("plant", "plant-tanks-piping", 800, 532, "Storage tanks and piping", "White storage tanks with yellow piping and access stairways"),
-    ("plant", "plant-firewater-tank", 800, 532, "Firewater tank and pump shelter", "Firewater tank and green-roofed pump shelter at a facility"),
+    ("plant", "plant-tanks-piping", 800, 468, "Storage tanks and piping", "White storage tanks with yellow piping and access stairways"),
+    ("plant", "plant-firewater-tank", 800, 473, "Firewater tank and pump shelter", "Firewater tank and green-roofed pump shelter at a facility"),
     ("mech", "mech-heavy-lift", 800, 600, "Heavy lift of a vessel", "Mobile crane lifting a large cylindrical vessel on site"),
-    ("mech", "mech-pump-skid", 448, 336, "Pump installation", "Electric pump and pipework installed on a skid"),
-    ("mech", "piping-spool", 448, 336, "Large-bore piping", "Large-bore white piping with flanged connections"),
+    ("mech", "mech-pump-skid", 448, 292, "Pump installation", "Electric pump and pipework installed on a skid"),
+    ("mech", "piping-spool", 448, 295, "Large-bore piping", "Large-bore white piping with flanged connections"),
     ("mech", "mech-container-unloading", 800, 554, "Material receiving", "Crew in PPE unloading materials from a shipping container"),
     ("mech", None, 0, 0, "Blasting and painting", "Blasting and painting work at the Bintulu yard"),
-    ("civil", "civil-rebar", 800, 541, "Foundation reinforcement", "Construction crew tying reinforcement steel for a foundation"),
-    ("civil", "civil-foundation-slab", 800, 555, "Concrete foundation slab", "Large concrete slab with formwork and an excavator at the edge of the site"),
+    ("civil", "civil-rebar", 800, 460, "Foundation reinforcement", "Construction crew tying reinforcement steel for a foundation"),
+    ("civil", "civil-foundation-slab", 800, 488, "Concrete foundation slab", "Large concrete slab with formwork and an excavator at the edge of the site"),
     ("civil", "civil-excavation-formwork", 800, 563, "Excavation and formwork", "Excavator working beside timber formwork in an excavation"),
-    ("civil", "civil-concrete-finishing", 800, 554, "Concrete finishing", "Workers in coveralls and boots finishing a concrete surface"),
+    ("civil", "civil-concrete-finishing", 800, 481, "Concrete finishing", "Workers in coveralls and boots finishing a concrete surface"),
     ("civil", "civil-drainage", 640, 480, "Drainage works", "Drainage channel under construction along a slope"),
     ("civil", "building-scaffold", 800, 600, "Building construction", "Two-storey building wrapped in scaffolding beside a container yard"),
-    ("civil", "building-interior", 800, 600, "Building fit-out", "Interior of a building under fit-out with steel roof structure"),
+    ("civil", "building-interior", 800, 534, "Building fit-out", "Interior of a building under fit-out with steel roof structure"),
     ("ei", "ei-switchgear", 800, 599, "Switchgear installation", "Row of electrical switchgear panels in a substation room"),
     ("ei", None, 0, 0, "Cable laying and testing", "Cable laying or termination work on site"),
     ("ei", None, 0, 0, "Instrument calibration", "Instrument calibration on the bench or in the field"),
