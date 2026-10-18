@@ -41,7 +41,8 @@ def icon(name, cls=""):
 PANELS = '<span class="panels" aria-hidden="true"><i></i><i></i><i></i></span>'
 
 def eyebrow(num, label):
-    return f'<p class="eyebrow">{PANELS}<span class="num">{num}</span> {label}</p>'
+    # num is ignored: sections are labelled, not numbered
+    return f'<p class="eyebrow">{PANELS}{label}</p>'
 
 def img(key, alt, w, h, sizes="(min-width: 60rem) 50vw, 100vw", big=False, cls="", eager=False):
     src = f"assets/img/{key}-800.webp"
@@ -109,7 +110,7 @@ def head(page, title, desc, extra_ld=None):
     if hero:
         sets = [(w, f"assets/img/{hero}-{w}.webp") for w in (480, 800, 1600) if os.path.exists(OUT + f"assets/img/{hero}-{w}.webp")]
         preload = (f'<link rel="preload" as="image" href="assets/img/{hero}-800.webp" imagesrcset="{", ".join(f"{u} {w}w" for w, u in sets)}" '
-                   'imagesizes="100vw" fetchpriority="high">\n')
+                   f'imagesizes="{"(min-width: 60rem) 45vw, 100vw" if page == "index.html" else "(min-width: 60rem) 40vw, 100vw"}" fetchpriority="high">\n')
     return f'''<!doctype html>
 <html lang="en-MY">
 <head>
@@ -155,7 +156,7 @@ def header(page):
         f'<li><a href="{h}"{" aria-current=\"page\"" if h == page else ""}>{t}</a></li>'
         for h, t in NAV if h != "index.html")
     mob = "".join(
-        f'<li><a href="{h}"{" aria-current=\"page\"" if h == page else ""}><span>{i:02d}</span>{t}</a></li>'
+        f'<li><a href="{h}"{" aria-current=\"page\"" if h == page else ""}>{t}</a></li>'
         for i, (h, t) in enumerate(NAV, 1))
     return f'''<body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -258,14 +259,21 @@ def footer():
 </html>
 '''
 
+def panels(photo, w, h, sizes, alt="", cls=""):
+    # Signature: a photo seen through the three BWS logo panels (4 : 5 : 3, sky glow on the middle one)
+    return (f'<div class="bws-panels {cls}"{"" if alt else " aria-hidden=\"true\""}>'
+            f'{img(photo, alt, w, h, sizes, big=True, eager=True)}<span class="bws-glow"></span></div>')
+
 def page_hero(crumb, title, lead, photo, alt, w, h):
     return f'''
 <section class="page-hero on-dark">
-  <div class="hero-media">{img(photo, "", w, h, "100vw", big=True, eager=True)}</div>
-  <div class="container page-hero-inner">
-    <ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">{crumb}</li></ol>
-    <h1>{title}</h1>
-    <p>{lead}</p>
+  <div class="container page-hero-grid">
+    <div class="page-hero-inner">
+      <ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">{crumb}</li></ol>
+      <h1>{title}</h1>
+      <p>{lead}</p>
+    </div>
+    {panels(photo, w, h, "(min-width: 60rem) 40vw, 100vw", cls="bws-panels--page")}
   </div>
 </section>'''
 
@@ -341,20 +349,22 @@ TRUST = f'''
 # ================================================================ HOME
 def home():
     svc_cards = "".join(f'''
-      <a class="card" href="services.html#{sid}">
-        <span class="card-num" aria-hidden="true">{i:02d}</span>
-        <span class="card-icon">{icon(ic)}</span>
-        <h3>{t}</h3>
-        <p>{blurb}</p>
-        <span class="link-arrow">View scope</span>
-      </a>''' for i, (sid, ic, t, blurb, *_r) in enumerate(SERVICES, 1))
+      <a class="card card--media" href="services.html#{sid}">
+        <span class="card-photo">{img(ph[0], "", ph[2], ph[3], "(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw")}</span>
+        <span class="card-body">
+          <span class="card-icon">{icon(ic)}</span>
+          <h3>{t}</h3>
+          <p>{blurb}</p>
+          <span class="link-arrow">View scope</span>
+        </span>
+      </a>''' for (sid, ic, t, blurb, _sc, _in, ph) in SERVICES)
     marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, n if alt else "")}</li>' for n, logo, w, h, _ in CLIENTS)
     return head("index.html",
         "BWS Engineering Sdn Bhd | Oil &amp; Gas Construction &amp; Maintenance Contractor, Miri, Sarawak",
         "Bumiputera engineering construction and maintenance contractor for oil &amp; gas, based in Miri and Bintulu, Sarawak since 2002. PETRONAS licensed, CIDB registered, ISO 9001:2015 (TÜV NORD).") + header("index.html") + f'''
 <section class="hero on-dark" aria-labelledby="hero-title">
-  <div class="hero-media">{img("hero-column-erection", "", 1600, 1200, "100vw", big=True, eager=True)}</div>
-  <div class="container hero-inner">
+  <div class="container hero-grid">
+  <div class="hero-inner">
     <p class="eyebrow">{PANELS} Miri &amp; Bintulu, Sarawak</p>
     <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil &amp; Gas, <span class="accent">Since 2002.</span></h1>
     <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak. <b>PETRONAS licensed · CIDB registered · ISO 9001:2015.</b></p>
@@ -363,11 +373,12 @@ def home():
       <a class="btn btn--outline-light" href="contact.html">Contact Us</a>
     </div>
   </div>
-  <div class="hero-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+  {panels("hero-column-erection", 1600, 1200, "(min-width: 60rem) 45vw, 100vw", alt="Crane lifting a process column into position during plant construction", cls="bws-panels--hero")}
+  </div>
 </section>
 {TRUST}
 
-<section class="section section--steel" aria-labelledby="stats-title">
+<section class="stats-band" aria-labelledby="stats-title">
   <div class="container">
     <h2 id="stats-title" class="visually-hidden">BWS in numbers</h2>
     <!-- KEY STATS: edit the numbers here. data-count = the number, data-suffix = text after it.
@@ -591,7 +602,6 @@ def services():
 <section class="service" id="{sid}" aria-labelledby="{sid}-title">
   <div class="container service-grid">
     <div>
-      {eyebrow(f"{i:02d}", "Service")}
       <div class="service-head"><span class="card-icon">{icon(ic)}</span><h2 id="{sid}-title">{t}</h2></div>
       <p class="lead">{intro}</p>
       <h3 class="visually-hidden">Scope</h3>
