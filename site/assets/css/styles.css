@@ -279,19 +279,22 @@ a.card:hover h3 { color: var(--brand-blue); }
 
 /* ---------- Clients ---------- */
 .client-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 0; border-top: 1px solid var(--steel-200); border-left: 1px solid var(--steel-200); }
-.client { border-right: 1px solid var(--steel-200); border-bottom: 1px solid var(--steel-200); display: flex; align-items: center; gap: var(--space-4); min-height: 6.5rem; padding: var(--space-5); background: var(--white); color: var(--steel-600); filter: grayscale(1); transition: color .2s var(--ease), background-color .2s var(--ease), filter .2s var(--ease); }
-.client:hover { color: var(--ink); background: var(--brand-cyan); filter: none; }
-.client-mark { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: var(--radius); font-family: var(--font-head); font-weight: 700; font-size: .95rem; color: var(--brand-blue); opacity: .9; }
-.client-name { font-weight: 600; line-height: 1.3; color: var(--ink); }
-.client img { max-height: 48px; width: auto; }
+.client { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); min-height: 11rem; padding: var(--space-6) var(--space-5) var(--space-5); text-align: center; background: var(--white); border-right: 1px solid var(--steel-200); border-bottom: 1px solid var(--steel-200); transition: background-color .25s var(--ease); }
+.client-logo { display: grid; place-items: center; height: 64px; width: 100%; }
+.client-logo img { width: auto; height: auto; max-height: 64px; max-width: min(170px, 100%); filter: grayscale(1); opacity: .75; transition: filter .25s var(--ease), opacity .25s var(--ease); }
+.client:hover { background: var(--steel-50); }
+.client:hover .client-logo img { filter: none; opacity: 1; }
+.client-name { font-weight: 600; font-size: var(--fs-sm); line-height: 1.35; color: var(--ink); }
+.client-name small { display: block; font-weight: 400; font-size: var(--fs-xs); color: var(--steel-600); }
+@media (hover: none) { .client-logo img, .marquee img { filter: none; opacity: 1; } }
 
 .marquee { position: relative; overflow: hidden; border-block: 1px solid var(--steel-200); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .marquee-track { display: flex; width: max-content; animation: marquee 50s linear infinite; }
 .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
 .marquee ul { display: flex; list-style: none; margin: 0; padding: 0; }
-.marquee li { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-5) var(--space-6); white-space: nowrap; font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; color: var(--steel-600); transition: color .2s; }
-.marquee li:hover { color: var(--ink); }
-.marquee li::after { content: ""; width: 6px; height: 6px; margin-left: var(--space-6); background: var(--brand-sky); transform: rotate(45deg); }
+.marquee li { display: flex; align-items: center; padding: var(--space-5) clamp(1.5rem, 1rem + 2vw, 3rem); }
+.marquee img { width: auto; height: auto; max-height: 48px; max-width: 150px; filter: grayscale(1); opacity: .7; transition: filter .25s var(--ease), opacity .25s var(--ease); }
+.marquee li:hover img { filter: none; opacity: 1; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .marquee { -webkit-mask-image: none; mask-image: none; }
@@ -484,3 +487,10 @@ a.card:hover h3 { color: var(--brand-blue); }
   .hero *, .page-hero * { color: #000 !important; }
 }
 a[href^="tel:"] { white-space: nowrap; }
+@media (max-width: 47.99rem) {
+  .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .client { min-height: 9rem; padding: var(--space-5) var(--space-3) var(--space-4); gap: var(--space-3); }
+  .client-logo { height: 48px; }
+  .client-logo img { max-height: 48px; max-width: min(130px, 100%); }
+  .client-name { font-size: var(--fs-xs); }
+}

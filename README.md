@@ -22,7 +22,7 @@ site/
 ├── index.html          Home
 ├── about.html          Company profile, objective, facilities, organisation chart, licences
 ├── services.html       One section per service line (#plant #mechanical #civil #electrical)
-├── clients.html        Main clients (text cards)
+├── clients.html        Main clients (logo cards)
 ├── projects.html       Filterable photo gallery with lightbox
 ├── hse.html            HSE policy, Quality policy, ISO / licences
 ├── careers.html        Working at BWS + job openings (apply by email)
@@ -69,8 +69,15 @@ Gallery photos (`projects.html`) are `<li data-cat="...">` items. Copy an existi
 Replace `site/assets/logo/logo.svg` and `logo-white.svg` (keep the file names). If the new logo has a different shape, update the `width`/`height` on the `<img>` tags in the header and footer.
 
 ### Client logos
-Clients are shown as text cards (no third-party logos were downloaded). To use logos you have permission to display, put them in `site/assets/img/clients/` and replace the `<span class="client-mark">…</span>` in a client card on `clients.html` with
-`<img src="assets/img/clients/name.svg" alt="" width="120" height="48">`. Cards are greyscale by default and show colour on hover.
+Logos live in `site/assets/img/clients/` and are each client's **current** brand mark (checked October 2026):
+- **PETRONAS mark** (`petronas.svg`) for Malaysia LNG, PETRONAS Carigali and PETRONAS Dagangan, which use the group brand.
+- **JX Nippon Oil & Gas Exploration** was renamed **ENEOS Xplora** in 2023, so its card shows the ENEOS Xplora logo with a "Now ENEOS Xplora" note.
+- **PT Rekayasa Industri** trades as **Rekind**.
+- **Sources:** Wikimedia Commons / Wikipedia for JGC, Chiyoda, Mitsui & Co, Shell, ENEOS Xplora, PETRONAS and Rekind; Taihei Dengyo from its own website.
+- **ASEAN Bintulu Fertilizer:** no current logo could be found online, so the file from the old BWS website is used. It is low resolution.
+
+Logos show in greyscale and turn colour on hover (always colour on touch screens). To swap one, replace the file, keeping the name, or edit the list in `clients.html` and the marquee in `index.html`.
+Company logos are trademarks of their owners. Showing them as a client list is common practice, but BWS should be comfortable it has worked for each client before publishing.
 
 ### Update the stats (home page)
 In `index.html` search for `KEY STATS`. Each number looks like:
@@ -117,7 +124,7 @@ See the list below. Each placeholder is marked in the HTML with a `PLACEHOLDER` 
 | 4 | `projects.html` | Photos of **cable laying / termination**, **instrument calibration** and **blasting & painting** at the Bintulu yard |
 | 5 | `contact.html` | **Formspree form ID** (or keep the email fallback) |
 | 6 | Everywhere | **Higher-resolution / newer site photos**. Current photos come from the old website; many are small (448–1024 px) and some have date stamps burned in |
-| 7 | `clients.html`, home | **Client logos** with permission to use (optional; text cards work fine) |
+| 7 | `clients.html`, home | A sharper **ASEAN Bintulu Fertilizer** logo, and confirmation BWS is happy to display client logos |
 | 8 | Home / footer | Confirm the stats (20+ years, 2 bases, 4 disciplines, 10+ clients) and that the **CIDB grade/categories** and **PETRONAS licence** wording is as BWS wants it shown |
 | 9 | `contact.html` | Check the **Bintulu map pin**. The address search lands near Jalan Tanjung Kidurong; if BWS has a Google Business listing for the yard, use its name in the map query instead |
 | 10 | Logo | If an original vector logo exists (from the printer/sign maker), swap it in for the rebuilt SVG |

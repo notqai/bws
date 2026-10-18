@@ -1,6 +1,2 @@
-[2026-10-18T23:10:46.860Z] [debug] Search endpoint requested!
-[2026-10-18T23:10:46.861Z] [debug] Search endpoint requested!
-[2026-10-18T23:11:47.004Z] [debug] Search endpoint requested!
-[2026-10-18T23:11:47.184Z] [debug] Search endpoint requested!
-[2026-10-18T23:12:05.828Z] [debug] Search endpoint requested!
-[2026-10-18T23:12:05.835Z] [debug] Search endpoint requested!
+[2026-10-18T23:24:45.370Z] [warning] The resource http://localhost:8080/assets/img/plant-tanks-piping-480.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-10-18T23:24:58.336Z] [warning] The resource http://localhost:8080/assets/img/plant-tanks-piping-480.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

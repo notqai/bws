@@ -298,24 +298,31 @@ SERVICES = [
      ("ei-switchgear", "Row of electrical switchgear panels installed in a substation room", 800, 599)),
 ]
 
+# (name, logo file in assets/img/clients/, intrinsic width, height, note)
+# Logos are the clients' current brand marks (PETRONAS subsidiaries use the group mark).
 CLIENTS = [
-    ("Malaysia LNG Sdn Bhd", "MLNG"),
-    ("PETRONAS Carigali Sdn Bhd", "PCSB"),
-    ("PETRONAS Dagangan Berhad", "PDB"),
-    ("JX Nippon Oil &amp; Gas Exploration (M) Ltd", "JX"),
-    ("ASEAN Bintulu Fertilizer Sdn Bhd", "ABF"),
-    ("PT Rekayasa Industri", "RI"),
-    ("Sarawak Shell Berhad &amp; Sabah Shell Petroleum Co. Ltd", "SSB"),
-    ("JGC Corporation", "JGC"),
-    ("Chiyoda Malaysia Sdn Bhd", "CMSB"),
-    ("Mitsui &amp; Co. Ltd", "MBK"),
-    ("Taihei Dengyo Kaisha, Ltd", "TDK"),
+    ("Malaysia LNG Sdn Bhd", "petronas.svg", 544, 558, "PETRONAS Group"),
+    ("PETRONAS Carigali Sdn Bhd", "petronas.svg", 544, 558, ""),
+    ("PETRONAS Dagangan Berhad", "petronas.svg", 544, 558, ""),
+    ("JX Nippon Oil &amp; Gas Exploration (M) Ltd", "eneos-xplora.webp", 640, 91, "Now ENEOS Xplora"),
+    ("ASEAN Bintulu Fertilizer Sdn Bhd", "abf.webp", 150, 97, ""),
+    ("PT Rekayasa Industri", "rekind.webp", 360, 404, "Rekind"),
+    ("Sarawak Shell Berhad &amp; Sabah Shell Petroleum Co. Ltd", "shell.svg", 150, 139, ""),
+    ("JGC Corporation", "jgc.svg", 373, 202, ""),
+    ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, ""),
+    ("Mitsui &amp; Co. Ltd", "mitsui.svg", 512, 636, ""),
+    ("Taihei Dengyo Kaisha, Ltd", "taihei-dengyo.webp", 122, 90, ""),
 ]
 
+def client_logo(logo, w, h, alt=""):
+    return f'<img src="assets/img/clients/{logo}" width="{w}" height="{h}" alt="{alt}" loading="lazy" decoding="async">'
+
 def client_grid():
-    # Text cards. To use a logo: replace <span class="client-mark">…</span> with
-    # <img src="assets/img/clients/<file>.svg" alt="" width="120" height="48"> (see README).
-    lis = "".join(f'<li class="client"><span class="client-mark" aria-hidden="true">{n[0]}</span><span class="client-name">{n}</span></li>' for n, ab in CLIENTS)
+    # To change a logo: replace the file in assets/img/clients/ (keep the name) or edit the <img> below.
+    lis = "".join(
+        f'<li class="client"><span class="client-logo">{client_logo(logo, w, h)}</span>'
+        f'<span class="client-name">{n}{f"<small>{note}</small>" if note else ""}</span></li>'
+        for n, logo, w, h, note in CLIENTS)
     return f'<ul class="client-grid reveal-stagger" role="list">{lis}</ul>'
 
 TRUST = f'''
@@ -341,7 +348,7 @@ def home():
         <p>{blurb}</p>
         <span class="link-arrow">View scope</span>
       </a>''' for i, (sid, ic, t, blurb, *_r) in enumerate(SERVICES, 1))
-    names = "".join(f"<li>{n}</li>" for n, _ in CLIENTS)
+    marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, n if alt else "")}</li>' for n, logo, w, h, _ in CLIENTS)
     return head("index.html",
         "BWS Engineering Sdn Bhd | Oil &amp; Gas Construction &amp; Maintenance Contractor, Miri, Sarawak",
         "Bumiputera engineering construction and maintenance contractor for oil &amp; gas, based in Miri and Bintulu, Sarawak since 2002. PETRONAS licensed, CIDB registered, ISO 9001:2015 (TÜV NORD).") + header("index.html") + f'''
@@ -409,8 +416,8 @@ def home():
   </div>
   <div class="marquee">
     <div class="marquee-track">
-      <ul role="list">{names}</ul>
-      <ul aria-hidden="true">{names}</ul>
+      <ul role="list" aria-label="Main clients">{marq(True)}</ul>
+      <ul aria-hidden="true">{marq(False)}</ul>
     </div>
   </div>
 </section>
