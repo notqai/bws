@@ -343,10 +343,10 @@ TRUST = f'''
   <div class="container">
     <ul role="list">
       <li>{icon("badge")}<div>PETRONAS Licensed<span>Valid PETRONAS licence</span></div></li>
-      <li>{icon("doc")}<div>CIDB Registered<span>Various construction categories</span></div></li>
+      <li>{icon("doc")}<div>CIDB Grade G7<span>Building · Civil · M&amp;E</span></div></li>
       <li>{icon("shield")}<div>ISO 9001:2015<span>Certified by TÜV NORD</span></div></li>
       <li>{icon("calendar")}<div>Est. 2002<span>Formed October 2002</span></div></li>
-      <li>{icon("flag")}<div>Bumiputera Company<span>Wholly owned</span></div></li>
+      <li>{icon("flag")}<div>Bumiputera Company<span>Wholly owned · CIDB STB certified</span></div></li>
     </ul>
   </div>
 </section>'''
@@ -588,9 +588,9 @@ def about():
   <div class="container">
     <div class="section-head">{eyebrow("05", "Licences &amp; certification")}<h2 id="lic-title">Licensed, registered and certified</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">BWS holds a valid PETRONAS licence.</p></div>
-      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Registration</h3><p class="mb-0">Registered with the Construction Industry Development Board (CIDB) for various categories of construction activities.</p></div>
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD. <a href="hse.html#quality">Quality policy</a></p></div>
+      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">Licensed by PETRONAS since 2004 for onshore fabrication, construction, inspection, repair and maintenance.</p></div>
+      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Grade G7</h3><p class="mb-0">Registered with CIDB since 2003 at Grade G7, the highest grade, in Building, Civil Engineering and Mechanical &amp; Electrical. Registration no. 0120030415-SR082502. <a href="hse.html#cert-title">Details</a></p></div>
+      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD since 2007. Certificate no. 44100072059. <a href="hse.html#quality">Quality policy</a></p></div>
     </div>
   </div>
 </section>
@@ -795,10 +795,35 @@ def hse():
 <section class="section" aria-labelledby="cert-title">
   <div class="container">
     <div class="section-head">{eyebrow("03", "Licences &amp; certification")}<h2 id="cert-title">Licences and registrations</h2></div>
-    <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD, first certified in 2007. Certificate no. 44100072059.</p></div>
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">Licensed by PETRONAS since 2004 for onshore fabrication, construction, inspection, repair and maintenance.</p></div>
-      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Grade G7</h3><p class="mb-0">Registered with the Construction Industry Development Board since 2003 at Grade G7, the highest grade, in categories B (building), CE (civil engineering) and ME (mechanical &amp; electrical).</p></div>
+    <!-- CIDB details from CIDB's public contractor search (CIMS), checked Oct 2026.
+         PETRONAS licences can't be looked up publicly (PLMS needs a vendor login): details from the MPRC supplier directory. -->
+    <div class="grid grid--2 reveal-stagger">
+      <article class="cert-card" aria-labelledby="cidb-card-title">
+        <header class="cert-head">
+          <span class="cert-seal" aria-hidden="true">{icon("doc")}</span>
+          <div><p class="cert-issuer">CIDB Malaysia</p><h3 id="cidb-card-title">Grade G7 registered contractor</h3></div>
+        </header>
+        <dl class="cert-data">
+          <div><dt>Registration no.</dt><dd>0120030415-SR082502</dd></div>
+          <div><dt>Valid until</dt><dd>7 November 2028</dd></div>
+          <div class="wide"><dt>Categories</dt><dd>B (Building) · CE (Civil Engineering) · ME (Mechanical &amp; Electrical)</dd></div>
+          <div class="wide"><dt>Certificates</dt><dd>PPK (contractor registration) · SPKK (government works) · STB (Bumiputera status)</dd></div>
+          <div class="wide"><dt>Registered since</dt><dd>April 2003</dd></div>
+        </dl>
+        <a class="link-arrow" href="https://cims.cidb.gov.my/smis/regcontractor/reglocalsearchcontractor.vbhtml" target="_blank" rel="noopener">Verify on CIDB’s contractor search<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </article>
+      <article class="cert-card" aria-labelledby="pet-card-title">
+        <header class="cert-head">
+          <span class="cert-seal" aria-hidden="true">{icon("badge")}</span>
+          <div><p class="cert-issuer">PETRONAS</p><h3 id="pet-card-title">PETRONAS licensed contractor</h3></div>
+        </header>
+        <dl class="cert-data">
+          <div><dt>Licensed since</dt><dd>2004</dd></div>
+          <div><dt>Status</dt><dd>Valid</dd></div>
+          <div class="wide"><dt>Scope</dt><dd>Onshore fabrication, construction, inspection, repair and maintenance</dd></div>
+        </dl>
+        <p class="small mb-0">Licence number and validity are available to procurement teams on request.</p>
+      </article>
     </div>
   </div>
 </section>

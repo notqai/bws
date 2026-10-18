@@ -560,7 +560,7 @@ a[href^="tel:"] { white-space: nowrap; }
 }
 
 /* ---------- Verified certificate card ---------- */
-.cert-card { position: relative; display: grid; gap: var(--space-5); padding: var(--space-6); background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); box-shadow: var(--shadow-2); }
+.cert-card { position: relative; display: grid; align-content: start; gap: var(--space-5); padding: var(--space-6); background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); box-shadow: var(--shadow-2); }
 .cert-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: linear-gradient(90deg, var(--brand-blue) 0 30.77%, transparent 30.77% 34.62%, var(--brand-sky) 34.62% 73.08%, transparent 73.08% 76.92%, var(--brand-blue) 76.92%); border-radius: var(--radius) var(--radius) 0 0; }
 .cert-head { display: flex; gap: var(--space-4); align-items: center; }
 .cert-head h3 { margin: 0; font-size: 1.3rem; }
