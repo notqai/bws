@@ -99,9 +99,7 @@ ORG_LD = {
     ],
 }
 
-HEROES = {"index.html": "hero-column-erection", "about.html": "facility-miri-hq", "services.html": "mech-heavy-lift",
-          "clients.html": "plant-tanks-piping", "projects.html": "civil-rebar", "hse.html": "hse-fire-drill",
-          "careers.html": "civil-concrete-finishing", "contact.html": "facility-bintulu-yard"}
+HEROES = {"index.html": "hero-column-erection"}
 
 def head(page, title, desc, extra_ld=None):
     url = SITE + "/" + ("" if page == "index.html" else page)
@@ -266,7 +264,12 @@ def panels(photo, w, h, sizes, alt="", cls=""):
     return (f'<div class="bws-panels {cls}"{"" if alt else " aria-hidden=\"true\""}>'
             f'{img(photo, alt, w, h, sizes, big=True, eager=True)}<span class="bws-glow"></span></div>')
 
-def page_hero(crumb, title, lead, photo, alt, w, h):
+def illus_panels(name):
+    # Blueprint-style illustration (tools/make_illustrations.py) seen through the three logo panels
+    return (f'<div class="bws-panels bws-panels--page bws-panels--illus" aria-hidden="true">'
+            f'<img src="assets/illustrations/{name}.svg" width="800" height="600" alt="" fetchpriority="high"><span class="bws-glow"></span></div>')
+
+def page_hero(crumb, title, lead, illus, *_unused):
     return f'''
 <section class="page-hero on-dark">
   <div class="container page-hero-grid">
@@ -275,7 +278,7 @@ def page_hero(crumb, title, lead, photo, alt, w, h):
       <h1>{title}</h1>
       <p>{lead}</p>
     </div>
-    {panels(photo, w, h, "(min-width: 60rem) 40vw, 100vw", cls="bws-panels--page")}
+    {illus_panels(illus)}
   </div>
 </section>'''
 
@@ -494,7 +497,7 @@ def about():
         "Company profile of BWS Engineering Sdn Bhd: a wholly owned Bumiputera oil &amp; gas construction and maintenance contractor formed in October 2002, with facilities in Miri and Bintulu.") + header("about.html") + page_hero(
         "About", "A Bumiputera contractor built on oil &amp; gas experience",
         "Engineering construction and maintenance services for the oil and gas industries since October 2002.",
-        "facility-miri-hq", "", 1600, 1200) + f'''
+        "workshop") + f'''
 
 <section class="section" aria-labelledby="profile-title">
   <div class="container split split--wide-text">
@@ -619,7 +622,7 @@ def services():
         "Industrial plant construction and maintenance, mechanical and piping, civil, building and structural steel, and electrical and instrumentation work for oil &amp; gas in Sarawak.") + header("services.html") + page_hero(
         "Services", "Construction &amp; maintenance services for oil and gas",
         "Four core disciplines delivered from our Miri workshop and Bintulu fabrication yard.",
-        "mech-heavy-lift", "", 1600, 1200) + f'''
+        "plant") + f'''
 <nav class="service-nav" aria-label="Services on this page"><div class="container"><ul>{nav}</ul></div></nav>
 {secs}
 {CTA}''' + footer()
@@ -630,7 +633,7 @@ def clients():
         "BWS Engineering’s main clients include Malaysia LNG, PETRONAS Carigali, PETRONAS Dagangan, Sarawak Shell, JGC, Chiyoda and other oil &amp; gas operators and EPC contractors.") + header("clients.html") + page_hero(
         "Clients", "Our main clients",
         "Oil and gas operators, EPC contractors and industrial companies have trusted BWS with construction and maintenance work since 2002.",
-        "plant-tanks-piping", "", 800, 532) + f'''
+        "offshore") + f'''
 
 <section class="section" aria-labelledby="cl-title">
   <div class="container">
@@ -701,7 +704,7 @@ def projects():
         "Photos of BWS Engineering’s plant construction, mechanical and piping, civil and structural, electrical and instrumentation, and HSE activities in Sarawak.") + header("projects.html") + page_hero(
         "Projects", "Projects &amp; gallery",
         "A look at our work on site, filtered by discipline.",
-        "civil-rebar", "", 800, 541) + f'''
+        "crane-lift") + f'''
 
 <section class="section" aria-labelledby="gal-title">
   <div class="container">
@@ -735,7 +738,7 @@ def hse():
         "BWS Engineering’s HSE policy and Quality policy. ISO 9001:2015 certified by TÜV NORD. No job shall start or continue without due regard to Safety, Health and Environment.") + header("hse.html") + page_hero(
         "HSE &amp; Quality", "Health, safety, environment and quality",
         "No job shall start or continue without due regard to Safety, Health and Environment.",
-        "hse-fire-drill", "", 1600, 1200) + f'''
+        "hard-hat") + f'''
 
 <section class="section" id="hse" aria-labelledby="hsep-title">
   <div class="container split">
@@ -751,8 +754,8 @@ def hse():
       </div>
     </div>
     <figure class="media media--framed ratio-4x3 reveal">
-      {img("hse-toolbox-talk", "Workers seated under a site tent for a safety briefing before work", 800, 600)}
-      <figcaption>Safety briefing on site.</figcaption>
+      {img("mech-container-unloading", "Crew in coveralls, hard hats and gloves unloading materials from a container", 800, 554)}
+      <figcaption>Full PPE during material handling.</figcaption>
     </figure>
   </div>
 </section>
@@ -770,9 +773,21 @@ def hse():
       <p class="mt-5 mb-0">The company is ISO 9001:2015 certified by TÜV NORD.</p>
     </div>
     <div>
-      <!-- PLACEHOLDER: scan of the ISO 9001:2015 certificate (TÜV NORD). Replace with:
-           <img src="assets/img/iso-certificate.webp" alt="ISO 9001:2015 certificate issued by TÜV NORD to BWS Engineering Sdn Bhd" width="800" height="1131" loading="lazy"> -->
-      <div class="ph" style="aspect-ratio:3/4;max-width:24rem;margin-inline:auto" role="img" aria-label="ISO 9001:2015 certificate image coming soon"><div><strong>Certificate placeholder</strong>ISO 9001:2015 certificate (TÜV NORD)</div></div>
+      <!-- ISO CERTIFICATE: details from TÜV NORD's public certificate database (checked Oct 2026).
+           Update "Valid until" when the certificate is renewed. -->
+      <article class="cert-card" aria-labelledby="cert-card-title">
+        <header class="cert-head">
+          <span class="cert-seal" aria-hidden="true">{icon("shield")}</span>
+          <div><p class="cert-issuer">TÜV NORD CERT GmbH</p><h3 id="cert-card-title">ISO 9001:2015 Quality Management System</h3></div>
+        </header>
+        <dl class="cert-data">
+          <div><dt>Certificate no.</dt><dd>44100072059</dd></div>
+          <div><dt>Valid until</dt><dd>7 February 2028</dd></div>
+          <div class="wide"><dt>Certificate holder</dt><dd>BWS Engineering Sdn. Bhd., Lot 1743, Block 3 MCLD, Piasau Industrial Estate, 98000 Miri, Sarawak</dd></div>
+          <div class="wide"><dt>Scope</dt><dd>Provision of service in engineering, construction and project management</dd></div>
+        </dl>
+        <a class="link-arrow" href="https://www.tuev-nord.de/en/certificate-database/" target="_blank" rel="noopener">Verify with TÜV NORD (certificate no. 44100072059)<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </article>
     </div>
   </div>
 </section>
@@ -781,9 +796,9 @@ def hse():
   <div class="container">
     <div class="section-head">{eyebrow("03", "Licences &amp; certification")}<h2 id="cert-title">Licences and registrations</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD.</p></div>
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">Valid PETRONAS licence.</p></div>
-      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Registration</h3><p class="mb-0">Registered with the Construction Industry Development Board for various categories of construction activities.</p></div>
+      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD, first certified in 2007. Certificate no. 44100072059.</p></div>
+      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">Licensed by PETRONAS since 2004 for onshore fabrication, construction, inspection, repair and maintenance.</p></div>
+      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Grade G7</h3><p class="mb-0">Registered with the Construction Industry Development Board since 2003 at Grade G7, the highest grade, in categories B (building), CE (civil engineering) and ME (mechanical &amp; electrical).</p></div>
     </div>
   </div>
 </section>
@@ -828,7 +843,7 @@ def careers():
         "Join BWS Engineering Sdn Bhd in Miri and Bintulu, Sarawak. A safety-first oil &amp; gas construction and maintenance contractor. Apply by email to bwsesbhr@gmail.com.") + header("careers.html") + page_hero(
         "Careers", "Build your career with BWS",
         "Join a Sarawak contractor that has been building and maintaining oil and gas facilities since 2002.",
-        "civil-concrete-finishing", "", 800, 554) + f'''
+        "tools") + f'''
 
 <section class="section" aria-labelledby="work-title">
   <div class="container split split--wide-text">
@@ -888,7 +903,7 @@ def contact():
         "Contact BWS Engineering Sdn Bhd. Main office and workshop in Piasau Industrial Estate, Miri (085-652743) and fabrication yard in Kidurong, Bintulu (086-252476). Email bwsesb@gmail.com.", ld) + header("contact.html") + page_hero(
         "Contact", "Contact us",
         "Talk to our Miri or Bintulu office, or send an enquiry and we’ll route it to the right team.",
-        "facility-bintulu-yard", "", 1600, 1599) + f'''
+        "coast-map") + f'''
 
 <section class="section" aria-labelledby="off-title">
   <div class="container">

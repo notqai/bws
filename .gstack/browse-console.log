@@ -7,3 +7,11 @@
 [2026-10-18T23:32:48.384Z] [debug] Search endpoint requested!
 [2026-10-18T23:32:48.389Z] [debug] Search endpoint requested!
 [2026-10-18T23:42:21.255Z] [warning] The resource http://localhost:8080/assets/img/facility-miri-hq-480.webp was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-10-18T23:48:15.701Z] [debug] Search endpoint requested!
+[2026-10-18T23:48:15.721Z] [debug] Search endpoint requested!
+[2026-10-18T23:48:57.231Z] [debug] Search endpoint requested!
+[2026-10-18T23:48:57.319Z] [debug] Search endpoint requested!
+[2026-10-18T23:49:18.372Z] [debug] Search endpoint requested!
+[2026-10-18T23:49:18.399Z] [debug] Search endpoint requested!
+[2026-10-18T23:49:42.978Z] [debug] Search endpoint requested!
+[2026-10-18T23:49:43.031Z] [debug] Search endpoint requested!

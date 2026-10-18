@@ -548,3 +548,27 @@ a[href^="tel:"] { white-space: nowrap; }
   .client-logo img { max-height: 48px; max-width: min(130px, 100%); }
   .client-name { font-size: var(--fs-xs); }
 }
+
+/* ---------- Illustrated page headers ---------- */
+/* Shown whole (no panel split): one framed drawing sheet */
+.bws-panels--illus { -webkit-mask-image: none; mask-image: none; background: var(--ink); border: 1px solid rgba(71,151,230,.28); border-radius: var(--radius); }
+.bws-panels--illus::before, .bws-panels--illus .bws-glow { display: none; }
+.bws-panels--illus img { position: static; display: block; width: 100%; height: auto; object-fit: contain; filter: none; }
+.bws-panels--illus.bws-panels--page { height: auto; aspect-ratio: 4 / 3; margin: 0 0 var(--space-6); }
+@media (min-width: 60rem) {
+  .bws-panels--illus.bws-panels--page { align-self: center; margin: var(--space-6) 0; max-height: 26rem; }
+}
+
+/* ---------- Verified certificate card ---------- */
+.cert-card { position: relative; display: grid; gap: var(--space-5); padding: var(--space-6); background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); box-shadow: var(--shadow-2); }
+.cert-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: linear-gradient(90deg, var(--brand-blue) 0 30.77%, transparent 30.77% 34.62%, var(--brand-sky) 34.62% 73.08%, transparent 73.08% 76.92%, var(--brand-blue) 76.92%); border-radius: var(--radius) var(--radius) 0 0; }
+.cert-head { display: flex; gap: var(--space-4); align-items: center; }
+.cert-head h3 { margin: 0; font-size: 1.3rem; }
+.cert-seal { flex: none; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: var(--brand-blue); color: var(--white); box-shadow: 0 0 0 4px var(--brand-cyan); }
+.cert-seal svg { width: 30px; height: 30px; }
+.cert-issuer { margin: 0 0 2px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand-blue); }
+.cert-data { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: 0; padding-block: var(--space-4); border-block: 1px solid var(--steel-200); }
+.cert-data .wide { grid-column: 1 / -1; }
+.cert-data dt { font-size: var(--fs-xs); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
+.cert-data dd { margin: 2px 0 0; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.cert-data div:nth-child(-n+2) dd { font-family: var(--font-head); font-size: 1.25rem; font-variant-numeric: tabular-nums; }
