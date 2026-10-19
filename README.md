@@ -104,7 +104,8 @@ Change **both** `data-count` (what the counter animates to) and the text inside 
 - The **"Send your CV"** card is always there, with the recruitment email link (**bwsesbhr@gmail.com**). Clicking it opens an email with the subject "Job Application – [Position]". To change it, edit `careers()` in `tools/generate_site.py`.
 
 ### Case studies (Projects page)
-Five featured projects with scope and client-recorded results, in `CASE_STUDIES` in `tools/generate_site.py`. Each result is backed by a certificate or letter in the company profile; keep it that way. Projects without a photo of their own use a blueprint illustration (marked "Illustration") rather than a photo of another job.
+Three featured projects (MLNG Power Import, Miri Water Supply Phase 2, PDB Miri Fuel Terminal) with scope and client-recorded results, in `CASE_STUDIES` in `tools/generate_site.py`. Each result is backed by a certificate or letter in the company profile; keep it that way.
+- **Only feature a project that has an official photo** of that project (from BWS's own records). No illustrations, stock photos or photos of other jobs. The SSGP KP265/KP220 and MCOT Phase 2 projects were left out for this reason (Oct 2026): add them back when BWS supplies photos.
 
 ### HSE record (HSE page and home)
 - **Our safety record** (`HSE_RECORD` in `tools/generate_site.py`): six milestones, each certified by a client.

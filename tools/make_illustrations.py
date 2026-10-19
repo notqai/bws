@@ -434,60 +434,9 @@ def calibration():
     b += dim_h(210, 290, 160, "TRANSMITTER") + dim_h(630, 730, 180, "REFERENCE")
     return sheet(b, "Line drawing of a pressure transmitter being calibrated on a bench against a reference gauge")
 
-# ------------------------------------------------------------------ case study: pipeline replacement (SSGP)
-def pipeline():
-    gy = 320                                   # ground level
-    t1, t2, b1, b2 = 280, 540, 312, 508        # trench: top and bottom edges
-    top, bot = 400, 440                        # pipe crown and invert (36" pipe in elevation)
-    b = ""
-    # ground line either side of the trench, with soil ticks
-    for x1, x2 in ((0, t1), (t2, W)):
-        b += line([(x1, gy), (x2, gy)], CYAN, 2)
-        for x in range(int(x1) + 8, int(x2), 16):
-            b += line([(x, gy + 2), (x - 10, gy + 12)], SKY, 1, .45)
-    # excavated trench with sloped walls
-    b += line([(t1, gy), (b1, 470), (b2, 470), (t2, gy)], SKY, 1.5, dash="6 5")
-    b += hatch(b1, 470, b2 - b1, 16, 9, SKY, .3)
-    # existing buried pipeline, cut and capped either side of the trench
-    for x1, x2, cap in ((0, 322, 322), (478, 742, 478)):
-        b += f'<path d="M{x1} {top}H{x2}V{bot}H{x1}" stroke="{CYAN}" stroke-width="2.5" fill="{BLUE}" fill-opacity=".3"/>'
-        bulge = 14 if cap == 322 else -14
-        b += f'<path d="M{cap} {top}Q{cap + bulge * 2} {(top + bot) / 2} {cap} {bot}" stroke="{AMBER}" stroke-width="2.5" fill="none"/>'
-    for x in (90, 200, 600, 710):              # coating / joint marks
-        b += line([(x, top), (x, bot)], SKY, 1, .5)
-    # sampling point on the left end cap
-    b += line([(300, top), (300, 362)], CYAN, 2)
-    b += f'<path d="M290 352l20 14v-14l-20 14z" stroke="{CYAN}" stroke-width="1.5" fill="{INK}"/>' + line([(300, 352), (300, 340)], CYAN, 2)
-    b += line([(300, 340), (240, 270)], SKY, 1, .8) + text(236, 262, "SAMPLING POINT", 11, SKY, "end")
-    b += line([(478, 420), (560, 470)], SKY, 1, .8) + text(564, 480, "END CAP", 11, AMBER, "start")
-    # new spool being lowered into the gap
-    sy = 236
-    b += f'<path d="M336 {sy}H464V{sy + 40}H336Z" stroke="{CYAN}" stroke-width="2.5" fill="{BLUE}" fill-opacity=".55"/>'
-    b += line([(400, sy + 50), (400, top - 12)], AMBER, 1.5, dash="5 6") + f'<path d="M392 {top - 22}l8 12 8-12" stroke="{AMBER}" stroke-width="1.5" fill="none"/>'
-    # slings, hook and sideboom
-    hx, hy = 400, 150
-    b += line([(352, sy), (hx, hy + 22), (448, sy)], SKY, 1.5) + circle(hx, hy + 14, 8, CYAN, 2)
-    b += line([(hx, hy + 6), (hx, 92)], CYAN, 1.5)
-    b += line([(640, gy - 30), (hx, 86)], CYAN, 3) + line([(660, gy - 30), (hx + 6, 86)], SKY, 1.2)
-    b += f'<path d="M600 {gy - 30}h110v-46h-40l-14-26h-40v26h-16z" stroke="{CYAN}" stroke-width="2" fill="{INK}"/>'
-    b += f'<path d="M596 {gy}h124" stroke="{CYAN}" stroke-width="6"/>'
-    for x in (612, 640, 668, 696):
-        b += circle(x, gy - 4, 6, SKY, 1.2)
-    # KP marker post
-    b += line([(70, gy), (70, gy - 70)], CYAN, 2) + rect(36, gy - 106, 68, 36, CYAN, 2, INK)
-    b += text(70, gy - 83, "KP", 11, SKY, "middle", 700, 2)
-    b += line([(50, gy - 79), (90, gy - 79)], SKY, 1, .4)
-    # dimensions and labels
-    b += dim_h(322, 478, 520, "REPLACEMENT SECTION")
-    b += dim_v(top, bot, 768, "")
-    b += text(760, 386, "Ø 36\u2033", 12, SKY, "middle", 700, 1)
-    b += text(40, 470, "GAS PIPELINE", 11, SKY, "start", 700, 3)
-    return sheet(b, "Line drawing of a buried 36-inch gas pipeline: an excavated trench with capped pipe ends and a sampling point, and a new pipe section being lowered into place by a sideboom")
-
 for name, fn in [("plant", plant), ("crane-lift", crane), ("workshop", building), ("offshore", platform),
                  ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map),
-                 ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration),
-                 ("pipeline-replacement", pipeline)]:
+                 ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration)]:
     svg = fn()
     with open(os.path.join(OUT, name + ".svg"), "w") as f:
         f.write(svg)

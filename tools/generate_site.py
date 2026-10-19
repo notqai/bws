@@ -1046,7 +1046,7 @@ CATNAME = dict(CATS)
 # ================================================================ CASE STUDIES (Projects page)
 # From the BWS Company Profile (Oct 2026): work-experience entries for scope and dates, and the client
 # certificates for results. Contract sums and client contact names are deliberately left out.
-# photo: (image key, width, height, alt), or ("ill:<illustration>", ...) when no photo of that project exists.
+# photo: (image key, width, height, alt). Only projects with an official photo (from BWS's profile or old website) are featured.
 CASE_STUDIES = [
     {"id": "case-power-import", "client": "Malaysia LNG", "years": "2022 – 2025", "where": "Bintulu, Sarawak",
      "title": "EPCC of the Power Import Project for MLNG",
@@ -1058,16 +1058,6 @@ CASE_STUDIES = [
                "Commissioning, start-up and handover"],
      "results": ["MSOSH Gold Class 1 Award for very good OSH performance in 2023"],
      "photo": ("power-import-aerial-2", 686, 520, "Aerial view of the power import facility buildings and pipe racks")},
-    {"id": "case-ssgp", "client": "PETRONAS", "years": "2020 – 2024", "where": "Miri – Bintulu, Sarawak",
-     "title": "Sabah Sarawak Gas Pipeline: KP265 recovery and KP220 replacement",
-     "summary": "Mechanical, recovery and repair work on the Sabah Sarawak Gas Pipeline (SSGP), including a term contract for pipeline rehabilitation and repair from KP-210 to KP-503.",
-     "scope": ["KP265: recovery, installation of end caps and sampling",
-               "KP220: mechanical scope of the 36\" pipeline replacement, March to June 2022",
-               "Pipeline rehabilitation and repair under the Package B term contract"],
-     "results": ["KP265 completed 25 days ahead of schedule, with zero LTI and within cost, during the COVID-19 Movement Control Order (PETRONAS Focused Recognition, 2020)",
-                 "Top 5 Best Project HSE Performance 2022 for KP220 and KP265 (IRSO West Coast Mega HSE Council)",
-                 "PETRONAS certificate of appreciation for the KP220 mechanical scope"],
-     "photo": ("ill:pipeline-replacement", 800, 600, "")},
     {"id": "case-miri-water", "client": "Rural Water Supply Department (JBALB) Sarawak", "years": "2019 – 2025", "where": "Miri, Sarawak",
      "title": "Miri Water Supply Source Development Phase 2",
      "summary": "Part of the Sarawak Water Grid Programme: transferring raw water from Batang Baram to Sungai Bakong and Sungai Liku, to meet the demand of Miri city and its surroundings up to 2030.",
@@ -1085,26 +1075,13 @@ CASE_STUDIES = [
                "Firefighting facilities and other mechanical and electrical work"],
      "results": ["150,000 man-hours without lost-time injury (PETRONAS Dagangan certificates at 30,000 and 150,000 man-hours, 2015)"],
      "photo": ("pdb-team", 465, 315, "Project team in coveralls and hard hats gathered at a PETRONAS Dagangan site")},
-    {"id": "case-mcot", "client": "PETRONAS Carigali, via Rekind–Simfoni consortium", "years": "2007 – 2011", "where": "Miri, Sarawak",
-     "title": "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2",
-     "summary": "A series of packages over four years for the rejuvenation of the Miri Crude Oil Terminal, with up to 151 people on site.",
-     "scope": ["Shop fabrication and installation of carbon steel piping",
-               "Blasting and painting",
-               "Cable tray, pipe support and water retaining structures",
-               "Mechanical erection, and electrical and instrumentation installation"],
-     "results": ["1 million and 1.5 million man-hours with zero lost-time injury (2008)",
-                 "3,000,000 man-hours without lost-time injury, HSE Award from the Rekind–Simfoni consortium (2010)"],
-     "photo": ("ill:blasting-painting", 800, 600, "")},
 ]
 
 def case_studies():
     out = ""
     for i, c in enumerate(CASE_STUDIES):
         key, w, h, alt = c["photo"]
-        if key.startswith("ill:"):
-            media = f'<img src="assets/illustrations/{key[4:]}.svg" width="800" height="600" alt="" loading="lazy" decoding="async"><span class="case-media-note">Illustration</span>'
-        else:
-            media = img(key, alt, w, h, "(min-width: 60rem) 40vw, 100vw")
+        media = img(key, alt, w, h, "(min-width: 60rem) 40vw, 100vw")
         scope = "".join(f"<li>{x}</li>" for x in c["scope"])
         results = ("<h4>Results</h4><ul class=\"case-results\">" + "".join(f"<li>{icon('badge')}<span>{x}</span></li>" for x in c["results"]) + "</ul>") if c["results"] else ""
         out += f'''
@@ -1151,7 +1128,7 @@ def projects():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("", "Case studies")}<h2 id="cases-title">Featured projects</h2></div>
-      <p class="lead">A closer look at five projects: what we were asked to do, and the results our clients recorded.</p>
+      <p class="lead">A closer look at three projects: what we were asked to do, and the results our clients recorded.</p>
     </div>
     <!-- CASE STUDIES: edit CASE_STUDIES in tools/generate_site.py. Results must be backed by a client certificate or letter. -->
     <div class="cases">{case_studies()}

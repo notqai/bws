@@ -850,7 +850,6 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 }
 .case-media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--ink); }
 .case-media img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.case-media-note { position: absolute; left: var(--space-3); bottom: var(--space-3); padding: 2px var(--space-2); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--white); background: rgba(10, 18, 64, .7); border-radius: 3px; }
 .case-meta { margin: 0 0 var(--space-2); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
 .case h3 { margin: 0 0 var(--space-3); font-size: var(--fs-h3); }
 .case h4 { margin: var(--space-5) 0 var(--space-2); font-size: var(--fs-sm); letter-spacing: .08em; text-transform: uppercase; color: var(--brand-blue); }
