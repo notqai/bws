@@ -880,3 +880,132 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .vendor-particulars dd { margin: 0; color: var(--ink); font-weight: 600; }
 .reg-table tbody th { text-align: left; padding: .75rem .9rem; color: var(--ink); white-space: nowrap; border-bottom: 1px solid var(--steel-100); vertical-align: top; }
 .reg-table .reg-valid { white-space: nowrap; font-weight: 600; color: var(--ink); }
+
+/* ==========================================================================
+   Corporate style layer (preview): institutional, static, monochrome.
+   - Light background throughout; sections separated by thin slate rules, not colour bands
+   - No gradients, glows, pills, decorative list markers or icons inside buttons (arrow only)
+   - No animation: no transitions, scroll fades, counters or hover movement
+   Dark navy is kept only for the top contact bar, the footer and the home page photo.
+   ========================================================================== */
+
+:root { --radius: 2px; --rule: 1px solid var(--steel-200); }
+
+/* ---------- No motion anywhere ---------- */
+*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+*:hover, *:focus { transform: none !important; }
+.reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+
+/* ---------- Sections: one light background, separated by rules ---------- */
+.section, .section--steel, .section--ink, .stats-band { background: var(--white); color: var(--steel-800); border-top: var(--rule); }
+main > .section:first-child, .page-hero + .section, .service-nav + .section { border-top: 0; }
+.section--ink h2, .section--ink h3, .section--ink strong { color: var(--ink); }
+.section--ink .lead { color: var(--steel-600); }
+.section--ink .eyebrow, .page-hero .eyebrow, .hse-banner .eyebrow { color: var(--brand-blue); }
+.section--ink .panels i:nth-child(1), .section--ink .panels i:nth-child(3) { background: var(--ink); }
+
+/* ---------- Page headers: light, ruled, drawing kept as a framed sheet ---------- */
+.page-hero { background: var(--white); color: var(--steel-800); border-bottom: 2px solid var(--ink); }
+.page-hero h1 { color: var(--ink); }
+.page-hero p { color: var(--steel-600); }
+.page-hero .breadcrumb, .page-hero .breadcrumb a { color: var(--steel-600); }
+.page-hero .panels i:nth-child(1), .page-hero .panels i:nth-child(3) { background: var(--ink); }
+
+/* ---------- Home hero: photo kept, overlays and glow removed ---------- */
+.hero::before, .bws-glow, .bws-panels::before, .bws-panels--hero::before { display: none !important; }
+.hero h1 .accent { color: var(--white); }
+
+/* ---------- Credentials strip under the hero: a ruled key-value grid ---------- */
+.trust { background: var(--white); color: var(--ink); border-top: 0; border-bottom: 2px solid var(--ink); }
+.trust ul { gap: 0; padding: 0; }
+.trust li { padding: var(--space-4) var(--space-5); border-left: var(--rule); font-size: var(--fs-sm); }
+.trust li:first-child { border-left: 0; padding-left: 0; }
+.trust li span { color: var(--steel-600); }
+.trust svg { display: none; }
+
+/* ---------- Key figures: plain ruled cells ---------- */
+.stat { border-left: var(--rule); }
+.stat-num { color: var(--ink); }
+
+/* ---------- Home HSE block: light, policy quote as a ruled panel ---------- */
+.hse-banner { background: var(--white); color: var(--steel-800); border-top: var(--rule); }
+.hse-banner .hero-media { display: none; }
+.hse-banner h2 { color: var(--ink); }
+.safety-quote { background: var(--steel-50); border: var(--rule); border-left: 4px solid var(--ink); }
+.safety-quote p { color: var(--ink); }
+.safety-quote footer { color: var(--steel-600); }
+.hse-mini strong { color: var(--ink); }
+.hse-mini li { border-left-color: var(--ink); }
+.hse-live, .hse-live--dark { background: var(--white); border: var(--rule); border-left: 4px solid var(--ink); }
+.hse-live--dark .hse-live-title, .hse-live--dark .hse-live-value, .hse-live--dark dt { color: var(--ink); }
+.hse-live--dark .hse-live-title span, .hse-live--dark .hse-live-detail { color: var(--steel-600); }
+.safety-tag { background: none; color: var(--ink); border: 1px solid var(--ink); }
+
+/* ---------- Call to action: ruled band, solid dark button ---------- */
+.cta-band { background: var(--white); color: var(--steel-800); border-top: 2px solid var(--ink); }
+.cta-band::after { display: none; }
+.cta-band h2 { color: var(--ink); }
+.cta-band p { color: var(--steel-600); }
+.cta-band .btn { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+/* ---------- Buttons: flat, near-square; only the arrow icon survives ---------- */
+.btn { border-radius: var(--radius); box-shadow: none !important; }
+.btn svg:not(.i-arrow) { display: none; }
+.hse-banner .btn--outline-light, .section .btn--outline-light { color: var(--ink); border-color: var(--ink); }
+.filter-btn, .service-nav a, .proj-tags li, .proj-status, .tabs a, .lang-switch { border-radius: var(--radius) !important; }
+.full-list > summary::after, .reg-detail > summary::after { border-radius: var(--radius); background: var(--ink); }
+
+/* ---------- Lists: no decorative markers or icons ---------- */
+.ticks li::before, .section--ink .ticks li::before { display: none; }
+.ticks { list-style: square; padding-left: 1.1rem; }
+.ticks li { padding-left: 0; }
+.ticks li::marker { color: var(--steel-400); }
+.proj-loc svg, .contact-list svg, .case-results svg, .apply-address svg, .mail-choice svg { display: none; }
+.contact-list li, .case-results li { grid-template-columns: 1fr !important; padding-left: 0; }
+.case-results li { background: none; border: 0; border-left: 2px solid var(--ink); border-radius: 0; padding: var(--space-1) var(--space-3); }
+
+/* ---------- Status labels: plain text, no coloured badges ---------- */
+.proj-status { background: none !important; border: 0 !important; padding: 0 !important; color: var(--ink) !important; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: var(--fs-xs); }
+
+/* ---------- Cards and panels: no tabs, glows, colour washes ---------- */
+.card::before, .cert-card::before, .award--lead::after, .divider { display: none !important; }
+.card, .cert-card, .award, .vendor-downloads, .enquiry-card, .apply-card, .office, .policy, .case-media { box-shadow: none !important; border-radius: var(--radius); }
+.enquiry-card, .apply-card, .vendor-downloads, .policy { border-top: 2px solid var(--ink); }
+.callout-safety { background: var(--steel-50); border: var(--rule); border-left: 4px solid var(--ink); }
+.cert-seal { display: none; }
+
+/* ---------- Dark-section components re-coloured for the light background ---------- */
+.equip-grid { background: var(--steel-200); border-color: var(--steel-200); }
+.equip-grid li { background: var(--white); }
+.equip-num { color: var(--ink); }
+.equip-grid h3 { color: var(--ink); }
+.equip-grid p { color: var(--steel-600); }
+.award { background: var(--white); border: var(--rule); }
+.award--lead { border-top: 2px solid var(--ink); }
+.award h3 { color: var(--ink); }
+.award p, .award-photos figcaption { color: var(--steel-600); }
+.award-year { color: var(--brand-blue); }
+.hse-record li { border-top: 2px solid var(--ink); border-radius: var(--radius); }
+
+/* ---------- Photos: captions on a flat bar, no gradient scrim, no hover zoom ---------- */
+.gallery .cap, .work-item .cap { background: rgba(10, 18, 64, .82) !important; padding: var(--space-3) var(--space-4) !important; }
+.marquee, .marquee--static { -webkit-mask-image: none !important; mask-image: none !important; }
+
+/* ---------- Home services as a capability table ---------- */
+.svc-table { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); }
+.svc-table th, .svc-table td { text-align: left; vertical-align: top; padding: var(--space-5) var(--space-4); border-bottom: var(--rule); }
+.svc-table thead th { padding-block: var(--space-3); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
+.svc-table .svc-no { width: 3.5rem; font-family: var(--font-head); font-weight: 700; color: var(--steel-400); font-variant-numeric: tabular-nums; }
+.svc-table .svc-name { width: 30%; }
+.svc-table .svc-name h3 { margin: 0 0 var(--space-2); font-size: 1.15rem; }
+.svc-table .svc-name p { margin: 0; font-size: var(--fs-sm); color: var(--steel-600); }
+.svc-table ul { margin: 0; padding-left: 1.1rem; list-style: square; columns: 2 14rem; column-gap: var(--space-6); font-size: var(--fs-sm); }
+.svc-table li::marker { color: var(--steel-400); }
+.svc-table .svc-link { width: 9rem; text-align: right; white-space: nowrap; }
+@media (max-width: 48rem) {
+  .svc-table thead { display: none; }
+  .svc-table tr { display: grid; grid-template-columns: 2.5rem 1fr; padding: var(--space-4) 0; border-bottom: var(--rule); }
+  .svc-table td { border: 0; padding: var(--space-1) 0; }
+  .svc-table .svc-name, .svc-table .svc-link { width: auto; text-align: left; }
+  .svc-table td:nth-child(n+3) { grid-column: 2; }
+}
