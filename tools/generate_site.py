@@ -1348,7 +1348,7 @@ def hse():
     <ul class="reg-list" role="list">
       <li><strong>PETROS</strong><span>Registered vendor of Petroleum Sarawak Berhad and its group, valid to Dec 2028: building &amp; structure construction, onshore maintenance &amp; modification, onshore pipeline fabrication &amp; construction</span></li>
       <li><strong>DOSH</strong><span>Registered Competent Firm (Petroleum Contractor): KPD 01 onshore pipelines and KPD 02 onshore reticulation piping, valid to Mar 2028</span></li>
-      <li><strong>UPKJ Sarawak</strong><span>Class A registered contractor with the Sarawak State Financial Secretary, and recognised as a Rescue Contractor for works and mechanical fields</span></li>
+      <li><strong>UPKJ Sarawak</strong><span>Class A registered contractor with the Sarawak State Financial Secretary in the works and mechanical fields, valid to Jul 2028, and recognised as a Rescue Contractor to Aug 2028</span></li>
       <li><strong>MOF</strong><span>Ministry of Finance registered supplier, valid to Mar 2027</span></li>
       <li><strong>CIDB SCORE</strong><span>3-star rating for 2025 from CIDB and SME Corp: good management and technical capability</span></li>
       <li><strong>SSM</strong><span>Company no. 200201029529 (597192-V), incorporated 29 October 2002</span></li>
@@ -1363,7 +1363,7 @@ def hse():
         <div><dt>PETROS work categories</dt><dd>SB200001 building &amp; structure construction · SO100005 onshore maintenance, construction &amp; modification (minor onshore fabrication) · SK500007 onshore pipeline fabrication &amp; construction</dd></div>
         <div><dt>MOF supply / service fields</dt><dd>020101 furniture &amp; fittings · 080101 civil engineering, construction &amp; public amenities equipment · 220502 maintenance &amp; repair of containers and tanks · 220503 electrical systems and equipment · 220506 fuel tank repair · 220507 pumps, water pipes &amp; components</dd></div>
         <div><dt>DOSH competent firm scope</dt><dd>KPD 01 onshore pipeline · KPD 02 onshore reticulation piping (registration JKKP/2022/26/76)</dd></div>
-        <div><dt>UPKJ Sarawak</dt><dd>Certificate UPKJ/W/021609 · Class A · Rescue Contractor for the works and mechanical fields (2026)</dd></div>
+        <div><dt>UPKJ Sarawak</dt><dd>Certificates UPKJ/W/021609 (works) and UPKJ/M/001828 (mechanical) · Class A · valid to 4 July 2028 · Rescue Contractor to 26 August 2028</dd></div>
       </dl>
     </details>
   </div>
@@ -1690,7 +1690,7 @@ REGISTRATIONS = [
     ("PETROS", "Registered vendor of Petroleum Sarawak Berhad and its group", "6 Dec 2028"),
     ("DOSH", "Competent Firm (Petroleum Contractor), KPD 01 and KPD 02. Registration no. JKKP/2022/26/76", "30 Mar 2028"),
     ("MOF", "Ministry of Finance registered supplier", "12 Mar 2027"),
-    ("UPKJ Sarawak", "Class A contractor, and Rescue Contractor for works and mechanical fields. Registration no. UPKJ/W/021609", "See certificate"),
+    ("UPKJ Sarawak", "Class A contractor in the works (UPKJ/W/021609) and mechanical (UPKJ/M/001828) fields. Rescue Contractor status valid to 26 Aug 2028", "4 Jul 2028"),
     ("CIDB SCORE", "3-star rating for 2025", "1 Sep 2027"),
 ]
 
@@ -1706,6 +1706,7 @@ PARTICULARS = [
     ("Company no.", "200201029529 (597192-V)"),
     ("Incorporated", "29 October 2002, Malaysia"),
     ("Ownership", "Wholly owned Bumiputera company"),
+    ("Paid-up capital", "RM5,000,000"),
     ("Main office", "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak"),
     ("Fabrication yard", "Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak"),
     ("Telephone", "085-652743 (Miri) · 086-252476 (Bintulu)"),

@@ -168,7 +168,7 @@ Most company facts now come from **BWS's own Company Profile (October 2026)**: p
 | PETROS vendor | P250528-S | 6 Dec 2028 |
 | DOSH Competent Firm (Petroleum Contractor) | JKKP/2022/26/76 · KPD 01, KPD 02 | 30 Mar 2028 |
 | MOF | 357-30003574 | 12 Mar 2027 |
-| UPKJ Sarawak | UPKJ/W/021609 · Class A · Rescue Contractor | (see letters) |
+| UPKJ Sarawak | UPKJ/W/021609 (works) and UPKJ/M/001828 (mechanical) · Class A · Rescue Contractor to 26 Aug 2028 | 4 Jul 2028 |
 | CIDB SCORE | 3 stars (2025) | 1 Sep 2027 |
 
 CIDB and TÜV NORD details were also checked against their public online registers.
