@@ -322,6 +322,7 @@ SERVICES = [
 # Key projects (BWS as main contractor). Sources, checked Oct 2026:
 #   MPRC / iOGSE supplier directory (government) and project pages of KPG Engineering (BWS's subcontractor).
 #   Contract values on the KPG site are subcontract values, so they are deliberately not shown.
+#   PDB Miri Fuel Terminal: BWS's own photos of the project's HSE Awareness Day (EXIF date 2 Sep 2015).
 # (years, client, project, location, scope tags, service ids it relates to)
 PROJECTS = [
     ("2023 – 2024", "Shell", "Underground process &amp; utilities piping, Shell OGP Project", "Bintulu, Sarawak",
@@ -338,6 +339,8 @@ PROJECTS = [
      ["Structure replacement", "Fabrication, installation &amp; painting"], ["civil"]),
     ("2018 – 2019", "PETRONAS (RAPID, PRPC)", "UIO facilities: underground non-metallic firewater network, 16 km of pipeline", "Pengerang, Johor",
      ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"]),
+    ("2015", "PETRONAS Dagangan", "EPCC of the PDB Miri Fuel Terminal", "Miri, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning", "150,000 man-hours HSE milestone"], ["plant"]),
     ("2014 – 2015", "Shell MDS", "Mechanical work package, Phase 1, SMDS Rejuvenation Project", "Bintulu, Sarawak",
      ["Mechanical works"], ["mechanical"]),
 ]
@@ -941,6 +944,10 @@ def hse():
       <figure class="media ratio-4x3">{img("hse-fire-drill", "Crew in coveralls and hard hats during a fire extinguisher drill", 800, 600, "(min-width: 60rem) 33vw, 100vw")}<figcaption>Fire extinguisher drill.</figcaption></figure>
       <figure class="media ratio-4x3">{img("hse-toolbox-talk", "Workers gathered under a tent for a toolbox talk", 800, 600, "(min-width: 60rem) 33vw, 100vw")}<figcaption>Toolbox talk.</figcaption></figure>
     </div>
+    <figure class="media hse-milestone reveal">
+      {img("hse-awareness-day", "Large group of BWS and client staff in green and blue workwear at an HSE Awareness Day in a hall", 1600, 875, "(min-width: 75rem) 1200px, 100vw", big=True)}
+      <figcaption><strong>150,000 man-hours.</strong> HSE Awareness Day for the EPCC of the PETRONAS Dagangan Miri Fuel Terminal, September 2015.</figcaption>
+    </figure>
   </div>
 </section>
 {CTA}''' + footer()

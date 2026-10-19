@@ -114,6 +114,8 @@ The project list (Projects page, home page, and "Selected projects" under each s
 - BWS's MPRC / iOGSE supplier-directory entry: MLNG Power Import Project, MLNG Kenyalang 2.0, PCSB Package B term contract, PRPC UIO firewater network, SMDS Rejuvenation.
 - Project pages on the KPG Engineering website, which name BWS as main contractor: Shell OGP piping, PTTEP BORF shelter, ABF structure improvement, PCSB pipelines, RAPID UIO firewater network.
 
+- BWS's own old-site photos: the PETRONAS Dagangan Miri Fuel Terminal EPCC, from its HSE Awareness Day banner. The photos are dated 2 Sep 2015 and the banner reads "150,000 man-hours without…" (the rest is hidden; confirm the full wording with BWS).
+
 Contract values aren't shown, because the published figures are KPG's subcontract values. Ask BWS to confirm the list and add newer projects. The same sources gave the DOSH (2010) and MOF (2008) registrations. Staff names, including the MD's, are deliberately not shown.
 
 ### Page header illustrations
