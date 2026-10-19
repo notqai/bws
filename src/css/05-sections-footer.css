@@ -81,7 +81,7 @@
 .gallery li[hidden] { display: none; }
 .gallery button { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: zoom-in; position: relative; overflow: hidden; border-radius: var(--radius); background: var(--steel-100); }
 .gallery button:focus-visible { outline: 3px solid var(--brand-sky); outline-offset: 3px; }
-.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s var(--ease); }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .35s var(--ease); }
 .gallery button:hover img { transform: scale(1.04); }
 .gallery .cap { position: absolute; inset: auto 0 0 0; padding: var(--space-7) var(--space-4) var(--space-3); background: linear-gradient(rgba(10,18,64,0), rgba(10,18,64,.82) 45%, rgba(10,18,64,.95)); text-shadow: 0 1px 2px rgba(0,0,0,.4); color: var(--white); font-size: var(--fs-sm); font-weight: 600; line-height: 1.3; }
 .gallery .cap span { display: block; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #A9D0F7; margin-bottom: 2px; }

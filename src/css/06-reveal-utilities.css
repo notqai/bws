@@ -1,14 +1,14 @@
 /* ---------- Scroll reveal (only when JS + motion allowed) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
   .js .reveal.is-visible { opacity: 1; transform: none; }
-  .js .reveal-stagger > * { opacity: 0; transform: translateY(16px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
+  .js .reveal-stagger > * { opacity: 0; transform: translateY(10px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
   .js .reveal-stagger.is-visible > * { opacity: 1; transform: none; }
-  .js .reveal-stagger.is-visible > :nth-child(2) { transition-delay: .07s; }
-  .js .reveal-stagger.is-visible > :nth-child(3) { transition-delay: .14s; }
-  .js .reveal-stagger.is-visible > :nth-child(4) { transition-delay: .21s; }
-  .js .reveal-stagger.is-visible > :nth-child(5) { transition-delay: .28s; }
-  .js .reveal-stagger.is-visible > :nth-child(n+6) { transition-delay: .32s; }
+  .js .reveal-stagger.is-visible > :nth-child(2) { transition-delay: .04s; }
+  .js .reveal-stagger.is-visible > :nth-child(3) { transition-delay: .08s; }
+  .js .reveal-stagger.is-visible > :nth-child(4) { transition-delay: .12s; }
+  .js .reveal-stagger.is-visible > :nth-child(5) { transition-delay: .16s; }
+  .js .reveal-stagger.is-visible > :nth-child(n+6) { transition-delay: .2s; }
 }
 
 /* Utilities */

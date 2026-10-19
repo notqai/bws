@@ -73,12 +73,13 @@
   function runCounter(el) {
     var target = parseFloat(el.getAttribute("data-count"));
     var suffix = el.getAttribute("data-suffix") || "";
-    if (reduceMotion) { el.textContent = target + suffix; return; }
-    var start = null, duration = 1400;
+    // Small numbers (e.g. "2") just appear: counting 0-1-2 looks jerky rather than smooth
+    if (reduceMotion || target < 10) { el.textContent = target + suffix; return; }
+    var start = null, duration = 800;
     function step(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
+      var eased = 1 - Math.pow(1 - p, 4); // ease-out quart: quick start, soft landing
       el.textContent = Math.round(target * eased) + suffix;
       if (p < 1) requestAnimationFrame(step);
     }
@@ -97,7 +98,7 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     revealEls.forEach(function (el) { io.observe(el); });
     counters.forEach(function (el) {
-      el.textContent = "0" + (el.getAttribute("data-suffix") || "");
+      if (parseFloat(el.getAttribute("data-count")) >= 10) el.textContent = "0" + (el.getAttribute("data-suffix") || "");
       io.observe(el);
     });
   } else {

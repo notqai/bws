@@ -40,7 +40,7 @@ a.card:hover h3 { color: var(--brand-blue); }
 .card--media { padding: 0; overflow: hidden; }
 .card--media::before { z-index: 2; }
 .card-photo { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink); }
-.card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s var(--ease); }
 a.card--media:hover .card-photo img { transform: scale(1.05); }
 .card-body { display: flex; flex-direction: column; flex: 1; padding: 0 var(--space-5) var(--space-5); }
 .card--media .card-icon { position: relative; margin: -26px 0 var(--space-4); border: 3px solid var(--white); background: var(--brand-blue); color: var(--white); }
