@@ -6,14 +6,17 @@
 .trust svg { width: 28px; height: 28px; flex: none; color: var(--brand-sky); }
 
 /* ---------- Stats ---------- */
-.stats-band { padding-block: clamp(2.5rem, 1.8rem + 2.5vw, 4.5rem); border-bottom: 1px solid var(--steel-200); }
+/* Key figures: a navy panel continuing the credentials strip under the hero */
+.stats-band { background: var(--ink-2); color: var(--white); padding-block: clamp(2rem, 1.5rem + 2vw, 3rem); border-top: 1px solid rgba(255,255,255,.12); }
 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6) 0; margin: 0; }
 @media (min-width: 56rem) { .stats { grid-template-columns: repeat(4, 1fr); } }
-.stat { position: relative; padding: var(--space-1) var(--space-5); border-left: 1px solid var(--steel-200); }
-.stat::before { content: ""; position: absolute; left: -1px; top: 0; width: 3px; height: 2.6rem; background: var(--brand-blue); }
-.stat-num { display: block; font-family: var(--font-head); font-weight: 700; font-size: clamp(2.5rem, 2rem + 2.4vw, 3.75rem); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
-.stat-label { display: block; margin-top: var(--space-3); font-weight: 600; color: var(--ink); }
-.stat-note { display: block; font-size: var(--fs-sm); color: var(--steel-600); }
+.stat { display: flex; flex-direction: column; padding: 0 var(--space-5); border-left: 1px solid rgba(255,255,255,.14); }
+.stat:nth-child(odd) { border-left: 0; padding-left: 0; }
+@media (min-width: 56rem) { .stat:nth-child(3) { border-left: 1px solid rgba(255,255,255,.14); padding-left: var(--space-5); } }
+.stat dd { margin: 0; }
+.stat-num { order: -1; font-family: var(--font-head); font-weight: 700; font-size: clamp(2.25rem, 1.9rem + 1.6vw, 3rem); line-height: 1; color: var(--white); font-variant-numeric: tabular-nums; }
+.stat-label { margin-top: var(--space-3); font-weight: 600; color: var(--white); }
+.stat-note { margin-top: 2px; font-size: var(--fs-sm); color: var(--on-ink-muted); }
 
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: var(--space-5); }

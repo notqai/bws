@@ -89,6 +89,7 @@ MS = {
 "Major clients": "Pelanggan utama",
 "Major Clients": "Pelanggan Utama",
 "Operators, EPC & industry": "Pengendali, EPC & industri",
+"Operators, EPC contractors and industry": "Pengendali, kontraktor EPC dan industri",
 "Four disciplines, one accountable contractor": "Empat disiplin, satu kontraktor yang bertanggungjawab",
 "Construction and maintenance services for the oil and gas industries, from civil works and steel structures to mechanical, piping and E&I.": "Perkhidmatan pembinaan dan penyelenggaraan bagi industri minyak dan gas, daripada kerja awam dan struktur keluli hingga mekanikal, paip dan E&I.",
 "Industrial Plant Construction and Maintenance": "Pembinaan dan Penyelenggaraan Loji Industri",

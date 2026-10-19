@@ -45,7 +45,7 @@ PANELS = '<span class="panels" aria-hidden="true"><i></i><i></i><i></i></span>'
 
 def eyebrow(num, label):
     # num is ignored: sections are labelled, not numbered
-    return f'<p class="eyebrow">{PANELS}{label}</p>'
+    return f'<p class="eyebrow">{label}</p>'
 
 def img(key, alt, w, h, sizes="(min-width: 60rem) 50vw, 100vw", big=False, cls="", eager=False):
     src = f"assets/img/{key}-800.webp"
@@ -575,11 +575,11 @@ TRUST = f'''
 <section class="trust on-dark" aria-label="Licences and credentials">
   <div class="container">
     <ul role="list">
-      <li>{icon("badge")}<div>PETRONAS Licensed<span>Valid PETRONAS licence</span></div></li>
-      <li>{icon("doc")}<div>CIDB Grade G7<span>Building · Civil · M&amp;E</span></div></li>
-      <li>{icon("shield")}<div>ISO 9001 · ISO 45001<span>TÜV NORD · BSI certified</span></div></li>
-      <li>{icon("calendar")}<div>Est. 2002<span>Formed October 2002</span></div></li>
-      <li>{icon("flag")}<div>Bumiputera Company<span>Wholly owned · CIDB STB certified</span></div></li>
+      <li><div>PETRONAS Licensed<span>Valid PETRONAS licence</span></div></li>
+      <li><div>CIDB Grade G7<span>Building · Civil · M&amp;E</span></div></li>
+      <li><div>ISO 9001 · ISO 45001<span>TÜV NORD · BSI certified</span></div></li>
+      <li><div>Est. 2002<span>Formed October 2002</span></div></li>
+      <li><div>Bumiputera Company<span>Wholly owned · CIDB STB certified</span></div></li>
     </ul>
   </div>
 </section>'''
@@ -590,7 +590,7 @@ def home():
       <a class="card card--media" href="services.html#{sid}">
         <div class="card-photo">{img(ph[0], "", ph[2], ph[3], "(min-width: 75rem) 25vw, (min-width: 40rem) 50vw, 100vw")}</div>
         <div class="card-body">
-          <span class="card-icon">{icon(ic)}</span>
+          
           <h3>{t}</h3>
           <p>{blurb}</p>
           <span class="link-arrow">View scope</span>
@@ -623,7 +623,7 @@ def home():
 <section class="hero on-dark" aria-labelledby="hero-title">
   <div class="container hero-grid">
   <div class="hero-inner">
-    <p class="eyebrow">{PANELS} Miri &amp; Bintulu, Sarawak</p>
+    <p class="eyebrow">Miri &amp; Bintulu, Sarawak</p>
     <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil&nbsp;&amp;&nbsp;Gas, <span class="accent">Since&nbsp;2002.</span></h1>
     <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak. <b>PETRONAS licensed · CIDB registered · ISO 9001:2015.</b></p>
     <div class="btn-row">
@@ -642,10 +642,10 @@ def home():
     <!-- KEY STATS: edit the numbers here. data-count = the number, data-suffix = text after it.
          The number inside the tag is what shows without JavaScript, so keep both the same. -->
     <dl class="stats">
-      <div class="stat"><dt class="visually-hidden">Years of experience</dt><dd class="mb-0" style="margin:0"><span class="stat-num" data-count="20" data-suffix="+">20+</span><span class="stat-label">Years Experience</span><span class="stat-note">Operating since October 2002</span></dd></div>
-      <div class="stat"><dt class="visually-hidden">Operating bases</dt><dd style="margin:0"><span class="stat-num" data-count="2">2</span><span class="stat-label">Operating Bases</span><span class="stat-note">Miri &amp; Bintulu, Sarawak</span></dd></div>
-      <div class="stat"><dt class="visually-hidden">Contracts delivered</dt><dd style="margin:0"><span class="stat-num" data-count="80" data-suffix="+">80+</span><span class="stat-label">Contracts Delivered</span><span class="stat-note">Oil &amp; gas, industry and government</span></dd></div>
-      <div class="stat"><dt class="visually-hidden">Major clients</dt><dd style="margin:0"><span class="stat-num" data-count="15" data-suffix="+">15+</span><span class="stat-label">Major Clients</span><span class="stat-note">Operators, EPC &amp; industry</span></dd></div>
+      <div class="stat"><dt class="stat-label">Years of experience</dt><dd class="stat-num" data-count="20" data-suffix="+">20+</dd><dd class="stat-note">Operating since October 2002</dd></div>
+      <div class="stat"><dt class="stat-label">Operating bases</dt><dd class="stat-num" data-count="2">2</dd><dd class="stat-note">Miri &amp; Bintulu, Sarawak</dd></div>
+      <div class="stat"><dt class="stat-label">Contracts delivered</dt><dd class="stat-num" data-count="80" data-suffix="+">80+</dd><dd class="stat-note">Oil &amp; gas, industry and government</dd></div>
+      <div class="stat"><dt class="stat-label">Major clients</dt><dd class="stat-num" data-count="15" data-suffix="+">15+</dd><dd class="stat-note">Operators, EPC contractors and industry</dd></div>
     </dl>
   </div>
 </section>
@@ -876,9 +876,9 @@ def about():
   <div class="container">
     <div class="section-head">{eyebrow("05", "Licences &amp; certification")}<h2 id="lic-title">Licensed, registered and certified</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS &amp; PETROS</h3><p class="mb-0">PETRONAS licensed since 2004 for onshore pipeline, fabrication, inspection and repair work, and a registered vendor of Petroleum Sarawak (PETROS).</p></div>
-      <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Grade G7</h3><p class="mb-0">Registered with CIDB since 2003 at Grade G7, the highest grade, in Building, Civil Engineering and Mechanical &amp; Electrical. Registration no. 0120030415-SR082502. <a href="hse.html#cert-title">Details</a></p></div>
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001 &amp; ISO 45001</h3><p class="mb-0">Quality management certified by TÜV NORD since 2007, and occupational health &amp; safety management certified by BSI since 2024. <a href="hse.html#quality">Details</a></p></div>
+      <div class="card"><h3>PETRONAS &amp; PETROS</h3><p class="mb-0">PETRONAS licensed since 2004 for onshore pipeline, fabrication, inspection and repair work, and a registered vendor of Petroleum Sarawak (PETROS).</p></div>
+      <div class="card"><h3>CIDB Grade G7</h3><p class="mb-0">Registered with CIDB since 2003 at Grade G7, the highest grade, in Building, Civil Engineering and Mechanical &amp; Electrical. Registration no. 0120030415-SR082502. <a href="hse.html#cert-title">Details</a></p></div>
+      <div class="card"><h3>ISO 9001 &amp; ISO 45001</h3><p class="mb-0">Quality management certified by TÜV NORD since 2007, and occupational health &amp; safety management certified by BSI since 2024. <a href="hse.html#quality">Details</a></p></div>
     </div>
   </div>
 </section>
@@ -928,7 +928,7 @@ def services():
 <section class="service" id="{sid}" aria-labelledby="{sid}-title">
   <div class="container service-grid">
     <div>
-      <div class="service-head"><span class="card-icon">{icon(ic)}</span><h2 id="{sid}-title">{t}</h2></div>
+      <div class="service-head"><h2 id="{sid}-title">{t}</h2></div>
       <p class="lead">{intro}</p>
       <h3 class="visually-hidden">Scope</h3>
       <ul class="scope reveal-stagger" role="list">{scope_li}</ul>
@@ -989,9 +989,9 @@ def clients():
   <div class="container">
     <div class="section-head">{eyebrow("02", "Our commitment")}<h2 id="why-title">What clients can expect</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>Safety first</h3><p class="mb-0">An occupational health and safety management system certified to ISO 45001:2018, applied on every site.</p></div>
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>Certified quality</h3><p class="mb-0">An ISO 9001:2015 Quality Management System, certified by TÜV NORD and continually improved.</p></div>
-      <div class="card"><span class="card-icon">{icon("factory")}</span><h3>Company-owned facilities</h3><p class="mb-0">A workshop in Miri and a fabrication yard with blasting, painting and NDT facilities in Bintulu.</p></div>
+      <div class="card"><h3>Safety first</h3><p class="mb-0">An occupational health and safety management system certified to ISO 45001:2018, applied on every site.</p></div>
+      <div class="card"><h3>Certified quality</h3><p class="mb-0">An ISO 9001:2015 Quality Management System, certified by TÜV NORD and continually improved.</p></div>
+      <div class="card"><h3>Company-owned facilities</h3><p class="mb-0">A workshop in Miri and a fabrication yard with blasting, painting and NDT facilities in Bintulu.</p></div>
     </div>
   </div>
 </section>
@@ -1249,7 +1249,6 @@ def hse():
            Update "Valid until" when the certificate is renewed. -->
       <article class="cert-card" aria-labelledby="cert-card-title">
         <header class="cert-head">
-          <span class="cert-seal" aria-hidden="true">{icon("shield")}</span>
           <div><p class="cert-issuer">TÜV NORD CERT GmbH</p><h3 id="cert-card-title">ISO 9001:2015 Quality Management System</h3></div>
         </header>
         <dl class="cert-data">
@@ -1262,7 +1261,6 @@ def hse():
       </article>
       <article class="cert-card mt-6" aria-labelledby="ohs-card-title">
         <header class="cert-head">
-          <span class="cert-seal cert-seal--safety" aria-hidden="true">{icon("hat")}</span>
           <div><p class="cert-issuer">BSI</p><h3 id="ohs-card-title">ISO 45001:2018 Occupational Health &amp; Safety Management System</h3></div>
         </header>
         <dl class="cert-data">
@@ -1285,7 +1283,6 @@ def hse():
     <div class="grid grid--2 reveal-stagger">
       <article class="cert-card" aria-labelledby="cidb-card-title">
         <header class="cert-head">
-          <span class="cert-seal" aria-hidden="true">{icon("doc")}</span>
           <div><p class="cert-issuer">CIDB Malaysia</p><h3 id="cidb-card-title">Grade G7 registered contractor</h3></div>
         </header>
         <dl class="cert-data">
@@ -1299,7 +1296,6 @@ def hse():
       </article>
       <article class="cert-card" aria-labelledby="pet-card-title">
         <header class="cert-head">
-          <span class="cert-seal" aria-hidden="true">{icon("badge")}</span>
           <div><p class="cert-issuer">PETRONAS</p><h3 id="pet-card-title">Licensed to supply services to oil &amp; gas companies</h3></div>
         </header>
         <dl class="cert-data">

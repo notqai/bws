@@ -85,3 +85,22 @@
 .vendor-particulars dd { margin: 0; color: var(--ink); font-weight: 600; }
 .reg-table tbody th { text-align: left; padding: .75rem .9rem; color: var(--ink); white-space: nowrap; border-bottom: 1px solid var(--steel-100); vertical-align: top; }
 .reg-table .reg-valid { white-space: nowrap; font-weight: 600; color: var(--ink); }
+
+/* ---------- Restrained colour: one accent (navy, with blue for links and buttons); amber only for HSE ---------- */
+.section--tint { background: var(--steel-50); }
+.hero h1 .accent { color: inherit; }
+.proj-status { background: none; color: var(--ink); border-color: var(--steel-400); }
+.proj-loc svg, .job-meta svg, .contact-list svg { color: var(--steel-400); }
+a.card:hover, .card--hover:hover { border-color: var(--steel-400); }
+.related { border-left-color: var(--steel-200); }
+.job--general { border-left-color: var(--ink); background: var(--steel-50); }
+.form-status[data-state="busy"] { background: var(--steel-50); border-color: var(--steel-200); }
+.hse-live { background: var(--steel-50); border-left-color: var(--ink); }
+.case-results li { background: var(--steel-50); border-left-color: var(--ink); }
+.trust li { gap: 0; }
+.cert-head { gap: 0; }
+.cert-card::before { background: var(--ink); height: 3px; }
+.card::before { display: none; }
+.ticks li::before, .section--ink .ticks li::before { background: var(--ink); width: 10px; height: 2px; }
+.section--ink .ticks li::before { background: var(--on-ink-muted); }
+.related { background: var(--steel-50); border-left-color: var(--ink); }
