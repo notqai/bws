@@ -77,7 +77,8 @@ ORG_LD = {
     "image": SITE + "/assets/img/og-image.jpg",
     "description": "Bumiputera engineering construction and maintenance contractor for the oil and gas industries, based in Miri and Bintulu, Sarawak. PETRONAS licensed, CIDB registered, ISO 9001:2015 certified by TÜV NORD.",
     "foundingDate": "2002-10",
-    "email": "bwsesb@gmail.com",
+    "email": "bws@bwsengineeringsb.com",
+    "sameAs": ["https://www.facebook.com/bwsengineeringsdnbhd/"],
     "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "email": "bws@bwsengineeringsb.com", "telephone": "+60-85-652743", "areaServed": "MY"}, {"@type": "ContactPoint", "contactType": "recruitment", "email": "bwsesbhr@gmail.com"}],
     "telephone": "+60-85-652743",
     "faxNumber": "+60-85-652709",
@@ -88,12 +89,12 @@ ORG_LD = {
                 "addressLocality": "Miri", "postalCode": "98000", "addressRegion": "Sarawak", "addressCountry": "MY"},
     "subOrganization": [
         {"@type": "LocalBusiness", "@id": SITE + "/#miri", "name": "BWS Engineering Sdn Bhd: Main Office cum Workshop (Miri)",
-         "image": SITE + "/assets/img/facility-miri-hq-1600.webp", "telephone": "+60-85-652743", "faxNumber": "+60-85-652709", "email": "bwsesb@gmail.com",
+         "image": SITE + "/assets/img/facility-miri-hq-1600.webp", "telephone": "+60-85-652743", "faxNumber": "+60-85-652709", "email": "bws@bwsengineeringsb.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1",
                      "addressLocality": "Miri", "postalCode": "98000", "addressRegion": "Sarawak", "addressCountry": "MY"},
          "geo": {"@type": "GeoCoordinates", "latitude": 4.446917, "longitude": 114.011563}, "hasMap": "https://www.google.com/maps?cid=4214669276461699859"},
         {"@type": "LocalBusiness", "@id": SITE + "/#bintulu", "name": "BWS Engineering Sdn Bhd: Bintulu Office cum Fabrication Yard",
-         "image": SITE + "/assets/img/facility-bintulu-yard-1600.webp", "telephone": "+60-86-252476", "email": "bwsesb@gmail.com",
+         "image": SITE + "/assets/img/facility-bintulu-yard-1600.webp", "telephone": "+60-86-252476", "email": "bws@bwsengineeringsb.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong",
                      "addressLocality": "Bintulu", "postalCode": "97007", "addressRegion": "Sarawak", "addressCountry": "MY"},
          "geo": {"@type": "GeoCoordinates", "latitude": 3.2724729, "longitude": 113.0802423}, "hasMap": "https://www.google.com/maps?cid=6044021619715074034"},
@@ -163,7 +164,7 @@ def header(page):
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar on-dark">
   <div class="container topbar-inner">
-    <p class="topbar-contact">Miri <a href="tel:+6085652743">085-652743</a><span aria-hidden="true">·</span>Bintulu <a href="tel:+6086252476">086-252476</a><span aria-hidden="true">·</span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></p>
+    <p class="topbar-contact">Miri <a href="tel:+6085652743">085-652743</a><span aria-hidden="true">·</span>Bintulu <a href="tel:+6086252476">086-252476</a><span aria-hidden="true">·</span><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></p>
     <p class="topbar-creds">ISO 9001 · ISO 45001<span aria-hidden="true">·</span>CIDB G7<span aria-hidden="true">·</span>PETRONAS &amp; PETROS Licensed</p>
   </div>
 </div>
@@ -193,7 +194,7 @@ def header(page):
     </div>
     <nav aria-label="Main (mobile)"><ul>{mob}</ul></nav>
     <a class="btn btn--light" href="contact.html#enquiry">Request a Quote</a>
-    <p class="mobile-menu-contact">Miri <a href="tel:+6085652743">085-652743</a> · Bintulu <a href="tel:+6086252476">086-252476</a><br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></p>
+    <p class="mobile-menu-contact">Miri <a href="tel:+6085652743">085-652743</a> · Bintulu <a href="tel:+6086252476">086-252476</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></p>
 </div>
 <main id="main">'''
 
@@ -247,8 +248,8 @@ def footer():
       <div class="footer-office">
         <strong>Email</strong>
         <ul>
-          <li>Enquiries: <a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
           <li>Enquiries: <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></li>
+          <li>Also: <a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
           <li>Careers: <a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></li>
         </ul>
       </div>
@@ -256,6 +257,7 @@ def footer():
     <nav aria-label="Footer">
       <h2>Quick links</h2>
       <ul>{links}</ul>
+      <a class="social" href="https://www.facebook.com/bwsengineeringsdnbhd/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg>Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
     </nav>
   </div>
   <div class="container footer-bottom">
@@ -289,6 +291,18 @@ def page_hero(crumb, title, lead, illus, *_unused):
     {illus_panels(illus)}
   </div>
 </section>'''
+
+def compose_links(to, subject, body="", primary=True):
+    """Three ways to send the same pre-filled email: Gmail web, Outlook web, or the device's mail app."""
+    q = lambda v: quote(v, safe="")
+    gmail = f"https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to={q(to)}&amp;su={q(subject)}" + (f"&amp;body={q(body)}" if body else "")
+    outlook = f"https://outlook.office.com/mail/deeplink/compose?to={q(to)}&amp;subject={q(subject)}" + (f"&amp;body={q(body)}" if body else "")
+    mailto = f"mailto:{to}?subject={q(subject)}" + (f"&amp;body={q(body)}" if body else "")
+    cls = "btn btn--primary" if primary else "btn btn--ghost"
+    return (f'<div class="mail-choice" role="group" aria-label="Choose how to send your email">'
+            f'<a class="{cls}" href="{gmail}" target="_blank" rel="noopener">{icon("mail")}Gmail<span class="visually-hidden"> (opens in a new tab)</span></a>'
+            f'<a class="btn btn--ghost" href="{outlook}" target="_blank" rel="noopener">{icon("mail")}Outlook<span class="visually-hidden"> (opens in a new tab)</span></a>'
+            f'<a class="btn btn--ghost" href="{mailto}">{icon("mail")}Email app</a></div>')
 
 def write(name, html):
     with open(OUT + name, "w") as f:
@@ -341,7 +355,7 @@ PROJECTS = [
      ["Procurement", "Construction", "Commissioning", "Metering"], ["plant", "electrical"], False),
     ("2019 – 2025", "Rural Water Supply Department (JBALB) Sarawak", "Miri Water Supply Source Development Phase 2, Sarawak Water Grid Programme: raw water transfer from Batang Baram", "Miri, Sarawak",
      ["1,600 mm pipeline", "Pumping station", "HT line", "Earthworks &amp; M&amp;E"], ["civil", "mechanical", "electrical"], False),
-    ("2022 – 2024", "Malaysia LNG", "EPCC of the Power Import Project (Transgrid-BWS JV)", "Bintulu, Sarawak",
+    ("2022 – 2025", "Malaysia LNG", "EPCC of the Power Import Project (Transgrid-BWS JV)", "Bintulu, Sarawak",
      ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "electrical"], False),
     ("2022 – 2024", "JKR Malaysia", "Full replacement of 12 classrooms and facilities, SK Jalan Haji Baki", "Padawan, Sarawak",
      ["Building construction"], ["civil"], False),
@@ -351,7 +365,7 @@ PROJECTS = [
      ["Pipeline rehabilitation &amp; repair"], ["mechanical"], False),
     ("2020 – 2021", "Malaysia LNG", "EPCC of Kenyalang Project 2.0: tie-ins to the LNG loading, vapour return and firewater lines", "Bintulu, Sarawak",
      ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"], False),
-    ("2020 – 2021", "Ministry of International Trade and Industry", "Site clearing, earthworks and infrastructure, Sematan Industrial Area Phase I", "Kuching Division, Sarawak",
+    ("2020 – 2023", "Ministry of International Trade and Industry", "Site clearing, earthworks and infrastructure, Sematan Industrial Area Phase I", "Kuching Division, Sarawak",
      ["Earthworks", "Roads", "Drainage", "M&amp;E services"], ["civil"], False),
     ("2019 – 2023", "Malaysia LNG Dua", "EPCC of the gasoline and NGL metering skid upgrades", "Bintulu, Sarawak",
      ["Metering skids", "Instrumentation"], ["plant", "electrical"], False),
@@ -361,7 +375,7 @@ PROJECTS = [
      ["Non-metallic piping"], ["mechanical"], False),
     ("2018 – 2019", "JGC SP, for Hengyuan Refining", "Mechanical work package for the Clean Air Regulation Project: new wet gas scrubber facilities", "Port Dickson, Negeri Sembilan",
      ["Steel structure", "Piping", "Insulation", "Painting"], ["mechanical"], False),
-    ("2017 – 2019", "PETRONAS RAPID (PRPC)", "UIO facilities: underground pressurised non-metallic firewater network, 16 km of GRE pipeline", "Pengerang, Johor",
+    ("2017 – 2020", "PETRONAS RAPID (PRPC)", "UIO facilities: underground pressurised non-metallic firewater network, 16 km of GRE pipeline", "Pengerang, Johor",
      ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"], False),
     ("2016 – 2018", "Malaysia LNG", "Piping, protective coating, insulation, minor civil and scaffolding works, PETRONAS LNG Complex", "Bintulu, Sarawak",
      ["Piping", "Coating", "Insulation", "Team of 296"], ["mechanical"], False),
@@ -371,9 +385,9 @@ PROJECTS = [
      ["Steel structure", "Equipment", "Piping", "Insulation", "Painting"], ["mechanical"], False),
     ("2012 – 2013", "Malaysia LNG (Train 9 Project)", "New MLNG CSA office and warehouse, Jalan Kidurong", "Bintulu, Sarawak",
      ["Building construction", "Team of 160"], ["civil"], False),
-    ("2007 – 2010", "PETRONAS Carigali, via Rekind–Simfoni consortium", "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2: piping, supports and painting", "Miri, Sarawak",
+    ("2007 – 2011", "PETRONAS Carigali, via Rekind–Simfoni consortium", "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2: piping, supports and painting", "Miri, Sarawak",
      ["Piping", "Painting", "E&amp;I", "Teams of up to 150", "3.9 million man-hours"], ["mechanical"], False),
-    ("2008", "Sabah Shell Petroleum", "Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal", "Labuan",
+    ("2008 – 2011", "Sabah Shell Petroleum", "Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal", "Labuan",
      ["Mechanical installation", "Tie-in", "Commissioning"], ["mechanical", "plant"], False),
     ("2005 – 2006", "PETRONAS Dagangan", "EPCC of the aviation depot at Bintulu Airport", "Bintulu, Sarawak",
      ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "civil"], False),
@@ -1242,28 +1256,10 @@ def hse():
 {CTA}''' + footer()
 
 # ================================================================ CAREERS
-JOBS = [
-    # PLACEHOLDER positions: replace with real openings (title, location, type, one-line summary)
-    ("Site Supervisor (Mechanical &amp; Piping)", "Miri / Bintulu", "Full-time", "Example listing: replace with the real role summary."),
-    ("Safety Officer", "Miri / Bintulu", "Full-time", "Example listing: replace with the real role summary."),
-    ("QA/QC Inspector", "Bintulu", "Full-time", "Example listing: replace with the real role summary."),
-]
-
 def careers():
-    jobs = ""
-    for t, loc, typ, summ in JOBS:
-        plain = t.replace("&amp;", "&")
-        jobs += f'''
-      <article class="job">
-        <div>
-          <h3>{t}</h3>
-          <ul class="job-meta" role="list"><li>{icon("pin")}{loc}</li><li>{icon("clock")}{typ}</li></ul>
-          <p>{summ}</p>
-        </div>
-        <a class="btn btn--primary" data-apply="{plain}" href="mailto:bwsesbhr@gmail.com?subject={quote("Job Application – " + plain)}">Apply via email<span class="visually-hidden">: {t}</span></a>
-      </article>'''
+    cv_body = "Position / discipline:\nYears of experience:\nCurrent location:\nPhone number:\n\n(Please attach your CV and certificates.)"
     return head("careers.html", "Careers | Jobs in Oil &amp; Gas Construction, Miri &amp; Bintulu | BWS Engineering",
-        "Join BWS Engineering Sdn Bhd in Miri and Bintulu, Sarawak. A safety-first oil &amp; gas construction and maintenance contractor. Apply by email to bwsesbhr@gmail.com.") + header("careers.html") + page_hero(
+        "Join BWS Engineering Sdn Bhd in Miri and Bintulu, Sarawak, a safety-first oil &amp; gas construction and maintenance contractor. Send your CV to bwsesbhr@gmail.com.") + header("careers.html") + page_hero(
         "Careers", "Build your career with BWS",
         "Join a Sarawak contractor that has been building and maintaining oil and gas facilities since 2002.",
         "tools") + f'''
@@ -1279,30 +1275,24 @@ def careers():
     <aside class="callout-safety" aria-labelledby="safe-title">
       <span class="safety-tag">{icon("hat")} Safety-first culture</span>
       <h3 id="safe-title" style="font-size:1.2rem">Everyone goes home safe</h3>
-      <p class="mb-0">We conduct our business only after taking account of the health and safety of our employees. No job shall start or continue without due regard to Safety, Health and Environment, and every member of the team is expected to uphold that.</p>
+      <p class="mb-0">No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment, and every member of the team is expected to uphold that.</p>
     </aside>
   </div>
 </section>
 
-<section class="section section--steel" id="openings" aria-labelledby="open-title">
+<section class="section section--steel" id="apply" aria-labelledby="apply-title">
   <div class="container">
-    <div class="section-head section-head--split">
-      <div>{eyebrow("02", "Open positions")}<h2 id="open-title">Current openings</h2></div>
-      <p class="lead">Send your CV with the position title in the subject line to <a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a>.</p>
-    </div>
-    <!-- JOB OPENINGS: one <article class="job"> per position.
-         To add a role: copy an <article>, change the <h3> title, location, type and summary,
-         and set data-apply="Exact Position Title" on the button (it builds the email subject
-         "Job Application – Exact Position Title"). Update the href to match for no-JS visitors.
-         The three roles below are PLACEHOLDERS: replace or delete before going live. -->
-    <div class="jobs">{jobs}
-      <article class="job job--general">
-        <div>
-          <h3>Don’t see your role?</h3>
-          <p>We welcome general applications from experienced engineering and construction professionals. Tell us the discipline you work in.</p>
-        </div>
-        <a class="btn btn--ghost" data-apply="General Application" href="mailto:bwsesbhr@gmail.com?subject={quote("Job Application – General Application")}">Send your CV</a>
-      </article>
+    <div class="apply-card">
+      <div>
+        {eyebrow("", "Join us")}
+        <h2 id="apply-title">Send your CV</h2>
+        <p class="lead">We welcome applications from experienced engineering and construction professionals. Email your CV and certificates to our recruitment team, and tell us the position or discipline you’re applying for.</p>
+        <p class="apply-address">{icon("mail")}<a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></p>
+      </div>
+      <div class="apply-actions">
+        <p class="small">Choose how to send. Each option opens a new email to our recruitment team with the subject already filled in.</p>
+        {compose_links("bwsesbhr@gmail.com", "Job Application – [Position]", cv_body)}
+      </div>
     </div>
   </div>
 </section>
@@ -1340,7 +1330,7 @@ def contact():
             <li>{icon("pin")}<address>Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia</address></li>
             <li>{icon("phone")}<span><a href="tel:+6085652743">085-652743</a> / <a href="tel:+6085652744">44</a> / <a href="tel:+6085652745">45</a></span></li>
             <li>{icon("fax")}<span>Fax: 085-652709</span></li>
-            <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
+            <li>{icon("mail")}<span><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a><br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></span></li>
           </ul>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{MIRI_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
@@ -1353,7 +1343,7 @@ def contact():
           <ul class="contact-list" role="list">
             <li>{icon("pin")}<address>Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak, Malaysia</address></li>
             <li>{icon("phone")}<a href="tel:+6086252476">086-252476</a></li>
-            <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
+            <li>{icon("mail")}<span><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a><br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></span></li>
           </ul>
           <p class="mt-4 small mb-0"><strong>Fabrication yard:</strong> Lot 124–128, Block 20, Kemena Land District, Jalan Kidurong, 97000 Bintulu, Sarawak</p>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
@@ -1372,7 +1362,7 @@ def contact():
       <!-- CONTACT FORM: replace YOUR_FORM_ID in the action below with your Formspree form ID
            (https://formspree.io → New form → copy the endpoint). Until then the form opens
            the visitor's email app with the message pre-filled, addressed to data-mailto. -->
-      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-contact-form data-mailto="bwsesb@gmail.com">
+      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-contact-form data-mailto="bws@bwsengineeringsb.com">
         <input type="hidden" name="_subject" value="Website enquiry: BWS Engineering">
         <div class="form-row">
           <div class="field"><label for="f-name">Name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error"><span class="field-error" id="f-name-error" hidden>Please enter your name.</span></div>
@@ -1398,22 +1388,14 @@ def contact():
     <aside class="card" aria-labelledby="direct-title" style="margin-top:var(--space-6)">
       <h3 id="direct-title">Prefer to email directly?</h3>
       <ul class="contact-list" role="list">
-        <li>{icon("mail")}<span>General enquiries<br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
+        <li>{icon("mail")}<span>General enquiries<br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a><br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></span></li>
         <li>{icon("briefcase")}<span>Job applications<br><a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></span></li>
         <li>{icon("phone")}<span>Miri <a href="tel:+6085652743">085-652743</a><br>Bintulu <a href="tel:+6086252476">086-252476</a></span></li>
       </ul>
     </aside>
   </div>
 </section>
-<script>
-  // Pre-select the service when arriving from a Services page button (contact.html?service=civil)
-  (function () {{
-    var k = new URLSearchParams(location.search).get("service");
-    if (!k) return;
-    var o = document.querySelector('#f-service option[data-key="' + k + '"]');
-    if (o) o.selected = true;
-  }})();
-</script>''' + footer()
+''' + footer()
 
 def notfound():
     return head("404.html", "Page not found | BWS Engineering Sdn Bhd", "The page you were looking for could not be found.").replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex">') + header("") + f'''

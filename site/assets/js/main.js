@@ -201,7 +201,8 @@
       var action = form.getAttribute("action") || "";
 
       if (action.indexOf("YOUR_FORM_ID") !== -1 || !window.fetch) {
-        var to = form.getAttribute("data-mailto") || "bwsesb@gmail.com";
+        // No form service connected: let the visitor send it with Gmail, Outlook or their mail app
+        var to = form.getAttribute("data-mailto") || "bws@bwsengineeringsb.com";
         var subject = "Website enquiry: " + (data.get("service") || "General") + " (" + (data.get("company") || data.get("name")) + ")";
         var body = [
           "Name: " + data.get("name"),
@@ -212,8 +213,30 @@
           "",
           data.get("message")
         ].join("\n");
-        window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        setStatus("ok", "Your email app should open with your message ready to send. If it doesn't, email us directly at " + to + ".");
+        var enc = encodeURIComponent;
+        var links = [
+          ["Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + enc(to) + "&su=" + enc(subject) + "&body=" + enc(body), true],
+          ["Outlook", "https://outlook.office.com/mail/deeplink/compose?to=" + enc(to) + "&subject=" + enc(subject) + "&body=" + enc(body), true],
+          ["Email app", "mailto:" + to + "?subject=" + enc(subject) + "&body=" + enc(body), false]
+        ];
+        statusEl.hidden = false;
+        statusEl.setAttribute("data-state", "ok");
+        statusEl.textContent = "";
+        var p = document.createElement("p");
+        p.textContent = "Your message is ready. Choose how to send it to " + to + ":";
+        var group = document.createElement("div");
+        group.className = "mail-choice";
+        links.forEach(function (l, i) {
+          var a = document.createElement("a");
+          a.className = i === 0 ? "btn btn--primary" : "btn btn--ghost";
+          a.href = l[1];
+          a.textContent = l[0];
+          if (l[2]) { a.target = "_blank"; a.rel = "noopener"; }
+          group.appendChild(a);
+        });
+        statusEl.appendChild(p);
+        statusEl.appendChild(group);
+        group.querySelector("a").focus();
         return;
       }
 
@@ -255,6 +278,13 @@
       flFilters.querySelectorAll("button[data-fl]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
       apply();
     });
+  }
+
+  /* ---- Contact: pre-select the service when arriving from a Services page (contact.html?service=civil) ---- */
+  var svcKey = new URLSearchParams(location.search).get("service");
+  if (svcKey) {
+    var opt = document.querySelector('#f-service option[data-key="' + svcKey + '"]');
+    if (opt) opt.selected = true;
   }
 
   /* ---- Careers: build "Apply via email" links from each job title ---- */
