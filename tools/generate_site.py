@@ -1067,7 +1067,7 @@ CASE_STUDIES = [
      "results": ["KP265 completed 25 days ahead of schedule, with zero LTI and within cost, during the COVID-19 Movement Control Order (PETRONAS Focused Recognition, 2020)",
                  "Top 5 Best Project HSE Performance 2022 for KP220 and KP265 (IRSO West Coast Mega HSE Council)",
                  "PETRONAS certificate of appreciation for the KP220 mechanical scope"],
-     "photo": ("ill:coast-map", 800, 600, "")},
+     "photo": ("ill:pipeline-replacement", 800, 600, "")},
     {"id": "case-miri-water", "client": "Rural Water Supply Department (JBALB) Sarawak", "years": "2019 – 2025", "where": "Miri, Sarawak",
      "title": "Miri Water Supply Source Development Phase 2",
      "summary": "Part of the Sarawak Water Grid Programme: transferring raw water from Batang Baram to Sungai Bakong and Sungai Liku, to meet the demand of Miri city and its surroundings up to 2030.",
