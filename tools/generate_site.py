@@ -592,7 +592,13 @@ def home():
         f'''
       <li><a class="work-item" href="projects.html">{img(k, t, w, h, "(min-width: 60rem) 25vw, 50vw")}<span class="cap"><span>{c}</span>{t}</span></a></li>'''
         for k, w, h, c, t in work)
-    marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, n if alt else "")}</li>' for n, logo, w, h, _ in CLIENTS)
+    # One logo per brand in the scrolling strip (PETRONAS and Shell cover several client companies)
+    brands = {}
+    for n, logo, w, h, _ in CLIENTS:
+        key = logo or n
+        if key in brands: brands[key][3].append(n)
+        else: brands[key] = (logo, w, h, [n])
+    marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, ", ".join(names) if alt else "")}</li>' for logo, w, h, names in brands.values())
     return head("index.html",
         "BWS Engineering Sdn Bhd | Oil &amp; Gas Construction &amp; Maintenance Contractor, Miri, Sarawak",
         "Bumiputera engineering construction and maintenance contractor for oil &amp; gas, based in Miri and Bintulu, Sarawak since 2002. PETRONAS licensed, CIDB registered, ISO 9001:2015 (TÜV NORD).") + header("index.html") + f'''
