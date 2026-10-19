@@ -735,7 +735,7 @@ def home():
     </div>
     <blockquote class="safety-quote reveal">
       <span class="safety-tag">{icon("warn")} HSE Policy</span>
-      <p>“No job shall start or continue without due regard to Safety, Health and Environment.”</p>
+      <p>“No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment.”</p>
       <footer>BWS Engineering Sdn Bhd HSE Policy</footer>
     </blockquote>
   </div>
@@ -936,7 +936,7 @@ def clients():
   <div class="container">
     <div class="section-head">{eyebrow("02", "What clients get")}<h2 id="why-title">What our clients can rely on</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>Safety first</h3><p class="mb-0">No job starts or continues without due regard to Safety, Health and Environment.</p></div>
+      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>Safety first</h3><p class="mb-0">No work starts or continues without ensuring a safe and healthy workplace and protection of the environment.</p></div>
       <div class="card"><span class="card-icon">{icon("badge")}</span><h3>Certified quality</h3><p class="mb-0">An ISO 9001:2015 Quality Management System, certified by TÜV NORD and continually improved.</p></div>
       <div class="card"><span class="card-icon">{icon("factory")}</span><h3>Our own facilities</h3><p class="mb-0">A workshop in Miri and a fabrication yard with blasting, painting and NDT facilities in Bintulu.</p></div>
     </div>
@@ -966,7 +966,7 @@ GALLERY = [
     ("mech", "mech-heavy-lift", 800, 600, "Heavy lift of a vessel", "Mobile crane lifting a large cylindrical vessel on site"),
     ("mech", "mech-pump-skid", 448, 292, "Pump installation", "Electric pump and pipework installed on a skid"),
     ("mech", "piping-spool", 448, 295, "Large-bore piping", "Large-bore white piping with flanged connections"),
-    ("mech", "mech-container-unloading", 800, 554, "Material receiving", "Crew in PPE unloading materials from a shipping container"),
+    ("mech", "mech-container-unloading", 800, 487, "Material receiving", "Crew in PPE unloading materials from a shipping container"),
     ("mech", "ill:blasting-painting", 800, 600, "Blasting and painting", "Illustration: a steel beam being spray painted after blasting"),
     ("civil", "civil-rebar", 800, 460, "Foundation reinforcement", "Construction crew tying reinforcement steel for a foundation"),
     ("civil", "civil-foundation-slab", 800, 488, "Concrete foundation slab", "Large concrete slab with formwork and an excavator at the edge of the site"),
@@ -1082,7 +1082,7 @@ def hse():
       <p class="mt-5 mb-0">Our performance in Health, Safety and Environment is the ultimate yardstick of our success in running our business.</p>
     </div>
     <figure class="media media--framed ratio-4x3 reveal">
-      {img("mech-container-unloading", "Crew in coveralls, hard hats and gloves unloading materials from a container", 800, 554)}
+      {img("mech-container-unloading", "Crew in coveralls, hard hats and gloves unloading materials from a container", 800, 487)}
       <figcaption>Full PPE during material handling.</figcaption>
     </figure>
   </div>
@@ -1420,3 +1420,9 @@ write("site.webmanifest", json.dumps({"name": "BWS Engineering Sdn Bhd", "short_
     {"src": "assets/logo/icon-192.png", "sizes": "192x192", "type": "image/png"},
     {"src": "assets/logo/icon-512.png", "sizes": "512x512", "type": "image/png"}],
     "theme_color": "#0A1240", "background_color": "#FFFFFF", "display": "browser"}, indent=2))
+
+# Bahasa Melayu version (site/ms/) + language switch and hreflang on both versions
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_ms
+build_ms.build()

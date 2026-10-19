@@ -6,6 +6,8 @@
   var doc = document.documentElement;
   doc.classList.add("js");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var BM = (doc.getAttribute("lang") || "").indexOf("ms") === 0;
+  var T = function (en, ms) { return BM ? ms : en; };
 
   /* ---- Footer year ---- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
@@ -121,7 +123,7 @@
         li.hidden = !match;
         if (match) shown++;
       });
-      if (status) status.textContent = "Showing " + shown + " " + (shown === 1 ? "photo" : "photos");
+      if (status) status.textContent = T("Showing " + shown + " " + (shown === 1 ? "photo" : "photos"), "Memaparkan " + shown + " foto");
     });
   }
 
@@ -196,20 +198,20 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (form.querySelector(".hp input").value) return; // spam honeypot
-      if (!validate()) { setStatus("err", "Please fill in the highlighted fields."); return; }
+      if (!validate()) { setStatus("err", T("Please fill in the highlighted fields.", "Sila lengkapkan ruangan yang ditandakan.")); return; }
       var data = new FormData(form);
       var action = form.getAttribute("action") || "";
 
       if (action.indexOf("YOUR_FORM_ID") !== -1 || !window.fetch) {
         // No form service connected: let the visitor send it with Gmail, Outlook or their mail app
         var to = form.getAttribute("data-mailto") || "bws@bwsengineeringsb.com";
-        var subject = "Website enquiry: " + (data.get("service") || "General") + " (" + (data.get("company") || data.get("name")) + ")";
+        var subject = T("Website enquiry: ", "Pertanyaan laman web: ") + (data.get("service") || T("General", "Umum")) + " (" + (data.get("company") || data.get("name")) + ")";
         var body = [
-          "Name: " + data.get("name"),
-          "Company: " + (data.get("company") || "-"),
-          "Email: " + data.get("email"),
-          "Phone: " + (data.get("phone") || "-"),
-          "Service of interest: " + (data.get("service") || "-"),
+          T("Name: ", "Nama: ") + data.get("name"),
+          T("Company: ", "Syarikat: ") + (data.get("company") || "-"),
+          T("Email: ", "E-mel: ") + data.get("email"),
+          T("Phone: ", "Telefon: ") + (data.get("phone") || "-"),
+          T("Service of interest: ", "Perkhidmatan: ") + (data.get("service") || "-"),
           "",
           data.get("message")
         ].join("\n");
@@ -217,13 +219,13 @@
         var links = [
           ["Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + enc(to) + "&su=" + enc(subject) + "&body=" + enc(body), true],
           ["Outlook", "https://outlook.office.com/mail/deeplink/compose?to=" + enc(to) + "&subject=" + enc(subject) + "&body=" + enc(body), true],
-          ["Email app", "mailto:" + to + "?subject=" + enc(subject) + "&body=" + enc(body), false]
+          [T("Email app", "Aplikasi e-mel"), "mailto:" + to + "?subject=" + enc(subject) + "&body=" + enc(body), false]
         ];
         statusEl.hidden = false;
         statusEl.setAttribute("data-state", "ok");
         statusEl.textContent = "";
         var p = document.createElement("p");
-        p.textContent = "Your message is ready. Choose how to send it to " + to + ":";
+        p.textContent = T("Your message is ready. Choose how to send it to " + to + ":", "Mesej anda sudah sedia. Pilih cara menghantarnya ke " + to + ":");
         var group = document.createElement("div");
         group.className = "mail-choice";
         links.forEach(function (l, i) {
@@ -246,10 +248,10 @@
         .then(function (r) {
           if (!r.ok) throw new Error(r.status);
           form.reset();
-          setStatus("ok", "Thank you. Your enquiry has been sent and our team will get back to you shortly.");
+          setStatus("ok", T("Thank you. Your enquiry has been sent and our team will get back to you shortly.", "Terima kasih. Pertanyaan anda telah dihantar dan pasukan kami akan menghubungi anda tidak lama lagi."));
         })
         .catch(function () {
-          setStatus("err", "Sorry, something went wrong. Please email bwsesb@gmail.com or call 085-652743.");
+          setStatus("err", T("Sorry, something went wrong. Please email bws@bwsengineeringsb.com or call 085-652743.", "Maaf, berlaku ralat. Sila e-mel bws@bwsengineeringsb.com atau hubungi 085-652743."));
         })
         .finally(function () { submitBtn.disabled = false; });
     });
@@ -269,7 +271,7 @@
         var ok = (sector === "all" || tr.getAttribute("data-sector") === sector) && (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
         tr.hidden = !ok; if (ok) shown++;
       });
-      if (flStatus) flStatus.textContent = shown + " projects shown";
+      if (flStatus) flStatus.textContent = T(shown + " projects shown", shown + " projek dipaparkan");
     };
     flSearch.addEventListener("input", apply);
     flFilters.addEventListener("click", function (e) {

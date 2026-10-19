@@ -28,6 +28,7 @@ site/
 ├── careers.html        Working at BWS + job openings (apply by email)
 ├── contact.html        Two offices + Google Maps + enquiry form
 ├── 404.html            "Page not found"
+├── ms/                 Bahasa Melayu versions of every page (generated)
 ├── sitemap.xml  robots.txt  site.webmanifest  favicon.ico  .htaccess
 └── assets/
     ├── css/styles.css  All styles. Colours, fonts and spacing are variables at the top (:root)
@@ -139,8 +140,12 @@ Inner pages use blueprint-style line drawings (`site/assets/illustrations/*.svg`
 ### Security headers
 `vercel.json` sets a Content-Security-Policy, HSTS, X-Frame-Options, Referrer-Policy and Permissions-Policy, plus caching rules (`site/.htaccess` does the same on Apache/cPanel). If you add a new external service (analytics, a chat widget, another embed), add its domain to the CSP or the browser will block it.
 
-## Bahasa Melayu (future)
-The site is English-only for now, with all text in the HTML (none in the JS). To add BM, copy the pages into `site/ms/`, translate them, set `<html lang="ms">`, add a language link to the header, and add `<link rel="alternate" hreflang="ms" href="…">` / `hreflang="en"` tags to each pair of pages. The contact form, job-apply and lightbox scripts work unchanged.
+## Bahasa Melayu version
+The Malay site lives in `site/ms/` (e.g. `/ms/about.html`). The **EN | BM** button in the header switches between the same page in each language. Both versions carry `hreflang` links, and `sitemap.xml` lists both.
+- Pages are **generated automatically** from the English ones when you run `python3 tools/generate_site.py` (via `tools/build_ms.py`).
+- Translations are in `tools/ms_strings.py`, keyed by the exact English text. If you change English copy, add or update its Malay line too, or that text stays in English on the BM page. Each build writes the list of strings kept in English to `/tmp/ms_untranslated.txt`.
+- **Kept in English on purpose:** project titles, client and agency names, certificate scopes, and codes, as they appear in the official records.
+- ⚠️ **Have a native speaker at BWS proofread the Malay before launch.** It's written in formal business Bahasa Malaysia, but not yet reviewed by a person.
 
 ## Accessibility & performance notes
 - WCAG AA contrast throughout, a skip link, visible focus outlines, a keyboard-operable menu (Esc closes, focus is trapped while open) and lightbox (← → Esc). Labelled form fields with error messages.
