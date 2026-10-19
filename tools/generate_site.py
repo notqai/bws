@@ -257,7 +257,7 @@ def footer():
     </nav>
   </div>
   <div class="container footer-bottom">
-    <p>© <span data-year>2026</span> BWS Engineering Sdn Bhd. All rights reserved.</p>
+    <p>© <span data-year>2026</span> BWS Engineering Sdn Bhd (597192-V). All rights reserved.</p>
     <p>Miri · Bintulu · Sarawak, Malaysia</p>
   </div>
 </footer>
@@ -317,6 +317,41 @@ SERVICES = [
      ("ei-switchgear", "Row of electrical switchgear panels installed in a substation room", 800, 599)),
 ]
 
+# Key projects (BWS as main contractor). Sources, checked Oct 2026:
+#   MPRC / iOGSE supplier directory (government) and project pages of KPG Engineering (BWS's subcontractor).
+#   Contract values on the KPG site are subcontract values, so they are deliberately not shown.
+# (years, client, project, location, scope tags, service ids it relates to)
+PROJECTS = [
+    ("2023 – 2024", "Shell", "Underground process &amp; utilities piping, Shell OGP Project", "Bintulu, Sarawak",
+     ["Piping fabrication &amp; installation", "GRE · GRV · HDPE · CS · SS"], ["mechanical"]),
+    ("2022 – 2024", "Malaysia LNG", "EPCC of the Power Import Project", "Bintulu, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"]),
+    ("2022", "PTTEP", "EPCIC of shelter, Bintulu Onshore Receiving Facility", "Bintulu, Sarawak",
+     ["Structure fabrication &amp; installation", "Porta cabins"], ["plant", "civil"]),
+    ("2020 – 2024", "PETRONAS Carigali", "Term contract: Sabah Sarawak mechanical pipelines maintenance (Package B), rehabilitation &amp; repair KP-210 to KP-503", "Miri – Bintulu, Sarawak",
+     ["Pipeline rehabilitation &amp; repair", "Civil works"], ["mechanical"]),
+    ("2020", "Malaysia LNG", "EPCC of Kenyalang Project 2.0", "Bintulu, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"]),
+    ("2019 – 2022", "ASEAN Bintulu Fertilizer", "Structure improvement at the offsite plant", "Bintulu, Sarawak",
+     ["Structure replacement", "Fabrication, installation &amp; painting"], ["civil"]),
+    ("2018 – 2019", "PETRONAS (RAPID, PRPC)", "UIO facilities: underground non-metallic firewater network, 16 km of pipeline", "Pengerang, Johor",
+     ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"]),
+    ("2014 – 2015", "Shell MDS", "Mechanical work package, Phase 1, SMDS Rejuvenation Project", "Bintulu, Sarawak",
+     ["Mechanical works"], ["mechanical"]),
+]
+
+def project_rows(items, compact=False):
+    out = ""
+    for years, client, name, loc, tags, _svc in items:
+        tag_html = "" if compact else '<ul class="proj-tags" role="list">' + "".join(f"<li>{t}</li>" for t in tags) + "</ul>"
+        out += f'''
+      <li class="proj">
+        <span class="proj-years">{years}</span>
+        <div class="proj-main"><p class="proj-client">{client}</p><h3 class="proj-name">{name}</h3>{tag_html}</div>
+        <span class="proj-loc">{icon("pin")}{loc}</span>
+      </li>'''
+    return out
+
 # (name, logo file in assets/img/clients/, intrinsic width, height, note)
 # Logos are the clients' current brand marks (PETRONAS subsidiaries use the group mark).
 CLIENTS = [
@@ -331,6 +366,8 @@ CLIENTS = [
     ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, ""),
     ("Mitsui &amp; Co. Ltd", "mitsui.svg", 512, 636, ""),
     ("Taihei Dengyo Kaisha, Ltd", "taihei-dengyo.webp", 122, 90, ""),
+    ("PTTEP", "pttep.svg", 240, 212, "Bintulu Onshore Receiving Facility"),
+    ("PETRONAS Refinery &amp; Petrochemical Corporation (PRPC)", "petronas.svg", 544, 558, "RAPID, Pengerang"),
 ]
 
 def client_logo(logo, w, h, alt=""):
@@ -434,6 +471,17 @@ def home():
     <figure class="media media--framed ratio-4x3 reveal">
       {img("hse-site-walk", "BWS supervisors in hard hats and coveralls walking a cleared construction site", 577, 564)}
     </figure>
+  </div>
+</section>
+
+<section class="section section--steel section--track" aria-labelledby="track-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Track record")}<h2 id="track-title">Recent projects as main contractor</h2></div>
+      <p class="lead">From EPCC packages for Malaysia LNG to multi-year pipeline maintenance for PETRONAS Carigali. <a href="projects.html#track">See all key projects</a></p>
+    </div>
+    <ol class="proj-list reveal-stagger" role="list">{project_rows(PROJECTS[:4], compact=True)}
+    </ol>
   </div>
 </section>
 
@@ -594,7 +642,7 @@ def about():
          Each column is one section; edit the <li> text to update roles. -->
     <figure class="org" aria-labelledby="org-title">
       <div class="org-top">
-        <div class="org-node org-node--lead">Managing Director</div>
+        <div class="org-node org-node--lead">Managing Director<span class="org-person">Bundan anak Ngila</span></div>
         <div class="org-staff"><span class="org-staff-line" aria-hidden="true"></span><div class="org-node org-node--staff">HSE Secretary</div></div>
       </div>
       <ul class="org-sections" role="list">
@@ -627,6 +675,10 @@ def services():
     for i, (sid, ic, t, blurb, scope, intro, photo) in enumerate(SERVICES, 1):
         key, alt, w, h = photo
         scope_li = "".join(f"<li>{s}</li>" for s in scope)
+        rel = [p for p in PROJECTS if sid in p[5]]
+        related_html = ("" if not rel else
+            '<div class="related"><h3 class="related-title">Selected projects</h3><ul class="related-list" role="list">'
+            + "".join(f'<li><span>{p[0]}</span>{p[2]} <em>for {p[1]}</em></li>' for p in rel) + '</ul></div>')
         secs += f'''
 <section class="service" id="{sid}" aria-labelledby="{sid}-title">
   <div class="container service-grid">
@@ -635,6 +687,7 @@ def services():
       <p class="lead">{intro}</p>
       <h3 class="visually-hidden">Scope</h3>
       <ul class="scope reveal-stagger" role="list">{scope_li}</ul>
+      {related_html}
       <a class="btn btn--primary" href="contact.html?service={sid}#enquiry">Discuss your project {icon("arrow")}<span class="visually-hidden">: {t}</span></a>
     </div>
     <figure class="media ratio-4x3 reveal">
@@ -645,7 +698,7 @@ def services():
     return head("services.html", "Services | Plant, Mechanical, Civil &amp; E&amp;I Works | BWS Engineering",
         "Industrial plant construction and maintenance, mechanical and piping, civil, building and structural steel, and electrical and instrumentation work for oil &amp; gas in Sarawak.") + header("services.html") + page_hero(
         "Services", "Construction &amp; maintenance services for oil and gas",
-        "Four core disciplines delivered from our Miri workshop and Bintulu fabrication yard.",
+        "Four core disciplines delivered from our Miri workshop and Bintulu fabrication yard, with project management covering procurement, construction and commissioning.",
         "plant") + f'''
 <nav class="service-nav" aria-label="Services on this page"><div class="container"><ul>{nav}</ul></div></nav>
 {secs}
@@ -690,7 +743,7 @@ GALLERY = [
     ("mech", "mech-pump-skid", 448, 292, "Pump installation", "Electric pump and pipework installed on a skid"),
     ("mech", "piping-spool", 448, 295, "Large-bore piping", "Large-bore white piping with flanged connections"),
     ("mech", "mech-container-unloading", 800, 554, "Material receiving", "Crew in PPE unloading materials from a shipping container"),
-    ("mech", None, 0, 0, "Blasting and painting", "Blasting and painting work at the Bintulu yard"),
+    ("mech", "ill:blasting-painting", 800, 600, "Blasting and painting", "Illustration: a steel beam being spray painted after blasting"),
     ("civil", "civil-rebar", 800, 460, "Foundation reinforcement", "Construction crew tying reinforcement steel for a foundation"),
     ("civil", "civil-foundation-slab", 800, 488, "Concrete foundation slab", "Large concrete slab with formwork and an excavator at the edge of the site"),
     ("civil", "civil-excavation-formwork", 800, 563, "Excavation and formwork", "Excavator working beside timber formwork in an excavation"),
@@ -699,8 +752,8 @@ GALLERY = [
     ("civil", "building-scaffold", 800, 600, "Building construction", "Two-storey building wrapped in scaffolding beside a container yard"),
     ("civil", "building-interior", 800, 534, "Building fit-out", "Interior of a building under fit-out with steel roof structure"),
     ("ei", "ei-switchgear", 800, 599, "Switchgear installation", "Row of electrical switchgear panels in a substation room"),
-    ("ei", None, 0, 0, "Cable laying and testing", "Cable laying or termination work on site"),
-    ("ei", None, 0, 0, "Instrument calibration", "Instrument calibration on the bench or in the field"),
+    ("ei", "ill:cable-laying", 800, 600, "Cable laying and testing", "Illustration: a cable drum paying out cable into a trench, with an insulation tester"),
+    ("ei", "ill:instrument-calibration", 800, 600, "Instrument calibration", "Illustration: a pressure transmitter calibrated on a bench against a reference gauge"),
     ("hse", "hse-toolbox-talk", 800, 600, "Toolbox talk", "Workers seated under a site tent for a safety briefing"),
     ("hse", "hse-site-walk", 577, 564, "Site inspection", "Supervisors in hard hats walking a cleared site"),
     ("hse", "hse-fire-drill", 800, 600, "Fire extinguisher drill", "Crew in coveralls and hard hats during a fire extinguisher drill"),
@@ -714,7 +767,14 @@ def projects():
     btns = "".join(f'<button class="filter-btn" type="button" data-filter="{k}" aria-pressed="{str(k == "all").lower()}">{v}<span class="count">({cnt(k)})</span></button>' for k, v in CATS)
     lis = ""
     for cat, key, w, h, title, alt in GALLERY:
-        if key:
+        if key and key.startswith("ill:"):
+            # Blueprint illustration standing in until a real site photo is supplied (see README)
+            src = f"assets/illustrations/{key[4:]}.svg"
+            lis += f'''
+      <li data-cat="{cat}"><button type="button" data-full="{src}" data-title="{title} (illustration)" aria-label="{CATNAME[cat]} {title} (enlarge illustration)">
+        <img src="{src}" width="800" height="600" alt="{alt}" loading="lazy" decoding="async">
+        <span class="cap" aria-hidden="true"><span>Illustration</span>{title}</span></button></li>'''
+        elif key:
             big = os.path.exists(OUT + f"assets/img/{key}-1600.webp")
             full = f"assets/img/{key}-{'1600' if big else '800'}.webp"
             lis += f'''
@@ -728,6 +788,18 @@ def projects():
         "Projects", "Projects &amp; gallery",
         "A look at our work on site, filtered by discipline.",
         "crane-lift") + f'''
+
+<section class="section section--steel" id="track" aria-labelledby="track-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Track record")}<h2 id="track-title">Key projects</h2></div>
+      <p class="lead">Selected contracts delivered by BWS as main contractor for operators and plant owners in Sarawak and Peninsular Malaysia.</p>
+    </div>
+    <!-- KEY PROJECTS: edit the PROJECTS list in tools/generate_site.py, or edit the <li class="proj"> items below. -->
+    <ol class="proj-list" role="list">{project_rows(PROJECTS)}
+    </ol>
+  </div>
+</section>
 
 <section class="section" aria-labelledby="gal-title">
   <div class="container">
@@ -848,6 +920,11 @@ def hse():
         <p class="small mb-0">Licence number and validity are available to procurement teams on request.</p>
       </article>
     </div>
+    <ul class="reg-list" role="list">
+      <li><strong>DOSH</strong><span>Department of Occupational Safety and Health registration since 2010: KPD 01, KPD 02, PVR01, SBR01</span></li>
+      <li><strong>MOF</strong><span>Ministry of Finance registered supplier since 2008: engineering, construction and maintenance</span></li>
+      <li><strong>SSM</strong><span>Company no. 597192-V, incorporated October 2002</span></li>
+    </ul>
   </div>
 </section>
 

@@ -348,8 +348,95 @@ def coast_map():
     return sheet(b, "Map of the Sarawak coast showing BWS bases in Miri and Bintulu")
 
 
+
+# ------------------------------------------------------------------ gallery: blasting & painting
+def blasting():
+    b = ground(520)
+    # I-beam on trestles (end view + length)
+    b += f'<path d="M150 300h420v18H150zM150 382h420v18H150z" stroke="{CYAN}" stroke-width="2" fill="{BLUE}" fill-opacity=".3"/>'
+    b += line([(150, 318), (150, 382)], SKY, 1.5) + rect(150, 318, 420, 64, SKY, 1, op=.4)
+    b += f'<path d="M352 318h16v64h-16z" stroke="{CYAN}" stroke-width="1.5" fill="{BLUE}" fill-opacity=".45"/>'
+    for x in (190, 530):
+        b += line([(x - 30, 520), (x, 400), (x + 30, 520)], CYAN, 2) + line([(x - 20, 480), (x + 20, 480)], SKY, 1.2)
+    # coated half vs bare half
+    b += hatch(360, 300, 210, 100, 8, CYAN, .35)
+    # spray gun + hose
+    b += (f'<path d="M640 190l-60 26 6 16 60-26z" stroke="{CYAN}" stroke-width="2" fill="{INK}"/>'
+          f'<path d="M640 190l40-6 8 36-34 8M664 214l10 46h22l-8-42" stroke="{CYAN}" stroke-width="2" fill="none"/>'
+          f'<path d="M688 260c40 30 50 120 10 200s-40 60-60 60" stroke="{SKY}" stroke-width="2" fill="none"/>')
+    # spray cone
+    b += line([(582, 220), (430, 300)], SKY, 1, .6, dash="3 6") + line([(586, 230), (470, 312)], SKY, 1, .6, dash="3 6")
+    import random
+    random.seed(7)
+    for _ in range(140):
+        t = random.random(); spread = random.uniform(-.5, .5)
+        x = 584 - t * 140 + spread * 30 * t; y = 225 + t * 80 + spread * 40 * t
+        b += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{random.uniform(.8, 2.2):.1f}" fill="{SKY}" fill-opacity="{random.uniform(.3,.9):.2f}" stroke="none"/>'
+    b += dim_h(150, 360, 270, "BLASTED")
+    b += dim_h(360, 570, 440, "PAINTED")
+    return sheet(b, "Line drawing of a steel I-beam being spray painted after blasting")
+
+
+# ------------------------------------------------------------------ gallery: cable laying
+def cable():
+    b = ground(470)
+    # cable drum on jack stand
+    cx, cy = 210, 330
+    b += circle(cx, cy, 120, CYAN, 2.5, BLUE).replace(f'fill="{BLUE}"', f'fill="{BLUE}" fill-opacity=".25"')
+    b += circle(cx, cy, 70, SKY, 1.5) + circle(cx, cy, 16, CYAN, 2)
+    for a in range(0, 360, 45):
+        r = math.radians(a)
+        b += line([(cx + 16 * math.cos(r), cy + 16 * math.sin(r)), (cx + 120 * math.cos(r), cy + 120 * math.sin(r))], SKY, 1, .5)
+    b += line([(cx - 90, 470), (cx, cy), (cx + 90, 470)], CYAN, 2) + line([(cx - 60, 430), (cx + 60, 430)], SKY, 1.2)
+    # cable paying out over rollers into a trench / tray
+    b += f'<path d="M{cx} {cy - 120}C330 200 400 380 470 430H760" stroke="{CYAN}" stroke-width="5" fill="none"/>'
+    b += f'<path d="M{cx} {cy - 120}C330 200 400 380 470 430H760" stroke="{INK}" stroke-width="1.5" fill="none"/>'
+    for x in (520, 610, 700):
+        b += circle(x, 440, 9, SKY, 1.5) + line([(x - 14, 470), (x, 449), (x + 14, 470)], SKY, 1.2)
+    # trench section
+    b += f'<path d="M450 470v70h330v-70" stroke="{SKY}" stroke-width="1.5" fill="none" stroke-dasharray="6 5"/>'
+    b += hatch(450, 520, 330, 20, 9, SKY, .35)
+    # tester
+    b += rect(600, 250, 120, 80, CYAN, 2, INK) + rect(614, 264, 92, 30, SKY, 1.2)
+    b += text(660, 285, "MΩ", 16, CYAN, "middle", 700, 0)
+    b += line([(620, 330), (600, 400), (560, 430)], SKY, 1.5) + line([(700, 330), (720, 400), (740, 430)], SKY, 1.5)
+    b += dim_h(470, 760, 395, "CABLE ROUTE")
+    return sheet(b, "Line drawing of a cable drum paying out cable into a trench, with an insulation tester")
+
+
+# ------------------------------------------------------------------ gallery: instrument calibration
+def calibration():
+    b = ground(500)
+    # bench
+    b += rect(80, 400, 640, 18, CYAN, 2, BLUE).replace(f'fill="{BLUE}"', f'fill="{BLUE}" fill-opacity=".3"')
+    for x in (110, 690):
+        b += line([(x, 418), (x, 500)], CYAN, 2)
+    # pressure transmitter on stand
+    b += line([(250, 400), (250, 330)], CYAN, 2) + rect(220, 310, 60, 20, SKY, 1.5)
+    b += f'<path d="M210 250h80v60h-80z" stroke="{CYAN}" stroke-width="2" fill="{BLUE}" fill-opacity=".3"/>'
+    b += circle(250, 210, 40, CYAN, 2, INK) + circle(250, 210, 28, SKY, 1.2)
+    b += text(250, 216, "4–20", 13, CYAN, "middle", 700, 0) + text(250, 270, "PT", 12, SKY, "middle", 700, 3)
+    # hand pump / calibrator
+    b += rect(470, 300, 150, 100, CYAN, 2, INK) + rect(488, 316, 114, 40, SKY, 1.2)
+    b += text(545, 344, "10.00", 18, CYAN, "middle", 700, 1) + text(545, 368, "BAR", 11, SKY, "middle", 700, 3)
+    for i, x in enumerate((500, 530, 560, 590)):
+        b += circle(x, 386, 5, SKY, 1.2)
+    # hoses / leads
+    b += f'<path d="M280 290C360 300 400 340 470 350" stroke="{SKY}" stroke-width="2.5" fill="none"/>'
+    b += f'<path d="M290 270C380 240 430 280 470 320" stroke="{AMBER if False else CYAN}" stroke-width="1.5" fill="none" stroke-dasharray="4 5"/>'
+    # reference gauge
+    b += circle(680, 250, 50, CYAN, 2, INK)
+    for i in range(11):
+        a = math.radians(210 - i * 24)
+        b += line([(680 + 36 * math.cos(a), 250 - 36 * math.sin(a)), (680 + 46 * math.cos(a), 250 - 46 * math.sin(a))], SKY, 1.2)
+    b += line([(680, 250), (680 + 34 * math.cos(math.radians(60)), 250 - 34 * math.sin(math.radians(60)))], CYAN, 2.5)
+    b += line([(680, 300), (680, 400)], CYAN, 2) + line([(620, 360), (680, 360)], SKY, 2)
+    b += dim_h(210, 290, 160, "TRANSMITTER") + dim_h(630, 730, 180, "REFERENCE")
+    return sheet(b, "Line drawing of a pressure transmitter being calibrated on a bench against a reference gauge")
+
 for name, fn in [("plant", plant), ("crane-lift", crane), ("workshop", building), ("offshore", platform),
-                 ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map)]:
+                 ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map),
+                 ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration)]:
     svg = fn()
     with open(os.path.join(OUT, name + ".svg"), "w") as f:
         f.write(svg)

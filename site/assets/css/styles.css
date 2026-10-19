@@ -605,3 +605,40 @@ a[href^="tel:"] { white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 .media img, .facility img { border-radius: var(--radius); }
 .section-head .lead { max-width: 34rem; }
+
+/* ---------- Track record ---------- */
+.proj-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--steel-200); }
+.proj { display: grid; gap: var(--space-2) var(--space-6); padding: var(--space-5) 0; border-bottom: 1px solid var(--steel-200); }
+@media (min-width: 52rem) { .proj { grid-template-columns: 9rem 1fr 13rem; align-items: start; } }
+.proj-years { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--brand-blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.proj-client { margin: 0 0 2px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-600); }
+.proj-name { margin: 0; font-size: 1.15rem; line-height: 1.35; }
+.proj-tags { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0 0; padding: 0; }
+.proj-tags li { padding: .2rem .6rem; border: 1px solid var(--steel-200); border-radius: 999px; background: var(--white); font-size: var(--fs-xs); font-weight: 600; color: var(--steel-800); }
+.proj-loc { display: inline-flex; gap: .35rem; align-items: flex-start; font-size: var(--fs-sm); color: var(--steel-600); }
+.proj-loc svg { width: 16px; height: 16px; flex: none; margin-top: .2em; color: var(--brand-sky); }
+.section--track .proj { background: transparent; }
+
+/* Selected projects under each service */
+.related { margin: 0 0 var(--space-6); padding: var(--space-4) var(--space-5); border-left: 3px solid var(--brand-sky); background: var(--brand-cyan); border-radius: 0 var(--radius) var(--radius) 0; }
+.related-title { margin: 0 0 var(--space-2); font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand-blue); }
+.related-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); font-size: var(--fs-sm); color: var(--steel-800); }
+.related-list span { display: inline-block; min-width: 6.5rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.related-list em { font-style: normal; color: var(--steel-600); }
+
+/* Other registrations (HSE page) */
+.reg-list { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+.reg-list li { display: grid; gap: 2px; padding: var(--space-4) var(--space-5); background: var(--steel-50); border: 1px solid var(--steel-200); border-left: 3px solid var(--brand-blue); border-radius: var(--radius); font-size: var(--fs-sm); color: var(--steel-600); }
+.reg-list strong { font-family: var(--font-head); font-size: 1.05rem; color: var(--ink); }
+
+/* Org chart: person name under the role */
+.org-person { display: block; margin-top: 2px; font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 400; color: var(--on-ink-muted); }
+.related-list li { position: relative; padding-left: 7rem; }
+.related-list li > span:first-child { position: absolute; left: 0; top: 0; min-width: 0; }
+@media (max-width: 30rem) { .related-list li { padding-left: 0; } .related-list li > span:first-child { position: static; display: block; } }
+
+/* Home hero photo shown whole (no panel split) */
+.bws-panels--hero { -webkit-mask-image: none; mask-image: none; border-radius: var(--radius) var(--radius) 0 0; }
+.bws-panels--hero .bws-glow { display: none; }
+.bws-panels--hero::before { background: linear-gradient(180deg, rgba(10,18,64,0) 55%, rgba(10,18,64,.45)); }
+@media (max-width: 59.99rem) { .bws-panels--hero { border-radius: 0; } }
