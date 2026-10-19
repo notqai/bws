@@ -78,6 +78,7 @@ ORG_LD = {
     "description": "Bumiputera engineering construction and maintenance contractor for the oil and gas industries, based in Miri and Bintulu, Sarawak. PETRONAS licensed, CIDB registered, ISO 9001:2015 certified by TÜV NORD.",
     "foundingDate": "2002-10",
     "email": "bwsesb@gmail.com",
+    "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "email": "bws@bwsengineeringsb.com", "telephone": "+60-85-652743", "areaServed": "MY"}, {"@type": "ContactPoint", "contactType": "recruitment", "email": "bwsesbhr@gmail.com"}],
     "telephone": "+60-85-652743",
     "faxNumber": "+60-85-652709",
     "areaServed": "Malaysia",
@@ -247,6 +248,7 @@ def footer():
         <strong>Email</strong>
         <ul>
           <li>Enquiries: <a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
+          <li>Enquiries: <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></li>
           <li>Careers: <a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></li>
         </ul>
       </div>
@@ -1042,7 +1044,7 @@ def contact():
             <li>{icon("pin")}<address>Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia</address></li>
             <li>{icon("phone")}<span><a href="tel:+6085652743">085-652743</a> / <a href="tel:+6085652744">44</a> / <a href="tel:+6085652745">45</a></span></li>
             <li>{icon("fax")}<span>Fax: 085-652709</span></li>
-            <li>{icon("mail")}<a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
+            <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
           </ul>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{MIRI_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
@@ -1055,7 +1057,7 @@ def contact():
           <ul class="contact-list" role="list">
             <li>{icon("pin")}<address>Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak, Malaysia</address></li>
             <li>{icon("phone")}<a href="tel:+6086252476">086-252476</a></li>
-            <li>{icon("mail")}<a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></li>
+            <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
           </ul>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
@@ -1099,7 +1101,7 @@ def contact():
     <aside class="card" aria-labelledby="direct-title" style="margin-top:var(--space-6)">
       <h3 id="direct-title">Prefer to email directly?</h3>
       <ul class="contact-list" role="list">
-        <li>{icon("mail")}<span>General enquiries<br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></span></li>
+        <li>{icon("mail")}<span>General enquiries<br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
         <li>{icon("briefcase")}<span>Job applications<br><a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></span></li>
         <li>{icon("phone")}<span>Miri <a href="tel:+6085652743">085-652743</a><br>Bintulu <a href="tel:+6086252476">086-252476</a></span></li>
       </ul>
