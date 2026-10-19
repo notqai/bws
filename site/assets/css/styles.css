@@ -748,3 +748,12 @@ a[href^="tel:"] { white-space: nowrap; }
 @media (max-width: 79.99rem) { .header-inner > .lang-switch:not(.lang-switch--mobile) { display: none; } .lang-switch--mobile { display: inline-grid; } }
 .primary-nav a { white-space: nowrap; }
 html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
+
+/* ---------- Static client logo wall (home) ---------- */
+.logo-wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--steel-200); border-left: 1px solid var(--steel-200); }
+@media (min-width: 40rem) { .logo-wall { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 60rem) { .logo-wall { grid-template-columns: repeat(6, 1fr); } }
+.logo-wall li { display: grid; place-items: center; min-height: 6.5rem; padding: var(--space-5) var(--space-4); border-right: 1px solid var(--steel-200); border-bottom: 1px solid var(--steel-200); background: var(--white); transition: background-color .25s var(--ease); }
+.logo-wall li:hover { background: var(--steel-50); }
+.logo-wall img { width: auto; height: auto; max-height: 48px; max-width: min(140px, 100%); }
+.logo-wall .client-textmark { min-width: 0; font-size: .9rem; }

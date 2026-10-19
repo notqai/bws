@@ -595,7 +595,8 @@ def home():
     # One logo per brand in the scrolling strip (PETRONAS and Shell cover several client companies)
     brands = {}
     for n, logo, w, h, _ in CLIENTS:
-        key = logo or n
+        if not logo: continue  # text-only badges stay on the Clients page, not the logo wall
+        key = logo
         if key in brands: brands[key][3].append(n)
         else: brands[key] = (logo, w, h, [n])
     marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, ", ".join(names) if alt else "")}</li>' for logo, w, h, names in brands.values())
@@ -687,11 +688,8 @@ def home():
       <p class="lead">Our main clients include national and international oil and gas operators, EPC contractors and industrial companies. <a href="clients.html">See all clients</a></p>
     </div>
   </div>
-  <div class="marquee">
-    <div class="marquee-track">
-      <ul role="list" aria-label="Main clients">{marq(True)}</ul>
-      <ul aria-hidden="true">{marq(False)}</ul>
-    </div>
+  <div class="container">
+    <ul class="logo-wall reveal-stagger" role="list" aria-label="Main clients">{marq(True)}</ul>
   </div>
 </section>
 
