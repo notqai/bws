@@ -76,7 +76,7 @@ Logos live in `site/assets/img/clients/` and are each client's **current** brand
 - **Sources:** Wikimedia Commons / Wikipedia for JGC, Chiyoda, Mitsui & Co, Shell, ENEOS Xplora, PETRONAS and Rekind; Taihei Dengyo from its own website.
 - **ASEAN Bintulu Fertilizer:** no current logo could be found online, so the file from the old BWS website is used. It is low resolution.
 
-Logos show in greyscale and turn colour on hover (always colour on touch screens). To swap one, replace the file, keeping the name, or edit the list in `clients.html` and the marquee in `index.html`.
+Logos show in full colour, with a slight zoom on hover. To swap one, replace the file, keeping the name, or edit the list in `clients.html` and the marquee in `index.html`.
 Company logos are trademarks of their owners. Showing them as a client list is common practice, but BWS should be comfortable it has worked for each client before publishing.
 
 ### Update the stats (home page)

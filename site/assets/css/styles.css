@@ -642,3 +642,9 @@ a[href^="tel:"] { white-space: nowrap; }
 .bws-panels--hero .bws-glow { display: none; }
 .bws-panels--hero::before { background: linear-gradient(180deg, rgba(10,18,64,0) 55%, rgba(10,18,64,.45)); }
 @media (max-width: 59.99rem) { .bws-panels--hero { border-radius: 0; } }
+
+/* Client logos: always full colour (no greyscale-until-hover) */
+.client-logo img, .marquee img { filter: none; opacity: 1; }
+.client:hover .client-logo img, .marquee li:hover img { transform: scale(1.04); }
+.client-logo img, .marquee img { transition: transform .25s var(--ease); }
+@media (prefers-reduced-motion: reduce) { .client:hover .client-logo img, .marquee li:hover img { transform: none; } }
