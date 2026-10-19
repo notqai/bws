@@ -652,3 +652,32 @@ a[href^="tel:"] { white-space: nowrap; }
 .hse-milestone img { aspect-ratio: 16 / 7; object-fit: cover; object-position: 50% 80%; }
 .hse-milestone figcaption { margin-top: var(--space-3); font-size: var(--fs-sm); color: var(--steel-600); }
 .hse-milestone figcaption strong { color: var(--ink); font-family: var(--font-head); font-size: 1.05rem; }
+
+/* ---------- Company-profile additions ---------- */
+.proj-status { display: inline-block; margin-left: .5rem; padding: .1rem .5rem; border-radius: 999px; background: #E8F7EE; color: #11603A; border: 1px solid #A6DDBE; font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .04em; vertical-align: middle; }
+@media (min-width: 52rem) { .proj-years { white-space: normal; } .proj-status { display: table; margin: .35rem 0 0; } }
+
+.client-textmark { display: inline-grid; place-items: center; min-width: 7rem; padding: .5rem .9rem; border: 2px solid var(--ink); border-radius: var(--radius); font-family: var(--font-head); font-weight: 700; font-size: 1rem; line-height: 1.1; color: var(--ink); text-align: center; }
+.client-textmark small { display: block; font-family: var(--font-body); font-weight: 600; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-600); }
+.marquee .client-textmark { min-width: 0; font-size: .9rem; }
+
+.policy-sub { margin: var(--space-5) 0 var(--space-3); font-weight: 600; color: var(--ink); }
+.policy h3 { font-size: 1.15rem; margin-bottom: var(--space-3); }
+.cert-seal--safety { background: var(--safety); color: var(--ink); }
+
+/* Awards */
+.award-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
+.award { position: relative; padding: var(--space-5); background: var(--ink-2); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); }
+.award h3 { margin: var(--space-2) 0 var(--space-2); font-size: 1.1rem; color: var(--white); }
+.award p { margin: 0; font-size: var(--fs-sm); color: var(--on-ink-muted); }
+.award-year { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; color: var(--brand-sky); }
+.award--lead { border-top: 3px solid var(--safety); }
+.award--lead::after { content: ""; position: absolute; top: var(--space-5); right: var(--space-5); width: 22px; height: 22px; background: var(--safety); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.8 5.8 20.3l1.6-6.8L2.2 8.9l6.9-.6z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.8 5.8 20.3l1.6-6.8L2.2 8.9l6.9-.6z'/%3E%3C/svg%3E") center / contain no-repeat; }
+
+/* Equipment */
+.equip-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.12); grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+.equip-grid li { padding: var(--space-6) var(--space-5); background: var(--ink); }
+.equip-num { display: block; font-family: var(--font-head); font-weight: 700; font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); line-height: 1; color: var(--brand-sky); }
+.equip-grid h3 { margin: var(--space-3) 0 var(--space-2); font-size: 1.1rem; color: var(--white); }
+.equip-grid p { margin: 0; font-size: var(--fs-sm); color: var(--on-ink-muted); }
+.related .link-arrow { margin-top: var(--space-3); font-size: var(--fs-sm); }

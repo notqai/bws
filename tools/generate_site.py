@@ -164,7 +164,7 @@ def header(page):
 <div class="topbar on-dark">
   <div class="container topbar-inner">
     <p class="topbar-contact">Miri <a href="tel:+6085652743">085-652743</a><span aria-hidden="true">·</span>Bintulu <a href="tel:+6086252476">086-252476</a><span aria-hidden="true">·</span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></p>
-    <p class="topbar-creds">ISO 9001:2015<span aria-hidden="true">·</span>CIDB G7<span aria-hidden="true">·</span>PETRONAS Licensed</p>
+    <p class="topbar-creds">ISO 9001 · ISO 45001<span aria-hidden="true">·</span>CIDB G7<span aria-hidden="true">·</span>PETRONAS &amp; PETROS Licensed</p>
   </div>
 </div>
 <header class="site-header">
@@ -319,39 +319,75 @@ SERVICES = [
      ("ei-switchgear", "Row of electrical switchgear panels installed in a substation room", 800, 599)),
 ]
 
-# Key projects (BWS as main contractor). Sources, checked Oct 2026:
-#   MPRC / iOGSE supplier directory (government) and project pages of KPG Engineering (BWS's subcontractor).
-#   Contract values on the KPG site are subcontract values, so they are deliberately not shown.
-#   PDB Miri Fuel Terminal: BWS's own photos of the project's HSE Awareness Day (EXIF date 2 Sep 2015).
-# (years, client, project, location, scope tags, service ids it relates to)
+# Key projects, selected from the "Work Experience" list in the BWS Company Profile (Oct 2026, 81 contracts since 1997).
+# Contract sums and client contact persons in the profile are deliberately NOT published.
+# (years, client, project, location, scope tags, related service ids, ongoing?)
 PROJECTS = [
-    ("2023 – 2024", "Shell", "Underground process &amp; utilities piping, Shell OGP Project", "Bintulu, Sarawak",
-     ["Piping fabrication &amp; installation", "GRE · GRV · HDPE · CS · SS"], ["mechanical"]),
-    ("2022 – 2024", "Malaysia LNG", "EPCC of the Power Import Project", "Bintulu, Sarawak",
-     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"]),
-    ("2022", "PTTEP", "EPCIC of shelter, Bintulu Onshore Receiving Facility", "Bintulu, Sarawak",
-     ["Structure fabrication &amp; installation", "Porta cabins"], ["plant", "civil"]),
-    ("2020 – 2024", "PETRONAS Carigali", "Term contract: Sabah Sarawak mechanical pipelines maintenance (Package B), rehabilitation &amp; repair KP-210 to KP-503", "Miri – Bintulu, Sarawak",
-     ["Pipeline rehabilitation &amp; repair", "Civil works"], ["mechanical"]),
-    ("2020", "Malaysia LNG", "EPCC of Kenyalang Project 2.0", "Bintulu, Sarawak",
-     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"]),
-    ("2019 – 2022", "ASEAN Bintulu Fertilizer", "Structure improvement at the offsite plant", "Bintulu, Sarawak",
-     ["Structure replacement", "Fabrication, installation &amp; painting"], ["civil"]),
-    ("2018 – 2019", "PETRONAS (RAPID, PRPC)", "UIO facilities: underground non-metallic firewater network, 16 km of pipeline", "Pengerang, Johor",
-     ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"]),
-    ("2015", "PETRONAS Dagangan", "EPCC of the PDB Miri Fuel Terminal", "Miri, Sarawak",
-     ["Engineering", "Procurement", "Construction", "Commissioning", "150,000 man-hours HSE milestone"], ["plant"]),
-    ("2014 – 2015", "Shell MDS", "Mechanical work package, Phase 1, SMDS Rejuvenation Project", "Bintulu, Sarawak",
-     ["Mechanical works"], ["mechanical"]),
+    ("2026 – 2027", "Shell MDS", "Multi-mechanical package (MECH03) for Project Rejuv: steel structure, equipment, piping, insulation and painting", "Bintulu, Sarawak",
+     ["Equipment installation", "Piping", "Insulation", "Painting"], ["mechanical", "plant"], True),
+    ("2026 – 2027", "PETRONAS Carigali", "Compressed-air pressurisation for pipeline pre-decommissioning, BV106 to KP131.2", "Lawas, Sarawak",
+     ["Pipeline pre-decommissioning"], ["mechanical"], True),
+    ("2025 – 2028", "Ministry of Rural and Regional Development", "Road from Kampung Murud Suang to the Kampung Long Pos junction", "Lawas, Sarawak",
+     ["Earthworks", "Drainage", "Roads", "Bridges", "Piling"], ["civil"], True),
+    ("2025 – 2027", "Regional Corridor Development Authority (RECODA)", "Highland Development Agency Package 5: water supply and electricity infrastructure", "Bario, Mulu &amp; Telang Usan, Sarawak",
+     ["Water supply", "Electricity infrastructure"], ["civil", "electrical"], True),
+    ("2023 – 2026", "Housing Development Corporation (PPP)", "50 Rumah Spektra Permata houses, Skim Pembesaran Kampung Gedong Baru (IBS)", "Samarahan, Sarawak",
+     ["Building construction", "Industrialised Building System"], ["civil"], True),
+    ("2023 – 2026", "Samsung E&amp;A, for Sarawak Shell", "Rosmari-Marjoram Onshore Gas Plant (Shell OGP Project): underground piping, pipelines, brownfield and BIF area works", "Bintulu, Sarawak",
+     ["UG process piping (PE100)", "Pipelines &amp; brownfield", "Civil &amp; steel structures", "E&amp;I"], ["mechanical", "civil", "electrical"], False),
+    ("2024", "PETRONAS Carigali", "EPCIC of the Sipitang scraper station at KP91, Sabah Sarawak Gas Pipeline", "Sipitang, Sabah",
+     ["Pipeline &amp; piping", "Civil", "Instrument &amp; control", "Electrical", "Cathodic protection", "Tie-ins"], ["plant", "mechanical", "electrical"], False),
+    ("2024", "Malaysia LNG", "Upgrade of the Train 9 LNG rundown flow meter to allocation metering (turnaround scope)", "Bintulu, Sarawak",
+     ["Procurement", "Construction", "Commissioning", "Metering"], ["plant", "electrical"], False),
+    ("2019 – 2025", "Rural Water Supply Department (JBALB) Sarawak", "Miri Water Supply Source Development Phase 2, Sarawak Water Grid Programme: raw water transfer from Batang Baram", "Miri, Sarawak",
+     ["1,600 mm pipeline", "Pumping station", "HT line", "Earthworks &amp; M&amp;E"], ["civil", "mechanical", "electrical"], False),
+    ("2022 – 2024", "Malaysia LNG", "EPCC of the Power Import Project (Transgrid-BWS JV)", "Bintulu, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "electrical"], False),
+    ("2022 – 2024", "JKR Malaysia", "Full replacement of 12 classrooms and facilities, SK Jalan Haji Baki", "Padawan, Sarawak",
+     ["Building construction"], ["civil"], False),
+    ("2022 – 2023", "PTTEP", "EPCIC of a shelter at the Bintulu Onshore Receiving Facility", "Bintulu, Sarawak",
+     ["Structure fabrication &amp; installation"], ["plant", "civil"], False),
+    ("2020 – 2024", "PETRONAS Carigali", "Term contract, Sabah Sarawak Mechanical (Package B): pipeline rehabilitation and repair, KP-210 to KP-503", "Miri – Bintulu, Sarawak",
+     ["Pipeline rehabilitation &amp; repair"], ["mechanical"], False),
+    ("2020 – 2021", "Malaysia LNG", "EPCC of Kenyalang Project 2.0: tie-ins to the LNG loading, vapour return and firewater lines", "Bintulu, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant"], False),
+    ("2020 – 2021", "Ministry of International Trade and Industry", "Site clearing, earthworks and infrastructure, Sematan Industrial Area Phase I", "Kuching Division, Sarawak",
+     ["Earthworks", "Roads", "Drainage", "M&amp;E services"], ["civil"], False),
+    ("2019 – 2023", "Malaysia LNG Dua", "EPCC of the gasoline and NGL metering skid upgrades", "Bintulu, Sarawak",
+     ["Metering skids", "Instrumentation"], ["plant", "electrical"], False),
+    ("2019 – 2022", "PETRONAS, for ASEAN Bintulu Fertilizer", "Structure improvement at the offsite plant: ammonia tanks and shed", "Bintulu, Sarawak",
+     ["Fabrication", "Scaffolding", "Painting"], ["civil"], False),
+    ("2019 – 2021", "PRPC Utilities &amp; Facilities", "Two-year term contract for non-metallic piping rectification", "Pengerang, Johor",
+     ["Non-metallic piping"], ["mechanical"], False),
+    ("2018 – 2019", "JGC SP, for Hengyuan Refining", "Mechanical work package for the Clean Air Regulation Project: new wet gas scrubber facilities", "Port Dickson, Negeri Sembilan",
+     ["Steel structure", "Piping", "Insulation", "Painting"], ["mechanical"], False),
+    ("2017 – 2019", "PETRONAS RAPID (PRPC)", "UIO facilities: underground pressurised non-metallic firewater network, 16 km of GRE pipeline", "Pengerang, Johor",
+     ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"], False),
+    ("2016 – 2017", "Malaysia LNG", "MLNG Dua Rejuvenation Project (WP2–WP4): piping, protective coating, insulation and scaffolding", "Bintulu, Sarawak",
+     ["Piping", "Coating", "Insulation"], ["mechanical"], False),
+    ("2014 – 2015", "PETRONAS Dagangan", "EPCC of the PDB Miri Fuel Terminal", "Miri, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "civil"], False),
+    ("2014 – 2015", "Shell MDS", "SMDS Rejuvenation Project 2015: mechanical work packages", "Bintulu, Sarawak",
+     ["Steel structure", "Equipment", "Piping", "Insulation", "Painting"], ["mechanical"], False),
+    ("2012 – 2013", "Malaysia LNG (Train 9 Project)", "New MLNG CSA office and warehouse, Jalan Kidurong", "Bintulu, Sarawak",
+     ["Building construction"], ["civil"], False),
+    ("2007 – 2010", "PETRONAS Carigali, via Rekind–Simfoni consortium", "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2: piping, supports and painting", "Miri, Sarawak",
+     ["Piping", "Painting", "Pipe supports"], ["mechanical"], False),
+    ("2008", "Sabah Shell Petroleum", "Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal", "Labuan",
+     ["Mechanical installation", "Tie-in", "Commissioning"], ["mechanical", "plant"], False),
+    ("2005 – 2006", "PETRONAS Dagangan", "EPCC of the aviation depot at Bintulu Airport", "Bintulu, Sarawak",
+     ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "civil"], False),
+    ("2003 – 2005", "Sarawak Shell", "Turnkey minor civil works, Bintulu Integrated Facilities: control centre revamp and pipe bridges", "Bintulu, Sarawak",
+     ["Design", "Procurement", "Construction", "Commissioning"], ["civil"], False),
 ]
 
 def project_rows(items, compact=False):
     out = ""
-    for years, client, name, loc, tags, _svc in items:
+    for years, client, name, loc, tags, _svc, ongoing in items:
         tag_html = "" if compact else '<ul class="proj-tags" role="list">' + "".join(f"<li>{t}</li>" for t in tags) + "</ul>"
         out += f'''
       <li class="proj">
-        <span class="proj-years">{years}</span>
+        <span class="proj-years">{years}{'<span class="proj-status">Ongoing</span>' if ongoing else ''}</span>
         <div class="proj-main"><p class="proj-client">{client}</p><h3 class="proj-name">{name}</h3>{tag_html}</div>
         <span class="proj-loc">{icon("pin")}{loc}</span>
       </li>'''
@@ -363,19 +399,26 @@ CLIENTS = [
     ("Malaysia LNG Sdn Bhd", "petronas.svg", 544, 558, "PETRONAS Group"),
     ("PETRONAS Carigali Sdn Bhd", "petronas.svg", 544, 558, ""),
     ("PETRONAS Dagangan Berhad", "petronas.svg", 544, 558, ""),
+    ("PRPC Utilities &amp; Facilities Sdn Bhd", "petronas.svg", 544, 558, "RAPID, Pengerang"),
+    ("Sarawak Shell Berhad", "shell.svg", 150, 139, ""),
+    ("Sabah Shell Petroleum Co. Ltd", "shell.svg", 150, 139, ""),
+    ("Shell MDS (Malaysia) Sdn Bhd", "shell.svg", 150, 139, ""),
+    ("Samsung E&amp;A Co. Ltd", "samsung-ena.svg", 168, 21, ""),
+    ("JGC (Malaysia) Sdn Bhd &amp; JGC SP (M) Sdn Bhd", "jgc.svg", 373, 202, ""),
+    ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, ""),
     ("JX Nippon Oil &amp; Gas Exploration (M) Ltd", "eneos-xplora.webp", 640, 91, "Now ENEOS Xplora"),
+    ("PTTEP", "pttep.svg", 240, 212, "Bintulu Onshore Receiving Facility"),
     ("ASEAN Bintulu Fertilizer Sdn Bhd", "abf.webp", 150, 97, ""),
     ("PT Rekayasa Industri", "rekind.webp", 360, 404, "Rekind"),
-    ("Sarawak Shell Berhad &amp; Sabah Shell Petroleum Co. Ltd", "shell.svg", 150, 139, ""),
-    ("JGC Corporation", "jgc.svg", 373, 202, ""),
-    ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, ""),
     ("Mitsui &amp; Co. Ltd", "mitsui.svg", 512, 636, ""),
     ("Taihei Dengyo Kaisha, Ltd", "taihei-dengyo.webp", 122, 90, ""),
-    ("PTTEP", "pttep.svg", 240, 212, "Bintulu Onshore Receiving Facility"),
-    ("PETRONAS Refinery &amp; Petrochemical Corporation (PRPC)", "petronas.svg", 544, 558, "RAPID, Pengerang"),
+    ("Jabatan Kerja Raya (JKR)", "jkr.webp", 300, 222, "Public Works Department"),
+    ("Ibu Pejabat Tanah dan Survei", None, 0, 0, "Land and Survey Department, Sarawak"),
 ]
 
 def client_logo(logo, w, h, alt=""):
+    if not logo:  # no published logo: clean text mark
+        return f'<span class="client-textmark"{" role=\"img\" aria-label=\"" + alt + "\"" if alt else " aria-hidden=\"true\""}>Land &amp; Survey<small>Sarawak</small></span>'
     return f'<img src="assets/img/clients/{logo}" width="{w}" height="{h}" alt="{alt}" loading="lazy" decoding="async">'
 
 def client_grid():
@@ -392,7 +435,7 @@ TRUST = f'''
     <ul role="list">
       <li>{icon("badge")}<div>PETRONAS Licensed<span>Valid PETRONAS licence</span></div></li>
       <li>{icon("doc")}<div>CIDB Grade G7<span>Building · Civil · M&amp;E</span></div></li>
-      <li>{icon("shield")}<div>ISO 9001:2015<span>Certified by TÜV NORD</span></div></li>
+      <li>{icon("shield")}<div>ISO 9001 · ISO 45001<span>TÜV NORD · BSI certified</span></div></li>
       <li>{icon("calendar")}<div>Est. 2002<span>Formed October 2002</span></div></li>
       <li>{icon("flag")}<div>Bumiputera Company<span>Wholly owned · CIDB STB certified</span></div></li>
     </ul>
@@ -411,10 +454,10 @@ def home():
           <span class="link-arrow">View scope</span>
         </div>
       </a>''' for (sid, ic, t, blurb, _sc, _in, ph) in SERVICES)
-    work = [("plant-tanks-piping", 800, 468, "Plant", "Storage tanks and piping"),
-            ("civil-foundation-slab", 800, 488, "Civil &amp; Structural", "Concrete foundation slab"),
-            ("plant-firewater-tank", 800, 473, "Plant", "Firewater tank and pump shelter"),
-            ("building-scaffold", 800, 600, "Civil &amp; Structural", "Building construction")]
+    work = [("power-import-aerial-1", 675, 520, "Plant · MLNG", "Power Import Project, Bintulu"),
+            ("miri-water-pipeline", 694, 441, "Civil &amp; Mechanical · JBALB", "Miri Water Supply, 1,600 mm pipeline"),
+            ("rsp-housing-aerial-1", 679, 495, "Building · PPP", "50 houses, Gedong Baru, Samarahan"),
+            ("miri-water-baram-intake", 632, 499, "Civil · JBALB", "Batang Baram intake works")]
     work_items = "".join(
         f'''
       <li><a class="work-item" href="projects.html">{img(k, t, w, h, "(min-width: 60rem) 25vw, 50vw")}<span class="cap"><span>{c}</span>{t}</span></a></li>'''
@@ -447,8 +490,8 @@ def home():
     <dl class="stats">
       <div class="stat"><dt class="visually-hidden">Years of experience</dt><dd class="mb-0" style="margin:0"><span class="stat-num" data-count="20" data-suffix="+">20+</span><span class="stat-label">Years Experience</span><span class="stat-note">Operating since October 2002</span></dd></div>
       <div class="stat"><dt class="visually-hidden">Operating bases</dt><dd style="margin:0"><span class="stat-num" data-count="2">2</span><span class="stat-label">Operating Bases</span><span class="stat-note">Miri &amp; Bintulu, Sarawak</span></dd></div>
-      <div class="stat"><dt class="visually-hidden">Core disciplines</dt><dd style="margin:0"><span class="stat-num" data-count="4">4</span><span class="stat-label">Core Disciplines</span><span class="stat-note">Plant · Mechanical · Civil · E&amp;I</span></dd></div>
-      <div class="stat"><dt class="visually-hidden">Major clients</dt><dd style="margin:0"><span class="stat-num" data-count="10" data-suffix="+">10+</span><span class="stat-label">Major Clients</span><span class="stat-note">Operators, EPC &amp; industry</span></dd></div>
+      <div class="stat"><dt class="visually-hidden">Contracts delivered</dt><dd style="margin:0"><span class="stat-num" data-count="80" data-suffix="+">80+</span><span class="stat-label">Contracts Delivered</span><span class="stat-note">Oil &amp; gas, industry and government</span></dd></div>
+      <div class="stat"><dt class="visually-hidden">Major clients</dt><dd style="margin:0"><span class="stat-num" data-count="15" data-suffix="+">15+</span><span class="stat-label">Major Clients</span><span class="stat-note">Operators, EPC &amp; industry</span></dd></div>
     </dl>
   </div>
 </section>
@@ -482,8 +525,8 @@ def home():
 <section class="section section--steel section--track" aria-labelledby="track-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div>{eyebrow("", "Track record")}<h2 id="track-title">Recent projects as main contractor</h2></div>
-      <p class="lead">From EPCC packages for Malaysia LNG to multi-year pipeline maintenance for PETRONAS Carigali. <a href="projects.html#track">See all key projects</a></p>
+      <div>{eyebrow("", "Track record")}<h2 id="track-title">Current projects</h2></div>
+      <p class="lead">More than 80 contracts since 2002, for oil and gas operators, EPC contractors and government agencies. <a href="projects.html#track">See key projects</a></p>
     </div>
     <ol class="proj-list reveal-stagger" role="list">{project_rows(PROJECTS[:4], compact=True)}
     </ol>
@@ -585,14 +628,17 @@ def about():
       <p class="lead">BWS Engineering Sdn. Bhd. is a wholly owned Bumiputera company whose core business is engineering construction and maintenance services for the oil and gas industries.</p>
       <p>The company was formed in October 2002 by a group of Bumiputera with many years of experience in the oil and gas industry, particularly in construction and maintenance services.</p>
       <p>The company is run by its shareholders, who are members of the Board of Directors and Management. It also employs qualified professionals with thorough experience in various engineering and construction disciplines.</p>
+      <p>BWS began with minor mechanical and civil works in oil and gas plants in Miri. It has since expanded its fabrication and civil capacity and added project management, so it can take on complete scopes covering procurement, construction and commissioning.</p>
     </div>
     <div>
       <dl class="facts reveal-stagger">
-        <div><dt>Formed</dt><dd>October 2002</dd></div>
-        <div><dt>Ownership</dt><dd>Wholly owned Bumiputera</dd></div>
+        <div><dt>Incorporated</dt><dd>29 October 2002</dd></div>
+        <div><dt>Company no.</dt><dd>200201029529 (597192-V)</dd></div>
+        <div><dt>Ownership</dt><dd>100% Bumiputera</dd></div>
+        <div><dt>Paid-up capital</dt><dd>RM5,000,000</dd></div>
         <div><dt>Bases</dt><dd>Miri &amp; Bintulu, Sarawak</dd></div>
-        <div><dt>Quality</dt><dd>ISO 9001:2015 · TÜV NORD</dd></div>
-        <div><dt>Licensing</dt><dd>PETRONAS licensed · CIDB registered</dd></div>
+        <div><dt>Certified</dt><dd>ISO 9001:2015 · ISO 45001:2018</dd></div>
+        <div><dt>Licensing</dt><dd>PETRONAS · PETROS · CIDB G7</dd></div>
       </dl>
     </div>
   </div>
@@ -665,9 +711,9 @@ def about():
   <div class="container">
     <div class="section-head">{eyebrow("05", "Licences &amp; certification")}<h2 id="lic-title">Licensed, registered and certified</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS Licence</h3><p class="mb-0">Licensed by PETRONAS since 2004 for onshore fabrication, construction, inspection, repair and maintenance.</p></div>
+      <div class="card"><span class="card-icon">{icon("badge")}</span><h3>PETRONAS &amp; PETROS</h3><p class="mb-0">PETRONAS licensed since 2004 for onshore pipeline, fabrication, inspection and repair work, and a registered vendor of Petroleum Sarawak (PETROS).</p></div>
       <div class="card"><span class="card-icon">{icon("doc")}</span><h3>CIDB Grade G7</h3><p class="mb-0">Registered with CIDB since 2003 at Grade G7, the highest grade, in Building, Civil Engineering and Mechanical &amp; Electrical. Registration no. 0120030415-SR082502. <a href="hse.html#cert-title">Details</a></p></div>
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001:2015</h3><p class="mb-0">Quality Management System certified by TÜV NORD since 2007. Certificate no. 44100072059. <a href="hse.html#quality">Quality policy</a></p></div>
+      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>ISO 9001 &amp; ISO 45001</h3><p class="mb-0">Quality management certified by TÜV NORD since 2007, and occupational health &amp; safety management certified by BSI since 2024. <a href="hse.html#quality">Details</a></p></div>
     </div>
   </div>
 </section>
@@ -680,10 +726,10 @@ def services():
     for i, (sid, ic, t, blurb, scope, intro, photo) in enumerate(SERVICES, 1):
         key, alt, w, h = photo
         scope_li = "".join(f"<li>{s}</li>" for s in scope)
-        rel = [p for p in PROJECTS if sid in p[5]]
+        rel = [p for p in PROJECTS if sid in p[5]][:5]
         related_html = ("" if not rel else
             '<div class="related"><h3 class="related-title">Selected projects</h3><ul class="related-list" role="list">'
-            + "".join(f'<li><span>{p[0]}</span>{p[2]} <em>for {p[1]}</em></li>' for p in rel) + '</ul></div>')
+            + "".join(f'<li><span>{p[0]}</span>{p[2]} <em>· {p[1]}</em></li>' for p in rel) + '</ul><a class="link-arrow" href="projects.html#track">All key projects</a></div>')
         secs += f'''
 <section class="service" id="{sid}" aria-labelledby="{sid}-title">
   <div class="container service-grid">
@@ -705,8 +751,25 @@ def services():
         "Services", "Construction &amp; maintenance services for oil and gas",
         "Four core disciplines delivered from our Miri workshop and Bintulu fabrication yard, with project management covering procurement, construction and commissioning.",
         "plant") + f'''
-<nav class="service-nav" aria-label="Services on this page"><div class="container"><ul>{nav}</ul></div></nav>
+<nav class="service-nav" aria-label="Services on this page"><div class="container"><ul>{nav}<li><a href="#equipment">Plant &amp; equipment</a></li></ul></div></nav>
 {secs}
+<section class="section section--ink" id="equipment" aria-labelledby="equip-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Plant &amp; equipment")}<h2 id="equip-title">Our own fleet and tools</h2></div>
+      <p class="lead">Owning our lifting, welding and testing equipment keeps schedules in our hands. Highlights from our equipment list:</p>
+    </div>
+    <!-- EQUIPMENT: summarised from the BWS Company Profile equipment list (Oct 2026). -->
+    <ul class="equip-grid reveal-stagger" role="list">
+      <li><span class="equip-num">13</span><h3>Cranes, 25 to 120 tonnes</h3><p>Rough-terrain, mobile and a 120-tonne all-terrain crane, plus forklifts up to 10 tonnes, lorry trailers and a prime mover.</p></li>
+      <li><span class="equip-num">50+</span><h3>Welding sets</h3><p>Lincoln and Miller welding machines, diesel welding generators, inverters and electrode baking ovens.</p></li>
+      <li><span class="equip-num">8–36″</span><h3>Pipe cutting &amp; bevelling</h3><p>Wachs pneumatic cold-cutting and bevelling machines, Koike automatic pipe cutters, pipe benders and threading machines.</p></li>
+      <li><span class="equip-num">5,000 psi</span><h3>Testing &amp; torque</h3><p>Hydrostatic pumps and pressure recorders, hydraulic torque tooling, and multi-gas and single-gas detectors.</p></li>
+      <li><span class="equip-num">150 kVA</span><h3>Power &amp; lighting</h3><p>Diesel generators up to 150 kVA and mobile lighting towers for night work.</p></li>
+      <li><span class="equip-num">BS 1139</span><h3>Earthworks &amp; access</h3><p>Excavators, backhoe, surveying instruments and a large stock of BS 1139 scaffolding.</p></li>
+    </ul>
+  </div>
+</section>
 {CTA}''' + footer()
 
 # ================================================================ CLIENTS
@@ -740,6 +803,17 @@ def clients():
 
 # ================================================================ PROJECTS
 GALLERY = [
+    ("plant", "power-import-aerial-1", 675, 520, "Power Import Project, MLNG", "Aerial view of the new power import buildings under construction at the MLNG complex"),
+    ("plant", "power-import-aerial-2", 686, 520, "Power Import Project, MLNG", "Aerial view of the power import facility buildings and pipe racks"),
+    ("civil", "rsp-housing-aerial-1", 679, 495, "50 houses, Gedong Baru, Samarahan", "Aerial view of the Rumah Spektra Permata housing scheme under construction"),
+    ("civil", "rsp-housing-aerial-2", 592, 463, "Rumah Spektra Permata houses", "Completed and in-progress two-storey houses at the Gedong Baru housing scheme"),
+    ("civil", "miri-water-pipeline", 694, 441, "Miri Water Supply: DN1600 pipeline", "A 1,600 mm water pipeline running in a straight line through a plantation"),
+    ("civil", "miri-water-baram-intake", 632, 499, "Batang Baram intake", "Aerial view of the Batang Baram intake structure under construction"),
+    ("mech", "miri-water-submarine-pipes", 474, 447, "Launching twin 1.2 m submarine pipes", "Twin 1.2 m pipes being launched into the river from a steel frame"),
+    ("mech", "pipeline-joint-hillside", 507, 380, "Pipeline installation", "Workers in PPE joining a large pipeline on a cleared hillside"),
+    ("hse", "miri-water-team", 710, 447, "Project team, Miri Water Supply", "Project team in hi-vis vests and hard hats beside a large pipeline"),
+    ("hse", "award-msosh-gold", 523, 367, "MSOSH Gold Class 1 Award", "Award ceremony on stage for the MSOSH Gold Class 1 Award, Power Import Project for MLNG"),
+    ("hse", "award-46m-safe-manhours", 466, 311, "46 million safe man-hours", "BWS representatives receiving recognition for contributions to 46 million safe man-hours"),
     # (category, image key, w, h, title, alt) or (category, None, ..., placeholder text)
     ("plant", "hero-column-erection", 800, 600, "Process column erection", "Crane lifting a process column into position inside its scaffolding"),
     ("plant", "plant-tanks-piping", 800, 468, "Storage tanks and piping", "White storage tanks with yellow piping and access stairways"),
@@ -776,7 +850,7 @@ def projects():
             # Blueprint illustration standing in until a real site photo is supplied (see README)
             src = f"assets/illustrations/{key[4:]}.svg"
             lis += f'''
-      <li data-cat="{cat}"><button type="button" data-full="{src}" data-title="{title} (illustration)" aria-label="{CATNAME[cat]} {title} (enlarge illustration)">
+      <li data-cat="{cat}"><button type="button" data-full="{src}" data-title="{title} (illustration)" aria-label="Illustration {title} (enlarge)">
         <img src="{src}" width="800" height="600" alt="{alt}" loading="lazy" decoding="async">
         <span class="cap" aria-hidden="true"><span>Illustration</span>{title}</span></button></li>'''
         elif key:
@@ -798,7 +872,7 @@ def projects():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("", "Track record")}<h2 id="track-title">Key projects</h2></div>
-      <p class="lead">Selected contracts delivered by BWS as main contractor for operators and plant owners in Sarawak and Peninsular Malaysia.</p>
+      <p class="lead">Selected from more than 80 contracts delivered since 2002 for oil and gas operators, EPC contractors and government agencies across Malaysia.</p>
     </div>
     <!-- KEY PROJECTS: edit the PROJECTS list in tools/generate_site.py, or edit the <li class="proj"> items below. -->
     <ol class="proj-list" role="list">{project_rows(PROJECTS)}
@@ -835,9 +909,9 @@ def projects():
 # ================================================================ HSE
 def hse():
     return head("hse.html", "HSE &amp; Quality | ISO 9001:2015 | BWS Engineering Sdn Bhd",
-        "BWS Engineering’s HSE policy and Quality policy. ISO 9001:2015 certified by TÜV NORD. No job shall start or continue without due regard to Safety, Health and Environment.") + header("hse.html") + page_hero(
+        "BWS Engineering’s HSE, Quality, Anti-Corruption and Sustainability policies. ISO 9001:2015 (TÜV NORD) and ISO 45001:2018 (BSI) certified, with national OSH awards.") + header("hse.html") + page_hero(
         "HSE &amp; Quality", "Health, safety, environment and quality",
-        "No job shall start or continue without due regard to Safety, Health and Environment.",
+        "No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment.",
         "hard-hat") + f'''
 
 <section class="section" id="hse" aria-labelledby="hsep-title">
@@ -848,10 +922,18 @@ def hse():
       <div class="policy policy--hse">
         <span class="safety-tag">{icon("warn")} Health · Safety · Environment</span>
         <blockquote>
-          <p>BWS Engineering Sdn Bhd conducts its business only after taking account of the health and safety of its employees and giving due regard to the protection of the environment.</p>
-          <p>No job shall start or continue without due regard to Safety, Health and Environment.</p>
+          <p>BWS Engineering Sdn Bhd is committed to conducting its operations with full regard to Health, Safety and Environmental (HSE) requirements. No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment.</p>
         </blockquote>
+        <p class="policy-sub">To achieve this, the company undertakes to:</p>
+        <ul class="ticks mb-0">
+          <li>Create a safe and healthy workplace</li>
+          <li>Prevent all occupational diseases and accidents</li>
+          <li>Create an environment that recognises safe and healthy practice</li>
+          <li>Work in a manner that is friendly to the environment</li>
+          <li>Provide experienced, trained and competent management and supervisors</li>
+        </ul>
       </div>
+      <p class="mt-5 mb-0">Our performance in Health, Safety and Environment is the ultimate yardstick of our success in running our business.</p>
     </div>
     <figure class="media media--framed ratio-4x3 reveal">
       {img("mech-container-unloading", "Crew in coveralls, hard hats and gloves unloading materials from a container", 800, 554)}
@@ -869,8 +951,13 @@ def hse():
         <blockquote>
           <p>BWS Engineering Sdn Bhd is committed to providing products and services of the highest quality to achieve total customer satisfaction through continually improving the effectiveness of its Quality Management System.</p>
         </blockquote>
+        <p class="policy-sub">Our quality objectives:</p>
+        <ul class="ticks mb-0">
+          <li>Continuously improve our products and services by upgrading our people’s skills, with at least 4 hours of training for every employee each year</li>
+          <li>Provide and maintain high-quality services in compliance with ISO 9001, aiming for zero customer complaints</li>
+          <li>Assess vendors and subcontractors at least once a year</li>
+        </ul>
       </div>
-      <p class="mt-5 mb-0">The company is ISO 9001:2015 certified by TÜV NORD.</p>
     </div>
     <div>
       <!-- ISO CERTIFICATE: details from TÜV NORD's public certificate database (checked Oct 2026).
@@ -887,6 +974,19 @@ def hse():
           <div class="wide"><dt>Scope</dt><dd>Provision of service in engineering, construction and project management</dd></div>
         </dl>
         <a class="link-arrow" href="https://www.tuev-nord.de/en/certificate-database/" target="_blank" rel="noopener">Verify with TÜV NORD (certificate no. 44100072059)<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </article>
+      <article class="cert-card mt-6" aria-labelledby="ohs-card-title">
+        <header class="cert-head">
+          <span class="cert-seal cert-seal--safety" aria-hidden="true">{icon("hat")}</span>
+          <div><p class="cert-issuer">BSI</p><h3 id="ohs-card-title">ISO 45001:2018 Occupational Health &amp; Safety Management System</h3></div>
+        </header>
+        <dl class="cert-data">
+          <div><dt>Certificate no.</dt><dd>OHS 796482</dd></div>
+          <div><dt>Valid until</dt><dd>25 September 2027</dd></div>
+          <div class="wide"><dt>Scope</dt><dd>Engineering, construction and project management, including civil, mechanical, piping, electrical and instrumentation works</dd></div>
+          <div class="wide"><dt>Sites</dt><dd>Miri head office and Bintulu, Sarawak</dd></div>
+        </dl>
+        <a class="link-arrow" href="https://www.bsigroup.com/en-GB/validate-bsi-issued-certificates/" target="_blank" rel="noopener">Verify with BSI (certificate no. OHS 796482)<span class="visually-hidden"> (opens in a new tab)</span></a>
       </article>
     </div>
   </div>
@@ -915,21 +1015,58 @@ def hse():
       <article class="cert-card" aria-labelledby="pet-card-title">
         <header class="cert-head">
           <span class="cert-seal" aria-hidden="true">{icon("badge")}</span>
-          <div><p class="cert-issuer">PETRONAS</p><h3 id="pet-card-title">PETRONAS licensed contractor</h3></div>
+          <div><p class="cert-issuer">PETRONAS</p><h3 id="pet-card-title">Licensed to supply services to oil &amp; gas companies</h3></div>
         </header>
         <dl class="cert-data">
           <div><dt>Licensed since</dt><dd>2004</dd></div>
-          <div><dt>Status</dt><dd>Valid</dd></div>
-          <div class="wide"><dt>Scope</dt><dd>Onshore fabrication, construction, inspection, repair and maintenance</dd></div>
+          <div><dt>Valid until</dt><dd>30 July 2027</dd></div>
+          <div class="wide"><dt>Licensed categories</dt><dd>Onshore pipeline · Onshore pipeline inspection &amp; repair · Major and minor onshore fabrication · Metallic (carbon &amp; stainless steel) and non-metallic (PVC, HDPE, fibreglass) piping · Cleaning, repair &amp; maintenance · Slope protection</dd></div>
         </dl>
-        <p class="small mb-0">Licence number and validity are available to procurement teams on request.</p>
+        <p class="small mb-0">Issued under the Petroleum Development Act 1974.</p>
       </article>
     </div>
     <ul class="reg-list" role="list">
-      <li><strong>DOSH</strong><span>Department of Occupational Safety and Health registration since 2010: KPD 01, KPD 02, PVR01, SBR01</span></li>
-      <li><strong>MOF</strong><span>Ministry of Finance registered supplier since 2008: engineering, construction and maintenance</span></li>
-      <li><strong>SSM</strong><span>Company no. 597192-V, incorporated October 2002</span></li>
+      <li><strong>PETROS</strong><span>Registered vendor of Petroleum Sarawak Berhad and its group, valid to Dec 2028: building &amp; structure construction, onshore maintenance &amp; modification, onshore pipeline fabrication &amp; construction</span></li>
+      <li><strong>DOSH</strong><span>Registered Competent Firm (Petroleum Contractor): KPD 01 onshore pipelines and KPD 02 onshore reticulation piping, valid to Mar 2028</span></li>
+      <li><strong>UPKJ Sarawak</strong><span>Class A registered contractor with the Sarawak State Financial Secretary, and recognised as a Rescue Contractor for works and mechanical fields</span></li>
+      <li><strong>MOF</strong><span>Ministry of Finance registered supplier, valid to Mar 2027</span></li>
+      <li><strong>CIDB SCORE</strong><span>3-star rating for 2025 from CIDB and SME Corp: good management and technical capability</span></li>
+      <li><strong>SSM</strong><span>Company no. 200201029529 (597192-V), incorporated 29 October 2002</span></li>
     </ul>
+  </div>
+</section>
+
+<section class="section section--ink" id="awards" aria-labelledby="awards-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Recognition")}<h2 id="awards-title">Awards &amp; recognition</h2></div>
+      <p class="lead">Recognised by government, industry and our clients for safety performance and quality of work.</p>
+    </div>
+    <!-- AWARDS: from the BWS Company Profile (Oct 2026), "List of Awards". -->
+    <ul class="award-grid reveal-stagger" role="list">
+      <li class="award award--lead"><span class="award-year">2025</span><h3>PSIEA Silver Award</h3><p>Premier of Sarawak Industry Excellence Awards, Large Enterprise category.</p></li>
+      <li class="award award--lead"><span class="award-year">2023</span><h3>National OSH Award</h3><p>Anugerah Keselamatan dan Kesihatan Pekerjaan Negara 2023, for the OSH management system at the workplace.</p></li>
+      <li class="award award--lead"><span class="award-year">2023</span><h3>MSOSH Gold Class 1 Award</h3><p>Malaysian Society for Occupational Safety and Health, for very good OSH performance on the MLNG Power Import Project (Transgrid-BWS JV).</p></li>
+      <li class="award"><span class="award-year">2023</span><h3>PTTEP CEO SSHE Excellence Award</h3><p>For safety, security, health and environment performance excellence.</p></li>
+      <li class="award"><span class="award-year">2023</span><h3>Samsung E&amp;A appreciation</h3><p>For contribution to the National OSH Award by NCOSH on the Rosmari-Marjoram Onshore Gas Plant Project.</p></li>
+      <li class="award"><span class="award-year">2022</span><h3>IRSO West Coast Mega HSE Council</h3><p>Top 5 Best Project HSE Performance, Sabah Sarawak Gas Pipeline KP220 &amp; KP265.</p></li>
+      <li class="award"><span class="award-year">2022</span><h3>PETRONAS certificate of appreciation</h3><p>Successful completion of the mechanical scope, 30" SSGP pipeline replacement at KP220.</p></li>
+      <li class="award"><span class="award-year">2020</span><h3>PETRONAS Focused Recognition</h3><p>Work completed 25 days ahead of schedule with zero LTI and within cost.</p></li>
+      <li class="award"><span class="award-year">2013</span><h3>PETRONAS Best HSE Practice, Gold</h3><p>FED HSE Awareness Day, for dedication and commitment to safety at the workplace.</p></li>
+      <li class="award"><span class="award-year">2011</span><h3>MLNG HSE Excellence Recognition</h3><p>Malaysia LNG, for significant contribution through excellent HSE performance.</p></li>
+      <li class="award"><span class="award-year">2010</span><h3>3,000,000 man-hours without LTI</h3><p>HSE Award from the Rekind–Simfoni consortium, MCOT Rejuvenation Project Phase 2.</p></li>
+      <li class="award"><span class="award-year">2005</span><h3>237,296 man-hours without LTI</h3><p>Sarawak Shell certificate of appreciation, Bintulu Integrated Facilities.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="ethics-title">
+  <div class="container">
+    <div class="section-head">{eyebrow("", "Integrity")}<h2 id="ethics-title">Anti-corruption and sustainability</h2></div>
+    <div class="grid grid--2 reveal-stagger">
+      <div class="policy"><h3>Anti-Corruption and Bribery Policy</h3><blockquote><p>At BWS Engineering Sdn Bhd, we are committed to conducting business honestly, ethically, and with integrity, with zero tolerance for bribery and corruption, and by maintaining effective measures to prevent and combat bribery.</p></blockquote></div>
+      <div class="policy"><h3>Sustainability</h3><blockquote><p>We are committed to operating responsibly and sustainably. We aim to reduce our environmental impact through efficient use of resources, waste reduction, and environmentally friendly engineering practices. We support ESG principles and CSR initiatives by conducting business ethically, supporting our communities, and creating long-term value for our stakeholders.</p></blockquote></div>
+    </div>
   </div>
 </section>
 
@@ -1066,6 +1203,7 @@ def contact():
             <li>{icon("phone")}<a href="tel:+6086252476">086-252476</a></li>
             <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
           </ul>
+          <p class="mt-4 small mb-0"><strong>Fabrication yard:</strong> Lot 128, Block 20, Kemena Land District, Kidurong Industrial Area, 97000 Bintulu, Sarawak</p>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
         <div class="map-wrap"><iframe class="map" src="{maps_embed(BTU_LL)}" title="Map: BWS Engineering fabrication yard, Kidurong, Bintulu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
