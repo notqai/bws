@@ -26,7 +26,7 @@ PEOPLE = {
         "mobile": "+60198894946",
         "office": "+6085652743",
         "email": "mazinahmasribws@gmail.com",
-        "url": "https://www.bwsengineeringsb.com",
+        "url": "https://bwsengsdnbhd.vercel.app",
         "street": "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1",
         "city": "Miri",
         "region": "Sarawak",

@@ -29,7 +29,7 @@ class VCardTests(unittest.TestCase):
             "TEL;TYPE=CELL,VOICE:+60198894946",
             "TEL;TYPE=WORK,VOICE:+6085652743",
             "EMAIL;TYPE=INTERNET,WORK:mazinahmasribws@gmail.com",
-            "URL:https://www.bwsengineeringsb.com",
+            "URL:https://bwsengsdnbhd.vercel.app",
         ]:
             self.assertIn(line + "\r\n", text)
 

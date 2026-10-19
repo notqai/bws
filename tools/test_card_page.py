@@ -22,7 +22,7 @@ class CardPageTests(unittest.TestCase):
             'href="tel:+60198894946"',
             'href="https://wa.me/60198894946"',
             'href="mailto:mazinahmasribws@gmail.com"',
-            'href="https://www.bwsengineeringsb.com"',
+            'href="https://bwsengsdnbhd.vercel.app"',
         ]:
             self.assertIn(needle, self.html)
 

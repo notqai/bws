@@ -163,7 +163,7 @@ python3 -m venv ~/.venvs/bws-card && ~/.venvs/bws-card/bin/python -m pip install
 
 To add a person: add an entry to `PEOPLE`, copy `mazinah.html` to `<name>.html` and change the text and links, then regenerate.
 
-**After the domain cutover:** run `tools/make_card.py https://www.bwsengineeringsb.com`, and change the temporary `og:image` URL in each card from `bwsengsdnbhd.vercel.app` to the `.com` domain. Do not print or hand out the QR code before this is done.
+**After the domain cutover:** run `tools/make_card.py https://www.bwsengineeringsb.com`, and change the temporary `og:image` URL, the Website button and the footer link in each card from `bwsengsdnbhd.vercel.app` to the `.com` domain, and set `url` in `PEOPLE` (`tools/make_card.py`) to the `.com` domain before regenerating. Do not print or hand out the QR code before this is done.
 
 ## Tools (optional)
 - `tools/generate_site.py` is the script that generated the HTML pages from shared header/footer templates. Use it **or** hand-edit the HTML, not both: running it overwrites every page. Run with `python3 tools/generate_site.py`.
