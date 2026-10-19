@@ -688,8 +688,8 @@ def home():
       <p class="lead">Our main clients include national and international oil and gas operators, EPC contractors and industrial companies. <a href="clients.html">See all clients</a></p>
     </div>
   </div>
-  <div class="container">
-    <ul class="logo-wall reveal-stagger" role="list" aria-label="Main clients">{marq(True)}</ul>
+  <div class="logo-strip">
+    <ul class="container" role="list" aria-label="Main clients">{marq(True)}</ul>
   </div>
 </section>
 

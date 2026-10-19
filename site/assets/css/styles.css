@@ -757,3 +757,16 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .logo-wall li:hover { background: var(--steel-50); }
 .logo-wall img { width: auto; height: auto; max-height: 48px; max-width: min(140px, 100%); }
 .logo-wall .client-textmark { min-width: 0; font-size: .9rem; }
+
+/* ---------- Static client logo strip (home) ---------- */
+.logo-strip { border-block: 1px solid var(--steel-200); }
+.logo-strip ul { list-style: none; margin-block: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5) clamp(1.5rem, 1rem + 2vw, 3rem); padding-block: var(--space-6); }
+.logo-strip li { display: flex; align-items: center; }
+.logo-strip img { height: 42px; width: auto; max-width: 140px; object-fit: contain; }
+@media (max-width: 40rem) { .logo-strip img { height: 32px; max-width: 104px; } .logo-strip ul { gap: var(--space-4) var(--space-5); } }
+@media (min-width: 64rem) {
+  .logo-strip ul { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--space-4); justify-items: center; }
+  .logo-strip li { width: 100%; justify-content: center; }
+  .logo-strip img { height: 36px; max-width: 100%; }
+}
+@media (min-width: 80rem) { .logo-strip img { height: 40px; } }
