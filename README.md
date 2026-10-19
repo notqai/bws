@@ -88,11 +88,11 @@ In `index.html` search for `KEY STATS`. Each number looks like:
 Change **both** `data-count` (what the counter animates to) and the text inside (what shows without JavaScript).
 
 ### Careers ("Send your CV")
-The Careers page has no job list, just a "Send your CV" card. Its **Gmail / Outlook / Email app** buttons open a new email to **bwsesbhr@gmail.com** with the subject "Job Application – [Position]" and a short template. To change the address or template, edit `careers()` in `tools/generate_site.py` (`compose_links(...)`).
+The Careers page has no job list, just a "Send your CV" card with the recruitment email link (**bwsesbhr@gmail.com**). Clicking it opens an email with the subject "Job Application – [Position]". To change it, edit `careers()` in `tools/generate_site.py`.
 
 ### Connect the contact form
 The form is on `contact.html` (search for `CONTACT FORM`).
-- **Right now** (no setup): after the form is filled in, *Send enquiry* offers **Gmail**, **Outlook** or **Email app**, each opening a pre-filled email to **bws@bwsengineeringsb.com**.
+- **Right now** (no setup): *Send enquiry* opens the visitor's email app with the enquiry pre-filled, addressed to **bws@bwsengineeringsb.com**.
 - **To receive submissions directly** (recommended): create a free form at **formspree.io**, copy its ID (e.g. `xyzabcd`) and replace `YOUR_FORM_ID` in
   `action="https://formspree.io/f/YOUR_FORM_ID"`. The form then sends in the background and shows a thank-you message. Spam protection (a hidden "honeypot" field) is already included.
 - Netlify users can instead add `data-netlify="true"` and `name="enquiry"` to the `<form>` and remove the `action`.
@@ -163,7 +163,6 @@ See the list below. Each placeholder is marked in the HTML with a `PLACEHOLDER` 
 
 | # | Where | What to supply |
 |---|---|---|
-| 4 | `projects.html` | Real photos of **cable laying / termination**, **instrument calibration** and **blasting & painting** (blueprint illustrations stand in for now: gallery items with `ill:` in `tools/generate_site.py`) |
 | 5 | `contact.html` | **Formspree form ID** (or keep the email fallback) |
 | 6 | Everywhere | **Higher-resolution / newer site photos**. Current photos come from the old website; many are small (448–1024 px) and some have date stamps burned in |
 | 7 | `clients.html`, home | A sharper **ASEAN Bintulu Fertilizer** logo, and confirmation BWS is happy to display client logos |

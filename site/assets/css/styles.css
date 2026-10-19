@@ -777,3 +777,18 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .marquee--static img { flex: none; width: var(--lw); height: var(--lh); max-width: none; max-height: none; object-fit: contain; }
 @media (max-width: 75rem) { .marquee--static img { width: calc(var(--lw) * .78); height: calc(var(--lh) * .78); max-width: none; } }
 @media (max-width: 40rem) { .marquee--static img { width: calc(var(--lw) * .8); height: calc(var(--lh) * .8); } }
+
+/* Award photos (HSE page) */
+.award-photos { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 60rem) { .award-photos { grid-template-columns: repeat(4, 1fr); } }
+.award-photos figure { margin: 0; }
+.award-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); background: var(--ink-2); }
+.award-photos li:nth-child(2) img, .award-photos li:nth-child(3) img { object-fit: contain; background: #fff; }
+.award-photos figcaption { margin-top: var(--space-2); font-size: var(--fs-sm); font-weight: 600; color: var(--on-ink-muted); }
+
+/* Enquiry form card (contact page) */
+.enquiry-card { max-width: 52rem; margin-inline: auto; padding: clamp(1.5rem, 1rem + 2vw, 3rem); background: var(--white); border: 1px solid var(--steel-200); border-top: 4px solid var(--brand-blue); border-radius: var(--radius); box-shadow: var(--shadow-1); }
+.enquiry-card h2 { margin-bottom: var(--space-2); }
+.enquiry-card .lead { margin-bottom: var(--space-6); }
+.apply-card { grid-template-columns: 1fr !important; }
+.apply-card { max-width: 52rem; margin-inline: auto; }

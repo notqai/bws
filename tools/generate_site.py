@@ -206,7 +206,7 @@ CTA = f'''
 <section class="cta-band" aria-labelledby="cta-title">
   <div class="container cta-inner">
     <div>
-      <h2 id="cta-title">Have a project in mind? Let’s talk.</h2>
+      <h2 id="cta-title">Discuss your project requirements with BWS</h2>
       <p>We look forward to serving you better.</p>
     </div>
     <div class="btn-row">
@@ -318,8 +318,8 @@ SERVICES = [
     ("plant", "plant", "Industrial Plant Construction and Maintenance",
      "Construction and maintenance for oil and gas facilities, power generation plants and wood-based factories.",
      ["Oil and gas facilities", "Power generation plants", "Wood-based factories"],
-     "BWS provides construction and maintenance services for industrial plants, built on our founders’ many years of experience in the oil and gas industry. Our scope covers oil and gas facilities, power generation plants and wood-based factories, supported from our bases in Miri and Bintulu. Every job is carried out under our HSE policy and our ISO 9001:2015 Quality Management System.",
-     ("hero-column-erection", "Crane lifting a process column into position inside its scaffolding during plant construction", 800, 600)),
+     "BWS provides construction and maintenance services for industrial plants, drawing on more than two decades of work in operating oil and gas facilities. Our scope covers oil and gas facilities, power generation plants and wood-based factories, supported from our bases in Miri and Bintulu. Every job is carried out under our HSE policy and our ISO 9001:2015 Quality Management System.",
+     ("power-import-aerial-1", "Aerial view of the MLNG Power Import Project facility under construction", 675, 520)),
     ("mechanical", "mech", "Mechanical and Piping Work",
      "Equipment installation and testing, piping fabrication, installation and testing, plus blasting and painting.",
      ["Mechanical equipment installation and testing", "Piping fabrication, installation and testing", "Blasting and painting work"],
@@ -645,7 +645,7 @@ def home():
 <section class="section" aria-labelledby="svc-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div>{eyebrow("01", "Services")}<h2 id="svc-title">Four disciplines, one accountable contractor</h2></div>
+      <div>{eyebrow("01", "Services")}<h2 id="svc-title">Integrated engineering and construction services</h2></div>
       <p class="lead">Construction and maintenance services for the oil and gas industries, from civil works and steel structures to mechanical, piping and E&amp;I.</p>
     </div>
     <div class="grid grid--4 reveal-stagger">{svc_cards}
@@ -657,13 +657,13 @@ def home():
   <div class="container split split--wide-text">
     <div class="reveal">
       {eyebrow("02", "About BWS")}
-      <h2 id="about-title">A wholly owned Bumiputera contractor, built by people from the industry</h2>
-      <p class="lead">BWS Engineering Sdn. Bhd. was formed in October 2002 by a group of Bumiputera with many years of experience in the oil and gas industry, particularly in construction and maintenance services.</p>
-      <p>The company is run by its shareholders, who sit on the Board of Directors and in Management, and employs qualified professionals with thorough experience across engineering and construction disciplines.</p>
+      <h2 id="about-title">A wholly owned Bumiputera engineering contractor</h2>
+      <p class="lead">Founded in October 2002 by Bumiputera professionals from the oil and gas industry, BWS has grown from minor plant maintenance in Miri into a Grade G7 contractor delivering complete EPCC packages.</p>
+      <p>Supported by its own facilities in Miri and Bintulu, the company delivers engineering, construction and maintenance services to the oil and gas, power and public sectors across Malaysia.</p>
       <a class="btn btn--ghost mt-5" href="about.html">Read more about us {icon("arrow")}</a>
     </div>
     <figure class="media media--framed ratio-4x3 reveal">
-      {img("hse-site-walk", "BWS supervisors in hard hats and coveralls walking a cleared construction site", 577, 564)}
+      {img("mech-firepump-install", "BWS crew installing a diesel fire pump set on site", 706, 569)}
     </figure>
   </div>
 </section>
@@ -682,7 +682,7 @@ def home():
 <section class="section section--work" aria-labelledby="work-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div>{eyebrow("", "On site")}<h2 id="work-title">Recent work from our teams</h2></div>
+      <div>{eyebrow("", "On site")}<h2 id="work-title">Recent work</h2></div>
       <p class="lead">Plant, mechanical, civil and E&amp;I work across Sarawak. <a href="projects.html">View the full gallery</a></p>
     </div>
     <ul class="work-strip reveal-stagger" role="list">{work_items}
@@ -706,7 +706,7 @@ def home():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("04", "Facilities")}<h2 id="fac-title">Our own workshop and fabrication yard</h2></div>
-      <p class="lead">Owning our facilities in Miri and Bintulu means fabrication, storage and preparation stay under our own control.</p>
+      <p class="lead">Company-owned facilities in Miri and Bintulu support fabrication, storage and preparation for our projects.</p>
     </div>
     <div class="grid grid--2 reveal-stagger">
       <article class="facility">
@@ -738,12 +738,12 @@ def home():
 </section>
 
 <section class="hse-banner on-dark" aria-labelledby="hse-title">
-  <div class="hero-media">{img("hse-toolbox-talk", "", 1600, 1200, "100vw", big=True)}</div>
+  <div class="hero-media">{img("hse-smds-partnership", "", 1600, 1200, "100vw", big=True)}</div>
   <div class="container hse-banner-inner">
     <div class="reveal">
       {eyebrow("05", "Health, Safety &amp; Environment")}
-      <h2 id="hse-title">Safety is a condition of every job, not a line item</h2>
-      <p>Health, safety and the environment come first, in our Quality Management System and on every site.</p>
+      <h2 id="hse-title">Health, safety and environment come first</h2>
+      <p>Every project is planned and executed under our HSE policy and an occupational health and safety management system certified to ISO 45001:2018.</p>
       <a class="btn btn--outline-light mt-5" href="hse.html">Our HSE &amp; Quality commitment {icon("arrow")}</a>
     </div>
     <blockquote class="safety-quote reveal">
@@ -791,8 +791,7 @@ def about():
   <div class="container measure center" style="margin-inline:auto">
     {eyebrow("02", "Our objective").replace('class="eyebrow"', 'class="eyebrow" style="justify-content:center"')}
     <h2 id="obj-title" class="visually-hidden">Our objective</h2>
-    <p style="font-family:var(--font-head);font-size:clamp(1.5rem,1.2rem + 1.6vw,2.5rem);line-height:1.25;color:#fff;margin:0 0 var(--space-4)">“Become one of the major contractors in the construction industry.”</p>
-    <p class="mb-0">We look forward to serving you better.</p>
+    <p style="font-family:var(--font-head);font-size:clamp(1.5rem,1.2rem + 1.6vw,2.5rem);line-height:1.25;color:#fff;margin:0">“Become one of the major contractors in the construction industry.”</p>
   </div>
 </section>
 
@@ -882,7 +881,7 @@ def services():
     for i, (sid, ic, t, blurb, scope, intro, photo) in enumerate(SERVICES, 1):
         key, alt, w, h = photo
         scope_li = "".join(f"<li>{s}</li>" for s in scope)
-        rel = [p for p in PROJECTS if sid in p[5]][:5]
+        rel = [p for p in PROJECTS if p[5][0] == sid][:5]
         related_html = ("" if not rel else
             '<div class="related"><h3 class="related-title">Selected projects</h3><ul class="related-list" role="list">'
             + "".join(f'<li><span>{p[0]}</span>{p[2]} <em>· {p[1]}</em></li>' for p in rel) + '</ul><a class="link-arrow" href="projects.html#track">All key projects</a></div>')
@@ -912,8 +911,8 @@ def services():
 <section class="section section--ink" id="equipment" aria-labelledby="equip-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div>{eyebrow("", "Plant &amp; equipment")}<h2 id="equip-title">Our own fleet and tools</h2></div>
-      <p class="lead">Owning our lifting, welding and testing equipment keeps schedules in our hands. Highlights from our equipment list:</p>
+      <div>{eyebrow("", "Plant &amp; equipment")}<h2 id="equip-title">Company-owned plant and equipment</h2></div>
+      <p class="lead">BWS maintains its own lifting, welding, cutting and testing equipment, reducing reliance on third-party hire. Principal items include:</p>
     </div>
     <!-- EQUIPMENT: summarised from the BWS Company Profile equipment list (Oct 2026). -->
     <ul class="equip-grid reveal-stagger" role="list">
@@ -939,7 +938,7 @@ def clients():
 <section class="section" aria-labelledby="cl-title">
   <div class="container">
     <div class="section-head">
-      <div>{eyebrow("01", "Clients")}<h2 id="cl-title">Who we work for</h2></div>
+      <div>{eyebrow("01", "Clients")}<h2 id="cl-title">Client list</h2></div>
     </div>
     {client_grid()}
   </div>
@@ -947,11 +946,11 @@ def clients():
 
 <section class="section section--steel" aria-labelledby="why-title">
   <div class="container">
-    <div class="section-head">{eyebrow("02", "What clients get")}<h2 id="why-title">What our clients can rely on</h2></div>
+    <div class="section-head">{eyebrow("02", "Our commitment")}<h2 id="why-title">What clients can expect</h2></div>
     <div class="grid grid--3 reveal-stagger">
-      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>Safety first</h3><p class="mb-0">No work starts or continues without ensuring a safe and healthy workplace and protection of the environment.</p></div>
+      <div class="card"><span class="card-icon">{icon("shield")}</span><h3>Safety first</h3><p class="mb-0">An occupational health and safety management system certified to ISO 45001:2018, applied on every site.</p></div>
       <div class="card"><span class="card-icon">{icon("badge")}</span><h3>Certified quality</h3><p class="mb-0">An ISO 9001:2015 Quality Management System, certified by TÜV NORD and continually improved.</p></div>
-      <div class="card"><span class="card-icon">{icon("factory")}</span><h3>Our own facilities</h3><p class="mb-0">A workshop in Miri and a fabrication yard with blasting, painting and NDT facilities in Bintulu.</p></div>
+      <div class="card"><span class="card-icon">{icon("factory")}</span><h3>Company-owned facilities</h3><p class="mb-0">A workshop in Miri and a fabrication yard with blasting, painting and NDT facilities in Bintulu.</p></div>
     </div>
   </div>
 </section>
@@ -967,6 +966,13 @@ GALLERY = [
     ("civil", "miri-water-baram-intake", 632, 499, "Batang Baram intake", "Aerial view of the Batang Baram intake structure under construction"),
     ("mech", "miri-water-submarine-pipes", 474, 447, "Launching twin 1.2 m submarine pipes", "Twin 1.2 m pipes being launched into the river from a steel frame"),
     ("mech", "pipeline-joint-hillside", 507, 380, "Pipeline installation", "Workers in PPE joining a large pipeline on a cleared hillside"),
+    ("plant", "plant-bullet-vessels", 325, 337, "LPG bullet vessels", "Row of white horizontal pressure vessels on concrete saddles inside a process plant"),
+    ("plant", "plant-pipe-rack", 361, 333, "Pipe rack and steel structures", "Steel pipe rack and structures at an onshore facility under a blue sky"),
+    ("plant", "plant-tank-scaffold", 384, 295, "Tank construction", "Large storage tank wrapped in scaffolding during construction"),
+    ("mech", "mech-firepump-install", 706, 569, "Fire pump set installation", "Crew in coveralls and hard hats installing a red diesel fire pump set on its plinth"),
+    ("mech", "mech-vessel-lift-crew", 346, 334, "Vessel lift with the rigging crew", "Rigging crew guiding a pressure vessel lifted by crane inside a plant"),
+    ("hse", "hse-smds-partnership", 800, 600, "SMDS HSSE Partnership 2026", "BWS team at the Shell MDS HSSE Partnership 2026 event"),
+    ("hse", "award-psiea", 369, 328, "PSIEA 2025 award ceremony", "BWS receiving the Premier of Sarawak Industry Excellence Award on stage"),
     ("plant", "project-shelter", 445, 333, "Shelter structure at an onshore facility", "Steel-framed shelter with a roof canopy beside a process facility"),
     ("hse", "pdb-team", 465, 315, "Project team at a PETRONAS Dagangan site", "Project team in coveralls and hard hats gathered at a PETRONAS Dagangan site"),
     ("hse", "miri-water-team", 710, 447, "Project team, Miri Water Supply", "Project team in hi-vis vests and hard hats beside a large pipeline"),
@@ -980,7 +986,6 @@ GALLERY = [
     ("mech", "mech-pump-skid", 448, 292, "Pump installation", "Electric pump and pipework installed on a skid"),
     ("mech", "piping-spool", 448, 295, "Large-bore piping", "Large-bore white piping with flanged connections"),
     ("mech", "mech-container-unloading", 800, 487, "Material receiving", "Crew in PPE unloading materials from a shipping container"),
-    ("mech", "ill:blasting-painting", 800, 600, "Blasting and painting", "Illustration: a steel beam being spray painted after blasting"),
     ("civil", "civil-rebar", 800, 460, "Foundation reinforcement", "Construction crew tying reinforcement steel for a foundation"),
     ("civil", "civil-foundation-slab", 800, 488, "Concrete foundation slab", "Large concrete slab with formwork and an excavator at the edge of the site"),
     ("civil", "civil-excavation-formwork", 800, 563, "Excavation and formwork", "Excavator working beside timber formwork in an excavation"),
@@ -989,8 +994,6 @@ GALLERY = [
     ("civil", "building-scaffold", 800, 600, "Building construction", "Two-storey building wrapped in scaffolding beside a container yard"),
     ("civil", "building-interior", 800, 534, "Building fit-out", "Interior of a building under fit-out with steel roof structure"),
     ("ei", "ei-switchgear", 800, 599, "Switchgear installation", "Row of electrical switchgear panels in a substation room"),
-    ("ei", "ill:cable-laying", 800, 600, "Cable laying and testing", "Illustration: a cable drum paying out cable into a trench, with an insulation tester"),
-    ("ei", "ill:instrument-calibration", 800, 600, "Instrument calibration", "Illustration: a pressure transmitter calibrated on a bench against a reference gauge"),
     ("hse", "hse-toolbox-talk", 800, 600, "Toolbox talk", "Workers seated under a site tent for a safety briefing"),
     ("hse", "hse-site-walk", 577, 564, "Site inspection", "Supervisors in hard hats walking a cleared site"),
     ("hse", "hse-fire-drill", 800, 600, "Fire extinguisher drill", "Crew in coveralls and hard hats during a fire extinguisher drill"),
@@ -1070,7 +1073,7 @@ def hse():
     return head("hse.html", "HSE &amp; Quality | ISO 9001:2015 | BWS Engineering Sdn Bhd",
         "BWS Engineering’s HSE, Quality, Anti-Corruption and Sustainability policies. ISO 9001:2015 (TÜV NORD) and ISO 45001:2018 (BSI) certified, with national OSH awards.") + header("hse.html") + page_hero(
         "HSE &amp; Quality", "Health, safety, environment and quality",
-        "No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment.",
+        "Our policies, certifications and recognition in health, safety, environment and quality.",
         "hard-hat") + f'''
 
 <section class="section" id="hse" aria-labelledby="hsep-title">
@@ -1215,6 +1218,12 @@ def hse():
       <p class="lead">Recognised by government, industry and our clients for safety performance and quality of work.</p>
     </div>
     <!-- AWARDS: from the BWS Company Profile (Oct 2026), "List of Awards". -->
+    <ul class="award-photos reveal-stagger" role="list">
+      <li><figure>{img("award-psiea", "BWS receiving the PSIEA 2025 Silver Award on stage", 369, 328, "(min-width: 60rem) 25vw, 50vw")}<figcaption>PSIEA 2025</figcaption></figure></li>
+      <li><figure>{img("award-msosh-trophy", "MSOSH Gold Class 1 Award trophy for the MLNG Power Import Project", 800, 1067, "(min-width: 60rem) 25vw, 50vw")}<figcaption>MSOSH Gold Class 1</figcaption></figure></li>
+      <li><figure>{img("award-samsung-trophy", "Samsung E&amp;A appreciation trophy for the National OSH Award 2023", 800, 1067, "(min-width: 60rem) 25vw, 50vw")}<figcaption>Samsung E&amp;A appreciation</figcaption></figure></li>
+      <li><figure>{img("award-46m-safe-manhours", "BWS representatives recognised for 46 million safe man-hours", 466, 311, "(min-width: 60rem) 25vw, 50vw")}<figcaption>46 million safe man-hours</figcaption></figure></li>
+    </ul>
     <ul class="award-grid reveal-stagger" role="list">
       <li class="award award--lead"><span class="award-year">2025</span><h3>PSIEA Silver Award</h3><p>Premier of Sarawak Industry Excellence Awards, Large Enterprise category.</p></li>
       <li class="award award--lead"><span class="award-year">2023</span><h3>National OSH Award</h3><p>Anugerah Keselamatan dan Kesihatan Pekerjaan Negara 2023, for the OSH management system at the workplace.</p></li>
@@ -1253,7 +1262,7 @@ def hse():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("04", "On site")}<h2 id="site-title">Safety in practice</h2></div>
-      <div class="callout-safety"><strong>Stop and check.</strong> Under our HSE policy, safety, health and the environment are considered before any job starts and throughout the work.</div>
+      <div class="callout-safety"><strong>Planning and supervision.</strong> Hazards are assessed before work begins, and site safety supervisors monitor every activity until completion.</div>
     </div>
     <div class="grid grid--3 reveal-stagger">
       <figure class="media ratio-4x3">{img("hse-site-walk", "Supervisors in hard hats walking a cleared construction site", 577, 564, "(min-width: 60rem) 33vw, 100vw")}<figcaption>Site inspection.</figcaption></figure>
@@ -1281,14 +1290,14 @@ def careers():
   <div class="container split split--wide-text">
     <div>
       {eyebrow("01", "Working at BWS")}
-      <h2 id="work-title">Working with experienced people</h2>
-      <p class="lead">BWS employs qualified professionals with thorough experience in various engineering and construction disciplines, working from our main office and workshop in Miri and our fabrication yard in Bintulu.</p>
+      <h2 id="work-title">A career in engineering and construction</h2>
+      <p class="lead">Our workforce comprises engineers, supervisors and skilled tradespeople in civil, mechanical, piping, and electrical and instrumentation disciplines, based at our Miri head office and Bintulu fabrication yard.</p>
       <p>Our work spans industrial plant construction and maintenance, mechanical and piping, civil and structural steel, and electrical and instrumentation, for some of the region’s major oil and gas operators and EPC contractors.</p>
     </div>
     <aside class="callout-safety" aria-labelledby="safe-title">
       <span class="safety-tag">{icon("hat")} Safety-first culture</span>
-      <h3 id="safe-title" style="font-size:1.2rem">Everyone goes home safe</h3>
-      <p class="mb-0">No work shall commence or continue without ensuring a safe and healthy workplace and protection of the environment, and every member of the team is expected to uphold that.</p>
+      <h3 id="safe-title" style="font-size:1.2rem">A safety-first workplace</h3>
+      <p class="mb-0">Safety is the first responsibility of every employee. All personnel are inducted, trained and supervised in line with our HSE policy and ISO 45001:2018 management system.</p>
     </aside>
   </div>
 </section>
@@ -1299,12 +1308,8 @@ def careers():
       <div>
         {eyebrow("", "Join us")}
         <h2 id="apply-title">Send your CV</h2>
-        <p class="lead">We welcome applications from experienced engineering and construction professionals. Email your CV and certificates to our recruitment team, and tell us the position or discipline you’re applying for.</p>
-        <p class="apply-address">{icon("mail")}<a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></p>
-      </div>
-      <div class="apply-actions">
-        <p class="small">Choose how to send. Each option opens a new email to our recruitment team with the subject already filled in.</p>
-        {compose_links("bwsesbhr@gmail.com", "Job Application – [Position]", cv_body)}
+        <p class="lead">We welcome applications from experienced engineering and construction professionals. Please email your CV and certificates to our recruitment team, stating the position or discipline applied for.</p>
+        <p class="apply-address">{icon("mail")}<a href="mailto:bwsesbhr@gmail.com?subject={quote("Job Application – [Position]")}">bwsesbhr@gmail.com</a></p>
       </div>
     </div>
   </div>
@@ -1328,7 +1333,7 @@ def contact():
     return head("contact.html", "Contact Us | Miri &amp; Bintulu Offices | BWS Engineering Sdn Bhd",
         "Contact BWS Engineering Sdn Bhd. Main office and workshop in Piasau Industrial Estate, Miri (085-652743) and fabrication yard in Kidurong, Bintulu (086-252476). Email bwsesb@gmail.com.", ld) + header("contact.html") + page_hero(
         "Contact", "Contact us",
-        "Talk to our Miri or Bintulu office, or send an enquiry and we’ll route it to the right team.",
+        "Contact our Miri or Bintulu office, or submit an enquiry and it will be directed to the relevant department.",
         "coast-map") + f'''
 
 <section class="section" aria-labelledby="off-title">
@@ -1368,10 +1373,10 @@ def contact():
 </section>
 
 <section class="section section--steel" id="enquiry" aria-labelledby="form-title">
-  <div class="container split split--wide-text" style="align-items:start">
-    <div>
-      {eyebrow("02", "Enquiry")}
-      <h2 id="form-title">Request a quote or send an enquiry</h2>
+  <div class="container">
+    <div class="enquiry-card">
+      <h2 id="form-title">Enquiry</h2>
+      <p class="lead">For quotations and general enquiries, please complete the form below.</p>
       <!-- CONTACT FORM: replace YOUR_FORM_ID in the action below with your Formspree form ID
            (https://formspree.io → New form → copy the endpoint). Until then the form opens
            the visitor's email app with the message pre-filled, addressed to data-mailto. -->
@@ -1398,14 +1403,6 @@ def contact():
         <div class="form-status" role="status" aria-live="polite" hidden></div>
       </form>
     </div>
-    <aside class="card" aria-labelledby="direct-title" style="margin-top:var(--space-6)">
-      <h3 id="direct-title">Prefer to email directly?</h3>
-      <ul class="contact-list" role="list">
-        <li>{icon("mail")}<span>General enquiries<br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a><br><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a></span></li>
-        <li>{icon("briefcase")}<span>Job applications<br><a href="mailto:bwsesbhr@gmail.com">bwsesbhr@gmail.com</a></span></li>
-        <li>{icon("phone")}<span>Miri <a href="tel:+6085652743">085-652743</a><br>Bintulu <a href="tel:+6086252476">086-252476</a></span></li>
-      </ul>
-    </aside>
   </div>
 </section>
 ''' + footer()

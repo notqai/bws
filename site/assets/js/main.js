@@ -215,30 +215,9 @@
           "",
           data.get("message")
         ].join("\n");
-        var enc = encodeURIComponent;
-        var links = [
-          ["Gmail", "https://mail.google.com/mail/?view=cm&fs=1&to=" + enc(to) + "&su=" + enc(subject) + "&body=" + enc(body), true],
-          ["Outlook", "https://outlook.office.com/mail/deeplink/compose?to=" + enc(to) + "&subject=" + enc(subject) + "&body=" + enc(body), true],
-          [T("Email app", "Aplikasi e-mel"), "mailto:" + to + "?subject=" + enc(subject) + "&body=" + enc(body), false]
-        ];
-        statusEl.hidden = false;
-        statusEl.setAttribute("data-state", "ok");
-        statusEl.textContent = "";
-        var p = document.createElement("p");
-        p.textContent = T("Your message is ready. Choose how to send it to " + to + ":", "Mesej anda sudah sedia. Pilih cara menghantarnya ke " + to + ":");
-        var group = document.createElement("div");
-        group.className = "mail-choice";
-        links.forEach(function (l, i) {
-          var a = document.createElement("a");
-          a.className = i === 0 ? "btn btn--primary" : "btn btn--ghost";
-          a.href = l[1];
-          a.textContent = l[0];
-          if (l[2]) { a.target = "_blank"; a.rel = "noopener"; }
-          group.appendChild(a);
-        });
-        statusEl.appendChild(p);
-        statusEl.appendChild(group);
-        group.querySelector("a").focus();
+        window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        setStatus("ok", T("Your email app should open with your enquiry ready to send. If it does not, please email " + to + " directly.",
+                          "Aplikasi e-mel anda akan dibuka dengan pertanyaan yang sedia untuk dihantar. Jika tidak, sila e-mel terus ke " + to + "."));
         return;
       }
 

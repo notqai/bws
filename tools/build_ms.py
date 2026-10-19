@@ -87,8 +87,8 @@ def switch(page, lang):
             f'<span aria-hidden="true">EN</span><span class="visually-hidden">Read in English</span></a>')
 
 # Email templates in compose links (careers) — URL-encoded in the English pages
-CV_EN_SUBJ = quote("Job Application – [Position]", safe="")
-CV_MS_SUBJ = quote("Permohonan Kerja – [Jawatan]", safe="")
+CV_EN_SUBJ = quote("Job Application – [Position]")
+CV_MS_SUBJ = quote("Permohonan Kerja – [Jawatan]")
 CV_EN_BODY = quote("Position / discipline:\nYears of experience:\nCurrent location:\nPhone number:\n\n(Please attach your CV and certificates.)", safe="")
 CV_MS_BODY = quote("Jawatan / disiplin:\nTahun pengalaman:\nLokasi semasa:\nNo. telefon:\n\n(Sila lampirkan CV dan sijil anda.)", safe="")
 
