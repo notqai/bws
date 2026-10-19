@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.bwsengineeringsb.com/</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/about.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/services.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/clients.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/projects.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/hse.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/careers.html</loc></url>
-  <url><loc>https://www.bwsengineeringsb.com/contact.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://www.bwsengineeringsb.com/</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/about.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/about.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/about.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/about.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/about.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/about.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/services.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/services.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/services.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/services.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/services.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/services.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/clients.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/clients.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/clients.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/clients.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/clients.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/clients.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/projects.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/projects.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/projects.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/projects.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/projects.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/projects.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/hse.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/hse.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/hse.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/hse.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/hse.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/hse.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/careers.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/careers.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/careers.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/careers.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/careers.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/careers.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/contact.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/contact.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/contact.html"/></url>
+  <url><loc>https://www.bwsengineeringsb.com/ms/contact.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://www.bwsengineeringsb.com/contact.html"/><xhtml:link rel="alternate" hreflang="ms" href="https://www.bwsengineeringsb.com/ms/contact.html"/></url>
 </urlset>

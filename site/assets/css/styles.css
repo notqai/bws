@@ -740,3 +740,11 @@ a[href^="tel:"] { white-space: nowrap; }
 .social { display: inline-flex; align-items: center; gap: .5rem; margin-top: var(--space-5); padding: .45rem .8rem; border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius); font-weight: 600; }
 .social svg { width: 18px; height: 18px; }
 .social:hover { background: rgba(255,255,255,.08); text-decoration: none !important; }
+
+/* ---------- Language switch ---------- */
+.lang-switch { flex: none; display: inline-grid; place-items: center; min-width: 44px; height: 44px; padding: 0 .6rem; border: 1px solid var(--steel-200); border-radius: var(--radius); font-weight: 700; font-size: var(--fs-sm); letter-spacing: .06em; color: var(--ink); text-decoration: none; }
+.lang-switch:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+.lang-switch--mobile { display: none; }
+@media (max-width: 79.99rem) { .header-inner > .lang-switch:not(.lang-switch--mobile) { display: none; } .lang-switch--mobile { display: inline-grid; } }
+.primary-nav a { white-space: nowrap; }
+html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
