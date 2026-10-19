@@ -5,6 +5,9 @@ from urllib.parse import quote
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site") + "/"
 SITE = "https://www.bwsengineeringsb.com"
+# BWS Portal (Laravel app in portal/): job openings, online applications and the HR admin panel.
+# Until it is live, the Careers page simply keeps its "Send your CV" email option.
+PORTAL = "https://portal.bwsengineeringsb.com"
 JAWI = "كجروتران بي دبليو إيس سندیریان برحد"
 
 # ---------------------------------------------------------------- icons
@@ -271,7 +274,7 @@ def footer():
   </div>
   <div class="container footer-bottom">
     <p>© <span data-year>2026</span> BWS Engineering Sdn Bhd (597192-V). All rights reserved.</p>
-    <p>Miri · Bintulu · Sarawak, Malaysia</p>
+    <p><a href="privacy.html">Privacy Notice</a> · Miri · Bintulu · Sarawak, Malaysia</p>
   </div>
 </footer>
 </body>
@@ -1307,6 +1310,47 @@ def careers():
   </div>
 </section>
 
+<section class="section" id="openings" aria-labelledby="open-title" data-portal="{PORTAL}" hidden>
+  <div class="container">
+    <div class="section-head">{eyebrow("", "Vacancies")}<h2 id="open-title">Current openings</h2></div>
+    <!-- VACANCIES: managed in the BWS Portal (Vacancies) and loaded here by main.js. This section stays
+         hidden until the portal answers, so the email option below always works on its own. -->
+    <p class="lead" data-no-openings hidden>There are no advertised openings at the moment. You are welcome to send a general application below.</p>
+    <ul class="vacancies" data-vacancies role="list"></ul>
+
+    <div class="enquiry-card apply-online" id="apply-online">
+      <h2 id="apply-online-title">Apply online</h2>
+      <p class="lead">Complete the form and attach your CV. Our recruitment team reviews every application.</p>
+      <form class="form" method="POST" action="{PORTAL}/api/applications" enctype="multipart/form-data" data-apply-form>
+        <div class="form-row">
+          <div class="field"><label for="a-vacancy">Position</label>
+            <select id="a-vacancy" name="vacancy_id"><option value="">General application</option></select>
+          </div>
+          <div class="field" data-position-other><label for="a-position">Position or discipline <span class="req" aria-hidden="true">*</span></label><input id="a-position" name="position" type="text" maxlength="120" required aria-describedby="a-position-error"><span class="field-error" id="a-position-error" hidden>Please tell us the position or discipline you are applying for.</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="a-name">Full name <span class="req" aria-hidden="true">*</span></label><input id="a-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="a-name-error"><span class="field-error" id="a-name-error" hidden>Please enter your name.</span></div>
+          <div class="field"><label for="a-email">Email <span class="req" aria-hidden="true">*</span></label><input id="a-email" name="email" type="email" autocomplete="email" maxlength="200" required aria-describedby="a-email-error"><span class="field-error" id="a-email-error" hidden>Please enter a valid email address.</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="a-phone">Phone <span class="req" aria-hidden="true">*</span></label><input id="a-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required aria-describedby="a-phone-error"><span class="field-error" id="a-phone-error" hidden>Please enter a phone number.</span></div>
+          <div class="field"><label for="a-location">Current location</label><input id="a-location" name="location" type="text" autocomplete="address-level2" maxlength="120"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="a-years">Years of experience</label><input id="a-years" name="years_experience" type="number" min="0" max="60" inputmode="numeric"></div>
+          <div class="field"><label for="a-cv">CV <span class="req" aria-hidden="true">*</span></label><input id="a-cv" name="cv" type="file" accept=".pdf,.doc,.docx" required aria-describedby="a-cv-hint a-cv-error"><span class="form-note" id="a-cv-hint">PDF or Word, up to 5 MB. Please include your certificates in the same file.</span><span class="field-error" id="a-cv-error" hidden>Please attach your CV as a PDF or Word file of up to 5 MB.</span></div>
+        </div>
+        <div class="field"><label for="a-message">Anything else we should know</label><textarea id="a-message" name="message" maxlength="3000"></textarea></div>
+        <div class="field field--check"><input id="a-consent" name="consent" type="checkbox" value="1" required aria-describedby="a-consent-error"><label for="a-consent">I agree to BWS Engineering Sdn Bhd using my personal data to consider my application, as described in the <a href="privacy.html">Privacy Notice</a>. <span class="req" aria-hidden="true">*</span></label><span class="field-error" id="a-consent-error" hidden>Please tick to agree before sending your application.</span></div>
+        <div class="hp" aria-hidden="true"><label for="a-hp">Leave this empty</label><input id="a-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields.</p>
+        <div><button class="btn btn--primary" type="submit">Submit application {icon("arrow")}</button></div>
+        <div class="form-status" role="status" aria-live="polite" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section class="section section--steel" id="apply" aria-labelledby="apply-title">
   <div class="container">
     <div class="apply-card">
@@ -1403,7 +1447,7 @@ def contact():
         </div>
         <div class="field"><label for="f-message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="f-message" name="message" required aria-describedby="f-message-error"></textarea><span class="field-error" id="f-message-error" hidden>Please tell us about your enquiry.</span></div>
         <div class="hp" aria-hidden="true"><label for="f-hp">Leave this empty</label><input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-        <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields.</p>
+        <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields. We use your details only to reply to your enquiry, as described in our <a href="privacy.html">Privacy Notice</a>.</p>
         <div><button class="btn btn--primary" type="submit">Send enquiry {icon("arrow")}</button></div>
         <div class="form-status" role="status" aria-live="polite" hidden></div>
       </form>
@@ -1411,6 +1455,66 @@ def contact():
   </div>
 </section>
 ''' + footer()
+
+# ================================================================ PRIVACY (PDPA 2010)
+# Shown on the page. When the notice changes, update this and PORTAL_PRIVACY_VERSION in portal/.env.
+PRIVACY_VERSION = "October 2026"
+
+PRIVACY_SECTIONS = [
+    ("p-who", "Who we are", """<p>BWS Engineering Sdn Bhd (597192-V), Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia, is responsible for the personal data described in this notice.</p>"""),
+    ("p-what", "What we collect", """<ul>
+        <li><strong>Enquiries:</strong> your name, company, email address, phone number, the service you are interested in and your message.</li>
+        <li><strong>Job applications:</strong> your name, email address, phone number, location, years of experience, the position you are applying for, your message, and your CV with anything it contains, such as qualifications, work history and certificates.</li>
+        <li><strong>Technical data:</strong> like most websites, our web host keeps short-term server logs (IP address, browser type, pages requested) to run the site securely. This website does not use advertising or tracking cookies.</li>
+      </ul>
+      <p>Fields marked with an asterisk (*) are required. If you do not provide them, we cannot reply to your enquiry or consider your application. Everything else is optional.</p>"""),
+    ("p-why", "Why we use it", """<ul>
+        <li>To reply to your enquiry and prepare quotations.</li>
+        <li>To assess your job application, contact you about it and, if you are hired, start your employment records.</li>
+        <li>To keep the website secure and prevent misuse of its forms.</li>
+        <li>To meet our legal and regulatory obligations.</li>
+      </ul>
+      <p>We do not sell your personal data or use it for marketing.</p>"""),
+    ("p-share", "Who we share it with", """<ul>
+        <li>BWS staff who need it to handle your enquiry or application.</li>
+        <li>Service providers that run our website, email and application system for us, under confidentiality obligations.</li>
+        <li>Government or regulatory authorities, where the law requires it.</li>
+      </ul>
+      <p>Some of these providers, such as our email services, may store data on servers outside Malaysia. Where that happens, we take reasonable steps to make sure your data is protected to a standard comparable to Malaysian law.</p>"""),
+    ("p-keep", "How long we keep it", """<ul>
+        <li><strong>Enquiries</strong> are kept for as long as needed to deal with them and for our business records.</li>
+        <li><strong>Job applications and CVs</strong> are deleted automatically 12 months after they are received, unless you join BWS. You can ask us to delete yours sooner.</li>
+      </ul>"""),
+    ("p-safe", "How we protect it", """<p>The website and application system use encrypted connections (HTTPS). CVs are stored privately and can only be opened by authorised BWS staff after logging in. Access is limited to the people who need it.</p>"""),
+    ("p-rights", "Your rights", """<p>You may ask us to:</p>
+      <ul>
+        <li>give you access to the personal data we hold about you;</li>
+        <li>correct data that is inaccurate, incomplete or out of date;</li>
+        <li>stop or limit using your data, or withdraw your consent (we may then be unable to continue with your enquiry or application);</li>
+        <li>delete your job application and CV.</li>
+      </ul>
+      <p>Email <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a> or write to our Miri office. We will reply within 21 days.</p>"""),
+    ("p-changes", "Changes to this notice", """<p>We may update this notice from time to time. The latest version is always on this page, with the date it was last updated.</p>"""),
+]
+
+def privacy():
+    blocks = "".join(f'''
+    <section aria-labelledby="{sid}">
+      <h2 id="{sid}">{title}</h2>
+      {body}
+    </section>''' for sid, title, body in PRIVACY_SECTIONS)
+    return head("privacy.html", "Privacy Notice | BWS Engineering Sdn Bhd",
+        "How BWS Engineering Sdn Bhd collects, uses and protects personal data under Malaysia’s Personal Data Protection Act 2010.") + header("") + page_hero(
+        "Privacy Notice", "Privacy notice",
+        "How we collect, use and protect your personal data, in line with the Personal Data Protection Act 2010.",
+        "hard-hat") + f'''
+
+<section class="section">
+  <div class="container measure privacy-doc">
+    <p class="lead">This notice explains what personal data BWS Engineering Sdn Bhd collects through this website, why we collect it, and the choices and rights you have. It is published in English and Bahasa Melayu.</p>
+    <p class="small">Last updated: {PRIVACY_VERSION}</p>{blocks}
+  </div>
+</section>''' + footer()
 
 def notfound():
     return head("404.html", "Page not found | BWS Engineering Sdn Bhd", "The page you were looking for could not be found.").replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex">') + header("") + f'''
@@ -1424,10 +1528,10 @@ def notfound():
 </section>''' + footer()
 
 for name, fn in [("index.html", home), ("about.html", about), ("services.html", services), ("clients.html", clients),
-                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("404.html", notfound)]:
+                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("privacy.html", privacy), ("404.html", notfound)]:
     write(name, fn())
 
-pages = ["", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html"]
+pages = ["", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html"]
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"  <url><loc>{SITE}/{p}</loc></url>\n" for p in pages) + "</urlset>\n")
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")

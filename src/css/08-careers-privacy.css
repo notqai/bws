@@ -1,0 +1,24 @@
+
+/* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
+.vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
+@media (min-width: 52rem) { .vacancies { grid-template-columns: 1fr 1fr; } }
+.vacancy { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); background: var(--white); border: 1px solid var(--steel-200); border-left: 4px solid var(--brand-blue); border-radius: var(--radius); }
+.vacancy h3 { margin: 0; font-size: var(--fs-h3); }
+.vacancy-meta { margin: 0; font-size: var(--fs-sm); color: var(--steel-600); }
+.vacancy p { margin: 0; }
+.vacancy ul { margin: 0; padding-left: 1.2rem; font-size: var(--fs-sm); }
+.vacancy .btn { align-self: flex-start; margin-top: auto; }
+.apply-online { scroll-margin-top: 6rem; }
+.field[hidden], .section[hidden] { display: none; }
+.apply-online .field { align-content: start; }
+.form-status[data-state="busy"] { background: var(--brand-cyan); color: var(--ink); border: 1px solid #B9E6EE; }
+.field--check { grid-template-columns: auto 1fr; align-items: start; column-gap: var(--space-3); }
+.field--check input { width: 1.25rem; height: 1.25rem; min-height: 0; margin: .15rem 0 0; accent-color: var(--brand-blue); }
+.field--check label { font-weight: 400; font-size: var(--fs-sm); color: var(--steel-800); }
+.field--check .field-error { grid-column: 1 / -1; }
+
+/* ---------- Privacy notice ---------- */
+.privacy-doc section { margin-top: var(--space-6); }
+.privacy-doc h2 { font-size: var(--fs-h3); margin-bottom: var(--space-3); }
+.privacy-doc ul { padding-left: 1.2rem; }
+.privacy-doc li + li { margin-top: var(--space-2); }

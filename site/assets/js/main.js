@@ -174,26 +174,35 @@
      Posts to the form's action (contact.php, or a Formspree endpoint) and reads the
      JSON reply. If no form handler answers (a static host without PHP, or offline),
      it falls back to a pre-filled email (mailto:) so the enquiry is never lost. */
+  // Shared by the contact and job application forms: flag each invalid required field, focus the first
+  var markField = function (input, ok) {
+    var err = document.getElementById(input.id + "-error");
+    input.setAttribute("aria-invalid", String(!ok));
+    if (err) err.hidden = ok;
+  };
+  var checkFields = function (f) {
+    var firstBad = null;
+    f.querySelectorAll("[required]:not(:disabled)").forEach(function (input) {
+      var ok = input.checkValidity();
+      markField(input, ok);
+      if (!ok && !firstBad) firstBad = input;
+    });
+    if (firstBad) firstBad.focus();
+    return !firstBad;
+  };
+  var statusSetter = function (f) {
+    var el = f.querySelector(".form-status");
+    return function (state, msg) {
+      el.hidden = false;
+      el.setAttribute("data-state", state);
+      el.textContent = msg;
+    };
+  };
+
   var form = document.querySelector("[data-contact-form]");
   if (form) {
-    var statusEl = form.querySelector(".form-status");
-    var setStatus = function (state, msg) {
-      statusEl.hidden = false;
-      statusEl.setAttribute("data-state", state);
-      statusEl.textContent = msg;
-    };
-    var validate = function () {
-      var firstBad = null;
-      form.querySelectorAll("[required]").forEach(function (input) {
-        var err = document.getElementById(input.id + "-error");
-        var ok = input.checkValidity();
-        input.setAttribute("aria-invalid", String(!ok));
-        if (err) err.hidden = ok;
-        if (!ok && !firstBad) firstBad = input;
-      });
-      if (firstBad) firstBad.focus();
-      return !firstBad;
-    };
+    var setStatus = statusSetter(form);
+    var validate = function () { return checkFields(form); };
     var sendByEmail = function (data) {
       // No form handler available: let the visitor send it with Gmail, Outlook or their mail app
       var to = form.getAttribute("data-mailto") || "bws@bwsengineeringsb.com";
@@ -277,6 +286,131 @@
   if (svcKey) {
     var opt = document.querySelector('#f-service option[data-key="' + svcKey + '"]');
     if (opt) opt.selected = true;
+  }
+
+  /* ---- Careers: vacancies and online application, from the BWS Portal (Laravel, portal/) ----
+     The section stays hidden unless the portal answers, so the "Send your CV" email
+     option keeps working on its own. Vacancy text is inserted with textContent only. */
+  var openings = document.querySelector("[data-portal]");
+  var applyForm = document.querySelector("[data-apply-form]");
+  if (openings && applyForm && window.fetch && window.FormData) {
+    var portal = openings.getAttribute("data-portal").replace(/\/$/, "");
+    var vacList = openings.querySelector("[data-vacancies]");
+    var vacSelect = applyForm.querySelector("#a-vacancy");
+    var otherField = applyForm.querySelector("[data-position-other]");
+    var otherInput = otherField.querySelector("input");
+    var setApplyStatus = statusSetter(applyForm);
+    var CV_MAX = 5 * 1024 * 1024;
+    var el = function (tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text) n.textContent = text;
+      return n;
+    };
+    var fmtDate = function (iso) {
+      return new Date(iso + "T00:00:00").toLocaleDateString(BM ? "ms-MY" : "en-MY", { day: "numeric", month: "long", year: "numeric" });
+    };
+    var syncPosition = function () {
+      var general = !vacSelect.value;
+      otherField.hidden = !general;
+      otherInput.disabled = !general;
+      if (!general) markField(otherInput, true);
+    };
+    var choose = function (id) {
+      vacSelect.value = String(id);
+      syncPosition();
+      document.getElementById("apply-online").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      applyForm.querySelector("#a-name").focus({ preventScroll: true });
+    };
+    vacSelect.addEventListener("change", syncPosition);
+
+    fetch(portal + "/api/vacancies", { headers: { Accept: "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) return;
+        var vs = j.vacancies || [];
+        vs.forEach(function (v) {
+          var li = el("li", "vacancy");
+          li.appendChild(el("h3", "", v.title));
+          var meta = [v.location, v.employment_type, v.discipline].filter(Boolean);
+          if (v.closes_on) meta.push(T("Closes ", "Tutup ") + fmtDate(v.closes_on));
+          li.appendChild(el("p", "vacancy-meta", meta.join(" · ")));
+          li.appendChild(el("p", "", v.summary));
+          if (v.requirements && v.requirements.length) {
+            var ul = el("ul");
+            v.requirements.forEach(function (r) { ul.appendChild(el("li", "", r)); });
+            li.appendChild(ul);
+          }
+          var b = el("button", "btn btn--ghost", T("Apply for this position", "Mohon jawatan ini"));
+          b.type = "button";
+          b.setAttribute("aria-label", T("Apply for ", "Mohon jawatan ") + v.title);
+          b.addEventListener("click", function () { choose(v.id); });
+          li.appendChild(b);
+          vacList.appendChild(li);
+          var o = el("option", "", v.title + " (" + v.location + ")");
+          o.value = v.id;
+          vacSelect.appendChild(o);
+        });
+        openings.querySelector("[data-no-openings]").hidden = vs.length > 0;
+        openings.hidden = false;
+        var wanted = new URLSearchParams(location.search).get("vacancy");
+        if (wanted && vacSelect.querySelector('option[value="' + parseInt(wanted, 10) + '"]')) vacSelect.value = String(parseInt(wanted, 10));
+        syncPosition();
+      })
+      .catch(function () { /* portal not reachable: keep the email option only */ });
+
+    var APPLY_MSG = {
+      ok: ["Thank you. Your application has been received. Our recruitment team will contact you if your profile matches a suitable position.",
+           "Terima kasih. Permohonan anda telah diterima. Pasukan pengambilan kami akan menghubungi anda jika profil anda sesuai dengan jawatan yang ada."],
+      invalid: ["Please fill in the highlighted fields.", "Sila lengkapkan ruangan yang ditandakan."],
+      closed: ["This position has just closed. Please choose another position or send a general application.",
+               "Jawatan ini baru sahaja ditutup. Sila pilih jawatan lain atau hantar permohonan umum."],
+      rate: ["You have sent several applications in a short time. Please try again later.",
+             "Anda telah menghantar beberapa permohonan dalam masa yang singkat. Sila cuba lagi kemudian."],
+      fail: ["Sorry, your application could not be sent. Please email your CV to bwsesbhr@gmail.com instead.",
+             "Maaf, permohonan anda tidak dapat dihantar. Sila e-mel CV anda ke bwsesbhr@gmail.com."]
+    };
+    var say = function (key) { setApplyStatus(key === "ok" ? "ok" : "err", T(APPLY_MSG[key][0], APPLY_MSG[key][1])); };
+
+    applyForm.setAttribute("novalidate", "");
+    applyForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (applyForm.querySelector(".hp input").value) return; // spam honeypot
+      var cv = applyForm.querySelector("#a-cv"), file = cv.files && cv.files[0];
+      cv.setCustomValidity(file && (file.size > CV_MAX || !/\.(pdf|docx?)$/i.test(file.name)) ? "bad-file" : "");
+      if (!checkFields(applyForm)) { say("invalid"); return; }
+
+      var btn = applyForm.querySelector("[type=submit]");
+      btn.disabled = true;
+      setApplyStatus("busy", T("Sending your application…", "Menghantar permohonan anda…"));
+      fetch(applyForm.getAttribute("action"), { method: "POST", body: new FormData(applyForm), headers: { Accept: "application/json" } })
+        .then(function (r) {
+          return r.json().then(function (j) { return { status: r.status, j: j }; }, function () { return { status: r.status, j: null }; });
+        })
+        .then(function (res) {
+          var j = res.j || {};
+          if (j.ok) {
+            applyForm.reset();
+            applyForm.querySelectorAll("[aria-invalid]").forEach(function (input) { markField(input, true); });
+            syncPosition();
+            say("ok");
+          } else if (j.errors) {
+            // Server-side validation (422): flag the fields it names
+            var first = null;
+            Object.keys(j.errors).forEach(function (name) {
+              var input = applyForm.querySelector('[name="' + name + '"]');
+              if (input && input.id) { markField(input, false); if (!first) first = input; }
+            });
+            if (first) first.focus();
+            say("invalid");
+          } else if (j.error === "closed" || j.error === "rate") {
+            say(j.error);
+          } else {
+            say("fail");
+          }
+        }, function () { say("fail"); })
+        .finally(function () { btn.disabled = false; });
+    });
   }
 
   /* ---- Careers: build "Apply via email" links from each job title ---- */

@@ -21,3 +21,21 @@ jobs:
         run: python3 tools/check_site.py
       - name: Check the PHP form handler
         run: php -l site/contact.php
+
+  portal:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: portal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: mbstring, pdo_sqlite, fileinfo
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - run: cp .env.example .env && php artisan key:generate
+      - name: Code style
+        run: vendor/bin/pint --test
+      - name: Tests
+        run: php artisan test

@@ -8,7 +8,7 @@ from ms_strings import MS, MONTHS
 
 SITE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site")
 SITE = "https://www.bwsengineeringsb.com"
-PAGES = ["index.html", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "404.html"]
+PAGES = ["index.html", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html", "404.html"]
 missing = set()
 
 def tr(t):
