@@ -758,15 +758,17 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .logo-wall img { width: auto; height: auto; max-height: 48px; max-width: min(140px, 100%); }
 .logo-wall .client-textmark { min-width: 0; font-size: .9rem; }
 
-/* ---------- Static client logo strip (home) ---------- */
-.logo-strip { border-block: 1px solid var(--steel-200); }
-.logo-strip ul { list-style: none; margin-block: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5) clamp(1.5rem, 1rem + 2vw, 3rem); padding-block: var(--space-6); }
-.logo-strip li { display: flex; align-items: center; }
-.logo-strip img { height: 42px; width: auto; max-width: 140px; object-fit: contain; }
-@media (max-width: 40rem) { .logo-strip img { height: 32px; max-width: 104px; } .logo-strip ul { gap: var(--space-4) var(--space-5); } }
-@media (min-width: 64rem) {
-  .logo-strip ul { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--space-4); justify-items: center; }
-  .logo-strip li { width: 100%; justify-content: center; }
-  .logo-strip img { height: 36px; max-width: 100%; }
-}
-@media (min-width: 80rem) { .logo-strip img { height: 40px; } }
+/* ---------- Static client logo strip (home): same look as the old marquee, no motion ---------- */
+.marquee--static { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.marquee--static::-webkit-scrollbar { display: none; }
+.marquee--static ul { width: max-content; min-width: 100%; justify-content: center; }
+.marquee--static li { flex: none; }
+.marquee--static img { filter: none; opacity: 1; }
+.marquee--static:focus-visible { outline-offset: -3px; }
+.marquee--static img { height: 44px; max-height: none; width: auto; max-width: 150px; object-fit: contain; }
+.marquee--static ul { flex-wrap: nowrap !important; }
+@media (max-width: 40rem) { .marquee--static img { height: 36px; max-width: 120px; } .marquee--static ul { justify-content: flex-start; } }
+.marquee--static { -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); }
+.marquee--static li { padding: var(--space-5) clamp(.6rem, 1vw, 1.4rem); }
+@media (max-width: 75rem) { .marquee--static img { height: 34px; max-width: 120px; } }
+@media (max-width: 40rem) { .marquee--static { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); } .marquee--static li { padding-inline: 1rem; } }
