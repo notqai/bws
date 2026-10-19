@@ -302,7 +302,7 @@ Create `site/assets/css/card.css`:
    ========================================================================== */
 
 .card-page { background: var(--steel-100); min-height: 100vh; }
-.card { max-width: 440px; margin-inline: auto; background: var(--steel-50); box-shadow: var(--shadow-2); }
+.bcard { max-width: 440px; margin-inline: auto; background: var(--steel-50); box-shadow: var(--shadow-2); }
 
 /* Header */
 .card-head { background: var(--ink); color: var(--on-ink); padding: var(--space-6) var(--space-5) var(--space-5); text-align: center; }
@@ -325,15 +325,15 @@ Create `site/assets/css/card.css`:
 .card-section h2 { font: 700 var(--fs-xs)/1.2 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-600); margin: 0 0 var(--space-3); }
 
 /* Offices */
-.office { background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow-1); }
-.office + .office { margin-top: var(--space-3); }
-.office h3 { font: 700 var(--fs-base)/1.2 var(--font-head); color: var(--ink); margin: 0 0 var(--space-2); }
-.office address { font-style: normal; font-size: var(--fs-sm); color: var(--steel-800); margin: 0 0 var(--space-3); }
-.office ul { list-style: none; margin: 0 0 var(--space-3); padding: 0; font-size: var(--fs-sm); }
-.office li { padding: var(--space-1) 0; color: var(--steel-800); }
-.office a { color: var(--brand-blue); font-weight: 600; text-decoration: none; }
-.office a:hover { text-decoration: underline; }
-.office .btn { width: 100%; }
+.loc { background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow-1); }
+.loc + .loc { margin-top: var(--space-3); }
+.loc h3 { font: 700 var(--fs-base)/1.2 var(--font-head); color: var(--ink); margin: 0 0 var(--space-2); }
+.loc address { font-style: normal; font-size: var(--fs-sm); color: var(--steel-800); margin: 0 0 var(--space-3); }
+.loc ul { list-style: none; margin: 0 0 var(--space-3); padding: 0; font-size: var(--fs-sm); }
+.loc li { padding: var(--space-1) 0; color: var(--steel-800); }
+.loc a { color: var(--brand-blue); font-weight: 600; text-decoration: none; }
+.loc a:hover { text-decoration: underline; }
+.loc .btn { width: 100%; }
 
 /* Credentials */
 .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
@@ -472,7 +472,7 @@ Create `site/card/mazinah.html`:
 <link rel="stylesheet" href="../assets/css/card.css">
 </head>
 <body class="card-page">
-<main class="card">
+<main class="bcard">
 
   <header class="card-head">
     <img src="../assets/logo/logo-white.svg" alt="BWS Engineering Sdn Bhd" width="120" height="91">
@@ -511,7 +511,7 @@ Create `site/card/mazinah.html`:
   <section class="card-section" aria-labelledby="offices">
     <h2 id="offices">Offices</h2>
 
-    <article class="office">
+    <article class="loc">
       <h3>Miri: Main Office &amp; Workshop</h3>
       <address>Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia</address>
       <ul>
@@ -523,7 +523,7 @@ Create `site/card/mazinah.html`:
       <a class="btn btn--ghost" href="https://www.google.com/maps?cid=4214669276461699859" target="_blank" rel="noopener">Open in Maps</a>
     </article>
 
-    <article class="office">
+    <article class="loc">
       <h3>Bintulu: Office &amp; Fabrication Yard</h3>
       <address>Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak, Malaysia</address>
       <ul>
