@@ -772,3 +772,8 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .marquee--static li { padding: var(--space-5) clamp(.6rem, 1vw, 1.4rem); }
 @media (max-width: 75rem) { .marquee--static img { height: 34px; max-width: 120px; } }
 @media (max-width: 40rem) { .marquee--static { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); } .marquee--static li { padding-inline: 1rem; } }
+/* Exact sizes from the generator (--lw/--lh) */
+.marquee--static li { flex: 0 0 auto; }
+.marquee--static img { flex: none; width: var(--lw); height: var(--lh); max-width: none; max-height: none; object-fit: contain; }
+@media (max-width: 75rem) { .marquee--static img { width: calc(var(--lw) * .78); height: calc(var(--lh) * .78); max-width: none; } }
+@media (max-width: 40rem) { .marquee--static img { width: calc(var(--lw) * .8); height: calc(var(--lh) * .8); } }

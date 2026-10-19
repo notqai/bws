@@ -103,6 +103,10 @@ ORG_LD = {
 
 HEROES = {"index.html": "hero-column-erection"}
 
+import hashlib as _hl
+# Cache-busting version for CSS/JS: changes whenever either file changes
+ASSET_V = _hl.md5(open(OUT + "assets/css/styles.css", "rb").read() + open(OUT + "assets/js/main.js", "rb").read()).hexdigest()[:8]
+
 def head(page, title, desc, extra_ld=None):
     url = SITE + "/" + ("" if page == "index.html" else page)
     lds = [ORG_LD] + (extra_ld or [])
@@ -148,8 +152,8 @@ def head(page, title, desc, extra_ld=None):
 <link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONT_JAWI}">
-{preload}<link rel="stylesheet" href="assets/css/styles.css">
-<script src="assets/js/main.js" defer></script>
+{preload}<link rel="stylesheet" href="assets/css/styles.css?v={ASSET_V}">
+<script src="assets/js/main.js?v={ASSET_V}" defer></script>
 {ld}
 </head>'''
 
@@ -599,7 +603,12 @@ def home():
         key = logo
         if key in brands: brands[key][3].append(n)
         else: brands[key] = (logo, w, h, [n])
-    marq = lambda alt: "".join(f'<li>{client_logo(logo, w, h, ", ".join(names) if alt else "")}</li>' for logo, w, h, names in brands.values())
+    def strip_logo(logo, w, h, names):
+        # Exact display size per logo (44px tall, max 150px wide) so every browser lays the row out the same
+        dw = min(150, round(44 * w / h)); dh = round(dw * h / w)
+        return (f'<li style="--lw:{dw}px;--lh:{dh}px"><img src="assets/img/clients/{logo}" width="{dw}" height="{dh}" '
+                f'alt="{", ".join(names)}" loading="lazy" decoding="async"></li>')
+    marq = lambda alt: "".join(strip_logo(logo, w, h, names) for logo, w, h, names in brands.values())
     return head("index.html",
         "BWS Engineering Sdn Bhd | Oil &amp; Gas Construction &amp; Maintenance Contractor, Miri, Sarawak",
         "Bumiputera engineering construction and maintenance contractor for oil &amp; gas, based in Miri and Bintulu, Sarawak since 2002. PETRONAS licensed, CIDB registered, ISO 9001:2015 (TÜV NORD).") + header("index.html") + f'''
