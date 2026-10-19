@@ -192,6 +192,15 @@ Inner pages use blueprint-style line drawings (`site/assets/illustrations/*.svg`
 ### Security headers
 `vercel.json` sets a Content-Security-Policy, HSTS, X-Frame-Options, Referrer-Policy and Permissions-Policy, plus caching rules (`site/.htaccess` does the same on Apache/cPanel). If you add a new external service (analytics, a chat widget, another embed), add its domain to the CSP or the browser will block it.
 
+## Speed on slow connections and caching
+- **No outside requests on page load:** all three fonts, including the Jawi name (`assets/fonts/noto-naskh-arabic-500-jawi.woff2`, a 5 KB subset with only the letters of the name), are served from the site, so a slow phone connection never waits on Google Fonts. If the Jawi name changes, download a new subset for the new letters.
+- **Browser caching** (`vercel.json`, and `site/.htaccess` on cPanel): CSS and JS for a year (their URLs carry `?v=` with a hash of their contents, so every change gets a new URL); fonts for a year; photos and drawings for 30 days; the PDF for a day; HTML pages are always re-checked, so updates show immediately.
+- **Service worker** (`site/sw.js`, generated from `tools/sw_template.js`): keeps a copy of the stylesheet, script, fonts, logo and every page a visitor opens.
+  - Pages always try the network first. If it takes longer than 4 seconds and a saved copy exists, the saved copy is shown while the fresh one downloads.
+  - With no connection, visited pages still open, and others show `offline.html` (phone numbers and email).
+  - Each build changes its version, so the old copies of CSS/JS are replaced automatically. Forms, the BWS Portal and Google Maps always go to the network; nothing personal is stored.
+  - It only runs over HTTPS (or on localhost).
+
 ## Bahasa Melayu version
 The Malay site lives in `site/ms/` (e.g. `/ms/about.html`). The **EN | BM** button in the header switches between the same page in each language. Both versions carry `hreflang` links, and `sitemap.xml` lists both.
 - Pages are **generated automatically** from the English ones when you run `python3 tools/generate_site.py` (via `tools/build_ms.py`).

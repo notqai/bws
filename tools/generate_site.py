@@ -1,6 +1,6 @@
 # Page generator for the BWS static site: writes plain HTML into ../site.
 # Optional. If you edit the HTML files by hand, do NOT re-run this (it overwrites them).
-import json, os
+import json, os, re
 from urllib.parse import quote
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site") + "/"
@@ -68,7 +68,6 @@ NAV = [("index.html", "Home"), ("about.html", "About"), ("services.html", "Servi
 
 FONTS = ("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700"
          "&family=Source+Serif+4:wght@700&display=swap")
-FONT_JAWI = "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500&display=swap&text=" + quote(JAWI.replace(" ", ""))
 
 ORG_LD = {
     "@context": "https://schema.org",
@@ -159,8 +158,6 @@ def head(page, title, desc, extra_ld=None):
 <!-- Fonts -->
 <link rel="preload" href="assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONT_JAWI}">
 {preload}<link rel="stylesheet" href="assets/css/styles.css?v={ASSET_V}">
 <script src="assets/js/main.js?v={ASSET_V}" defer></script>
 {ld}
@@ -1811,6 +1808,33 @@ def capability():
 </html>
 '''
 
+def offline():
+    """Shown by the service worker when there is no connection and the page was never opened before."""
+    return head("offline.html", "Offline | BWS Engineering Sdn Bhd", "You are offline.").replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex">') + header("") + f'''
+<section class="section">
+  <div class="container measure">
+    {eyebrow("", "No connection")}
+    <h1>You’re offline</h1>
+    <p class="lead">This page hasn’t been saved on your device yet. Please check your connection and try again. Pages you have opened before will still work.</p>
+    <p lang="ms">Anda di luar talian. Sila semak sambungan anda dan cuba lagi.</p>
+    <p>Miri <a href="tel:+6085652743">085-652743</a> · Bintulu <a href="tel:+6086252476">086-252476</a> · <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></p>
+    <div class="btn-row"><a class="btn btn--primary" href="/">Home page</a></div>
+  </div>
+</section>''' + footer()
+
+def offline_page():
+    # Served in place of any page (also /ms/...), so every link and asset path must start at the site root
+    html = offline()
+    return re.sub(r'((?:src|href|srcset|imagesrcset)=")(?!https?:|/|#|mailto:|tel:|data:)', r"\1/", html).replace(", assets/", ", /assets/")
+
+def write_service_worker():
+    core = ["/offline.html", f"/assets/css/styles.css?v={ASSET_V}", f"/assets/js/main.js?v={ASSET_V}",
+            "/assets/fonts/source-sans-3-latin.woff2", "/assets/fonts/source-serif-4-700-latin.woff2",
+            "/assets/fonts/noto-naskh-arabic-500-jawi.woff2",
+            "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"]
+    tpl = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sw_template.js"), encoding="utf-8").read()
+    write("sw.js", tpl.replace("__VERSION__", ASSET_V).replace("__PRECACHE__", json.dumps(core)))
+
 def notfound():
     return head("404.html", "Page not found | BWS Engineering Sdn Bhd", "The page you were looking for could not be found.").replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex">') + header("") + f'''
 <section class="section">
@@ -1823,7 +1847,7 @@ def notfound():
 </section>''' + footer()
 
 for name, fn in [("index.html", home), ("about.html", about), ("services.html", services), ("clients.html", clients),
-                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("privacy.html", privacy), ("vendor.html", vendor), ("capability.html", capability), ("404.html", notfound)]:
+                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("privacy.html", privacy), ("vendor.html", vendor), ("capability.html", capability), ("offline.html", offline_page), ("404.html", notfound)]:
     write(name, fn())
 
 pages = ["", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html", "vendor.html"]
@@ -1834,6 +1858,8 @@ write("site.webmanifest", json.dumps({"name": "BWS Engineering Sdn Bhd", "short_
     {"src": "assets/logo/icon-192.png", "sizes": "192x192", "type": "image/png"},
     {"src": "assets/logo/icon-512.png", "sizes": "512x512", "type": "image/png"}],
     "theme_color": "#0A1240", "background_color": "#FFFFFF", "display": "browser"}, indent=2))
+
+write_service_worker()
 
 # Bahasa Melayu version (site/ms/) + language switch and hreflang on both versions
 import build_ms

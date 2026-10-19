@@ -499,4 +499,8 @@
     var subject = "Job Application – " + position;
     a.href = "mailto:bwsesbhr@gmail.com?subject=" + encodeURIComponent(subject);
   });
+  /* ---- Service worker (sw.js): keeps the site usable on slow or dropped connections ---- */
+  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+    window.addEventListener("load", function () { navigator.serviceWorker.register("/sw.js").catch(function () {}); });
+  }
 })();
