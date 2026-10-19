@@ -232,6 +232,31 @@
     });
   }
 
+  /* ---- Full project list: search + sector filter ---- */
+  var flBody = document.querySelector("[data-fl-body]");
+  if (flBody) {
+    var flRows = Array.prototype.slice.call(flBody.querySelectorAll("tr"));
+    var flSearch = document.querySelector("[data-fl-search]");
+    var flFilters = document.querySelector("[data-fl-filters]");
+    var flStatus = document.querySelector("[data-fl-status]");
+    var sector = "all";
+    var apply = function () {
+      var q = (flSearch.value || "").toLowerCase().trim(), shown = 0;
+      flRows.forEach(function (tr) {
+        var ok = (sector === "all" || tr.getAttribute("data-sector") === sector) && (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
+        tr.hidden = !ok; if (ok) shown++;
+      });
+      if (flStatus) flStatus.textContent = shown + " projects shown";
+    };
+    flSearch.addEventListener("input", apply);
+    flFilters.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-fl]"); if (!b) return;
+      sector = b.getAttribute("data-fl");
+      flFilters.querySelectorAll("button[data-fl]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      apply();
+    });
+  }
+
   /* ---- Careers: build "Apply via email" links from each job title ---- */
   document.querySelectorAll("[data-apply]").forEach(function (a) {
     var position = a.getAttribute("data-apply");

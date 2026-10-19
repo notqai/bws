@@ -681,3 +681,46 @@ a[href^="tel:"] { white-space: nowrap; }
 .equip-grid h3 { margin: var(--space-3) 0 var(--space-2); font-size: 1.1rem; color: var(--white); }
 .equip-grid p { margin: 0; font-size: var(--fs-sm); color: var(--on-ink-muted); }
 .related .link-arrow { margin-top: var(--space-3); font-size: var(--fs-sm); }
+
+/* ---------- Full project list ---------- */
+.full-list { margin-top: var(--space-7); border: 1px solid var(--steel-200); border-radius: var(--radius); background: var(--white); }
+.full-list > summary, .reg-detail > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); cursor: pointer; list-style: none; font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; color: var(--ink); }
+.full-list > summary::-webkit-details-marker, .reg-detail > summary::-webkit-details-marker { display: none; }
+.full-list > summary::after, .reg-detail > summary::after { content: "+"; flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--brand-blue); color: var(--white); font-family: var(--font-body); font-size: 1.3rem; line-height: 1; }
+.full-list[open] > summary::after, .reg-detail[open] > summary::after { content: "–"; }
+.full-list > summary:hover, .reg-detail > summary:hover { color: var(--brand-blue); }
+.full-list > :not(summary) { margin-inline: var(--space-5); }
+.full-list > :last-child { margin-bottom: var(--space-5); }
+.fl-tools { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); }
+.fl-tools input { width: 100%; min-height: 48px; padding: .7rem .9rem; font: inherit; border: 1px solid var(--steel-400); border-radius: var(--radius); }
+.fl-tools input:focus { outline: 3px solid var(--brand-sky); outline-offset: 0; border-color: var(--brand-blue); }
+.fl-tools .filters { margin: 0; }
+.fl-scroll { overflow-x: auto; border: 1px solid var(--steel-200); border-radius: var(--radius); }
+.fl-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.fl-table th { position: sticky; top: 0; background: var(--steel-50); text-align: left; padding: .7rem .9rem; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); border-bottom: 1px solid var(--steel-200); }
+.fl-table td { padding: .75rem .9rem; border-bottom: 1px solid var(--steel-100); vertical-align: top; color: var(--steel-800); }
+.fl-table tr:last-child td { border-bottom: 0; }
+.fl-table tr[hidden] { display: none; }
+.fl-year { white-space: nowrap; font-weight: 700; color: var(--brand-blue); font-variant-numeric: tabular-nums; }
+.fl-table td:nth-child(2) { color: var(--ink); font-weight: 600; }
+.fl-team { display: block; margin-top: 2px; font-weight: 400; font-size: var(--fs-xs); color: var(--steel-600); }
+@media (max-width: 40rem) { .fl-table thead { display: none; } .fl-table tr { display: grid; padding: .6rem 0; border-bottom: 1px solid var(--steel-100); } .fl-table td { border: 0; padding: .1rem .9rem; } }
+
+/* ---------- Org charts ---------- */
+.org-node--hse { background: var(--safety); border-color: var(--safety); color: var(--ink); }
+.org-split--sub { grid-template-columns: 1fr 1fr; gap: var(--space-3); align-items: start; }
+.org-split--sub .org-chain { gap: var(--space-4); }
+.org-split--sub .org-chain > li + li::before { top: calc(var(--space-4) * -1); height: var(--space-4); }
+.org-subtitle { margin: var(--space-8) 0 var(--space-1); }
+@media (min-width: 64rem) {
+  .org-sections { grid-template-columns: repeat(var(--cols, 5), 1fr); }
+  .org--project .org-top { padding-bottom: var(--gap); }
+  .org--project .org-top::after { height: var(--gap); }
+}
+
+/* ---------- Registration details ---------- */
+.reg-detail { margin-top: var(--space-5); border: 1px solid var(--steel-200); border-radius: var(--radius); background: var(--white); }
+.reg-detail > summary { font-size: 1.05rem; }
+.reg-codes { margin: 0; padding: 0 var(--space-5) var(--space-5); display: grid; gap: var(--space-4); }
+.reg-codes dt { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
+.reg-codes dd { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--ink); line-height: 1.5; }

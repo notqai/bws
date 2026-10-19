@@ -123,8 +123,15 @@ Most company facts now come from **BWS's own Company Profile (October 2026)**: p
 
 CIDB and TÜV NORD details were also checked against their public online registers.
 
+### Bintulu addresses (checked online, Oct 2026)
+- **Office:** Lot 782, Block 20 KLD, Jalan Tanjung Kidurong, 97007 Bintulu. Matches the old website, BWS's Google Maps listing and the profile.
+- **Fabrication yard:** Lot 124–128, Block 20 KLD, Jalan Kidurong, 97000 Bintulu. This is the workplace registered with DOSH (Grade A inspection, 2021); the profile says "Lot 128". The same address is also KPG Engineering's Bintulu site office.
+- The **ISO 45001 certificate (BSI)** lists "Sublot 1, Lot 802, Block 20 KLD", which matches no other record. **BWS should ask BSI to check it.**
+
 ### Key projects, awards and equipment
 - **Key projects** (`PROJECTS` in `tools/generate_site.py`): 29 selected from the profile's work-experience list. Projects marked "Ongoing" have end dates after Oct 2026, or are listed as ongoing in the profile. **Remove the Ongoing badge when a project completes.**
+- **Full project list** (`ALL_PROJECTS`, shown under "View all projects" on the Projects page): every work-experience entry from 2003 on, with team size where recorded. Entries 1–3 (1997–2001) pre-date incorporation and are left out; the profile has no entry 69.
+- **Org charts** (About page): company and project organisation from the profile (updated 10.26), with roles only.
 - **Awards** (`hse.html#awards`) and the **plant & equipment** summary (`services.html#equipment`) are summarised from the profile.
 
 ### Page header illustrations

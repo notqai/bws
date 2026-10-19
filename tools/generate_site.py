@@ -363,23 +363,139 @@ PROJECTS = [
      ["Steel structure", "Piping", "Insulation", "Painting"], ["mechanical"], False),
     ("2017 – 2019", "PETRONAS RAPID (PRPC)", "UIO facilities: underground pressurised non-metallic firewater network, 16 km of GRE pipeline", "Pengerang, Johor",
      ["GRE pipe laying &amp; lamination", "Excavation &amp; box culverts", "Hydrotest"], ["mechanical", "civil"], False),
-    ("2016 – 2017", "Malaysia LNG", "MLNG Dua Rejuvenation Project (WP2–WP4): piping, protective coating, insulation and scaffolding", "Bintulu, Sarawak",
-     ["Piping", "Coating", "Insulation"], ["mechanical"], False),
+    ("2016 – 2018", "Malaysia LNG", "Piping, protective coating, insulation, minor civil and scaffolding works, PETRONAS LNG Complex", "Bintulu, Sarawak",
+     ["Piping", "Coating", "Insulation", "Team of 296"], ["mechanical"], False),
     ("2014 – 2015", "PETRONAS Dagangan", "EPCC of the PDB Miri Fuel Terminal", "Miri, Sarawak",
      ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "civil"], False),
     ("2014 – 2015", "Shell MDS", "SMDS Rejuvenation Project 2015: mechanical work packages", "Bintulu, Sarawak",
      ["Steel structure", "Equipment", "Piping", "Insulation", "Painting"], ["mechanical"], False),
     ("2012 – 2013", "Malaysia LNG (Train 9 Project)", "New MLNG CSA office and warehouse, Jalan Kidurong", "Bintulu, Sarawak",
-     ["Building construction"], ["civil"], False),
+     ["Building construction", "Team of 160"], ["civil"], False),
     ("2007 – 2010", "PETRONAS Carigali, via Rekind–Simfoni consortium", "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2: piping, supports and painting", "Miri, Sarawak",
-     ["Piping", "Painting", "Pipe supports"], ["mechanical"], False),
+     ["Piping", "Painting", "E&amp;I", "Teams of up to 150", "3.9 million man-hours"], ["mechanical"], False),
     ("2008", "Sabah Shell Petroleum", "Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal", "Labuan",
      ["Mechanical installation", "Tie-in", "Commissioning"], ["mechanical", "plant"], False),
     ("2005 – 2006", "PETRONAS Dagangan", "EPCC of the aviation depot at Bintulu Airport", "Bintulu, Sarawak",
      ["Engineering", "Procurement", "Construction", "Commissioning"], ["plant", "civil"], False),
     ("2003 – 2005", "Sarawak Shell", "Turnkey minor civil works, Bintulu Integrated Facilities: control centre revamp and pipe bridges", "Bintulu, Sarawak",
-     ["Design", "Procurement", "Construction", "Commissioning"], ["civil"], False),
+     ["Design", "Procurement", "Construction", "Commissioning", "237,296 man-hours"], ["civil"], False),
 ]
+
+# Full work-experience list from the BWS Company Profile (Oct 2026), entries 4–81 (no. 69 is not used in the
+# profile; entries 1–3 pre-date incorporation and are left out). Sector: "og" = oil, gas &amp; petrochemical,
+# "gov" = government &amp; infrastructure. No contract sums or contact persons.
+ALL_PROJECTS = [
+    (4, "2003 – 2005", "Minor civil construction works (turnkey) for Bintulu Integrated Facilities", "Sarawak Shell Berhad", "og"),
+    (5, "2005 – 2006", "EPCC of the PETRONAS Dagangan aviation depot, Bintulu Airport", "PETRONAS Dagangan Berhad", "og"),
+    (6, "2006 – 2007", "EPCC for upgrading the loading metering system, Sibu Depot", "PETRONAS Dagangan Berhad", "og"),
+    (7, "2006 – 2007", "EPCC of the fire-fighting system and other works, Miri Aviation Depot", "PETRONAS Dagangan Berhad", "og"),
+    (8, "2007 – 2011", "Price agreement for civil and mechanical maintenance of PETRONAS service stations, Sarawak", "PETRONAS Dagangan Berhad", "og"),
+    (9, "2007", "On-call general civil and building maintenance, PCSB Sarawak Operations", "PETRONAS Carigali Sdn Bhd", "og"),
+    (10, "2007", "MCOT Rejuvenation Phase 2: shop fabrication of carbon steel piping", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (11, "2007 – 2008", "MCOT Rejuvenation Phase 2: blasting and painting works", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (12, "2008", "MCOT Rejuvenation Phase 2: pipe installation works", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (13, "2008 – 2011", "Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal", "Sabah Shell Petroleum Co. Ltd", "og"),
+    (14, "2008", "UHP water jetting services using the abseiling method", "Petra Resources Sdn Bhd", "og"),
+    (15, "2008 – 2010", "PC30046 Tiga Field Station extension, MLNG Tiga plant", "Malaysia LNG Sdn Bhd", "og"),
+    (16, "2008 – 2009", "Temporary camp facilities (Camp 6), Lapok – Long Lama Road", "Punj Lloyd Oil &amp; Gas (Malaysia) Sdn Bhd", "og"),
+    (17, "2008 – 2009", "MCOT Rejuvenation Phase 2: cable tray and pipe support works", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (18, "2008 – 2009", "Clearing, grading and earthworks for the Bintulu Compressor Station", "Punj Lloyd Oil &amp; Gas (Malaysia) Sdn Bhd", "og"),
+    (19, "2009", "Improvement works at MLNG Tiga upstream and process areas", "Malaysia LNG Sdn Bhd", "og"),
+    (20, "2009 – 2010", "PC12350 Terminal Field Station extension", "Malaysia LNG Sdn Bhd", "og"),
+    (21, "2009", "PC12303 installation of new headers at B-Track", "Malaysia LNG Sdn Bhd", "og"),
+    (22, "2009", "Replacement of the Trunkline 1 beach valve hydraulic unit, MOVs and sphere receiver door", "Malaysia LNG Sdn Bhd", "og"),
+    (23, "2009 – 2011", "MCOT Rejuvenation Phase 2: piping installation, blasting and painting", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (24, "2009 – 2011", "MCOT Rejuvenation Phase 2: electrical and instrumentation installation", "PETRONAS Carigali, via Rekind–Simfoni consortium", "og"),
+    (25, "2009", "Classroom and teachers’ quarters cabins, furniture and equipment, 2nd Economic Stimulus Package", "Ministry of Education, Development Division", "gov"),
+    (26, "2011", "PC12399 new blast-resilient turnaround office building, PETRONAS LNG Complex", "Malaysia LNG Sdn Bhd", "og"),
+    (27, "2011", "Kumang Cluster onshore tie-in at MLNG-2 and Bintulu Integrated Facilities", "PETRONAS Carigali, via Petra Resources", "og"),
+    (28, "2011", "PC20555 MCHE tube leaks improvement", "Malaysia LNG Sdn Bhd", "og"),
+    (29, "2011 – 2012", "Above-ground piping work, C1/U1 area", "Shinko Plantech Co. Ltd (Malaysia)", "og"),
+    (30, "2012", "Replacement of 30\" and 24\" slugcatcher valves at SC1 and two new vessels", "Malaysia LNG Sdn Bhd", "og"),
+    (31, "2012", "Temporary facilities for the MLNG &amp; MLNG Dua New Common Reclaimer Project", "JGC SP (M) Sdn Bhd", "og"),
+    (32, "2012 – 2013", "New MLNG CSA office and warehouse, Jalan Kidurong (LNG Train 9 Project)", "PETRONAS LNG 9 Sdn Bhd", "og"),
+    (33, "2012 – 2013", "Steel structure, equipment, piping, insulation and painting, New Common Reclaimer Project", "JGC SP (M) Sdn Bhd", "og"),
+    (34, "2012 – 2015", "Fabrication and welding services for plant changes, PETRONAS LNG Complex", "Malaysia LNG Sdn Bhd", "og"),
+    (35, "2013", "Piping and pipe support installation at MLNG 2 &amp; 3, DGDM Project", "Aqeel Engineering &amp; Construction Sdn Bhd", "og"),
+    (36, "2013 – 2014", "EPCC of metering facilities for backloading, Tanjung Manis OGC Jetty, Mukah", "Assar Senary", "og"),
+    (37, "2014", "Acid gas removal unit cleaning and pipe welding, MLNG Turnaround 2014", "Malaysia LNG Sdn Bhd", "og"),
+    (38, "2014", "Scaffolding for steel structure and equipment erection, PETRONAS LNG Train 9", "Nippon Express Co. Ltd", "og"),
+    (39, "2014 – 2015", "General civil and concrete structures, SMDS Rejuvenation Project 2015", "Shell MDS (Malaysia) Sdn Bhd", "og"),
+    (40, "2014 – 2015", "Procurement and construction of PTA village infrastructure", "Shell MDS (Malaysia) Sdn Bhd", "og"),
+    (41, "2014 – 2015", "New main switchboard at Substation 7 and associated works", "Sarawak Shell Berhad", "og"),
+    (42, "2014 – 2015", "EPCC of the PDB Miri Fuel Terminal", "PETRONAS Dagangan Berhad", "og"),
+    (43, "2014 – 2015", "Mechanical work package Phase 1, SMDS Rejuvenation Project", "Shell MDS (Malaysia) Sdn Bhd", "og"),
+    (44, "2016", "MLNG Dua Rejuvenation Project (WP2–WP4): manpower, tools, scaffolding and NDT", "GE Oil and Gas", "og"),
+    (45, "2016 – 2018", "Piping and associated work, PETRONAS LNG Complex", "Malaysia LNG Sdn Bhd", "og"),
+    (46, "2016 – 2017", "Demolition of the existing MLNG reclaimer unit (U-1200)", "Malaysia LNG Sdn Bhd", "og"),
+    (47, "2017 – 2018", "LV main switchboards and underground cabling for the electrical distribution system, Miri", "Sarawak Shell Berhad", "og"),
+    (48, "2017 – 2018", "Scaffolding systems for UIO facilities, RAPID", "PRPC Utilities &amp; Facilities, via OUI JV", "og"),
+    (49, "2017 – 2019", "Rural water supply from Kampung Manggut to Kampung Supa, Medang, Tuie and Serabang, Betong", "Ministry of Rural and Regional Development (KKLW)", "gov"),
+    (50, "2017 – 2018", "Refurbishment of Café Kemboja and lab pantry", "Shell MDS (Malaysia) Sdn Bhd", "og"),
+    (51, "2017 – 2020", "RAPID UIO facilities: underground pressurised non-metallic firewater network", "PRPC Utilities &amp; Facilities Sdn Bhd", "og"),
+    (52, "2018", "Decommissioning and removal of gas engine compressor skid Q, Bintulu Onshore Receiving Facility", "Murphy Sarawak Oil Co. Ltd", "og"),
+    (53, "2018 – 2019", "Mechanical work package, Clean Air Regulation Project (wet gas scrubber facilities)", "JGC SP (M) Sdn Bhd, for Hengyuan Refining", "og"),
+    (54, "2019 – 2022", "Structure improvement at the offsite plant, ASEAN Bintulu Fertilizer", "PETRONAS Project Delivery &amp; Technology", "og"),
+    (55, "2019 – 2024", "Minor construction and modification works for PETRONAS onshore facilities", "PETRONAS Strategic Procurement (Downstream)", "og"),
+    (56, "2019 – 2025", "Miri Water Supply Source Development Phase 2, Sarawak Water Grid Programme", "Jabatan Bekalan Air Luar Bandar Sarawak", "gov"),
+    (57, "2019 – 2021", "Kampung Sadong Jaya Extension (upgrading): earth filling, roads and drainage, Samarahan", "Land and Survey Department, Sarawak", "gov"),
+    (58, "2019 – 2021", "Two-year term contract for non-metallic piping rectification at PRPC UF", "PRPC Utilities &amp; Facilities Sdn Bhd", "og"),
+    (59, "2019 – 2023", "EPCC of the gasoline and NGL metering skid upgrades, MLNG Dua", "Malaysia LNG Sdn Bhd", "og"),
+    (60, "2020 – 2024", "Term contract, Sabah Sarawak Mechanical (Package B): pipeline rehabilitation and repair", "PETRONAS Carigali Sdn Bhd", "og"),
+    (61, "2020", "Piping works for DELIMA Unit 41 (greenfield)", "Melaka Refinery Diesel Euro 5 Project", "og"),
+    (62, "2020 – 2021", "EPCC of Kenyalang Project 2.0: tie-ins and associated facilities, PETRONAS LNG Complex", "Malaysia LNG Sdn Bhd", "og"),
+    (63, "2020 – 2023", "Site clearing, earthworks and infrastructure, Sematan Industrial Area Phase I", "Ministry of International Trade and Industry", "gov"),
+    (64, "2020 – 2021", "OSBL piping construction, Hengyuan Refining Euro IV project", "HQC Engineering Malaysia Sdn Bhd", "og"),
+    (65, "2022 – 2024", "Full replacement of 12 classrooms and facilities, SK Jalan Haji Baki, Padawan", "Jabatan Kerja Raya Malaysia", "gov"),
+    (66, "2022 – 2023", "EPCIC of a shelter, Bintulu Onshore Receiving Facility", "PTTEP", "og"),
+    (67, "2022", "Demolition of old solvent concrete tank T-1203, PETRONAS LNG Complex", "Malaysia LNG Sdn Bhd", "og"),
+    (68, "2022 – 2025", "EPCC of the Power Import Project (Transgrid-BWS JV)", "Malaysia LNG Sdn Bhd", "og"),
+    (70, "2023 – 2024", "Shell OGP Project: underground process piping", "Samsung E&amp;A, for Sarawak Shell", "og"),
+    (71, "2023 – 2024", "Procurement, construction and commissioning of a piping system (PC40008)", "PETRONAS Carigali Sdn Bhd", "og"),
+    (72, "2023 – 2026", "Shell OGP Project: pipeline and brownfield work", "Samsung E&amp;A, for Sarawak Shell", "og"),
+    (73, "2023 – 2026", "50 Rumah Spektra Permata houses, Gedong Baru, Samarahan (IBS)", "Housing Development Corporation", "gov"),
+    (74, "2024 – 2025", "Removal and disposal of three vessels at the PM5 metering station, Miri", "PETRONAS Gas Berhad", "og"),
+    (75, "2024", "Upgrade of the Train 9 LNG rundown flow meter to allocation metering", "Malaysia LNG Sdn Bhd", "og"),
+    (76, "2024", "EPCIC of the Sipitang scraper station at KP91, Sabah Sarawak Gas Pipeline", "PETRONAS Carigali Sdn Bhd", "og"),
+    (77, "2024 – 2026", "Shell OGP Project: Bintulu Integrated Facilities area work", "Samsung E&amp;A, for Sarawak Shell", "og"),
+    (78, "2025 – 2027", "Highland Development Agency Package 5: water supply and electricity infrastructure, Bario / Mulu / Telang Usan", "Regional Corridor Development Authority (RECODA)", "gov"),
+    (79, "2025 – 2028", "Road from Kampung Murud Suang to the Kampung Long Pos junction, Lawas", "Ministry of Rural and Regional Development", "gov"),
+    (80, "2026 – 2027", "Multi-mechanical package MECH03 for Project Rejuv", "Shell MDS (Malaysia) Sdn Bhd", "og"),
+    (81, "2026 – 2027", "Compressed-air pressurisation for pipeline pre-decommissioning, Lawas", "PETRONAS Carigali Sdn Bhd", "og"),
+]
+
+# Team size per entry, where the profile records it ("Manpower")
+MANPOWER = {4: 90, 5: 50, 6: 20, 7: 30, 8: 15, 9: 10, 10: 77, 11: 15, 12: 151, 13: 30, 14: 10, 15: 70, 16: 27, 17: 36, 18: 12,
+            19: 20, 20: 80, 21: 50, 22: 84, 23: 150, 24: 80, 25: 40, 26: 50, 27: 12, 28: 10, 29: 12, 30: 20, 31: 12, 32: 160,
+            33: 100, 34: 20, 35: 70, 36: 48, 37: 50, 39: 50, 40: 70, 41: 20, 42: 60, 45: 296, 46: 30}
+
+def full_project_list():
+    n = len(ALL_PROJECTS)
+    rows = "".join(
+        f'<tr data-sector="{sec}"><td class="fl-year">{yrs}</td><td>{title}{f"<span class=\"fl-team\">Team of {MANPOWER[no]}</span>" if no in MANPOWER else ""}</td><td>{client}</td></tr>'
+        for no, yrs, title, client, sec in reversed(ALL_PROJECTS))
+    og = sum(1 for x in ALL_PROJECTS if x[4] == "og"); gov = n - og
+    return f'''
+    <details class="full-list" id="all-projects">
+      <summary>View all {n} projects since 2003</summary>
+      <div class="fl-tools">
+        <label class="visually-hidden" for="fl-search">Search projects</label>
+        <input id="fl-search" type="search" placeholder="Search by project or client, e.g. MLNG, pipeline, water" data-fl-search>
+        <div class="filters" role="group" aria-label="Filter by sector" data-fl-filters>
+          <button class="filter-btn" type="button" data-fl="all" aria-pressed="true">All<span class="count">({n})</span></button>
+          <button class="filter-btn" type="button" data-fl="og" aria-pressed="false">Oil, gas &amp; petrochemical<span class="count">({og})</span></button>
+          <button class="filter-btn" type="button" data-fl="gov" aria-pressed="false">Government &amp; infrastructure<span class="count">({gov})</span></button>
+        </div>
+      </div>
+      <p class="visually-hidden" role="status" data-fl-status></p>
+      <div class="fl-scroll">
+        <table class="fl-table">
+          <thead><tr><th scope="col">Years</th><th scope="col">Project</th><th scope="col">Client</th></tr></thead>
+          <tbody data-fl-body>{rows}</tbody>
+        </table>
+      </div>
+      <p class="small mt-5 mb-0">From BWS’s work-experience record. Contract values are available to procurement teams on request.</p>
+    </details>'''
 
 def project_rows(items, compact=False):
     out = ""
@@ -689,8 +805,7 @@ def about():
     <div class="section-head">
       <div>{eyebrow("04", "Organisation")}<h2 id="org-title">Organisation chart</h2></div>
     </div>
-    <!-- ORGANISATION CHART: from BWS's own chart on the old website (page /about2).
-         Each column is one section; edit the <li> text to update roles. -->
+    <!-- ORGANISATION CHARTS: structure from the BWS Company Profile (updated 10.26). Roles only, no names. -->
     <figure class="org" aria-labelledby="org-title">
       <div class="org-top">
         <div class="org-node org-node--lead">Managing Director</div>
@@ -699,9 +814,23 @@ def about():
       <ul class="org-sections" role="list">
         <li><ol class="org-chain"><li class="org-node org-node--section">Personnel &amp; Administration Section</li><li class="org-node">Personnel &amp; Administration Manager</li><li class="org-node">Administration Support</li><li class="org-split"><span class="org-node org-node--leaf">Miri Office</span><span class="org-node org-node--leaf">Bintulu Office</span></li></ol></li>
         <li><ol class="org-chain"><li class="org-node org-node--section">Account Section</li><li class="org-node">Accounts Manager</li><li class="org-node">Accounts Assistants</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Project Section</li><li class="org-node">Project Manager</li><li class="org-node">Project Team</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Contract / Procurement Section</li><li class="org-node">Contract / Procurement Manager</li><li class="org-node">Contract / Procurement Support</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Engineering / Contract Section</li><li class="org-split org-split--sub"><ol class="org-chain"><li class="org-node">Engineering / Project</li><li class="org-node">Project Manager</li><li class="org-node org-node--leaf">Project Team</li></ol><ol class="org-chain"><li class="org-node">Contract / Procurement</li><li class="org-node">Contract Manager</li><li class="org-node org-node--leaf">Procurement</li></ol></li></ol></li>
         <li><ol class="org-chain"><li class="org-node org-node--section">Quality Assurance Section</li><li class="org-node">Quality Management Representative (QMR)</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">Health, Safety &amp; Environment Section</li><li class="org-node">HSE Officer</li><li class="org-split"><span class="org-node org-node--leaf">Site Safety Supervisors</span><span class="org-node org-node--leaf">HSE Committee</span></li></ol></li>
+      </ul>
+    </figure>
+
+    <h3 class="org-subtitle" id="porg-title">Project organisation</h3>
+    <p class="small">How BWS staffs a typical project.</p>
+    <figure class="org org--project" aria-labelledby="porg-title">
+      <div class="org-top"><div class="org-node org-node--lead">Project Manager</div></div>
+      <ul class="org-sections" role="list" style="--cols: 6">
+        <li><ol class="org-chain"><li class="org-node org-node--section">Engineering Design</li><li class="org-node org-node--leaf">Consultant</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Quantity Surveyor</li><li class="org-node">Material Coordinator</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Planning &amp; Measurement Engineers</li><li class="org-node">Document Controller</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Construction Superintendent</li><li class="org-node">Construction Engineers</li><li class="org-node">Construction Supervisor</li><li class="org-node org-node--leaf">Civil &amp; Structural · Mechanical &amp; Piping · E&amp;I teams</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">QA/QC Engineer</li><li class="org-node">QA/QC Inspectors</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">HSE Manager</li><li class="org-node">Site Safety Supervisors</li></ol></li>
       </ul>
     </figure>
   </div>
@@ -811,6 +940,8 @@ GALLERY = [
     ("civil", "miri-water-baram-intake", 632, 499, "Batang Baram intake", "Aerial view of the Batang Baram intake structure under construction"),
     ("mech", "miri-water-submarine-pipes", 474, 447, "Launching twin 1.2 m submarine pipes", "Twin 1.2 m pipes being launched into the river from a steel frame"),
     ("mech", "pipeline-joint-hillside", 507, 380, "Pipeline installation", "Workers in PPE joining a large pipeline on a cleared hillside"),
+    ("plant", "project-shelter", 445, 333, "Shelter structure at an onshore facility", "Steel-framed shelter with a roof canopy beside a process facility"),
+    ("hse", "pdb-team", 465, 315, "Project team at a PETRONAS Dagangan site", "Project team in coveralls and hard hats gathered at a PETRONAS Dagangan site"),
     ("hse", "miri-water-team", 710, 447, "Project team, Miri Water Supply", "Project team in hi-vis vests and hard hats beside a large pipeline"),
     ("hse", "award-msosh-gold", 523, 367, "MSOSH Gold Class 1 Award", "Award ceremony on stage for the MSOSH Gold Class 1 Award, Power Import Project for MLNG"),
     ("hse", "award-46m-safe-manhours", 466, 311, "46 million safe man-hours", "BWS representatives receiving recognition for contributions to 46 million safe man-hours"),
@@ -877,6 +1008,7 @@ def projects():
     <!-- KEY PROJECTS: edit the PROJECTS list in tools/generate_site.py, or edit the <li class="proj"> items below. -->
     <ol class="proj-list" role="list">{project_rows(PROJECTS)}
     </ol>
+    {full_project_list()}
   </div>
 </section>
 
@@ -1033,6 +1165,19 @@ def hse():
       <li><strong>CIDB SCORE</strong><span>3-star rating for 2025 from CIDB and SME Corp: good management and technical capability</span></li>
       <li><strong>SSM</strong><span>Company no. 200201029529 (597192-V), incorporated 29 October 2002</span></li>
     </ul>
+    <details class="reg-detail">
+      <summary>Registration details for procurement teams</summary>
+      <dl class="reg-codes">
+        <div><dt>CIDB G7 specialisations: Building</dt><dd>B01 · B02 · B04 · B05 · B12</dd></div>
+        <div><dt>CIDB G7 specialisations: Civil Engineering</dt><dd>CE01 · CE02 · CE03 · CE09 · CE20 · CE21 · CE36 · CE41</dd></div>
+        <div><dt>CIDB G7 specialisations: Mechanical &amp; Electrical</dt><dd>E03 · E05 · E06 · E10 · E11 · E16 · E32 · M01 · M02 · M12 · M14 · M15 · M20 · M21</dd></div>
+        <div><dt>PETRONAS licence codes</dt><dd>15141911S non-metallic piping · 15141700S onshore pipeline · 27131100S onshore pipeline inspection &amp; repair · 24241010S cleaning, repair &amp; maintenance · 27111000S minor onshore fabrication · 11141700S slope protection · 15141610S major fabrication · 15141910S metallic piping (carbon &amp; stainless steel)</dd></div>
+        <div><dt>PETROS work categories</dt><dd>SB200001 building &amp; structure construction · SO100005 onshore maintenance, construction &amp; modification (minor onshore fabrication) · SK500007 onshore pipeline fabrication &amp; construction</dd></div>
+        <div><dt>MOF supply / service fields</dt><dd>020101 furniture &amp; fittings · 080101 civil engineering, construction &amp; public amenities equipment · 220502 maintenance &amp; repair of containers and tanks · 220503 electrical systems and equipment · 220506 fuel tank repair · 220507 pumps, water pipes &amp; components</dd></div>
+        <div><dt>DOSH competent firm scope</dt><dd>KPD 01 onshore pipeline · KPD 02 onshore reticulation piping (registration JKKP/2022/26/76)</dd></div>
+        <div><dt>UPKJ Sarawak</dt><dd>Certificate UPKJ/W/021609 · Class A · Rescue Contractor for the works and mechanical fields (2026)</dd></div>
+      </dl>
+    </details>
   </div>
 </section>
 
@@ -1051,11 +1196,18 @@ def hse():
       <li class="award"><span class="award-year">2023</span><h3>Samsung E&amp;A appreciation</h3><p>For contribution to the National OSH Award by NCOSH on the Rosmari-Marjoram Onshore Gas Plant Project.</p></li>
       <li class="award"><span class="award-year">2022</span><h3>IRSO West Coast Mega HSE Council</h3><p>Top 5 Best Project HSE Performance, Sabah Sarawak Gas Pipeline KP220 &amp; KP265.</p></li>
       <li class="award"><span class="award-year">2022</span><h3>PETRONAS certificate of appreciation</h3><p>Successful completion of the mechanical scope, 30" SSGP pipeline replacement at KP220.</p></li>
+      <li class="award"><span class="award-year">2021</span><h3>DOSH Grade A workplace</h3><p>Grade A (score 92) in the DOSH Sarawak workplace inspection of the Bintulu yard.</p></li>
       <li class="award"><span class="award-year">2020</span><h3>PETRONAS Focused Recognition</h3><p>Work completed 25 days ahead of schedule with zero LTI and within cost.</p></li>
+      <li class="award"><span class="award-year">2018</span><h3>PRPC Focused Recognition</h3><p>PETRONAS Refinery &amp; Petrochemical Corporation, for the underground GRE firewater installation in Area East, RAPID.</p></li>
+      <li class="award"><span class="award-year">2015</span><h3>400,000 exposure hours without LTI</h3><p>Shell MDS certificates of appreciation (200,000 and 400,000 hours), SMDS Rejuvenation Project 2015.</p></li>
       <li class="award"><span class="award-year">2013</span><h3>PETRONAS Best HSE Practice, Gold</h3><p>FED HSE Awareness Day, for dedication and commitment to safety at the workplace.</p></li>
+      <li class="award"><span class="award-year">2013</span><h3>MLNG &amp; MLNG Dua Contractor HSE Award</h3><p>New Common Reclaimer Project, incident and injury free from Feb to Oct 2013.</p></li>
+      <li class="award"><span class="award-year">2013</span><h3>MLNG Tiga ROSE Contractor HSE Award</h3><p>Injury and environmental incident free from Feb 2012 to May 2013.</p></li>
+      <li class="award"><span class="award-year">2012</span><h3>250,000 man-hours LTI-free</h3><p>Milestone on the MLNG ROSE Project, recognised by JGC SP (M).</p></li>
       <li class="award"><span class="award-year">2011</span><h3>MLNG HSE Excellence Recognition</h3><p>Malaysia LNG, for significant contribution through excellent HSE performance.</p></li>
       <li class="award"><span class="award-year">2010</span><h3>3,000,000 man-hours without LTI</h3><p>HSE Award from the Rekind–Simfoni consortium, MCOT Rejuvenation Project Phase 2.</p></li>
       <li class="award"><span class="award-year">2005</span><h3>237,296 man-hours without LTI</h3><p>Sarawak Shell certificate of appreciation, Bintulu Integrated Facilities.</p></li>
+      <li class="award"><span class="award-year">Recognition</span><h3>46 million safe man-hours</h3><p>Honoured for our contribution to a project milestone of 46 million safe man-hours.</p></li>
     </ul>
   </div>
 </section>
@@ -1203,7 +1355,7 @@ def contact():
             <li>{icon("phone")}<a href="tel:+6086252476">086-252476</a></li>
             <li>{icon("mail")}<span><a href="mailto:bwsesb@gmail.com">bwsesb@gmail.com</a><br><a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a></span></li>
           </ul>
-          <p class="mt-4 small mb-0"><strong>Fabrication yard:</strong> Lot 128, Block 20, Kemena Land District, Kidurong Industrial Area, 97000 Bintulu, Sarawak</p>
+          <p class="mt-4 small mb-0"><strong>Fabrication yard:</strong> Lot 124–128, Block 20, Kemena Land District, Jalan Kidurong, 97000 Bintulu, Sarawak</p>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
         <div class="map-wrap"><iframe class="map" src="{maps_embed(BTU_LL)}" title="Map: BWS Engineering fabrication yard, Kidurong, Bintulu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
