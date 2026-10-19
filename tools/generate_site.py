@@ -8,6 +8,10 @@ SITE = "https://www.bwsengineeringsb.com"
 # BWS Portal (Laravel app in portal/): job openings, online applications and the HR admin panel.
 # Until it is live, the Careers page simply keeps its "Send your CV" email option.
 PORTAL = "https://portal.bwsengineeringsb.com"
+# WhatsApp click-to-chat button on every page. Set the business WhatsApp number in international format,
+# digits only (e.g. "60123456789" for 012-345 6789). Leave empty to hide the button.
+WHATSAPP = ""
+WHATSAPP_TEXT = "Hello BWS Engineering, I would like to enquire about"
 JAWI = "كجروتران بي دبليو إيس سندیریان برحد"
 
 # ---------------------------------------------------------------- icons
@@ -224,9 +228,17 @@ CTA = f'''
   </div>
 </section>'''
 
+def whatsapp_button():
+    if not WHATSAPP:
+        return ""
+    href = f"https://wa.me/{WHATSAPP}?text={quote(WHATSAPP_TEXT)}"
+    return (f'<a class="wa-float" href="{href}" target="_blank" rel="noopener" data-wa>'
+            '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>'
+            '<span>WhatsApp us</span><span class="visually-hidden"> (opens WhatsApp)</span></a>')
+
 def footer():
     links = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)
-    return f'''
+    return whatsapp_button() + f'''
 </main>
 <footer class="site-footer on-dark">
   <div class="container footer-top">
@@ -274,7 +286,7 @@ def footer():
   </div>
   <div class="container footer-bottom">
     <p>© <span data-year>2026</span> BWS Engineering Sdn Bhd (597192-V). All rights reserved.</p>
-    <p><a href="privacy.html">Privacy Notice</a> · Miri · Bintulu · Sarawak, Malaysia</p>
+    <p><a href="vendor.html">Vendor information</a> · <a href="privacy.html">Privacy Notice</a> · Miri · Bintulu · Sarawak, Malaysia</p>
   </div>
 </footer>
 </body>
@@ -517,7 +529,7 @@ def full_project_list():
       <div class="fl-scroll">
         <table class="fl-table">
           <thead><tr><th scope="col">Years</th><th scope="col">Project</th><th scope="col">Client</th></tr></thead>
-          <tbody data-fl-body>{rows}</tbody>
+          <tbody data-fl-body data-fl-unit="projects|projek">{rows}</tbody>
         </table>
       </div>
       <p class="small mt-5 mb-0">From BWS’s work-experience record. Contract values are available to procurement teams on request.</p>
@@ -752,7 +764,9 @@ def home():
       {eyebrow("05", "Health, Safety &amp; Environment")}
       <h2 id="hse-title">Health, safety and environment come first</h2>
       <p>Every project is planned and executed under our HSE policy and an occupational health and safety management system certified to ISO 45001:2018.</p>
-      <a class="btn btn--outline-light mt-5" href="hse.html">Our HSE &amp; Quality commitment {icon("arrow")}</a>
+      <ul class="hse-mini" role="list"><li><strong>3 million</strong> man-hours without LTI on a single project</li><li><strong>15+</strong> HSE awards since 2005</li></ul>
+      {hse_live("hse-live--dark")}
+      <a class="btn btn--outline-light mt-5" href="hse.html#record">Our safety record {icon("arrow")}</a>
     </div>
     <blockquote class="safety-quote reveal">
       <span class="safety-tag">{icon("warn")} HSE Policy</span>
@@ -883,6 +897,35 @@ def about():
 {CTA}''' + footer()
 
 # ================================================================ SERVICES
+from equipment import EQUIPMENT, GROUPS as EQUIP_GROUPS
+
+def equipment_register():
+    n = sum(len(items) for _g, _c, items in EQUIPMENT)
+    cnt = lambda g: sum(len(items) for gg, _c, items in EQUIPMENT if gg == g)
+    rows = "".join(
+        f'<tr data-sector="{g}"><td>{cat}</td><td>{desc}</td><td class="eq-cap">{cap or "–"}</td><td class="eq-units">{units:,}</td></tr>'
+        for g, cat, items in EQUIPMENT for desc, cap, units in items)
+    btns = "".join(f'<button class="filter-btn" type="button" data-fl="{k}" aria-pressed="false">{v}<span class="count">({cnt(k)})</span></button>' for k, v in EQUIP_GROUPS)
+    return f'''
+    <details class="full-list full-list--dark" id="equipment-register">
+      <summary>View the full equipment register ({n} items)</summary>
+      <div class="fl-tools">
+        <label class="visually-hidden" for="eq-search">Search equipment</label>
+        <input id="eq-search" type="search" placeholder="Search, e.g. crane, Wachs, generator, 36" data-fl-search>
+        <div class="filters" role="group" aria-label="Filter by type" data-fl-filters>
+          <button class="filter-btn" type="button" data-fl="all" aria-pressed="true">All<span class="count">({n})</span></button>{btns}
+        </div>
+      </div>
+      <p class="visually-hidden" role="status" data-fl-status></p>
+      <div class="fl-scroll">
+        <table class="fl-table eq-table">
+          <thead><tr><th scope="col">Type</th><th scope="col">Item</th><th scope="col">Capacity</th><th scope="col">Units</th></tr></thead>
+          <tbody data-fl-body data-fl-unit="items|item">{rows}</tbody>
+        </table>
+      </div>
+      <p class="small mt-5 mb-0">From the BWS equipment list, October 2026. Availability for a particular project is confirmed at tender stage.</p>
+    </details>'''
+
 def services():
     nav = "".join(f'<li><a href="#{sid}">{t}</a></li>' for sid, _i, t, *_ in SERVICES)
     secs = ""
@@ -931,6 +974,8 @@ def services():
       <li><span class="equip-num">150 kVA</span><h3>Power &amp; lighting</h3><p>Diesel generators up to 150 kVA and mobile lighting towers for night work.</p></li>
       <li><span class="equip-num">BS 1139</span><h3>Earthworks &amp; access</h3><p>Excavators, backhoe, surveying instruments and a large stock of BS 1139 scaffolding.</p></li>
     </ul>
+    <!-- EQUIPMENT REGISTER: edit tools/equipment.py -->
+    {equipment_register()}
   </div>
 </section>
 {CTA}''' + footer()
@@ -1010,6 +1055,83 @@ CATS = [("all", "All"), ("plant", "Plant"), ("mech", "Mechanical &amp; Piping"),
         ("ei", "Electrical &amp; Instrumentation"), ("hse", "HSE")]
 CATNAME = dict(CATS)
 
+# ================================================================ CASE STUDIES (Projects page)
+# From the BWS Company Profile (Oct 2026): work-experience entries for scope and dates, and the client
+# certificates for results. Contract sums and client contact names are deliberately left out.
+# photo: (image key, width, height, alt), or ("ill:<illustration>", ...) when no photo of that project exists.
+CASE_STUDIES = [
+    {"id": "case-power-import", "client": "Malaysia LNG", "years": "2022 – 2025", "where": "Bintulu, Sarawak",
+     "title": "EPCC of the Power Import Project for MLNG",
+     "summary": "A joint venture between Transgrid Ventures Sdn Bhd and BWS Engineering, delivering new power import facilities at the PETRONAS LNG Complex from design through to handover.",
+     "scope": ["Management, administration and detailed design engineering",
+               "Site preparation, earthworks, procurement, storage and preservation",
+               "Construction, equipment installation, testing and pre-commissioning",
+               "Tie-ins and modifications of piping and cables to the existing facilities",
+               "Commissioning, start-up and handover"],
+     "results": ["MSOSH Gold Class 1 Award for very good OSH performance in 2023"],
+     "photo": ("power-import-aerial-2", 686, 520, "Aerial view of the power import facility buildings and pipe racks")},
+    {"id": "case-ssgp", "client": "PETRONAS", "years": "2020 – 2024", "where": "Miri – Bintulu, Sarawak",
+     "title": "Sabah Sarawak Gas Pipeline: KP265 recovery and KP220 replacement",
+     "summary": "Mechanical, recovery and repair work on the Sabah Sarawak Gas Pipeline (SSGP), including a term contract for pipeline rehabilitation and repair from KP-210 to KP-503.",
+     "scope": ["KP265: recovery, installation of end caps and sampling",
+               "KP220: mechanical scope of the 36\" pipeline replacement, March to June 2022",
+               "Pipeline rehabilitation and repair under the Package B term contract"],
+     "results": ["KP265 completed 25 days ahead of schedule, with zero LTI and within cost, during the COVID-19 Movement Control Order (PETRONAS Focused Recognition, 2020)",
+                 "Top 5 Best Project HSE Performance 2022 for KP220 and KP265 (IRSO West Coast Mega HSE Council)",
+                 "PETRONAS certificate of appreciation for the KP220 mechanical scope"],
+     "photo": ("ill:coast-map", 800, 600, "")},
+    {"id": "case-miri-water", "client": "Rural Water Supply Department (JBALB) Sarawak", "years": "2019 – 2025", "where": "Miri, Sarawak",
+     "title": "Miri Water Supply Source Development Phase 2",
+     "summary": "Part of the Sarawak Water Grid Programme: transferring raw water from Batang Baram to Sungai Bakong and Sungai Liku, to meet the demand of Miri city and its surroundings up to 2030.",
+     "scope": ["Earthworks and infrastructure, including the service road",
+               "1,600 mm diameter raw water pipeline, including twin 1.2 m submarine pipes",
+               "Pumping station, guard house and genset house",
+               "High-tension line and mechanical and electrical works"],
+     "results": [],
+     "photo": ("miri-water-baram-intake", 632, 499, "Aerial view of the Batang Baram intake structure under construction")},
+    {"id": "case-pdb", "client": "PETRONAS Dagangan", "years": "2014 – 2015", "where": "Miri, Sarawak",
+     "title": "EPCC of the PDB Miri Fuel Terminal",
+     "summary": "Engineering, procurement, construction and commissioning of new facilities at the PETRONAS Dagangan fuel terminal in Miri, with a team of about 60.",
+     "scope": ["Administration building, MSB room and substation, and other civil and structural work",
+               "Fabrication and erection of tanks and accessories",
+               "Firefighting facilities and other mechanical and electrical work"],
+     "results": ["150,000 man-hours without lost-time injury (PETRONAS Dagangan certificates at 30,000 and 150,000 man-hours, 2015)"],
+     "photo": ("pdb-team", 465, 315, "Project team in coveralls and hard hats gathered at a PETRONAS Dagangan site")},
+    {"id": "case-mcot", "client": "PETRONAS Carigali, via Rekind–Simfoni consortium", "years": "2007 – 2011", "where": "Miri, Sarawak",
+     "title": "Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2",
+     "summary": "A series of packages over four years for the rejuvenation of the Miri Crude Oil Terminal, with up to 151 people on site.",
+     "scope": ["Shop fabrication and installation of carbon steel piping",
+               "Blasting and painting",
+               "Cable tray, pipe support and water retaining structures",
+               "Mechanical erection, and electrical and instrumentation installation"],
+     "results": ["1 million and 1.5 million man-hours with zero lost-time injury (2008)",
+                 "3,000,000 man-hours without lost-time injury, HSE Award from the Rekind–Simfoni consortium (2010)"],
+     "photo": ("ill:blasting-painting", 800, 600, "")},
+]
+
+def case_studies():
+    out = ""
+    for i, c in enumerate(CASE_STUDIES):
+        key, w, h, alt = c["photo"]
+        if key.startswith("ill:"):
+            media = f'<img src="assets/illustrations/{key[4:]}.svg" width="800" height="600" alt="" loading="lazy" decoding="async"><span class="case-media-note">Illustration</span>'
+        else:
+            media = img(key, alt, w, h, "(min-width: 60rem) 40vw, 100vw")
+        scope = "".join(f"<li>{x}</li>" for x in c["scope"])
+        results = ("<h4>Results</h4><ul class=\"case-results\">" + "".join(f"<li>{icon('badge')}<span>{x}</span></li>" for x in c["results"]) + "</ul>") if c["results"] else ""
+        out += f'''
+      <article class="case{" case--flip" if i % 2 else ""}" id="{c["id"]}" aria-labelledby="{c["id"]}-title">
+        <div class="case-media">{media}</div>
+        <div class="case-body">
+          <p class="case-meta">{c["client"]} · {c["years"]} · {c["where"]}</p>
+          <h3 id="{c["id"]}-title">{c["title"]}</h3>
+          <p>{c["summary"]}</p>
+          <h4>Scope</h4><ul>{scope}</ul>
+          {results}
+        </div>
+      </article>'''
+    return out
+
 def projects():
     cnt = lambda k: len(GALLERY) if k == "all" else sum(1 for g in GALLERY if g[0] == k)
     btns = "".join(f'<button class="filter-btn" type="button" data-filter="{k}" aria-pressed="{str(k == "all").lower()}">{v}<span class="count">({cnt(k)})</span></button>' for k, v in CATS)
@@ -1036,6 +1158,18 @@ def projects():
         "Projects", "Projects &amp; gallery",
         "A look at our work on site, filtered by discipline.",
         "crane-lift") + f'''
+
+<section class="section" id="case-studies" aria-labelledby="cases-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Case studies")}<h2 id="cases-title">Featured projects</h2></div>
+      <p class="lead">A closer look at five projects: what we were asked to do, and the results our clients recorded.</p>
+    </div>
+    <!-- CASE STUDIES: edit CASE_STUDIES in tools/generate_site.py. Results must be backed by a client certificate or letter. -->
+    <div class="cases">{case_studies()}
+    </div>
+  </div>
+</section>
 
 <section class="section section--steel" id="track" aria-labelledby="track-title">
   <div class="container">
@@ -1077,6 +1211,22 @@ def projects():
 {CTA}''' + footer()
 
 # ================================================================ HSE
+# Documented HSE milestones: each one is backed by a certificate or letter in the BWS Company Profile (Oct 2026).
+HSE_RECORD = [
+    ("3,000,000", "man-hours without lost-time injury", "MCOT Rejuvenation Project Phase 2, 2010"),
+    ("400,000", "exposure hours without lost-time injury", "Civil and mechanical teams, SMDS Rejuvenation Project, 2015"),
+    ("150,000", "man-hours without lost-time injury", "EPCC of the PDB Miri Fuel Terminal, 2015"),
+    ("Zero LTI", "and 25 days ahead of schedule", "SSGP KP265 recovery works for PETRONAS, 2020"),
+    ("Grade A", "DOSH workplace inspection", "Bintulu fabrication yard, score 92, 2021"),
+    ("15+", "HSE awards and recognitions", "From clients, industry bodies and government since 2005"),
+]
+
+def hse_live(cls=""):
+    """Latest HSE figures, published by BWS in the portal (HSE figures) and filled in by main.js; hidden until then."""
+    c = f" {cls}" if cls else ""
+    return (f'<div class="hse-live{c}" data-hse-figures data-portal="{PORTAL}" hidden>'
+            f'<p class="hse-live-title">Latest HSE figures <span data-hse-asof></span></p><dl data-hse-list></dl></div>')
+
 def hse():
     return head("hse.html", "HSE &amp; Quality | ISO 9001:2015 | BWS Engineering Sdn Bhd",
         "BWS Engineering’s HSE, Quality, Anti-Corruption and Sustainability policies. ISO 9001:2015 (TÜV NORD) and ISO 45001:2018 (BSI) certified, with national OSH awards.") + header("hse.html") + page_hero(
@@ -1219,6 +1369,19 @@ def hse():
   </div>
 </section>
 
+<section class="section" id="record" aria-labelledby="record-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "HSE performance")}<h2 id="record-title">Our safety record</h2></div>
+      <p class="lead">Milestones recorded and certified by our clients on major projects.</p>
+    </div>
+    <!-- HSE RECORD: edit HSE_RECORD in tools/generate_site.py. Each figure is backed by a certificate in the company profile.
+         Current figures are published from the BWS Portal (HSE figures) and appear above the list. -->
+    {hse_live()}
+    <ul class="hse-record reveal-stagger" role="list">{"".join(f'<li><span class="hse-record-num">{n}</span><span class="hse-record-label">{l}</span><span class="hse-record-note">{d}</span></li>' for n, l, d in HSE_RECORD)}</ul>
+  </div>
+</section>
+
 <section class="section section--ink" id="awards" aria-labelledby="awards-title">
   <div class="container">
     <div class="section-head section-head--split">
@@ -1239,7 +1402,7 @@ def hse():
       <li class="award"><span class="award-year">2023</span><h3>PTTEP CEO SSHE Excellence Award</h3><p>For safety, security, health and environment performance excellence.</p></li>
       <li class="award"><span class="award-year">2023</span><h3>Samsung E&amp;A appreciation</h3><p>For contribution to the National OSH Award by NCOSH on the Rosmari-Marjoram Onshore Gas Plant Project.</p></li>
       <li class="award"><span class="award-year">2022</span><h3>IRSO West Coast Mega HSE Council</h3><p>Top 5 Best Project HSE Performance, Sabah Sarawak Gas Pipeline KP220 &amp; KP265.</p></li>
-      <li class="award"><span class="award-year">2022</span><h3>PETRONAS certificate of appreciation</h3><p>Successful completion of the mechanical scope, 30" SSGP pipeline replacement at KP220.</p></li>
+      <li class="award"><span class="award-year">2022</span><h3>PETRONAS certificate of appreciation</h3><p>Successful completion of the mechanical scope, 36" SSGP pipeline replacement at KP220.</p></li>
       <li class="award"><span class="award-year">2021</span><h3>DOSH Grade A workplace</h3><p>Grade A (score 92) in the DOSH Sarawak workplace inspection of the Bintulu yard.</p></li>
       <li class="award"><span class="award-year">2020</span><h3>PETRONAS Focused Recognition</h3><p>Work completed 25 days ahead of schedule with zero LTI and within cost.</p></li>
       <li class="award"><span class="award-year">2018</span><h3>PRPC Focused Recognition</h3><p>PETRONAS Refinery &amp; Petrochemical Corporation, for the underground GRE firewater installation in Area East, RAPID.</p></li>
@@ -1426,10 +1589,10 @@ def contact():
     <div class="enquiry-card">
       <h2 id="form-title">Enquiry</h2>
       <p class="lead">For quotations and general enquiries, please complete the form below.</p>
-      <!-- CONTACT FORM: posts to contact.php (cPanel / any PHP host; settings at the top of that file).
-           On hosts without PHP the visitor's email app opens instead, pre-filled and addressed to data-mailto.
-           To use Formspree instead, set the action to https://formspree.io/f/<your form ID>. -->
-      <form class="form" action="contact.php" method="POST" data-contact-form data-mailto="bws@bwsengineeringsb.com">
+      <!-- CONTACT FORM: posts to the BWS Portal (saved in its Enquiries list and emailed). If the portal
+           doesn't answer it tries data-fallback (contact.php, emails only; PHP hosts), and if that fails too
+           the visitor's email app opens, pre-filled and addressed to data-mailto. -->
+      <form class="form" action="{PORTAL}/api/enquiries" method="POST" data-contact-form data-fallback="contact.php" data-mailto="bws@bwsengineeringsb.com">
         <input type="hidden" name="_subject" value="Website enquiry: BWS Engineering">
         <div class="form-row">
           <div class="field"><label for="f-name">Name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error"><span class="field-error" id="f-name-error" hidden>Please enter your name.</span></div>
@@ -1516,6 +1679,148 @@ def privacy():
   </div>
 </section>''' + footer()
 
+# ================================================================ VENDOR INFORMATION + CAPABILITY STATEMENT
+# Registration details that are already public on the HSE page. MOF and PETROS vendor numbers, tax numbers,
+# bank details and financial statements are given to procurement teams on request only.
+REGISTRATIONS = [
+    ("ISO 9001:2015", "Quality management system, TÜV NORD CERT GmbH. Certificate no. 44100072059", "7 Feb 2028"),
+    ("ISO 45001:2018", "Occupational health and safety management system, BSI. Certificate no. OHS 796482", "25 Sep 2027"),
+    ("CIDB Grade G7", "Categories B, CE and ME, with PPK, SPKK and STB certificates. Registration no. 0120030415-SR082502", "7 Nov 2028"),
+    ("PETRONAS licence", "Licensed to supply products and services to exploration and oil and gas companies in Malaysia", "30 Jul 2027"),
+    ("PETROS", "Registered vendor of Petroleum Sarawak Berhad and its group", "6 Dec 2028"),
+    ("DOSH", "Competent Firm (Petroleum Contractor), KPD 01 and KPD 02. Registration no. JKKP/2022/26/76", "30 Mar 2028"),
+    ("MOF", "Ministry of Finance registered supplier", "12 Mar 2027"),
+    ("UPKJ Sarawak", "Class A contractor, and Rescue Contractor for works and mechanical fields. Registration no. UPKJ/W/021609", "See certificate"),
+    ("CIDB SCORE", "3-star rating for 2025", "1 Sep 2027"),
+]
+
+ON_REQUEST = ["The full company profile, with certificate copies",
+              "MOF and PETROS registration numbers and certificates",
+              "Contract values and client references for past projects",
+              "Audited financial statements and bank details",
+              "Tax (TIN) and SST registration details",
+              "HSE statistics, procedures and the quality manual"]
+
+PARTICULARS = [
+    ("Company", "BWS Engineering Sdn Bhd"),
+    ("Company no.", "200201029529 (597192-V)"),
+    ("Incorporated", "29 October 2002, Malaysia"),
+    ("Ownership", "Wholly owned Bumiputera company"),
+    ("Main office", "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak"),
+    ("Fabrication yard", "Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak"),
+    ("Telephone", "085-652743 (Miri) · 086-252476 (Bintulu)"),
+    ("Email", "bws@bwsengineeringsb.com"),
+]
+
+CAPABILITY_PDF = "assets/docs/bws-capability-statement.pdf"
+
+def vendor():
+    parts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in PARTICULARS)
+    regs = "".join(f'<tr><th scope="row">{n}</th><td>{d}</td><td class="reg-valid">{v}</td></tr>' for n, d, v in REGISTRATIONS)
+    req = "".join(f"<li>{x}</li>" for x in ON_REQUEST)
+    has_pdf = os.path.exists(OUT + CAPABILITY_PDF)
+    pdf = (f'<a class="btn btn--primary" href="{CAPABILITY_PDF}" download>{icon("doc")}Download the capability statement (PDF)</a>' if has_pdf else "")
+    return head("vendor.html", "Vendor Information for Procurement Teams | BWS Engineering Sdn Bhd",
+        "Company particulars, registrations and licences with validity dates, and the capability statement of BWS Engineering Sdn Bhd, for vendor registration and tender prequalification.") + header("") + page_hero(
+        "Vendor information", "Vendor information",
+        "Company particulars, registrations and a capability statement for procurement and vendor registration teams.",
+        "workshop") + f'''
+
+<section class="section">
+  <div class="container">
+    <div class="vendor-downloads">
+      <div>
+        <h2>Capability statement</h2>
+        <p class="mb-0">A summary of our services, registrations, safety record, featured projects and the full equipment register, ready to attach to a vendor registration or prequalification.</p>
+      </div>
+      <div class="btn-row">{pdf}<a class="btn btn--ghost" href="capability.html">View it in your browser</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--steel" aria-labelledby="part-title">
+  <div class="container">
+    <div class="section-head">{eyebrow("", "Company")}<h2 id="part-title">Company particulars</h2></div>
+    <dl class="vendor-particulars">{parts}</dl>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="reg-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Registrations")}<h2 id="reg-title">Registrations and licences</h2></div>
+      <p class="lead">Certificate details and how to verify them are on our <a href="hse.html#cert-title">HSE &amp; Quality</a> page.</p>
+    </div>
+    <!-- REGISTRATIONS: edit REGISTRATIONS in tools/generate_site.py when a certificate is renewed. -->
+    <div class="fl-scroll"><table class="fl-table reg-table">
+      <thead><tr><th scope="col">Registration</th><th scope="col">Details</th><th scope="col">Valid until</th></tr></thead>
+      <tbody>{regs}</tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="section section--steel" aria-labelledby="req-title">
+  <div class="container split">
+    <div>
+      {eyebrow("", "On request")}
+      <h2 id="req-title">Documents available on request</h2>
+      <p>For vendor registration, prequalification or a tender, we can provide:</p>
+      <ul class="ticks">{req}</ul>
+    </div>
+    <aside class="callout-safety">
+      <h3 style="font-size:1.2rem">Contact for procurement</h3>
+      <p>Email <a href="mailto:bws@bwsengineeringsb.com?subject={quote("Vendor registration / prequalification")}">bws@bwsengineeringsb.com</a> with the documents you need, or call our Miri office on <a href="tel:+6085652743">085-652743</a>.</p>
+      <p class="mb-0"><a class="link-arrow" href="contact.html#enquiry">Send an enquiry</a></p>
+    </aside>
+  </div>
+</section>
+''' + footer()
+
+def capability():
+    """Printable capability statement (A4). tools/make_capability_pdf.js renders it to CAPABILITY_PDF."""
+    svc = "".join(f"<li><strong>{t}</strong>: {short}</li>" for _sid, _ic, t, short, *_ in SERVICES)
+    regs = "".join(f"<tr><th>{n}</th><td>{d}</td><td>{v}</td></tr>" for n, d, v in REGISTRATIONS)
+    hse = "".join(f"<li><strong>{n}</strong> {l}<span>{d}</span></li>" for n, l, d in HSE_RECORD)
+    cases = "".join(f'''<article><h3>{c["title"]}</h3><p class="meta">{c["client"]} · {c["years"]} · {c["where"]}</p><p>{c["summary"]}</p>{("<p class=res>" + c["results"][0] + "</p>") if c["results"] else ""}</article>''' for c in CASE_STUDIES)
+    recent = "".join(f"<tr><td>{yrs}</td><td>{title}</td><td>{client}</td></tr>" for yrs, client, title, *_ in PROJECTS[:14])
+    equip = "".join(f'''<tr class="eq-cat"><th colspan="3">{cat}</th></tr>''' + "".join(f"<tr><td>{d}</td><td>{c or '–'}</td><td>{u:,}</td></tr>" for d, c, u in items) for _g, cat, items in EQUIPMENT)
+    parts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in PARTICULARS)
+    return f'''<!doctype html>
+<html lang="en-MY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capability Statement | BWS Engineering Sdn Bhd</title>
+<meta name="description" content="Capability statement of BWS Engineering Sdn Bhd: services, registrations, HSE record, featured projects and equipment.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{SITE}/capability.html">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/capability.css?v={ASSET_V}">
+</head>
+<body>
+<header class="cs-head">
+  <img src="assets/logo/logo.svg" width="96" height="72" alt="BWS Engineering">
+  <div><h1>BWS Engineering Sdn Bhd</h1><p>Capability statement · {PRIVACY_VERSION}</p></div>
+  <p class="cs-contact">Miri 085-652743 · Bintulu 086-252476<br>bws@bwsengineeringsb.com<br>www.bwsengineeringsb.com</p>
+</header>
+<main>
+<section><p class="cs-lead">A wholly owned Bumiputera engineering construction and maintenance contractor for the oil and gas industries, operating from Miri and Bintulu, Sarawak, since October 2002. More than 80 contracts delivered for oil and gas operators, EPC contractors, industry and government.</p></section>
+<section class="cs-cols">
+  <div><h2>Company particulars</h2><dl class="cs-dl">{parts}</dl></div>
+  <div><h2>Core services</h2><ul>{svc}</ul>
+  <h2>Facilities</h2><ul><li><strong>Miri</strong>: main office, warehouse and fabrication workshop, Piasau Industrial Estate</li><li><strong>Bintulu</strong>: fabrication yard at Kidurong with covered fabrication shop, open fabrication area, storage, blasting and painting, and NDT facilities</li></ul></div>
+</section>
+<section><h2>Registrations and licences</h2><table class="cs-table"><thead><tr><th>Registration</th><th>Details</th><th>Valid until</th></tr></thead><tbody>{regs}</tbody></table></section>
+<section><h2>HSE record</h2><p>HSE policy and ISO 45001:2018 certified management system. Milestones certified by our clients:</p><ul class="cs-hse">{hse}</ul></section>
+<section><h2>Featured projects</h2><div class="cs-cases">{cases}</div></section>
+<section><h2>Recent and current projects</h2><table class="cs-table"><thead><tr><th>Years</th><th>Project</th><th>Client</th></tr></thead><tbody>{recent}</tbody></table><p class="cs-note">Full list of {len(ALL_PROJECTS)} contracts since 2003: www.bwsengineeringsb.com/projects.html</p></section>
+<section class="cs-break"><h2>Appendix: equipment register</h2><p>Company-owned plant and equipment, October 2026. Availability for a particular project is confirmed at tender stage.</p><table class="cs-table cs-equip"><thead><tr><th>Item</th><th>Capacity</th><th>Units</th></tr></thead><tbody>{equip}</tbody></table></section>
+</main>
+<footer class="cs-foot">BWS Engineering Sdn Bhd (597192-V) · Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak · Further documents on request: bws@bwsengineeringsb.com</footer>
+</body>
+</html>
+'''
+
 def notfound():
     return head("404.html", "Page not found | BWS Engineering Sdn Bhd", "The page you were looking for could not be found.").replace('<meta name="robots" content="index, follow">', '<meta name="robots" content="noindex">') + header("") + f'''
 <section class="section">
@@ -1528,10 +1833,10 @@ def notfound():
 </section>''' + footer()
 
 for name, fn in [("index.html", home), ("about.html", about), ("services.html", services), ("clients.html", clients),
-                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("privacy.html", privacy), ("404.html", notfound)]:
+                 ("projects.html", projects), ("hse.html", hse), ("careers.html", careers), ("contact.html", contact), ("privacy.html", privacy), ("vendor.html", vendor), ("capability.html", capability), ("404.html", notfound)]:
     write(name, fn())
 
-pages = ["", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html"]
+pages = ["", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html", "vendor.html"]
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"  <url><loc>{SITE}/{p}</loc></url>\n" for p in pages) + "</urlset>\n")
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\ApplicationController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\HseFigureController;
 use App\Http\Controllers\Admin\VacancyController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +24,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/applications/{application}/cv', [ApplicationController::class, 'cv'])->name('applications.cv');
     Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
 
+    Route::get('/enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
+    Route::get('/enquiries/{enquiry}', [EnquiryController::class, 'show'])->name('enquiries.show');
+    Route::patch('/enquiries/{enquiry}', [EnquiryController::class, 'update'])->name('enquiries.update');
+    Route::delete('/enquiries/{enquiry}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
+
     Route::resource('vacancies', VacancyController::class)->except('show');
+    Route::resource('hse', HseFigureController::class)->except('show')->parameters(['hse' => 'hse']);
 });

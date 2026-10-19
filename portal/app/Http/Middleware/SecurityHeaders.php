@@ -20,7 +20,7 @@ class SecurityHeaders
         if ($request->isSecure()) {
             $response->headers->set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains');
         }
-        if (! $request->is('api/vacancies')) {
+        if (! $request->is('api/vacancies', 'api/hse-figures')) {
             // Admin pages hold personal data: never cache them in the browser or a proxy
             $response->headers->set('Cache-Control', 'no-store, private');
         }

@@ -817,3 +817,75 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .privacy-doc h2 { font-size: var(--fs-h3); margin-bottom: var(--space-3); }
 .privacy-doc ul { padding-left: 1.2rem; }
 .privacy-doc li + li { margin-top: var(--space-2); }
+
+/* ---------- HSE record (HSE page) and latest figures from the BWS Portal ---------- */
+.hse-record { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.hse-record li { display: grid; gap: var(--space-1); padding: var(--space-5); background: var(--white); border: 1px solid var(--steel-200); border-top: 4px solid var(--safety); border-radius: var(--radius); }
+.hse-record-num { font-family: var(--font-head); font-weight: 700; font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.hse-record-label { font-weight: 600; color: var(--ink); }
+.hse-record-note { font-size: var(--fs-sm); color: var(--steel-600); }
+.hse-live[hidden] { display: none; }
+.hse-live { margin-bottom: var(--space-6); padding: var(--space-5); border: 1px solid var(--steel-200); border-left: 6px solid var(--brand-blue); border-radius: var(--radius); background: var(--brand-cyan); }
+.hse-live-title { margin: 0 0 var(--space-3); font-weight: 700; color: var(--ink); }
+.hse-live-title span { font-weight: 400; color: var(--steel-600); font-size: var(--fs-sm); }
+.hse-live dl { display: grid; gap: var(--space-4) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); margin: 0; }
+.hse-live dl div { display: grid; gap: 2px; }
+.hse-live dd { margin: 0; }
+.hse-live .hse-live-value { order: -1; font-family: var(--font-head); font-weight: 700; font-size: 1.75rem; line-height: 1.1; color: var(--ink); }
+.hse-live dt { font-weight: 600; color: var(--ink); }
+.hse-live .hse-live-detail { font-size: var(--fs-sm); color: var(--steel-600); }
+.hse-live--dark { margin: var(--space-5) 0 0; background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .2); border-left-color: var(--safety); }
+.hse-live--dark .hse-live-title, .hse-live--dark .hse-live-value, .hse-live--dark dt { color: var(--white); }
+.hse-live--dark .hse-live-title span, .hse-live--dark .hse-live-detail { color: rgba(255, 255, 255, .78); }
+.hse-mini { list-style: none; margin: var(--space-5) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
+.hse-mini li { padding-left: var(--space-3); border-left: 3px solid var(--safety); }
+.hse-mini strong { display: block; font-family: var(--font-head); font-size: 1.5rem; line-height: 1.1; color: var(--white); }
+
+/* ---------- Case studies (Projects page) ---------- */
+.cases { display: grid; gap: var(--space-7); }
+.case { display: grid; gap: var(--space-5); align-items: start; scroll-margin-top: 6rem; }
+@media (min-width: 60rem) {
+  .case { grid-template-columns: 5fr 7fr; gap: var(--space-7); }
+  .case--flip .case-media { order: 2; }
+}
+.case-media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--ink); }
+.case-media img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.case-media-note { position: absolute; left: var(--space-3); bottom: var(--space-3); padding: 2px var(--space-2); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--white); background: rgba(10, 18, 64, .7); border-radius: 3px; }
+.case-meta { margin: 0 0 var(--space-2); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
+.case h3 { margin: 0 0 var(--space-3); font-size: var(--fs-h3); }
+.case h4 { margin: var(--space-5) 0 var(--space-2); font-size: var(--fs-sm); letter-spacing: .08em; text-transform: uppercase; color: var(--brand-blue); }
+.case ul { margin: 0; padding-left: 1.2rem; }
+.case li + li { margin-top: var(--space-1); }
+.case-results { list-style: none; padding: 0 !important; display: grid; gap: var(--space-2); }
+.case-results li { display: grid; grid-template-columns: 1.5rem 1fr; gap: var(--space-2); align-items: start; margin: 0 !important; padding: var(--space-3); background: #FFF9E8; border-left: 4px solid var(--safety); border-radius: var(--radius); color: var(--steel-800); }
+.case-results svg { width: 1.25rem; height: 1.25rem; color: var(--ink); margin-top: 2px; }
+
+/* ---------- Equipment register (services.html#equipment): a light panel inside the dark section ---------- */
+.full-list--dark { color: var(--steel-800); }
+.full-list--dark p, .full-list--dark .small { color: var(--steel-600); }
+.eq-table td:first-child { color: var(--steel-600); white-space: nowrap; }
+.eq-table .eq-cap { white-space: nowrap; }
+.eq-table .eq-units { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+.eq-table th:last-child { text-align: right; }
+@media (max-width: 40rem) { .eq-table td:first-child { white-space: normal; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; } .eq-table .eq-units { text-align: left; } }
+
+/* ---------- WhatsApp click-to-chat (shown only when WHATSAPP is set in the generator) ---------- */
+.wa-float { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 52px; padding: 0 var(--space-5) 0 var(--space-4); border-radius: 999px; background: #0B6B3A; color: var(--white); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-2); }
+.wa-float svg { width: 26px; height: 26px; flex: none; }
+.wa-float:hover { background: #08552E; color: var(--white); }
+.wa-float:focus-visible { outline: 3px solid var(--brand-sky); outline-offset: 3px; }
+@media (max-width: 40rem) { .wa-float span:not(.visually-hidden) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .wa-float { padding: 0; width: 56px; justify-content: center; } }
+@media print { .wa-float { display: none; } }
+
+/* ---------- Vendor information ---------- */
+.vendor-downloads { display: grid; gap: var(--space-5); align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--white); border: 1px solid var(--steel-200); border-top: 4px solid var(--brand-blue); border-radius: var(--radius); box-shadow: var(--shadow-1); }
+@media (min-width: 60rem) { .vendor-downloads { grid-template-columns: 1.4fr 1fr; } .vendor-downloads .btn-row { justify-content: flex-end; } }
+.vendor-downloads h2 { font-size: var(--fs-h3); margin-bottom: var(--space-2); }
+.vendor-downloads .btn svg { width: 20px; height: 20px; margin-right: var(--space-2); }
+.vendor-particulars { display: grid; gap: var(--space-3) var(--space-6); margin: 0; }
+@media (min-width: 52rem) { .vendor-particulars { grid-template-columns: 1fr 1fr; } }
+.vendor-particulars div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--steel-200); }
+.vendor-particulars dt { color: var(--steel-600); font-size: var(--fs-sm); }
+.vendor-particulars dd { margin: 0; color: var(--ink); font-weight: 600; }
+.reg-table tbody th { text-align: left; padding: .75rem .9rem; color: var(--ink); white-space: nowrap; border-bottom: 1px solid var(--steel-100); vertical-align: top; }
+.reg-table .reg-valid { white-space: nowrap; font-weight: 600; color: var(--ink); }

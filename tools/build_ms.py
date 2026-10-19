@@ -8,7 +8,7 @@ from ms_strings import MS, MONTHS
 
 SITE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site")
 SITE = "https://www.bwsengineeringsb.com"
-PAGES = ["index.html", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html", "404.html"]
+PAGES = ["index.html", "about.html", "services.html", "clients.html", "projects.html", "hse.html", "careers.html", "contact.html", "privacy.html", "vendor.html", "404.html"]
 missing = set()
 
 def tr(t):
@@ -67,7 +67,8 @@ def translate_html(doc):
 
 def fix_paths(doc):
     doc = re.sub(r'((?:src|href|data-full)=")(assets/|favicon\.ico|site\.webmanifest)', r"\1../\2", doc)
-    doc = doc.replace('action="contact.php"', 'action="../contact.php"')
+    doc = doc.replace('data-fallback="contact.php"', 'data-fallback="../contact.php"')
+    doc = doc.replace('href="capability.html"', 'href="../capability.html"')  # English-only document
     doc = re.sub(r'((?:srcset|imagesrcset)=")([^"]*)"', lambda m: m.group(1) + re.sub(r"(^|,\s*)assets/", r"\1../assets/", m.group(2)) + '"', doc)
     return doc
 
@@ -92,6 +93,9 @@ CV_EN_SUBJ = quote("Job Application – [Position]")
 CV_MS_SUBJ = quote("Permohonan Kerja – [Jawatan]")
 CV_EN_BODY = quote("Position / discipline:\nYears of experience:\nCurrent location:\nPhone number:\n\n(Please attach your CV and certificates.)", safe="")
 CV_MS_BODY = quote("Jawatan / disiplin:\nTahun pengalaman:\nLokasi semasa:\nNo. telefon:\n\n(Sila lampirkan CV dan sijil anda.)", safe="")
+# WhatsApp pre-filled message (WHATSAPP_TEXT in generate_site.py)
+WA_EN_TEXT = quote("Hello BWS Engineering, I would like to enquire about")
+WA_MS_TEXT = quote("Salam BWS Engineering, saya ingin bertanya tentang")
 
 def add_switch_and_alternates(doc, page, lang):
     doc = doc.replace('<link rel="canonical"', alternates(page) + '<link rel="canonical"', 1)
@@ -114,7 +118,7 @@ def build():
         ms = ms.replace('content="en_MY"', 'content="ms_MY"')
         ms = re.sub(r'(<link rel="canonical" href=")' + re.escape(SITE) + r'/', r"\1" + SITE + "/ms/", ms, count=1)
         ms = re.sub(r'(<meta property="og:url" content=")' + re.escape(SITE) + r'/', r"\1" + SITE + "/ms/", ms, count=1)
-        ms = ms.replace(CV_EN_SUBJ, CV_MS_SUBJ).replace(CV_EN_BODY, CV_MS_BODY)
+        ms = ms.replace(CV_EN_SUBJ, CV_MS_SUBJ).replace(CV_EN_BODY, CV_MS_BODY).replace("text=" + WA_EN_TEXT, "text=" + WA_MS_TEXT)
         ms = add_switch_and_alternates(ms, page, "ms")
         en = add_switch_and_alternates(en, page, "en")
         open(src, "w", encoding="utf-8").write(en)

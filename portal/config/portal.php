@@ -2,6 +2,9 @@
 
 return [
 
+    // Inbox that receives each new website enquiry
+    'enquiry_email' => env('PORTAL_ENQUIRY_EMAIL', 'bws@bwsengineeringsb.com'),
+
     // Inbox that is told about each new job application
     'hr_email' => env('PORTAL_HR_EMAIL', 'bwsesbhr@gmail.com'),
 
@@ -22,5 +25,8 @@ return [
 
     // Applications accepted per visitor IP per hour
     'applications_per_hour' => 5,
+
+    // Enquiries accepted per visitor IP per hour
+    'enquiries_per_hour' => 5,
 
 ];

@@ -1,0 +1,47 @@
+/* Capability statement (capability.html): an A4 document for screen and print.
+   Rendered to assets/docs/bws-capability-statement.pdf by tools/make_capability_pdf.js. */
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin.woff2") format("woff2"); font-weight: 400 700; }
+@font-face { font-family: "Source Serif 4"; src: url("../fonts/source-serif-4-700-latin.woff2") format("woff2"); font-weight: 700; }
+@page { size: A4; margin: 16mm 14mm 18mm; }
+:root { --blue: #0A18D9; --ink: #0A1240; --text: #2C3440; --muted: #5B6675; --line: #D9DEE5; --safety: #F2A900; --cyan: #E4FCFC; }
+* { box-sizing: border-box; }
+html { background: #EEF1F5; }
+body { margin: 0 auto; max-width: 210mm; padding: 14mm; background: #fff; color: var(--text); font: 10pt/1.45 "Source Sans 3", Arial, sans-serif; }
+h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; color: var(--ink); line-height: 1.2; }
+h1 { margin: 0; font-size: 20pt; }
+h2 { margin: 0 0 3mm; padding-top: 2mm; font-size: 13pt; border-top: 2px solid var(--blue); }
+h3 { margin: 0 0 1mm; font-size: 10.5pt; }
+section { margin-bottom: 6mm; break-inside: auto; }
+ul { margin: 0; padding-left: 4.5mm; }
+li { margin-bottom: 1mm; }
+p { margin: 0 0 2mm; }
+.cs-head { display: grid; grid-template-columns: auto 1fr auto; gap: 5mm; align-items: center; padding-bottom: 4mm; margin-bottom: 5mm; border-bottom: 4px solid var(--ink); }
+.cs-head p { margin: 1mm 0 0; color: var(--muted); }
+.cs-contact { text-align: right; font-size: 9pt; }
+.cs-lead { font-size: 11.5pt; color: var(--ink); }
+.cs-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.cs-dl { margin: 0; display: grid; gap: 1.5mm; }
+.cs-dl div { display: grid; grid-template-columns: 28mm 1fr; gap: 2mm; }
+.cs-dl dt { color: var(--muted); }
+.cs-dl dd { margin: 0; }
+.cs-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+.cs-table th, .cs-table td { text-align: left; vertical-align: top; padding: 1.4mm 2mm; border-bottom: 1px solid var(--line); }
+.cs-table thead th { font-size: 8pt; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); border-bottom: 1.5px solid var(--ink); }
+.cs-table tbody th { color: var(--ink); white-space: nowrap; }
+.cs-table tr { break-inside: avoid; }
+.cs-table td:last-child { white-space: nowrap; }
+.cs-hse { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm; }
+.cs-hse li { margin: 0; padding: 2.5mm 3mm; border-top: 3px solid var(--safety); background: #FFF9E8; break-inside: avoid; }
+.cs-hse strong { display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 13pt; color: var(--ink); }
+.cs-hse span { display: block; margin-top: 1mm; font-size: 8.5pt; color: var(--muted); }
+.cs-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.cs-cases article { padding: 3mm; border: 1px solid var(--line); border-left: 3px solid var(--blue); break-inside: avoid; }
+.cs-cases .meta { font-size: 8.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.cs-cases .res { margin: 0; padding: 1.5mm 2mm; background: #FFF9E8; border-left: 3px solid var(--safety); font-size: 9pt; }
+.cs-equip .eq-cat th { padding-top: 2.5mm; font-family: "Source Serif 4", Georgia, serif; font-size: 9.5pt; color: var(--ink); background: var(--cyan); }
+.cs-equip td:last-child, .cs-equip thead th:last-child { text-align: right; }
+.cs-note { margin-top: 2mm; font-size: 8.5pt; color: var(--muted); }
+.cs-break { break-before: page; }
+.cs-foot { margin-top: 6mm; padding-top: 3mm; border-top: 1px solid var(--line); font-size: 8pt; color: var(--muted); }
+@media print { html { background: none; } body { max-width: none; padding: 0; } }
+@media (max-width: 40rem) { body { padding: 16px; } .cs-head, .cs-cols, .cs-cases { grid-template-columns: 1fr; } .cs-contact { text-align: left; } .cs-hse { grid-template-columns: 1fr 1fr; } .cs-table { display: block; overflow-x: auto; } }

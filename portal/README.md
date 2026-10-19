@@ -5,6 +5,8 @@ A small Laravel app that sits beside the static website (`../site`). It provides
 - **Vacancies** that HR publishes from the admin panel. They appear on the website's Careers page until their closing date.
 - **Online job applications** with CV upload (PDF or Word, up to 5 MB) from the Careers page, with consent to the Privacy Notice recorded on each one.
 - **An admin panel** for HR: list, filter and search applications, download CVs, track status and notes, delete on request, and manage vacancies.
+- **Enquiries** from the website's Contact page: saved, emailed to `PORTAL_ENQUIRY_EMAIL`, and tracked in the admin panel (New, Replied, Quotation sent, Won, Not awarded, Closed) with internal notes.
+- **HSE figures** that BWS publishes monthly (for example "1.2 million / man-hours without lost-time injury", with an "as of" date), shown on the website's Home and HSE pages. Figures more than two months old are flagged *Out of date* in the admin list.
 - **PDPA retention:** applications and their CVs are deleted automatically after 12 months (`PORTAL_RETENTION_MONTHS`).
 
 The website keeps working if the portal is down or not yet deployed: the Careers page hides the online form and shows only the "Send your CV" email option.
@@ -15,6 +17,8 @@ The website keeps working if the portal is down or not yet deployed: the Careers
 www.bwsengineeringsb.com      static site (../site)   careers.html calls the API below with fetch()
 portal.bwsengineeringsb.com   this app                GET  /api/vacancies     open vacancies (JSON)
                                                       POST /api/applications  application + CV
+                                                      POST /api/enquiries     Contact page enquiry
+                                                      GET  /api/hse-figures   published HSE figures (JSON)
                                                       /admin                  HR admin panel (login)
 ```
 
@@ -49,6 +53,7 @@ PHP 8.3 or newer with the usual Laravel extensions (pdo_mysql, mbstring, openssl
    MAIL_FROM_ADDRESS=website@bwsengineeringsb.com
    MAIL_FROM_NAME="BWS Engineering"
    PORTAL_HR_EMAIL=bwsesbhr@gmail.com
+   PORTAL_ENQUIRY_EMAIL=bws@bwsengineeringsb.com
    ```
 6. **Set up** (Terminal):
    ```
@@ -68,6 +73,8 @@ After changing `.env` later, run `php artisan config:cache` again.
 
 - **Vacancies → Add vacancy.** Tick *Show on the website* to publish. It disappears from the website by itself after the closing date; leave the date empty to keep it open.
 - **Applications.** New ones are marked *New*. Open one to download the CV, set the status (Reviewing, Shortlisted, Interview, Hired, Not suitable) and add internal notes.
+- **Enquiries.** Open one to reply (the email link answers the sender), then set the status as it moves from reply to quotation to award, and note the quotation reference.
+- **HSE figures → Add figure.** Publish only figures BWS can back up with its HSE records, and update the "as of" date each month.
 - **Requests from applicants.** If someone asks to see, correct or delete their data, use the application page; *Delete application and CV* removes both permanently. The Privacy Notice promises a reply within 21 days.
 
 ## Development

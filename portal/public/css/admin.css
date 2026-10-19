@@ -74,3 +74,6 @@ tr:last-child td { border-bottom: 0; }
 .details { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.25rem; margin: 1rem 0 0; }
 .details dt { color: var(--muted); } .details dd { margin: 0; }
 .message { white-space: pre-line; background: var(--bg); padding: 1rem; border-radius: var(--radius); }
+.pill--replied, .pill--quoted { background: var(--warn-bg); color: var(--warn); }
+.pill--won { background: var(--ok-bg); color: var(--ok); }
+.pill--lost, .pill--closed { background: #EEF1F5; color: var(--muted); }

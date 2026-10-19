@@ -171,9 +171,10 @@
   }
 
   /* ---- Contact form ----
-     Posts to the form's action (contact.php, or a Formspree endpoint) and reads the
-     JSON reply. If no form handler answers (a static host without PHP, or offline),
-     it falls back to a pre-filled email (mailto:) so the enquiry is never lost. */
+     Posts to the form's action (the BWS Portal), then to data-fallback (contact.php),
+     and reads the JSON reply. If no form handler answers (portal not live and a static
+     host without PHP, or offline), it opens a pre-filled email (mailto:) instead, so
+     the enquiry is never lost. */
   // Shared by the contact and job application forms: flag each invalid required field, focus the first
   var markField = function (input, ok) {
     var err = document.getElementById(input.id + "-error");
@@ -236,33 +237,45 @@
       var action = form.getAttribute("action") || "";
       if (!action || action.indexOf("YOUR_FORM_ID") !== -1 || !window.fetch) { sendByEmail(data); return; }
 
+      // Try each form handler in turn (portal, then contact.php); any that doesn't answer with JSON is skipped
+      var handlers = [action, form.getAttribute("data-fallback")].filter(Boolean);
       var submitBtn = form.querySelector("[type=submit]");
       submitBtn.disabled = true;
-      fetch(action, { method: "POST", body: data, headers: { Accept: "application/json" } })
-        .then(function (r) {
-          return r.json().then(function (j) { return j; }, function () { return null; });
-        })
-        .then(function (j) {
-          if (j && j.ok) {
-            form.reset();
-            setStatus("ok", T("Thank you. Your enquiry has been sent and our team will get back to you shortly.", "Terima kasih. Pertanyaan anda telah dihantar dan pasukan kami akan menghubungi anda tidak lama lagi."));
-          } else if (j && ERRORS[j.error]) {
-            setStatus("err", T(ERRORS[j.error][0], ERRORS[j.error][1]));
-          } else {
-            sendByEmail(data); // no JSON reply: this host has no form handler
-          }
-        }, function () { sendByEmail(data); })
-        .finally(function () { submitBtn.disabled = false; });
+      var attempt = function (i) {
+        if (i >= handlers.length) { sendByEmail(data); return Promise.resolve(); }
+        return fetch(handlers[i], { method: "POST", body: data, headers: { Accept: "application/json" } })
+          .then(function (r) {
+            return r.json().then(function (j) { return j; }, function () { return null; });
+          }, function () { return null; })
+          .then(function (j) {
+            if (j && j.ok) {
+              form.reset();
+              setStatus("ok", T("Thank you. Your enquiry has been sent and our team will get back to you shortly.", "Terima kasih. Pertanyaan anda telah dihantar dan pasukan kami akan menghubungi anda tidak lama lagi."));
+            } else if (j && j.errors) {
+              Object.keys(j.errors).forEach(function (name) {
+                var input = form.querySelector('[name="' + name + '"]');
+                if (input && input.id) markField(input, false);
+              });
+              setStatus("err", T(ERRORS.invalid[0], ERRORS.invalid[1]));
+            } else if (j && ERRORS[j.error]) {
+              setStatus("err", T(ERRORS[j.error][0], ERRORS[j.error][1]));
+            } else {
+              return attempt(i + 1); // no JSON reply: this handler isn't available here
+            }
+          });
+      };
+      attempt(0).then(function () { submitBtn.disabled = false; });
     });
   }
 
-  /* ---- Full project list: search + sector filter ---- */
-  var flBody = document.querySelector("[data-fl-body]");
-  if (flBody) {
+  /* ---- Searchable lists (full project list, equipment register): search + filter buttons ---- */
+  document.querySelectorAll("[data-fl-body]").forEach(function (flBody) {
+    var box = flBody.closest(".full-list");
     var flRows = Array.prototype.slice.call(flBody.querySelectorAll("tr"));
-    var flSearch = document.querySelector("[data-fl-search]");
-    var flFilters = document.querySelector("[data-fl-filters]");
-    var flStatus = document.querySelector("[data-fl-status]");
+    var flSearch = box.querySelector("[data-fl-search]");
+    var flFilters = box.querySelector("[data-fl-filters]");
+    var flStatus = box.querySelector("[data-fl-status]");
+    var unit = (flBody.getAttribute("data-fl-unit") || "items|item").split("|");
     var sector = "all";
     var apply = function () {
       var q = (flSearch.value || "").toLowerCase().trim(), shown = 0;
@@ -270,7 +283,7 @@
         var ok = (sector === "all" || tr.getAttribute("data-sector") === sector) && (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
         tr.hidden = !ok; if (ok) shown++;
       });
-      if (flStatus) flStatus.textContent = T(shown + " projects shown", shown + " projek dipaparkan");
+      if (flStatus) flStatus.textContent = T(shown + " " + unit[0] + " shown", shown + " " + unit[1] + " dipaparkan");
     };
     flSearch.addEventListener("input", apply);
     flFilters.addEventListener("click", function (e) {
@@ -279,13 +292,42 @@
       flFilters.querySelectorAll("button[data-fl]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
       apply();
     });
-  }
+  });
 
   /* ---- Contact: pre-select the service when arriving from a Services page (contact.html?service=civil) ---- */
   var svcKey = new URLSearchParams(location.search).get("service");
   if (svcKey) {
     var opt = document.querySelector('#f-service option[data-key="' + svcKey + '"]');
     if (opt) opt.selected = true;
+  }
+
+  /* ---- Latest HSE figures from the BWS Portal (Home and HSE pages) ----
+     Each [data-hse-figures] block stays hidden unless the portal returns published figures. */
+  var hseBlocks = document.querySelectorAll("[data-hse-figures]");
+  if (hseBlocks.length && window.fetch) {
+    var hsePortal = hseBlocks[0].getAttribute("data-portal").replace(/\/$/, "");
+    fetch(hsePortal + "/api/hse-figures", { headers: { Accept: "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        var figs = (j && j.ok && j.figures) || [];
+        if (!figs.length) return;
+        var latest = figs.map(function (f) { return f.as_of; }).sort().pop();
+        var asof = new Date(latest + "T00:00:00").toLocaleDateString(BM ? "ms-MY" : "en-MY", { month: "long", year: "numeric" });
+        hseBlocks.forEach(function (block) {
+          var dl = block.querySelector("[data-hse-list]");
+          figs.forEach(function (f) {
+            var row = document.createElement("div");
+            var dt = document.createElement("dt"); dt.textContent = f.label;
+            var dd = document.createElement("dd"); dd.className = "hse-live-value"; dd.textContent = f.value;
+            row.appendChild(dt); row.appendChild(dd);
+            if (f.detail) { var dn = document.createElement("dd"); dn.className = "hse-live-detail"; dn.textContent = f.detail; row.appendChild(dn); }
+            dl.appendChild(row);
+          });
+          block.querySelector("[data-hse-asof]").textContent = T("(as of ", "(setakat ") + asof + ")";
+          block.hidden = false;
+        });
+      })
+      .catch(function () { /* portal not reachable: show the documented record only */ });
   }
 
   /* ---- Careers: vacancies and online application, from the BWS Portal (Laravel, portal/) ----

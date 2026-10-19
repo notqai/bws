@@ -33,6 +33,8 @@ site/
 ├── careers.html        Working at BWS + job openings (apply by email)
 ├── contact.html        Two offices + Google Maps + enquiry form
 ├── privacy.html        Privacy Notice (PDPA 2010), linked from the footer and both forms
+├── vendor.html         Vendor information for procurement teams: particulars, registrations, downloads
+├── capability.html     Capability statement (A4, English only), also saved as assets/docs/bws-capability-statement.pdf
 ├── 404.html            "Page not found"
 ├── ms/                 Bahasa Melayu versions of every page (generated)
 ├── contact.php         Enquiry form handler (PHP hosts only; ignored elsewhere)
@@ -101,13 +103,40 @@ Change **both** `data-count` (what the counter animates to) and the text inside 
 - **Vacancies and the *Apply online* form** come from the BWS Portal (see above). HR adds vacancies in the portal's admin panel; nothing on the website needs editing.
 - The **"Send your CV"** card is always there, with the recruitment email link (**bwsesbhr@gmail.com**). Clicking it opens an email with the subject "Job Application – [Position]". To change it, edit `careers()` in `tools/generate_site.py`.
 
+### Case studies (Projects page)
+Five featured projects with scope and client-recorded results, in `CASE_STUDIES` in `tools/generate_site.py`. Each result is backed by a certificate or letter in the company profile; keep it that way. Projects without a photo of their own use a blueprint illustration (marked "Illustration") rather than a photo of another job.
+
+### HSE record (HSE page and home)
+- **Our safety record** (`HSE_RECORD` in `tools/generate_site.py`): six milestones, each certified by a client.
+- **Latest HSE figures**: HR publishes these monthly in the BWS Portal (**HSE figures**), with an "as of" date. They appear on the HSE page and the home page's HSE banner, and stay hidden until at least one is published.
+
+### Equipment register (Services page)
+`tools/equipment.py` holds the full list from the company profile (120 lines in 17 categories). It is shown as a searchable table under *View the full equipment register* and as the appendix of the capability statement. Update the units there when equipment is bought or disposed of. Item names stay in English on the BM page (they are makes and models).
+
+### Vendor information and capability statement
+- `vendor.html` gathers company particulars, registrations with validity dates (`REGISTRATIONS`) and the documents available on request (`ON_REQUEST`). MOF and PETROS numbers, tax numbers, bank details and contract values are deliberately given on request only.
+- The **capability statement** is `capability.html`, built from the same data as the site. After changing anything it uses, rebuild the PDF:
+  ```
+  python3 tools/generate_site.py
+  node tools/make_capability_pdf.js      # needs Playwright + Chromium; CHROMIUM_PATH=... to use an installed one
+  python3 tools/generate_site.py         # so the vendor page shows the download button
+  ```
+
+### WhatsApp button
+Set `WHATSAPP` at the top of `tools/generate_site.py` to the business WhatsApp number in international format, digits only (e.g. `60123456789`), and rebuild. A green *WhatsApp us* button then appears on every page, with a pre-filled message (Malay on the BM pages). It is hidden while `WHATSAPP` is empty.
+
 ### Privacy Notice
 `privacy.html` (and `ms/privacy.html`) explains what personal data the forms collect, why, who sees it, how long it is kept, and how to ask for access, correction or deletion, as Malaysia's Personal Data Protection Act 2010 expects. The text is in `PRIVACY_SECTIONS` in `tools/generate_site.py`.
 - ⚠️ **BWS should have it reviewed** (by its company secretary or a lawyer) before launch, and keep it true: for example, if CVs are kept longer than 12 months, change both the notice and `PORTAL_RETENTION_MONTHS`.
 - When the notice changes, update `PRIVACY_VERSION` there and `PORTAL_PRIVACY_VERSION` in the portal's `.env`, so each application records which version the applicant agreed to.
 
 ### Contact form
-The form is on `contact.html` (search for `CONTACT FORM`). It posts to **`contact.php`** in the background and shows a thank-you message.
+The form is on `contact.html` (search for `CONTACT FORM`). It sends in the background and shows a thank-you message, trying three routes in turn:
+1. **The BWS Portal** (`/api/enquiries`): saved in the portal's **Enquiries** list (with status and notes for follow-up) and emailed to bws@bwsengineeringsb.com.
+2. **`contact.php`**, if the portal doesn't answer: emailed only (details below).
+3. **The visitor's email app**, pre-filled, if neither answers.
+
+About `contact.php`:
 - **cPanel / any host with PHP:** works as soon as it is uploaded. Enquiries are emailed to **bws@bwsengineeringsb.com** with *Reply-To* set to the visitor, so replying answers them directly. Settings are at the top of `site/contact.php`:
   - `TO_EMAIL`: where enquiries go. `CC_EMAIL`: an optional second inbox.
   - `FROM_EMAIL`: must be an address on the website's own domain (it doesn't need to be a real mailbox), or Gmail and Outlook may file enquiries as spam.
@@ -150,6 +179,7 @@ CIDB and TÜV NORD details were also checked against their public online registe
 - The **ISO 45001 certificate (BSI)** lists "Sublot 1, Lot 802, Block 20 KLD", which matches no other record. **BWS should ask BSI to check it.**
 
 ### Key projects, awards and equipment
+- The PETRONAS certificate for KP220 is for the **36"** SSGP pipeline (the site previously said 30"; corrected Oct 2026).
 - **Key projects** (`PROJECTS` in `tools/generate_site.py`): 29 selected from the profile's work-experience list. Projects marked "Ongoing" have end dates after Oct 2026, or are listed as ongoing in the profile. **Remove the Ongoing badge when a project completes.**
 - **Full project list** (`ALL_PROJECTS`, shown under "View all projects" on the Projects page): every work-experience entry from 2003 on, with team size where recorded. Entries 1–3 (1997–2001) pre-date incorporation and are left out; the profile has no entry 69.
 - **Org charts** (About page): company and project organisation from the profile (updated 10.26), with roles only.

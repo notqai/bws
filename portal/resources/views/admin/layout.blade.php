@@ -14,7 +14,9 @@
   @auth
   <nav aria-label="Admin">
     <a href="{{ route('admin.applications.index') }}" @class(['on' => request()->routeIs('admin.applications.*')])>Applications</a>
+    <a href="{{ route('admin.enquiries.index') }}" @class(['on' => request()->routeIs('admin.enquiries.*')])>Enquiries</a>
     <a href="{{ route('admin.vacancies.index') }}" @class(['on' => request()->routeIs('admin.vacancies.*')])>Vacancies</a>
+    <a href="{{ route('admin.hse.index') }}" @class(['on' => request()->routeIs('admin.hse.*')])>HSE figures</a>
   </nav>
   <form method="POST" action="{{ route('admin.logout') }}" class="logout">@csrf<button type="submit">Log out <span class="who">{{ auth()->user()->name }}</span></button></form>
   @endauth

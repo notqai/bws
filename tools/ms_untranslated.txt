@@ -1,11 +1,20 @@
+1,000 psi
+4WD pick-up
 5,000 psi
 50 Rumah Spektra Permata houses, Gedong Baru, Samarahan (IBS)
 50 Rumah Spektra Permata houses, Skim Pembesaran Kampung Gedong Baru (IBS)
+AFTEK P88 8-operator welding rectifier
+AL28 auto level with tripod and levelling staff
+AMF control panel
+AR-1200M all-terrain crane
 ASEAN Bintulu Fertilizer Sdn Bhd
 Above-ground piping work, C1/U1 area
+Ace pneumatic torque wrench
 Acid gas removal unit cleaning and pipe welding, MLNG Turnaround 2014
+Air-driven torque pump, 4 ports
 Aqeel Engineering & Construction Sdn Bhd
 Assar Senary
+Automatic pipe and plate cutting machine
 BWS Engineering
 BWS Engineering Sdn Bhd
 BWS Engineering Sdn. Bhd., Lot 1743, Block 3 MCLD, Piasau Industrial Estate, 98000 Miri, Sarawak
@@ -13,15 +22,28 @@ Bario, Mulu & Telang Usan, Sarawak
 Bintulu
 Bintulu Onshore Receiving Facility
 Bintulu, Sarawak
+Board clamp
 CIDB Malaysia
+Canopy generator set
 Chiyoda Malaysia Sdn Bhd
 Classroom and teachers’ quarters cabins, furniture and equipment, 2nd Economic Stimulus Package
 Clearing, grading and earthworks for the Bintulu Compressor Station
 Compressed-air pressurisation for pipeline pre-decommissioning, BV106 to KP131.2
 Compressed-air pressurisation for pipeline pre-decommissioning, Lawas
+Coppus air-driven reaction fan
+Coppus venturi air mover
+DFT2 hydraulic torque power unit, with 1¼", 1-7/16", 1⅝" and 1-13/16" hexagon ratchet heads
+DFT4 hydraulic torque power unit, with 2", 2-3/16", 2⅜", 2-9/16", 2¾" and 2-15/16" hexagon ratchet heads
+DS 150 generator set
+Daihatsu Delta lorry
+Daihatsu lorry
+Dakin SC10-600-8 hydrostatic pump
 Decommissioning and removal of gas engine compressor skid Q, Bintulu Onshore Receiving Facility
 Demolition of old solvent concrete tank T-1203, PETRONAS LNG Complex
 Demolition of the existing MLNG reclaimer unit (U-1200)
+Digital theodolite DT209
+Doosan C185 portable air compressor
+Dura-Lite square-drive torque wrench
 EPCC for upgrading the loading metering system, Sibu Depot
 EPCC of Kenyalang Project 2.0: tie-ins and associated facilities, PETRONAS LNG Complex
 EPCC of Kenyalang Project 2.0: tie-ins to the LNG loading, vapour return and firewater lines
@@ -29,6 +51,7 @@ EPCC of metering facilities for backloading, Tanjung Manis OGC Jetty, Mukah
 EPCC of the PDB Miri Fuel Terminal
 EPCC of the PETRONAS Dagangan aviation depot, Bintulu Airport
 EPCC of the Power Import Project (Transgrid-BWS JV)
+EPCC of the Power Import Project for MLNG
 EPCC of the aviation depot at Bintulu Airport
 EPCC of the fire-fighting system and other works, Miri Aviation Depot
 EPCC of the gasoline and NGL metering skid upgrades
@@ -36,20 +59,40 @@ EPCC of the gasoline and NGL metering skid upgrades, MLNG Dua
 EPCIC of a shelter at the Bintulu Onshore Receiving Facility
 EPCIC of a shelter, Bintulu Onshore Receiving Facility
 EPCIC of the Sipitang scraper station at KP91, Sabah Sarawak Gas Pipeline
+Electrode baking oven
+FG Wilson P160 diesel generator
 Fabrication and welding services for plant changes, PETRONAS LNG Complex
 Facebook
+Fixed clamp
+Forklift
+Foxboro 40PR pressure recorder
+Frame with bracing and joint pins
 Full replacement of 12 classrooms and facilities, SK Jalan Haji Baki
 Full replacement of 12 classrooms and facilities, SK Jalan Haji Baki, Padawan
 GE Oil and Gas
 General civil and concrete structures, SMDS Rejuvenation Project 2015
 HQC Engineering Malaysia Sdn Bhd
+Hero Tec GM-5000 inverter
+Hi-Force HT2700 torque multiplier
 Highland Development Agency Package 5: water supply and electricity infrastructure
 Highland Development Agency Package 5: water supply and electricity infrastructure, Bario / Mulu / Telang Usan
+Hitachi die grinder
+Hitachi electric cut-off machine
+Hitachi grinder
+Hitachi magnetic drilling machine
 Housing Development Corporation
 Housing Development Corporation (PPP)
+Hydraulic pipe bending machine
 Ibu Pejabat Tanah dan Survei
 Improvement works at MLNG Tiga upstream and process areas
+Industrial Scientific multi-gas detector
+Industrial Scientific single-gas detector
+Ingersoll Rand C185 portable air compressor
 Installation, tie-in and commissioning of new furnace F-104, Labuan Crude Oil Terminal
+Isuzu NKR55 rigid lorry
+Isuzu NPR71 rigid lorry
+JAC cargo lorry
+JAC dump truck
 JGC (Malaysia) Sdn Bhd & JGC SP (M) Sdn Bhd
 JGC SP (M) Sdn Bhd, for Hengyuan Refining
 JGC SP, for Hengyuan Refining
@@ -58,16 +101,38 @@ JX Nippon Oil & Gas Exploration (M) Ltd
 Jabatan Bekalan Air Luar Bandar Sarawak
 Jabatan Kerja Raya (JKR)
 Jabatan Kerja Raya Malaysia
+Jasic DC arc welding set
+John Deere 310D backhoe
+Joint pin
+Juma pipe bending machine
 Kampung Sadong Jaya Extension (upgrading): earth filling, roads and drainage, Samarahan
+Kato KR25H mobile crane
+Kato SS500 mobile crane
+Kato mobile crane
+Kato rough-terrain crane
+Kemppi MIG welding rectifier
+Kobelco RK250-3 rough-terrain crane
+Koike automatic pipe cutting machine
+Komatsu PC200-8 hydraulic excavator
+Komatsu PC30-7 excavator
+Kubota KH30SR excavator
+Kubota RX-505 excavator
+Kubota diesel bar bender
+Kubota diesel bar cutter
 Kuching Division, Sarawak
 Kumang Cluster onshore tie-in at MLNG-2 and Bintulu Integrated Facilities
 LV main switchboards and underground cabling for the electrical distribution system, Miri
 Labuan
 Land and Survey Department, Sarawak
 Lawas, Sarawak
+Lincoln 500AS welding machine
+Lincoln SA-500 welding machine
 Lot 124–128, Block 20, Kemena Land District, Jalan Kidurong, 97000 Bintulu, Sarawak
+Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak
 Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia
+Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak
 Lot 782, Block 20, Kemena Land District, Jalan Tanjung Kidurong, 97007 Bintulu, Sarawak, Malaysia
+MAC HSN 200 electrode baking oven
 MCOT Rejuvenation Phase 2: blasting and painting works
 MCOT Rejuvenation Phase 2: cable tray and pipe support works
 MCOT Rejuvenation Phase 2: electrical and instrumentation installation
@@ -81,10 +146,16 @@ Malaysia LNG (Train 9 Project)
 Malaysia LNG Dua
 Malaysia LNG Sdn Bhd
 Malaysia LNG Sdn Bhd, PETRONAS Carigali Sdn Bhd, PETRONAS Dagangan Berhad, PRPC Utilities & Facilities Sdn Bhd
+Malaysia LNG · 2022 – 2025 · Bintulu, Sarawak
 Mechanical work package Phase 1, SMDS Rejuvenation Project
 Mechanical work package for the Clean Air Regulation Project: new wet gas scrubber facilities
 Mechanical work package, Clean Air Regulation Project (wet gas scrubber facilities)
 Melaka Refinery Diesel Euro 5 Project
+Miller 400 DX welding machine
+Miller 401 DX welding machine
+Miller 500 DX welding machine
+Miller Big Blue 600X diesel welding generator
+Miller high-frequency arc starter
 Ministry of Education, Development Division
 Ministry of International Trade and Industry
 Ministry of Rural and Regional Development
@@ -92,20 +163,32 @@ Ministry of Rural and Regional Development (KKLW)
 Minor civil construction works (turnkey) for Bintulu Integrated Facilities
 Minor construction and modification works for PETRONAS onshore facilities
 Miri
+Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2
 Miri Crude Oil Terminal (MCOT) Rejuvenation Project Phase 2: piping, supports and painting
+Miri Water Supply Source Development Phase 2
 Miri Water Supply Source Development Phase 2, Sarawak Water Grid Programme
 Miri Water Supply Source Development Phase 2, Sarawak Water Grid Programme: raw water transfer from Batang Baram
 Miri · Bintulu · Sarawak, Malaysia
 Miri – Bintulu, Sarawak
 Miri, Sarawak
+Mitsubishi FB511B rigid lorry
+Mitsubishi rigid lorry
 Mitsui & Co. Ltd
+Mobile lighting tower with generator set
+Motorola GP328 UHF walkie-talkie, intrinsically safe, 16 channels
+Motorola GP328 UHF walkie-talkie, intrinsically safe, 4 channels
+Motorola P8200 UHF walkie-talkie
+Motorola radio unit, non-keypad
 Multi-mechanical package (MECH03) for Project Rejuv: steel structure, equipment, piping, insulation and painting
 Multi-mechanical package MECH03 for Project Rejuv
+Murex / Saffire gas cutting set
 Murphy Sarawak Oil Co. Ltd
 New MLNG CSA office and warehouse, Jalan Kidurong
 New MLNG CSA office and warehouse, Jalan Kidurong (LNG Train 9 Project)
 New main switchboard at Substation 7 and associated works
 Nippon Express Co. Ltd
+Nissan cargo lorry
+Nissan forklift
 Now ENEOS Xplora
 OSBL piping construction, Hengyuan Refining Euro IV project
 On-call general civil and building maintenance, PCSB Sarawak Operations
@@ -118,30 +201,39 @@ PETRONAS Carigali
 PETRONAS Carigali Sdn Bhd
 PETRONAS Carigali, via Petra Resources
 PETRONAS Carigali, via Rekind–Simfoni consortium
+PETRONAS Carigali, via Rekind–Simfoni consortium · 2007 – 2011 · Miri, Sarawak
 PETRONAS Dagangan
 PETRONAS Dagangan Berhad
+PETRONAS Dagangan · 2014 – 2015 · Miri, Sarawak
 PETRONAS Gas Berhad
 PETRONAS Group
 PETRONAS Project Delivery & Technology
 PETRONAS Strategic Procurement (Downstream)
+PETRONAS · 2020 – 2024 · Miri – Bintulu, Sarawak
 PETRONAS, for ASEAN Bintulu Fertilizer
 PRPC Utilities & Facilities
 PRPC Utilities & Facilities Sdn Bhd
 PRPC Utilities & Facilities, via OUI JV
 PT Rekayasa Industri
 Padawan, Sarawak
+Passenger van
 Pengerang, Johor
+Perkins diesel generator
 Petra Resources Sdn Bhd
 Piping and associated work, PETRONAS LNG Complex
 Piping and pipe support installation at MLNG 2 & 3, DGDM Project
 Piping works for DELIMA Unit 41 (greenfield)
 Piping, protective coating, insulation, minor civil and scaffolding works, PETRONAS LNG Complex
+Plasma cutter (EOX Plasma Cut 53)
+Plasma cutter (HPT CA90)
 Port Dickson, Negeri Sembilan
+Portable air compressor
 Price agreement for civil and mechanical maintenance of PETRONAS service stations, Sarawak
 Procurement and construction of PTA village infrastructure
 Procurement, construction and commissioning of a piping system (PC40008)
 Public Works Department
 Punj Lloyd Oil & Gas (Malaysia) Sdn Bhd
+Putlog coupler
 RAPID UIO facilities: underground pressurised non-metallic firewater network
 RAPID, Pengerang
 Refurbishment of Café Kemboja and lab pantry
@@ -153,7 +245,9 @@ Replacement of the Trunkline 1 beach valve hydraulic unit, MOVs and sphere recei
 Road from Kampung Murud Suang to the Kampung Long Pos junction
 Road from Kampung Murud Suang to the Kampung Long Pos junction, Lawas
 Rosmari-Marjoram Onshore Gas Plant (Shell OGP Project): underground piping, pipelines, brownfield and BIF area works
+Rox pipe threading machine
 Rural Water Supply Department (JBALB) Sarawak
+Rural Water Supply Department (JBALB) Sarawak · 2019 – 2025 · Miri, Sarawak
 Rural water supply from Kampung Manggut to Kampung Supa, Medang, Tuie and Serabang, Betong
 SMDS Rejuvenation Project 2015: mechanical work packages
 Sabah Shell Petroleum
@@ -165,25 +259,46 @@ Sarawak
 Sarawak Shell
 Sarawak Shell Berhad
 Sarawak Shell Berhad, Sabah Shell Petroleum Co. Ltd, Shell MDS (Malaysia) Sdn Bhd
+Scaffold tube, 6.2 m
 Scaffolding for steel structure and equipment erection, PETRONAS LNG Train 9
+Scaffolding material, BS standard (m³)
 Scaffolding systems for UIO facilities, RAPID
+Scania lorry trailer
 Shell MDS
 Shell MDS (Malaysia) Sdn Bhd
 Shell OGP Project: Bintulu Integrated Facilities area work
 Shell OGP Project: pipeline and brownfield work
 Shell OGP Project: underground process piping
+Shindaiwa welder generator
 Shinko Plantech Co. Ltd (Malaysia)
 Sipitang, Sabah
 Site clearing, earthworks and infrastructure, Sematan Industrial Area Phase I
+Sleeve coupler
+Sokkisha B2A dumpy level
+Sokkisha B2C dumpy level
+Sokkisha TM20H theodolite
 Steel structure, equipment, piping, insulation and painting, New Common Reclaimer Project
 Structure improvement at the offsite plant, ASEAN Bintulu Fertilizer
 Structure improvement at the offsite plant: ammonia tanks and shed
+Sumitomo forklift
+Suzuki outboard motor
+Swivel clamp
+Tadano GR-500EXL rough-terrain crane
+Tadano TR-250M-5 mobile crane
+Tadano TR-550M-1 mobile crane
+Tadano rough-terrain crane
 Taihei Dengyo Kaisha, Ltd
+Telescopic forklift truck
 Temporary camp facilities (Camp 6), Lapok – Long Lama Road
 Temporary facilities for the MLNG & MLNG Dua New Common Reclaimer Project
 Term contract, Sabah Sarawak Mechanical (Package B): pipeline rehabilitation and repair
 Term contract, Sabah Sarawak Mechanical (Package B): pipeline rehabilitation and repair, KP-210 to KP-503
+Toku pneumatic torque wrench
+Toyota forklift
+Toyota lorry
+Toyota rigid lorry
 Turnkey minor civil works, Bintulu Integrated Facilities: control centre revamp and pipe bridges
+Twin-line hose, 20 ft
 Two-year term contract for non-metallic piping rectification
 Two-year term contract for non-metallic piping rectification at PRPC UF
 UHP water jetting services using the abseiling method
@@ -191,4 +306,14 @@ UIO facilities: underground pressurised non-metallic firewater network, 16 km of
 UPKJ Sarawak
 Upgrade of the Train 9 LNG rundown flow meter to allocation metering
 Upgrade of the Train 9 LNG rundown flow meter to allocation metering (turnaround scope)
+Volvo FM12 lorry trailer
+Volvo prime mover
+Wachs SF 1218 cold-cutting machine
+Wachs SF 1420 cold-cutting machine
+Wachs SF 2228 cold-cutting machine
+Wachs SF 3036 cold-cutting machine
+Wachs SF 814 split-frame machine, low clearance
+Wachs pneumatic pipe cutter
+Welding cable
+Yanmar diesel generator
 is one photo. Categories: plant, mech, civil, ei, hse. Copy an existing
