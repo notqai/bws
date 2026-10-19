@@ -157,6 +157,8 @@ Most company facts now come from **BWS's own Company Profile (October 2026)**: p
 **Deliberately not published:** contract sums, client contact persons and phone numbers, directors' names and IC numbers, bank facilities, TIN and SST numbers, and scans of certificates (they're watermarked "For company profile reference only").
 
 ### Certificate & licence details (update when renewed)
+When a certificate is renewed, update it in three places in `tools/generate_site.py`: the cards on the HSE page (the four main certificates in `hse()`, the six further registrations in `REG_CARDS`), the vendor page table (`REGISTRATIONS`), and this table. Then rebuild the capability statement PDF.
+
 | Item | Number / scope | Valid until |
 |---|---|---|
 | ISO 9001:2015 (TÜV NORD) | 44 100 0072059 · first certified 2007 | 7 Feb 2028 |

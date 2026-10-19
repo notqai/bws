@@ -1171,6 +1171,63 @@ def hse_live(cls=""):
     return (f'<div class="hse-live{c}" data-hse-figures data-portal="{PORTAL}" hidden>'
             f'<p class="hse-live-title">Latest HSE figures <span data-hse-asof></span></p><dl data-hse-list></dl></div>')
 
+# Further registrations shown as cards on the HSE page, from the certificates in the BWS Company Profile (Oct 2026).
+# Each row: (id, issuer, title, [(label, value, wide?)], note). The first two rows of each card should be the
+# number and the validity (they are set larger). Directors' names and IC numbers on the certificates are left out.
+REG_CARDS = [
+    ("petros", "Petroleum Sarawak Berhad (PETROS)", "Registered vendor, PETROS Group", [
+        ("Registration no.", "P250528-S", False),
+        ("Valid until", "6 December 2028", False),
+        ("Work categories", "SB200001 building &amp; structure construction · SO100005 onshore maintenance, construction &amp; modification (minor onshore fabrication) · SK500007 onshore pipeline fabrication &amp; construction", True),
+        ("Covers", "PETROS and its related corporations, including PETROS E&amp;P, PETROS Gas, PETROSNiaga, PETROS Power and Sarawak Gas Distribution", True),
+    ], "Registered since 7 December 2025, for quotations and tenders across the PETROS Group."),
+    ("dosh", "Department of Occupational Safety and Health (DOSH)", "Competent Firm (Petroleum Contractor)", [
+        ("Registration no.", "JKKP/2022/26/76", False),
+        ("Valid until", "30 March 2028", False),
+        ("Scope", "KPD 01 onshore pipeline · KPD 02 onshore reticulation piping", True),
+        ("Registered workplaces", "Miri head office (SW/20/22/161834) and Bintulu fabrication yard (SW/18/03/128374)", True),
+    ], "Approved for 31 March 2025 to 30 March 2028 by DOSH's Petroleum Safety Division."),
+    ("upkj", "Sarawak State Financial Secretary (UPKJ)", "Class A contractor, works and mechanical", [
+        ("Certificates", "UPKJ/W/021609 · UPKJ/M/001828", False),
+        ("Valid until", "4 July 2028", False),
+        ("Classification", "Works: Class A, Heads I, II and III · Mechanical: Class A, Head V", True),
+        ("Rescue Contractor", "Recognised in the works and mechanical fields, valid to 26 August 2028", True),
+    ], "Bumiputera status recognised by UPKJ for the same period."),
+    ("mof", "Ministry of Finance Malaysia", "Registered supplier and Bumiputera company", [
+        ("Certificate no.", "KQ24038211643726829", False),
+        ("Valid until", "12 March 2027", False),
+        ("Registration ref.", "357-30003574 · Bumiputera certificate BPQ24038211643726829", True),
+        ("Supply and service fields", "020101 furniture &amp; fittings · 080101 civil engineering, construction &amp; public amenities equipment · 220502 maintenance &amp; repair of containers and tanks · 220503 electrical systems and equipment · 220506 bulk fuel tanks · 220507 pumps, water pipes and components", True),
+    ], "Registered with the Ministry of Finance since 2 January 2024."),
+    ("score", "CIDB Malaysia and SME Corp", "SCORE 3-star rating", [
+        ("Certificate no.", "SC150630", False),
+        ("Valid until", "1 September 2027", False),
+        ("Rating", "3 stars for 2025, as a Grade G7 contractor", True),
+        ("Assessment", "Good management and technical capabilities, compliance with best practices and good project management", True),
+    ], "Issued on 2 September 2025."),
+    ("ssm", "Companies Commission of Malaysia (SSM)", "Private limited company", [
+        ("Company no.", "200201029529 (597192-V)", False),
+        ("Incorporated", "29 October 2002", False),
+        ("Paid-up capital", "RM5,000,000", True),
+        ("Registered address", "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak", True),
+    ], "Wholly owned Bumiputera company."),
+]
+
+def reg_cards():
+    out = ""
+    for rid, issuer, title, rows, note in REG_CARDS:
+        # A long number gets the full width so it never breaks in the middle
+        dl = "".join(f'<div{" class=\"wide\"" if wide or len(v) > 16 else ""}><dt>{k}</dt><dd>{v}</dd></div>' for k, v, wide in rows)
+        out += f'''
+      <article class="cert-card" aria-labelledby="{rid}-card-title">
+        <header class="cert-head">
+          <div><p class="cert-issuer">{issuer}</p><h3 id="{rid}-card-title">{title}</h3></div>
+        </header>
+        <dl class="cert-data">{dl}</dl>
+        <p class="small mb-0">{note}</p>
+      </article>'''
+    return out
+
 def hse():
     return head("hse.html", "HSE &amp; Quality | ISO 9001:2015 | BWS Engineering Sdn Bhd",
         "BWS Engineering’s HSE, Quality, Anti-Corruption and Sustainability policies. ISO 9001:2015 (TÜV NORD) and ISO 45001:2018 (BSI) certified, with national OSH awards.") + header("hse.html") + page_hero(
@@ -1285,25 +1342,17 @@ def hse():
         <p class="small mb-0">Issued under the Petroleum Development Act 1974.</p>
       </article>
     </div>
-    <ul class="reg-list" role="list">
-      <li><strong>PETROS</strong><span>Registered vendor of Petroleum Sarawak Berhad and its group, valid to Dec 2028: building &amp; structure construction, onshore maintenance &amp; modification, onshore pipeline fabrication &amp; construction</span></li>
-      <li><strong>DOSH</strong><span>Registered Competent Firm (Petroleum Contractor): KPD 01 onshore pipelines and KPD 02 onshore reticulation piping, valid to Mar 2028</span></li>
-      <li><strong>UPKJ Sarawak</strong><span>Class A registered contractor with the Sarawak State Financial Secretary in the works and mechanical fields, valid to Jul 2028, and recognised as a Rescue Contractor to Aug 2028</span></li>
-      <li><strong>MOF</strong><span>Ministry of Finance registered supplier, valid to Mar 2027</span></li>
-      <li><strong>CIDB SCORE</strong><span>3-star rating for 2025 from CIDB and SME Corp: good management and technical capability</span></li>
-      <li><strong>SSM</strong><span>Company no. 200201029529 (597192-V), incorporated 29 October 2002</span></li>
-    </ul>
+    <h3 class="reg-more-title">Further registrations</h3>
+    <!-- FURTHER REGISTRATIONS: edit REG_CARDS above hse() when a certificate is renewed. -->
+    <div class="grid grid--2 reg-more">{reg_cards()}
+    </div>
     <details class="reg-detail">
-      <summary>Registration details for procurement teams</summary>
+      <summary>CIDB and PETRONAS codes for procurement teams</summary>
       <dl class="reg-codes">
         <div><dt>CIDB G7 specialisations: Building</dt><dd>B01 · B02 · B04 · B05 · B12</dd></div>
         <div><dt>CIDB G7 specialisations: Civil Engineering</dt><dd>CE01 · CE02 · CE03 · CE09 · CE20 · CE21 · CE36 · CE41</dd></div>
         <div><dt>CIDB G7 specialisations: Mechanical &amp; Electrical</dt><dd>E03 · E05 · E06 · E10 · E11 · E16 · E32 · M01 · M02 · M12 · M14 · M15 · M20 · M21</dd></div>
         <div><dt>PETRONAS licence codes</dt><dd>15141911S non-metallic piping · 15141700S onshore pipeline · 27131100S onshore pipeline inspection &amp; repair · 24241010S cleaning, repair &amp; maintenance · 27111000S minor onshore fabrication · 11141700S slope protection · 15141610S major fabrication · 15141910S metallic piping (carbon &amp; stainless steel)</dd></div>
-        <div><dt>PETROS work categories</dt><dd>SB200001 building &amp; structure construction · SO100005 onshore maintenance, construction &amp; modification (minor onshore fabrication) · SK500007 onshore pipeline fabrication &amp; construction</dd></div>
-        <div><dt>MOF supply / service fields</dt><dd>020101 furniture &amp; fittings · 080101 civil engineering, construction &amp; public amenities equipment · 220502 maintenance &amp; repair of containers and tanks · 220503 electrical systems and equipment · 220506 fuel tank repair · 220507 pumps, water pipes &amp; components</dd></div>
-        <div><dt>DOSH competent firm scope</dt><dd>KPD 01 onshore pipeline · KPD 02 onshore reticulation piping (registration JKKP/2022/26/76)</dd></div>
-        <div><dt>UPKJ Sarawak</dt><dd>Certificates UPKJ/W/021609 (works) and UPKJ/M/001828 (mechanical) · Class A · valid to 4 July 2028 · Rescue Contractor to 26 August 2028</dd></div>
       </dl>
     </details>
   </div>
@@ -1620,22 +1669,22 @@ def privacy():
 </section>''' + footer()
 
 # ================================================================ VENDOR INFORMATION + CAPABILITY STATEMENT
-# Registration details that are already public on the HSE page. MOF and PETROS vendor numbers, tax numbers,
-# bank details and financial statements are given to procurement teams on request only.
+# Registration details, as also shown on the HSE page. Tax numbers, bank details and financial statements
+# are given to procurement teams on request only.
 REGISTRATIONS = [
     ("ISO 9001:2015", "Quality management system, TÜV NORD CERT GmbH. Certificate no. 44100072059", "7 Feb 2028"),
     ("ISO 45001:2018", "Occupational health and safety management system, BSI. Certificate no. OHS 796482", "25 Sep 2027"),
     ("CIDB Grade G7", "Categories B, CE and ME, with PPK, SPKK and STB certificates. Registration no. 0120030415-SR082502", "7 Nov 2028"),
     ("PETRONAS licence", "Licensed to supply products and services to exploration and oil and gas companies in Malaysia", "30 Jul 2027"),
-    ("PETROS", "Registered vendor of Petroleum Sarawak Berhad and its group", "6 Dec 2028"),
+    ("PETROS", "Registered vendor of Petroleum Sarawak Berhad and its group. Registration no. P250528-S", "6 Dec 2028"),
     ("DOSH", "Competent Firm (Petroleum Contractor), KPD 01 and KPD 02. Registration no. JKKP/2022/26/76", "30 Mar 2028"),
-    ("MOF", "Ministry of Finance registered supplier", "12 Mar 2027"),
+    ("MOF", "Ministry of Finance registered supplier and Bumiputera company. Certificate no. KQ24038211643726829", "12 Mar 2027"),
     ("UPKJ Sarawak", "Class A contractor in the works (UPKJ/W/021609) and mechanical (UPKJ/M/001828) fields. Rescue Contractor status valid to 26 Aug 2028", "4 Jul 2028"),
     ("CIDB SCORE", "3-star rating for 2025", "1 Sep 2027"),
 ]
 
 ON_REQUEST = ["The full company profile, with certificate copies",
-              "MOF and PETROS registration numbers and certificates",
+              "Copies of the MOF, PETROS, UPKJ and DOSH certificates",
               "Contract values and client references for past projects",
               "Audited financial statements and bank details",
               "Tax (TIN) and SST registration details",
