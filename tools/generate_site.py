@@ -1635,9 +1635,9 @@ PRIVACY_SECTIONS = [
       <p>Some of these providers, such as our email services, may store data on servers outside Malaysia. Where that happens, we take reasonable steps to make sure your data is protected to a standard comparable to Malaysian law.</p>"""),
     ("p-keep", "How long we keep it", """<ul>
         <li><strong>Enquiries</strong> are kept for as long as needed to deal with them and for our business records.</li>
-        <li><strong>Job applications and CVs</strong> are deleted automatically 12 months after they are received, unless you join BWS. You can ask us to delete yours sooner.</li>
+        <li><strong>Job applications and CVs</strong> are kept for up to 12 months after they are received and then deleted, unless you join BWS. You can ask us to delete yours sooner.</li>
       </ul>"""),
-    ("p-safe", "How we protect it", """<p>The website and application system use encrypted connections (HTTPS). CVs are stored privately and can only be opened by authorised BWS staff after logging in. Access is limited to the people who need it.</p>"""),
+    ("p-safe", "How we protect it", """<p>The website uses an encrypted connection (HTTPS). CVs and enquiries are kept in BWS’s own email and records, and only the staff who handle them can see them.</p>"""),
     ("p-rights", "Your rights", """<p>You may ask us to:</p>
       <ul>
         <li>give you access to the personal data we hold about you;</li>

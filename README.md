@@ -127,6 +127,7 @@ Three featured projects (MLNG Power Import, Miri Water Supply Phase 2, PDB Miri 
 `privacy.html` (and `ms/privacy.html`) explains what personal data the forms collect, why, who sees it, how long it is kept, and how to ask for access, correction or deletion, as Malaysia's Personal Data Protection Act 2010 expects. The text is in `PRIVACY_SECTIONS` in `tools/generate_site.py`.
 - ⚠️ **BWS should have it reviewed** (by its company secretary or a lawyer) before launch, and keep it true: for example, if CVs are kept longer than 12 months, change both the notice and `PORTAL_RETENTION_MONTHS`.
 - When the notice changes, update `PRIVACY_VERSION` there and `PORTAL_PRIVACY_VERSION` in the portal's `.env`, so each application records which version the applicant agreed to.
+- **When the BWS Portal goes live,** update two lines in `PRIVACY_SECTIONS` to match: applications and CVs are then deleted *automatically* after 12 months, and CVs are stored in the portal where only logged-in staff can open them. Until then the notice describes the email process (CVs kept up to 12 months in BWS's own email and records), so BWS's recruitment team must actually delete CVs older than 12 months.
 
 ### Contact form
 The form is on `contact.html` (search for `CONTACT FORM`). It sends in the background and shows a thank-you message, trying three routes in turn:
