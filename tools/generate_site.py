@@ -292,16 +292,16 @@ def illus_panels(name):
     return (f'<div class="bws-panels bws-panels--page bws-panels--illus" aria-hidden="true">'
             f'<img src="assets/illustrations/{name}.svg" width="800" height="600" alt="" fetchpriority="high"><span class="bws-glow"></span></div>')
 
-def page_hero(crumb, title, lead, illus, *_unused):
+def page_hero(crumb, title, lead, illus=None, *_unused):
     return f'''
 <section class="page-hero on-dark">
-  <div class="container page-hero-grid">
+  <div class="container page-hero-grid{"" if illus else " page-hero-grid--text"}">
     <div class="page-hero-inner">
       <ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">{crumb}</li></ol>
       <h1>{title}</h1>
       <p>{lead}</p>
     </div>
-    {illus_panels(illus)}
+    {illus_panels(illus) if illus else ""}
   </div>
 </section>'''
 
@@ -597,7 +597,7 @@ def home():
           <span class="link-arrow">View scope</span>
         </div>
       </a>''' for (sid, ic, t, blurb, _sc, _in, ph) in SERVICES)
-    work = [("power-import-aerial-1", 675, 520, "Plant · MLNG", "Power Import Project, Bintulu"),
+    work = [("power-import-aerial-2", 686, 520, "Plant · MLNG", "Power Import Project, Bintulu"),
             ("miri-water-pipeline", 694, 441, "Civil &amp; Mechanical · JBALB", "Miri Water Supply, 1,600 mm pipeline"),
             ("rsp-housing-aerial-1", 679, 495, "Building · PPP", "50 houses, Gedong Baru, Samarahan"),
             ("miri-water-baram-intake", 632, 499, "Civil · JBALB", "Batang Baram intake works")]
@@ -626,7 +626,7 @@ def home():
   <div class="hero-inner">
     <p class="eyebrow">Miri &amp; Bintulu, Sarawak</p>
     <h1 id="hero-title">Engineering, Construction &amp; Maintenance for Oil&nbsp;&amp;&nbsp;Gas, <span class="accent">Since&nbsp;2002.</span></h1>
-    <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak. <b>PETRONAS licensed · CIDB registered · ISO 9001:2015.</b></p>
+    <p class="sub">Bumiputera contractor based in Miri &amp; Bintulu, Sarawak.</p>
     <div class="btn-row">
       <a class="btn btn--primary" href="services.html">Our Services {icon("arrow")}</a>
       <a class="btn btn--outline-light" href="contact.html">Contact Us</a>
@@ -715,33 +715,8 @@ def home():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("04", "Facilities")}<h2 id="fac-title">Our own workshop and fabrication yard</h2></div>
-      <p class="lead">Company-owned facilities in Miri and Bintulu support fabrication, storage and preparation for our projects.</p>
+      <p class="lead mb-0">Our main office and fabrication workshop is in Piasau Industrial Estate, Miri, with a fabrication yard at Kidurong, Bintulu. <a class="link-arrow" href="about.html#fac-title">See our facilities</a></p>
     </div>
-    <div class="grid grid--2 reveal-stagger">
-      <article class="facility">
-        {img("facility-miri-hq", "BWS Engineering main office and workshop building at Piasau Industrial Estate, Miri", 800, 600, "(min-width: 60rem) 50vw, 100vw", big=True)}
-        <div class="facility-body">
-          <span class="tag">Miri · Main Office</span>
-          <h3>Office, Warehouse &amp; Fabrication Workshop</h3>
-          <address>Piasau Industrial Estate Phase III, Miri</address>
-          <p class="mb-0">Our own industrial building serves as the main office, warehouse and fabrication workshop for civil, building, structural, mechanical, piping, and electrical &amp; instrumentation work.</p>
-        </div>
-      </article>
-      <article class="facility">
-        {img("facility-bintulu-yard", "Entrance to the BWS Engineering fabrication yard at Kidurong Industrial Estate, Bintulu", 800, 800, "(min-width: 60rem) 50vw, 100vw", big=True)}
-        <div class="facility-body">
-          <span class="tag">Bintulu · Fabrication Yard</span>
-          <h3>Kidurong Fabrication Yard</h3>
-          <address>Kidurong Industrial Estate, Bintulu</address>
-          <ul class="ticks mb-0">
-            <li>Offices and covered fabrication shop</li>
-            <li>Open fabrication area</li>
-            <li>Covered and open storage</li>
-            <li>Blasting and painting facilities</li>
-            <li>NDT facilities</li>
-          </ul>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -1099,10 +1074,13 @@ def case_studies():
     return out
 
 def projects():
-    cnt = lambda k: len(GALLERY) if k == "all" else sum(1 for g in GALLERY if g[0] == k)
+    # Photos already shown in the case studies above are left out of the gallery on this page
+    case_keys = {c["photo"][0] for c in CASE_STUDIES}
+    shown = [g for g in GALLERY if g[1] not in case_keys]
+    cnt = lambda k: len(shown) if k == "all" else sum(1 for g in shown if g[0] == k)
     btns = "".join(f'<button class="filter-btn" type="button" data-filter="{k}" aria-pressed="{str(k == "all").lower()}">{v}<span class="count">({cnt(k)})</span></button>' for k, v in CATS)
     lis = ""
-    for cat, key, w, h, title, alt in GALLERY:
+    for cat, key, w, h, title, alt in shown:
         if key and key.startswith("ill:"):
             # Blueprint illustration standing in until a real site photo is supplied (see README)
             src = f"assets/illustrations/{key[4:]}.svg"
@@ -1632,7 +1610,7 @@ def privacy():
         "How BWS Engineering Sdn Bhd collects, uses and protects personal data under Malaysia’s Personal Data Protection Act 2010.") + header("") + page_hero(
         "Privacy Notice", "Privacy notice",
         "How we collect, use and protect your personal data, in line with the Personal Data Protection Act 2010.",
-        "hard-hat") + f'''
+        ) + f'''
 
 <section class="section">
   <div class="container measure privacy-doc">
@@ -1687,7 +1665,7 @@ def vendor():
         "Company particulars, registrations and licences with validity dates, and the capability statement of BWS Engineering Sdn Bhd, for vendor registration and tender prequalification.") + header("") + page_hero(
         "Vendor information", "Vendor information",
         "Company particulars, registrations and a capability statement for procurement and vendor registration teams.",
-        "workshop") + f'''
+        ) + f'''
 
 <section class="section">
   <div class="container">

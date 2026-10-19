@@ -836,6 +836,8 @@ MS = {
 "Contact for procurement": "Hubungan untuk perolehan",
 "with the documents you need, or call our Miri office on": "dengan dokumen yang anda perlukan, atau hubungi pejabat kami di Miri di talian",
 "Send an enquiry": "Hantar pertanyaan",
+"Our main office and fabrication workshop is in Piasau Industrial Estate, Miri, with a fabrication yard at Kidurong, Bintulu.": "Pejabat utama dan bengkel fabrikasi kami terletak di Kawasan Perindustrian Piasau, Miri, dengan limbungan fabrikasi di Kidurong, Bintulu.",
+"See our facilities": "Lihat kemudahan kami",
 }
 
 MONTHS = {"January": "Januari", "February": "Februari", "March": "Mac", "April": "April", "May": "Mei", "June": "Jun",

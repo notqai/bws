@@ -926,3 +926,14 @@ a.card:hover, .card--hover:hover { border-color: var(--steel-400); }
 /* Phone menu close (X) button: explicit icon size (it had none, so Safari drew an empty box) */
 .mobile-menu .nav-close svg { width: 24px; height: 24px; flex: none; }
 .mobile-menu .nav-close:focus-visible { outline: 3px solid var(--safety); outline-offset: 2px; }
+
+/* Text-only page header (document pages: vendor information, privacy notice) */
+.page-hero-grid--text { grid-template-columns: 1fr !important; min-height: 0 !important; }
+.page-hero-grid--text .page-hero-inner { padding-block: clamp(2.5rem, 2rem + 3vw, 4rem); }
+
+/* Service cards: space between the photo and the title (the icon that used to sit there is gone) */
+.card--media .card-body { padding-top: var(--space-5); }
+.card--media .card-body h3 { margin-bottom: var(--space-3); }
+.card--media .card-body p { margin-bottom: var(--space-5); }
+/* A section that is only a heading and intro (e.g. home Facilities) needs no space below it */
+.section-head:last-child { margin-bottom: 0; }
