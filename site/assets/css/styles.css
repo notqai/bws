@@ -1,6 +1,7 @@
 /* ==========================================================================
    BWS Engineering Sdn Bhd: site stylesheet
    One file for every page. Colours, type and spacing live in :root below.
+   Built from src/css/*.css by tools/build_css.py: edit the partials, not this file.
    ========================================================================== */
 
 /* Self-hosted web fonts (latin subset), preloaded in each page's <head> */

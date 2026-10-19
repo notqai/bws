@@ -171,9 +171,9 @@
   }
 
   /* ---- Contact form ----
-     If the form's action still contains YOUR_FORM_ID it falls back to a
-     pre-filled email (mailto:). Once a real Formspree endpoint is set, it
-     submits in the background and shows a success / error message. */
+     Posts to the form's action (contact.php, or a Formspree endpoint) and reads the
+     JSON reply. If no form handler answers (a static host without PHP, or offline),
+     it falls back to a pre-filled email (mailto:) so the enquiry is never lost. */
   var form = document.querySelector("[data-contact-form]");
   if (form) {
     var statusEl = form.querySelector(".form-status");
@@ -194,44 +194,55 @@
       if (firstBad) firstBad.focus();
       return !firstBad;
     };
+    var sendByEmail = function (data) {
+      // No form handler available: let the visitor send it with Gmail, Outlook or their mail app
+      var to = form.getAttribute("data-mailto") || "bws@bwsengineeringsb.com";
+      var subject = T("Website enquiry: ", "Pertanyaan laman web: ") + (data.get("service") || T("General", "Umum")) + " (" + (data.get("company") || data.get("name")) + ")";
+      var body = [
+        T("Name: ", "Nama: ") + data.get("name"),
+        T("Company: ", "Syarikat: ") + (data.get("company") || "-"),
+        T("Email: ", "E-mel: ") + data.get("email"),
+        T("Phone: ", "Telefon: ") + (data.get("phone") || "-"),
+        T("Service of interest: ", "Perkhidmatan: ") + (data.get("service") || "-"),
+        "",
+        data.get("message")
+      ].join("\n");
+      window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      setStatus("ok", T("Your email app should open with your enquiry ready to send. If it does not, please email " + to + " directly.",
+                        "Aplikasi e-mel anda akan dibuka dengan pertanyaan yang sedia untuk dihantar. Jika tidak, sila e-mel terus ke " + to + "."));
+    };
+    var ERRORS = {
+      rate: ["You have sent several enquiries in a short time. Please try again later, or call 085-652743.",
+             "Anda telah menghantar beberapa pertanyaan dalam masa yang singkat. Sila cuba lagi kemudian, atau hubungi 085-652743."],
+      invalid: ["Please fill in the highlighted fields.", "Sila lengkapkan ruangan yang ditandakan."],
+      send: ["Sorry, your enquiry could not be sent. Please email bws@bwsengineeringsb.com or call 085-652743.",
+             "Maaf, pertanyaan anda tidak dapat dihantar. Sila e-mel bws@bwsengineeringsb.com atau hubungi 085-652743."]
+    };
     form.setAttribute("novalidate", "");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (form.querySelector(".hp input").value) return; // spam honeypot
-      if (!validate()) { setStatus("err", T("Please fill in the highlighted fields.", "Sila lengkapkan ruangan yang ditandakan.")); return; }
+      if (!validate()) { setStatus("err", T(ERRORS.invalid[0], ERRORS.invalid[1])); return; }
       var data = new FormData(form);
       var action = form.getAttribute("action") || "";
-
-      if (action.indexOf("YOUR_FORM_ID") !== -1 || !window.fetch) {
-        // No form service connected: let the visitor send it with Gmail, Outlook or their mail app
-        var to = form.getAttribute("data-mailto") || "bws@bwsengineeringsb.com";
-        var subject = T("Website enquiry: ", "Pertanyaan laman web: ") + (data.get("service") || T("General", "Umum")) + " (" + (data.get("company") || data.get("name")) + ")";
-        var body = [
-          T("Name: ", "Nama: ") + data.get("name"),
-          T("Company: ", "Syarikat: ") + (data.get("company") || "-"),
-          T("Email: ", "E-mel: ") + data.get("email"),
-          T("Phone: ", "Telefon: ") + (data.get("phone") || "-"),
-          T("Service of interest: ", "Perkhidmatan: ") + (data.get("service") || "-"),
-          "",
-          data.get("message")
-        ].join("\n");
-        window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        setStatus("ok", T("Your email app should open with your enquiry ready to send. If it does not, please email " + to + " directly.",
-                          "Aplikasi e-mel anda akan dibuka dengan pertanyaan yang sedia untuk dihantar. Jika tidak, sila e-mel terus ke " + to + "."));
-        return;
-      }
+      if (!action || action.indexOf("YOUR_FORM_ID") !== -1 || !window.fetch) { sendByEmail(data); return; }
 
       var submitBtn = form.querySelector("[type=submit]");
       submitBtn.disabled = true;
       fetch(action, { method: "POST", body: data, headers: { Accept: "application/json" } })
         .then(function (r) {
-          if (!r.ok) throw new Error(r.status);
-          form.reset();
-          setStatus("ok", T("Thank you. Your enquiry has been sent and our team will get back to you shortly.", "Terima kasih. Pertanyaan anda telah dihantar dan pasukan kami akan menghubungi anda tidak lama lagi."));
+          return r.json().then(function (j) { return j; }, function () { return null; });
         })
-        .catch(function () {
-          setStatus("err", T("Sorry, something went wrong. Please email bws@bwsengineeringsb.com or call 085-652743.", "Maaf, berlaku ralat. Sila e-mel bws@bwsengineeringsb.com atau hubungi 085-652743."));
-        })
+        .then(function (j) {
+          if (j && j.ok) {
+            form.reset();
+            setStatus("ok", T("Thank you. Your enquiry has been sent and our team will get back to you shortly.", "Terima kasih. Pertanyaan anda telah dihantar dan pasukan kami akan menghubungi anda tidak lama lagi."));
+          } else if (j && ERRORS[j.error]) {
+            setStatus("err", T(ERRORS[j.error][0], ERRORS[j.error][1]));
+          } else {
+            sendByEmail(data); // no JSON reply: this host has no form handler
+          }
+        }, function () { sendByEmail(data); })
         .finally(function () { submitBtn.disabled = false; });
     });
   }

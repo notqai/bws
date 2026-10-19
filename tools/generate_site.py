@@ -103,6 +103,11 @@ ORG_LD = {
 
 HEROES = {"index.html": "hero-column-erection"}
 
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_css
+build_css.build()  # src/css/*.css -> site/assets/css/styles.css, before it is hashed below
+
 import hashlib as _hl
 # Cache-busting version for CSS/JS: changes whenever either file changes
 ASSET_V = _hl.md5(open(OUT + "assets/css/styles.css", "rb").read() + open(OUT + "assets/js/main.js", "rb").read()).hexdigest()[:8]
@@ -1377,10 +1382,10 @@ def contact():
     <div class="enquiry-card">
       <h2 id="form-title">Enquiry</h2>
       <p class="lead">For quotations and general enquiries, please complete the form below.</p>
-      <!-- CONTACT FORM: replace YOUR_FORM_ID in the action below with your Formspree form ID
-           (https://formspree.io → New form → copy the endpoint). Until then the form opens
-           the visitor's email app with the message pre-filled, addressed to data-mailto. -->
-      <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-contact-form data-mailto="bws@bwsengineeringsb.com">
+      <!-- CONTACT FORM: posts to contact.php (cPanel / any PHP host; settings at the top of that file).
+           On hosts without PHP the visitor's email app opens instead, pre-filled and addressed to data-mailto.
+           To use Formspree instead, set the action to https://formspree.io/f/<your form ID>. -->
+      <form class="form" action="contact.php" method="POST" data-contact-form data-mailto="bws@bwsengineeringsb.com">
         <input type="hidden" name="_subject" value="Website enquiry: BWS Engineering">
         <div class="form-row">
           <div class="field"><label for="f-name">Name <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error"><span class="field-error" id="f-name-error" hidden>Please enter your name.</span></div>
@@ -1432,7 +1437,5 @@ write("site.webmanifest", json.dumps({"name": "BWS Engineering Sdn Bhd", "short_
     "theme_color": "#0A1240", "background_color": "#FFFFFF", "display": "browser"}, indent=2))
 
 # Bahasa Melayu version (site/ms/) + language switch and hreflang on both versions
-import sys as _sys
-_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_ms
 build_ms.build()

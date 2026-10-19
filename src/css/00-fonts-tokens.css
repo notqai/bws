@@ -1,0 +1,70 @@
+/* ==========================================================================
+   BWS Engineering Sdn Bhd: site stylesheet
+   One file for every page. Colours, type and spacing live in :root below.
+   Built from src/css/*.css by tools/build_css.py: edit the partials, not this file.
+   ========================================================================== */
+
+/* Self-hosted web fonts (latin subset), preloaded in each page's <head> */
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Serif 4"; src: url("../fonts/source-serif-4-700-latin.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+/* Size-matched fallbacks so text doesn't jump when the web fonts arrive (avoids layout shift) */
+@font-face { font-family: "Source Sans 3 Fallback"; src: local("Arial"), local("ArialMT"); size-adjust: 91.8%; ascent-override: 111.55%; descent-override: 43.57%; line-gap-override: 0%; }
+@font-face { font-family: "Source Serif 4 Fallback"; src: local("Georgia Bold"), local("Georgia-Bold"); font-weight: 700; size-adjust: 81.34%; ascent-override: 127.36%; descent-override: 41.18%; line-gap-override: 0%; }
+
+:root {
+  /* Brand (taken from the logo) */
+  --brand-blue: #0A18D9;   /* royal blue: buttons, links, key highlights */
+  --brand-blue-700: #0812AE;
+  --brand-sky: #4797E6;    /* accents, icons, hovers; never body text on white */
+  --brand-cyan: #E4FCFC;   /* pale cyan: light section backgrounds, cards */
+  --ink: #0A1240;          /* deep navy: dark sections, hero overlay, footer */
+  --ink-2: #111B57;        /* raised surfaces on ink */
+  --safety: #F2A900;       /* HSE callouts ONLY */
+
+  /* Neutrals (steel) */
+  --white: #FFFFFF;
+  --steel-50: #F6F8FA;
+  --steel-100: #EEF1F5;
+  --steel-200: #DCE1E8;
+  --steel-400: #8C96A3;
+  --steel-600: #5B6675;    /* secondary text on white (5.9:1) */
+  --steel-800: #2C3440;    /* body text on white */
+
+  /* Text on dark */
+  --on-ink: #FFFFFF;
+  --on-ink-muted: #C3CAE6; /* 10.5:1 on --ink */
+
+  /* Type */
+  --font-head: "Source Serif 4", "Source Serif 4 Fallback", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", "Source Sans 3 Fallback", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-jawi: "Noto Naskh Arabic", "Traditional Arabic", serif;
+
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --fs-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --fs-h2: clamp(1.75rem, 1.45rem + 1.4vw, 2.625rem);
+  --fs-h1: clamp(2.125rem, 1.6rem + 2.6vw, 3.75rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --section-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --container: 75rem;
+
+  --radius: 4px;
+  --header-h: 4.5rem;
+  --shadow-1: 0 1px 2px rgba(10, 18, 64, .06), 0 2px 8px rgba(10, 18, 64, .06);
+  --shadow-2: 0 4px 12px rgba(10, 18, 64, .08), 0 16px 40px rgba(10, 18, 64, .10);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+

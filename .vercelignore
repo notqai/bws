@@ -1,0 +1,2 @@
+# Vercel has no PHP: keep the form handler off it (the form falls back to email there)
+site/contact.php

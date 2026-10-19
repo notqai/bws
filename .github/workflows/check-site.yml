@@ -1,0 +1,23 @@
+name: Check site
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild pages from the generator
+        run: python3 tools/generate_site.py
+      - name: Warn if the committed HTML differs from the generator
+        run: |
+          if ! git diff --quiet -- site tools/ms_untranslated.txt; then
+            echo "::warning::The HTML in site/ is not what tools/generate_site.py produces. Hand edits will be lost the next time the generator runs."
+            git diff --stat -- site tools/ms_untranslated.txt
+          fi
+      - name: Check links, images and anchors
+        run: python3 tools/check_site.py
+      - name: Check the PHP form handler
+        run: php -l site/contact.php

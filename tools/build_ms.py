@@ -67,6 +67,7 @@ def translate_html(doc):
 
 def fix_paths(doc):
     doc = re.sub(r'((?:src|href|data-full)=")(assets/|favicon\.ico|site\.webmanifest)', r"\1../\2", doc)
+    doc = doc.replace('action="contact.php"', 'action="../contact.php"')
     doc = re.sub(r'((?:srcset|imagesrcset)=")([^"]*)"', lambda m: m.group(1) + re.sub(r"(^|,\s*)assets/", r"\1../assets/", m.group(2)) + '"', doc)
     return doc
 
@@ -127,9 +128,10 @@ def build():
     open(os.path.join(SITE_DIR, "sitemap.xml"), "w").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
         'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + urls + "</urlset>\n")
-    if missing:
-        open("/tmp/ms_untranslated.txt", "w").write("\n".join(sorted(missing)))
-        print(f"build_ms: {len(missing)} strings kept in English (project/client names etc.), listed in /tmp/ms_untranslated.txt")
+    # Kept in the repo so `git diff` shows any newly untranslated English text after a build
+    report = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ms_untranslated.txt")
+    open(report, "w", encoding="utf-8").write("".join(t + "\n" for t in sorted(missing)))
+    print(f"build_ms: {len(missing)} strings kept in English (project/client names etc.), listed in tools/ms_untranslated.txt")
 
 if __name__ == "__main__":
     build()
