@@ -39,7 +39,8 @@ def icon(name, cls=""):
         "factory": '<path d="M3 21V11l5 3v-3l5 3v-3l5 3V4h3v17z"/>',
     }[name]
     c = f' class="{cls}"' if cls else ""
-    return f'<svg{c} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{P}</svg>'
+    # width/height are a fallback size: without them Safari can shrink an icon to nothing inside a flex button
+    return f'<svg{c} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{P}</svg>'
 
 PANELS = '<span class="panels" aria-hidden="true"><i></i><i></i><i></i></span>'
 
@@ -185,7 +186,7 @@ def header(page):
     <a class="brand" href="index.html"{' aria-current="page"' if page == "index.html" else ""}>
       <img src="assets/logo/logo.svg" width="56" height="43" alt="">
       <span class="brand-text">
-        <span class="brand-name">BWS Engineering Sdn Bhd</span>
+        <span class="brand-name">BWS Engineering Sdn&nbsp;Bhd</span>
         <span class="jawi" dir="rtl" lang="ms-Arab">{JAWI}</span>
       </span>
       <span class="visually-hidden">: home</span>
@@ -232,7 +233,7 @@ def footer():
   <div class="container footer-top">
     <div class="footer-brand">
       <img src="assets/logo/logo-white.svg" width="74" height="56" alt="">
-      <span class="brand-name">BWS Engineering Sdn Bhd</span>
+      <span class="brand-name">BWS Engineering Sdn&nbsp;Bhd</span>
       <span class="jawi" dir="rtl" lang="ms-Arab">{JAWI}</span>
       <p>Wholly owned Bumiputera engineering construction and maintenance contractor for the oil and gas industries, since October 2002.</p>
       <div class="licences">
@@ -269,7 +270,7 @@ def footer():
     <nav aria-label="Footer">
       <h2>Quick links</h2>
       <ul>{links}</ul>
-      <a class="social" href="https://www.facebook.com/bwsengineeringsdnbhd/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg>Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <a class="social" href="https://www.facebook.com/bwsengineeringsdnbhd/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21z"/></svg>Facebook<span class="visually-hidden"> (opens in a new tab)</span></a>
     </nav>
   </div>
   <div class="container footer-bottom">

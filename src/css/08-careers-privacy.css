@@ -104,3 +104,27 @@ a.card:hover, .card--hover:hover { border-color: var(--steel-400); }
 .ticks li::before, .section--ink .ticks li::before { background: var(--ink); width: 10px; height: 2px; }
 .section--ink .ticks li::before { background: var(--on-ink-muted); }
 .related { background: var(--steel-50); border-left-color: var(--ink); }
+
+/* ---------- Header on phones and tablets: BM and menu buttons as a matched pair ---------- */
+@media (max-width: 79.99rem) {
+  .header-inner { gap: var(--space-2); }
+  .brand { margin-right: auto; padding-right: var(--space-3); }
+  .lang-switch--mobile, .nav-toggle { width: 44px; min-width: 44px; height: 44px; padding: 0; }
+  .brand-text { overflow: hidden; }
+  .brand-name { overflow: hidden; text-overflow: ellipsis; }
+}
+@media (max-width: 30rem) {
+  .brand { gap: var(--space-2); padding-right: var(--space-2); }
+  .brand-name { font-size: .92rem; }
+  .brand img { width: 42px; height: 32px; }
+}
+@media (max-width: 23.5rem) {
+  /* Smallest phones: the name breaks onto two lines; the Jawi name stays in the footer */
+  .brand-name { white-space: normal; font-size: .9rem; line-height: 1.15; }
+  .site-header .jawi { display: none; }
+  .brand img { width: 38px; height: 29px; }
+}
+
+/* Phone menu close (X) button: explicit icon size (it had none, so Safari drew an empty box) */
+.mobile-menu .nav-close svg { width: 24px; height: 24px; flex: none; }
+.mobile-menu .nav-close:focus-visible { outline: 3px solid var(--safety); outline-offset: 2px; }
