@@ -587,9 +587,8 @@ def about():
 
 <section class="section" aria-labelledby="org-title">
   <div class="container">
-    <div class="section-head section-head--split">
+    <div class="section-head">
       <div>{eyebrow("04", "Organisation")}<h2 id="org-title">Organisation chart</h2></div>
-      <p class="lead">The Managing Director leads five sections, with HSE reporting directly to the top.</p>
     </div>
     <!-- ORGANISATION CHART: from BWS's own chart on the old website (page /about2).
          Each column is one section; edit the <li> text to update roles. -->
@@ -662,9 +661,8 @@ def clients():
 
 <section class="section" aria-labelledby="cl-title">
   <div class="container">
-    <div class="section-head section-head--split">
+    <div class="section-head">
       <div>{eyebrow("01", "Clients")}<h2 id="cl-title">Who we work for</h2></div>
-      <p class="lead">Listed in no particular order.</p>
     </div>
     {client_grid()}
   </div>
