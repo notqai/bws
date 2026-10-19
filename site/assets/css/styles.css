@@ -941,3 +941,6 @@ a.card:hover, .card--hover:hover { border-color: var(--steel-400); }
 /* Further registrations (HSE page): same cards as the main certificates, in a two-column grid */
 .reg-more-title { margin: var(--space-7) 0 var(--space-4); font-size: var(--fs-h3); }
 .reg-more .cert-data div:nth-child(-n+2) dd { font-size: 1.1rem; }
+
+/* Jumping to a #section (e.g. after switching language) keeps the heading clear of the sticky header */
+main [id] { scroll-margin-top: calc(var(--header-h) + 1rem); }

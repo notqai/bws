@@ -295,6 +295,43 @@
     });
   });
 
+  /* ---- Language switch: open the other language at the section being read ----
+     Both versions have the same element ids, so the nearest section heading above the
+     top of the screen is carried over as #id (the browser then scrolls straight to it). */
+  document.querySelectorAll(".lang-switch").forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (window.scrollY < 200) return; // at the top: no need
+      var header = document.querySelector(".site-header");
+      var line = (header ? header.getBoundingClientRect().bottom : 0) + 48;
+      var marks = document.querySelectorAll("main section[id], main h2[id], main h3[id], main article[id], main details[id]");
+      var found = null;
+      for (var i = 0; i < marks.length; i++) {
+        var el = marks[i];
+        if (!el.offsetParent && el.tagName !== "SECTION") continue; // hidden (e.g. closed menu, collapsed list)
+        if (el.getBoundingClientRect().top <= line) found = el; else break;
+      }
+      if (found) a.href = a.href.split("#")[0] + "#" + found.id;
+    });
+  });
+  // Arriving at #section: place it just below the sticky header once fonts and images
+  // above it have loaded (they can push it down after the browser's first jump)
+  if (location.hash.length > 1) {
+    // No smooth scrolling while arriving, or the browser's own animated jump would finish after ours
+    var rootStyle = document.documentElement.style;
+    rootStyle.scrollBehavior = "auto";
+    var alignToHash = function () {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (!t) return;
+      var header = document.querySelector(".site-header");
+      var offset = (header ? header.offsetHeight : 0) + 16;
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - offset, behavior: "instant" });
+      setTimeout(function () { rootStyle.scrollBehavior = ""; }, 100);
+    };
+    window.addEventListener("load", function () {
+      (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(alignToHash);
+    });
+  }
+
   /* ---- Contact: pre-select the service when arriving from a Services page (contact.html?service=civil) ---- */
   var svcKey = new URLSearchParams(location.search).get("service");
   if (svcKey) {
