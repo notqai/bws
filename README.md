@@ -122,9 +122,6 @@ Five featured projects with scope and client-recorded results, in `CASE_STUDIES`
   python3 tools/generate_site.py         # so the vendor page shows the download button
   ```
 
-### WhatsApp button
-Set `WHATSAPP` at the top of `tools/generate_site.py` to the business WhatsApp number in international format, digits only (e.g. `60123456789`), and rebuild. A green *WhatsApp us* button then appears on every page, with a pre-filled message (Malay on the BM pages). It is hidden while `WHATSAPP` is empty.
-
 ### Privacy Notice
 `privacy.html` (and `ms/privacy.html`) explains what personal data the forms collect, why, who sees it, how long it is kept, and how to ask for access, correction or deletion, as Malaysia's Personal Data Protection Act 2010 expects. The text is in `PRIVACY_SECTIONS` in `tools/generate_site.py`.
 - ⚠️ **BWS should have it reviewed** (by its company secretary or a lawyer) before launch, and keep it true: for example, if CVs are kept longer than 12 months, change both the notice and `PORTAL_RETENTION_MONTHS`.

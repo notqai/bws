@@ -869,14 +869,6 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .eq-table th:last-child { text-align: right; }
 @media (max-width: 40rem) { .eq-table td:first-child { white-space: normal; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .06em; } .eq-table .eq-units { text-align: left; } }
 
-/* ---------- WhatsApp click-to-chat (shown only when WHATSAPP is set in the generator) ---------- */
-.wa-float { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 40; display: inline-flex; align-items: center; gap: var(--space-2); min-height: 52px; padding: 0 var(--space-5) 0 var(--space-4); border-radius: 999px; background: #0B6B3A; color: var(--white); font-weight: 700; text-decoration: none; box-shadow: var(--shadow-2); }
-.wa-float svg { width: 26px; height: 26px; flex: none; }
-.wa-float:hover { background: #08552E; color: var(--white); }
-.wa-float:focus-visible { outline: 3px solid var(--brand-sky); outline-offset: 3px; }
-@media (max-width: 40rem) { .wa-float span:not(.visually-hidden) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .wa-float { padding: 0; width: 56px; justify-content: center; } }
-@media print { .wa-float { display: none; } }
-
 /* ---------- Vendor information ---------- */
 .vendor-downloads { display: grid; gap: var(--space-5); align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--white); border: 1px solid var(--steel-200); border-top: 4px solid var(--brand-blue); border-radius: var(--radius); box-shadow: var(--shadow-1); }
 @media (min-width: 60rem) { .vendor-downloads { grid-template-columns: 1.4fr 1fr; } .vendor-downloads .btn-row { justify-content: flex-end; } }

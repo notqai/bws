@@ -93,9 +93,6 @@ CV_EN_SUBJ = quote("Job Application – [Position]")
 CV_MS_SUBJ = quote("Permohonan Kerja – [Jawatan]")
 CV_EN_BODY = quote("Position / discipline:\nYears of experience:\nCurrent location:\nPhone number:\n\n(Please attach your CV and certificates.)", safe="")
 CV_MS_BODY = quote("Jawatan / disiplin:\nTahun pengalaman:\nLokasi semasa:\nNo. telefon:\n\n(Sila lampirkan CV dan sijil anda.)", safe="")
-# WhatsApp pre-filled message (WHATSAPP_TEXT in generate_site.py)
-WA_EN_TEXT = quote("Hello BWS Engineering, I would like to enquire about")
-WA_MS_TEXT = quote("Salam BWS Engineering, saya ingin bertanya tentang")
 
 def add_switch_and_alternates(doc, page, lang):
     doc = doc.replace('<link rel="canonical"', alternates(page) + '<link rel="canonical"', 1)
@@ -118,7 +115,7 @@ def build():
         ms = ms.replace('content="en_MY"', 'content="ms_MY"')
         ms = re.sub(r'(<link rel="canonical" href=")' + re.escape(SITE) + r'/', r"\1" + SITE + "/ms/", ms, count=1)
         ms = re.sub(r'(<meta property="og:url" content=")' + re.escape(SITE) + r'/', r"\1" + SITE + "/ms/", ms, count=1)
-        ms = ms.replace(CV_EN_SUBJ, CV_MS_SUBJ).replace(CV_EN_BODY, CV_MS_BODY).replace("text=" + WA_EN_TEXT, "text=" + WA_MS_TEXT)
+        ms = ms.replace(CV_EN_SUBJ, CV_MS_SUBJ).replace(CV_EN_BODY, CV_MS_BODY)
         ms = add_switch_and_alternates(ms, page, "ms")
         en = add_switch_and_alternates(en, page, "en")
         open(src, "w", encoding="utf-8").write(en)
