@@ -147,6 +147,22 @@ The site is English-only for now, with all text in the HTML (none in the JS). To
 - Lighthouse (mobile, local test server): **Performance 98–99, Accessibility 100, Best Practices 100, SEO 100**, layout shift 0, blocking time 0 ms.
 - Scrolling is kept cheap: no backdrop blur or blend modes, only opacity/transform animations, and a throttled scroll handler. It measured a steady 60 fps.
 
+## Digital business cards
+
+Staff cards live in `site/card/<name>.html` (the first is `mazinah.html`), with a vCard (`<name>.vcf`) and a QR code (`<name>-qr.svg`) beside it. Cards are `noindex` and are not in `sitemap.xml`. Card-specific styles are in `assets/css/card.css` (class names are prefixed `bcard`/`card-`/`loc` so they don't clash with the site's own `.card` and `.office`).
+
+Regenerate the vCard and QR codes after editing the `PEOPLE` data in `tools/make_card.py`:
+
+```
+python3 -m venv ~/.venvs/bws-card && ~/.venvs/bws-card/bin/python -m pip install segno
+~/.venvs/bws-card/bin/python tools/make_card.py [base_url]
+~/.venvs/bws-card/bin/python -m unittest discover -s tools -p "test_*.py"
+```
+
+To add a person: add an entry to `PEOPLE`, copy `mazinah.html` to `<name>.html` and change the text and links, then regenerate.
+
+**After the domain cutover:** run `tools/make_card.py https://www.bwsengineeringsb.com`, and change the temporary `og:image` URL in each card from `bwsengsdnbhd.vercel.app` to the `.com` domain. Do not print or hand out the QR code before this is done.
+
 ## Tools (optional)
 - `tools/generate_site.py` is the script that generated the HTML pages from shared header/footer templates. Use it **or** hand-edit the HTML, not both: running it overwrites every page. Run with `python3 tools/generate_site.py`.
 - `tools/make_logo.py` rebuilds the logo SVGs. It needs `pip install fonttools` and the Noto Serif variable font (`NotoSerif[wdth,wght].ttf` from github.com/google/fonts, saved as `fonts/NotoSerif.ttf`).
