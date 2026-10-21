@@ -811,6 +811,13 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 
 .org .org-node .org-reg { margin-top: 0; font-size: .72rem; letter-spacing: .02em; opacity: .85; }
 
+/* Board of Directors (About) */
+.org-subtitle--first { margin-top: 0; }
+.board-table { width: 100%; max-width: 46rem; border-collapse: collapse; margin: var(--space-4) 0 var(--space-7); font-size: var(--fs-sm); }
+.board-table th { text-align: left; padding: .6rem .9rem; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); border-bottom: 2px solid var(--ink); }
+.board-table td { padding: .7rem .9rem; border-bottom: 1px solid var(--steel-200); color: var(--steel-800); vertical-align: top; }
+.board-table td:last-child { font-weight: 600; color: var(--ink); }
+
 /* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
 .vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
 @media (min-width: 52rem) { .vacancies { grid-template-columns: 1fr 1fr; } }

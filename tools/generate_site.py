@@ -814,11 +814,25 @@ def about():
     <div class="section-head">
       <div>{eyebrow("04", "Organisation")}<h2 id="org-title">Organisation chart</h2></div>
     </div>
+    <!-- BOARD OF DIRECTORS: as listed in the BWS Company Profile (page 5). -->
+    <h3 class="org-subtitle org-subtitle--first" id="board-title">Board of Directors</h3>
+    <table class="board-table" aria-labelledby="board-title">
+      <thead><tr><th scope="col">Position</th><th scope="col">Name</th></tr></thead>
+      <tbody>
+        <tr><td>Managing Director</td><td>Bundan Anak Ngila</td></tr>
+        <tr><td>Executive / Project Director</td><td>Fabian Anak Raymond Langin</td></tr>
+        <tr><td>Executive / Project Director / HSE Manager</td><td>Martin Jau</td></tr>
+        <tr><td>Executive Director / Personnel &amp; Administration Manager</td><td>Mazinah binti Mohd. Masri</td></tr>
+        <tr><td>Executive Director / Accounts Manager</td><td>Salmah binti Ahmad</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="org-subtitle" id="corg-title">Company organisation</h3>
     <!-- ORGANISATION CHARTS: structure and names from the BWS Company Profile (updated 10.26).
          Update names here (or in tools/generate_site.py) when staff change. -->
-    <figure class="org" aria-labelledby="org-title">
+    <figure class="org" aria-labelledby="corg-title">
       <div class="org-top">
-        <div class="org-node org-node--lead">Managing Director<span class="org-person">Bundan anak Ngila</span></div>
+        <div class="org-node org-node--lead">Managing Director<span class="org-person">Bundan Anak Ngila</span></div>
         <div class="org-staff"><span class="org-staff-line" aria-hidden="true"></span><div class="org-node org-node--staff">HSE Secretary<span class="org-person">Dominic Saga</span><span class="org-person org-reg">HQ/16/SHO/04/00830</span></div></div>
       </div>
       <ul class="org-sections" role="list">
@@ -826,7 +840,7 @@ def about():
         <li><ol class="org-chain"><li class="org-node org-node--section">Account Section</li><li class="org-node">Accounts Manager<span class="org-person">Salmah Ahmad</span></li><li class="org-node">Accounts Assistants<span class="org-person">Stacy Ganin</span><span class="org-person">Francisca</span></li></ol></li>
         <li><ol class="org-chain"><li class="org-node org-node--section">Engineering / Contract Section</li><li class="org-split org-split--sub"><ol class="org-chain"><li class="org-node">Engineering / Project Section</li><li class="org-node">Project Manager<span class="org-person">Fabian Raymond Langin</span></li><li class="org-node org-node--leaf">Project Team</li></ol><ol class="org-chain"><li class="org-node">Contract / Procurement Section</li><li class="org-node">Contract Manager<span class="org-person">Mohd Qhadaffie Siew</span></li><li class="org-node org-node--leaf">Procurement<span class="org-person">Kasfalela Manja</span><span class="org-person">Hafizah Bt Mohedin</span></li></ol></li></ol></li>
         <li><ol class="org-chain"><li class="org-node org-node--section">Quality Assurance Section</li><li class="org-node">Quality Management Representative (QMR)<span class="org-person">Martin Jau</span></li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">Health, Safety &amp; Environment (HSE) Section</li><li class="org-node">HSE Officer<span class="org-person">Dominic Saga</span><span class="org-person org-reg">HQ/16/SHO/04/00830</span></li><li class="org-split"><span class="org-node org-node--leaf">Site Safety Supervisor<span class="org-person">Yvonne Ilam anak James</span><span class="org-person org-reg">HQ/22/SSS/00/20471</span><span class="org-person">Esther Annie</span><span class="org-person org-reg">SW/24/SSS/00/00141</span></span><span class="org-node org-node--leaf">HSE Committee</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">Health, Safety &amp; Environment (HSE) Section</li><li class="org-node">HSE Officer<span class="org-person">Dominic Saga</span><span class="org-person org-reg">HQ/16/SHO/04/00830</span></li><li class="org-split"><span class="org-node org-node--leaf">Site Safety Supervisor<span class="org-person">Yvonne Ilam Anak James</span><span class="org-person org-reg">HQ/22/SSS/00/20471</span><span class="org-person">Esther Annie</span><span class="org-person org-reg">SW/24/SSS/00/00141</span></span><span class="org-node org-node--leaf">HSE Committee</span></li></ol></li>
       </ul>
     </figure>
 

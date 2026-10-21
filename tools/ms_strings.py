@@ -660,6 +660,13 @@ MS = {
 "Site construction, under the Construction Engineer": "Pembinaan tapak, di bawah Jurutera Pembinaan",
 "QA/QC Inspector": "Pemeriksa QA/QC",
 "Health, Safety & Environment (HSE) Section": "Bahagian Keselamatan, Kesihatan & Alam Sekitar (HSE)",
+"Board of Directors": "Lembaga Pengarah",
+"Position": "Jawatan",
+"Executive / Project Director": "Pengarah Eksekutif / Projek",
+"Executive / Project Director / HSE Manager": "Pengarah Eksekutif / Projek / Pengurus HSE",
+"Executive Director / Personnel & Administration Manager": "Pengarah Eksekutif / Pengurus Personel & Pentadbiran",
+"Executive Director / Accounts Manager": "Pengarah Eksekutif / Pengurus Akaun",
+"Company organisation": "Organisasi syarikat",
 # ---------------------------------------------------------------- 404
 "Page not found": "Halaman tidak ditemui",
 "We couldn’t find that page": "Kami tidak dapat menemui halaman tersebut",
