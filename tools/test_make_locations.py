@@ -13,21 +13,42 @@ class LocationDrawingTests(unittest.TestCase):
         self.assertIsNotNone(root.find(NS + "title"))
         for s in must_contain:
             self.assertIn(s, svg)
+        self.assertNotIn("NOT TO SCALE", svg)
 
     def test_miri(self):
-        self.check(make_locations.miri(), ["DWG BWS-LOC-01", "MIRI HQ", "PIASAU INDUSTRIAL ESTATE PH III",
-                                           "JLN PRUNUS 1", "LOT 1743", "NOT TO SCALE", "4.4469° N  114.0116° E"])
+        self.check(make_locations.miri(), ["DWG BWS-LOC-01", "MIRI HQ", "JLN PRUNUS 1", "LOT 1743",
+                                           "© OpenStreetMap contributors", "4.4469° N  114.0116° E"])
 
     def test_bintulu(self):
-        self.check(make_locations.bintulu(), ["DWG BWS-LOC-02", "BINTULU", "KIDURONG INDUSTRIAL ESTATE",
-                                              "LOT 782", "LOT 124–128", "NOT TO SCALE", "3.2725° N  113.0802° E"])
+        self.check(make_locations.bintulu(), ["DWG BWS-LOC-02", "BINTULU", "LOT 782",
+                                              "© OpenStreetMap contributors", "3.2725° N  113.0802° E"])
 
     def test_pins_are_inside_the_drawing_area(self):
         for name, (x, y) in make_locations.PINS.items():
-            self.assertTrue(0 < x < 800 and 0 < y < 430, name)  # above the title block
+            self.assertTrue(0 < x < 800 and 60 < y < 430, name)  # whole pin above the title block
+
+    def test_office_projects_to_the_pin(self):
+        for name, site in make_locations.SITES.items():
+            x, y = make_locations.project(name, site["lat"], site["lon"])
+            self.assertAlmostEqual(x, make_locations.PINS[name][0], places=6)
+            self.assertAlmostEqual(y, make_locations.PINS[name][1], places=6)
+
+    def test_projection_is_to_scale(self):
+        import math
+        for name, site in make_locations.SITES.items():
+            lat, lon = site["lat"], site["lon"]
+            east = lon + 100 / (math.cos(math.radians(lat)) * 111320)    # 100 m east of the office
+            north = lat + 100 / 110540                                    # 100 m north of the office
+            x0, y0 = make_locations.project(name, lat, lon)
+            x1, y1 = make_locations.project(name, lat, east)
+            x2, y2 = make_locations.project(name, north, lon)
+            self.assertAlmostEqual(x1 - x0, 100 * site["scale"], places=6)
+            self.assertAlmostEqual(y1, y0, places=6)
+            self.assertAlmostEqual(y0 - y2, 100 * site["scale"], places=6)   # north is up
 
     def test_pin_percentages(self):
-        self.assertEqual(make_locations.pin_style("miri"), "--pin-x:70%;--pin-y:70%")
+        for name, (x, y) in make_locations.PINS.items():
+            self.assertEqual(make_locations.pin_style(name), f"--pin-x:{x / 8:.1f}%;--pin-y:{y / 5:.1f}%")
 
 
 if __name__ == "__main__":

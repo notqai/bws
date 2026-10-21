@@ -25,16 +25,20 @@ Replace each `<iframe class="map">` in `site/contact.html` with a card drawn in 
 | | Miri HQ | Bintulu |
 |---|---|---|
 | Drawing no. | BWS-LOC-01 | BWS-LOC-02 |
-| Coast label | SOUTH CHINA SEA | SOUTH CHINA SEA |
+| Water | none in view (coast ~1.5 km, Sungai Miri ~0.9 km away) | port basin (OSM coastline) and a river; unlabelled, as it isn't open sea |
+| Road labels | JLN PRUNUS 1, JLN PUJUT-LUTONG | MLNG ROAD |
 | Area label | PIASAU INDUSTRIAL ESTATE PH III | KIDURONG INDUSTRIAL ESTATE |
-| Plots | Lot 1743, Jalan Prunus 1 | Lot 782 (office) and Lot 124–128 (fabrication yard), Jalan Tanjung Kidurong / Jalan Kidurong |
+| Highlight | Lot 1743 building on Jalan Prunus 1 (OSM footprint) | Lot 782 office (marker at the point; OSM has no buildings here) |
+| Scale | 1.15 units/m (~700 m across), 200 m scale bar | 1 unit per 3.5 m (~2.8 km across, to take in the port basin), 500 m scale bar |
 | Coordinates | 4.4469° N 114.0116° E | 3.2725° N 113.0802° E |
 
-Each sheet has a stylised coastline, a simplified road layout, the BWS plot(s) highlighted in brand blue, a pin with a pulse ring, a north arrow, a scale bar marked **NOT TO SCALE**, and the coordinates in a monospace face. A title block along the bottom shows drawing no., site name, "REV A" and the **Load interactive map** button.
+The geometry is real, traced from OpenStreetMap: roads drawn by highway class (major roads wider), building outlines, rivers and water, industrial landuse as a faint hatch, and the coastline with the sea side filled (OSM coastlines keep the sea on the right, so each stretch is closed against the frame). The data is a trimmed Overpass extract cached in `tools/data/osm-miri.json` and `tools/data/osm-bintulu.json` (kind, name, coordinates to 6 dp, clipped to the drawing plus a margin), so the build is deterministic and needs no network; `python3 tools/make_locations.py --fetch` re-downloads and rewrites it. It is projected on a local equirectangular projection centred on each office, north up, at a fixed scale per site, and clipped to the map area above the title block.
 
-The layout is schematic. "NOT TO SCALE" is shown because the roads and coastline are simplified, not surveyed.
+Each sheet has the BWS site highlighted in brand blue, a pin whose tip is exactly on the office point (with a pulse ring), a few labels taken only from OSM names or the company address (road labels rotated along the road and kept upright), a true-length scale bar, a north arrow, the coordinates in a monospace face and the attribution "© OpenStreetMap contributors". A title block along the bottom shows drawing no., site name, "REV A" and the **Load interactive map** button.
 
-**Build:** a new function in `tools/make_illustrations.py` writes `site/assets/illustrations/loc-miri.svg` and `loc-bintulu.svg`. Static text (labels, coordinates) lives in the SVG. The button and links are HTML overlaid on the card, so they are translatable and accessible.
+The Bintulu fabrication yard (Lot 124–128) is not plotted: OSM doesn't map it and its exact position relative to the office is unknown, so drawing it would be a guess.
+
+**Build:** `tools/make_locations.py` (reusing the style helpers in `tools/make_illustrations.py`) writes `site/assets/illustrations/loc-miri.svg` and `loc-bintulu.svg`. Static text (labels, coordinates) lives in the SVG. The button and links are HTML overlaid on the card, so they are translatable and accessible.
 
 **Markup** (replaces `.map-wrap` contents):
 
