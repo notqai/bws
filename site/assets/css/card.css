@@ -9,7 +9,7 @@
 /* Header */
 .card-head { background: var(--ink); color: var(--on-ink); padding: var(--space-6) var(--space-5) var(--space-5); text-align: center; }
 .card-head img { display: block; margin: 0 auto var(--space-3); width: 120px; height: auto; }
-.card-head .jawi { color: var(--on-ink-muted); text-align: center; font-size: 1rem; margin: 0; }
+.card-head .jawi { color: var(--on-ink-muted); font-size: 1rem; margin: 0 auto; }
 
 /* Identity */
 .card-id { padding: var(--space-5); text-align: center; background: var(--white); border-bottom: 1px solid var(--steel-200); }

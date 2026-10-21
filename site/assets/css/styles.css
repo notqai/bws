@@ -37,7 +37,6 @@
   /* Type */
   --font-head: "Source Serif 4", "Source Serif 4 Fallback", Georgia, "Times New Roman", serif;
   --font-body: "Source Sans 3", "Source Sans 3 Fallback", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-jawi: "Noto Naskh Arabic", "Traditional Arabic", serif;
 
   --fs-xs: 0.8125rem;
   --fs-sm: 0.9375rem;
@@ -158,8 +157,8 @@ address { font-style: normal; }
 .brand img { width: 56px; height: 43px; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
-.jawi { font-family: var(--font-jawi); font-weight: 500; font-size: 0.82rem; line-height: 1.5; color: var(--steel-600); text-align: left; }
-.site-footer .jawi { color: var(--on-ink-muted); }
+.jawi { display: block; align-self: flex-start; height: 1.500em; aspect-ratio: 14199 / 1500; font-size: 0.82rem; color: var(--steel-600); background-color: currentColor; -webkit-mask: url("../logo/jawi.svg") no-repeat 0 0 / auto 100%; mask: url("../logo/jawi.svg") no-repeat 0 0 / auto 100%; }
+.site-footer .jawi { color: var(--on-ink-muted); margin-block: .16rem calc(var(--space-4) + .125rem); } /* old inline text sat in a taller footer line box: keeps its baseline and the gap above the paragraph (whose 1rem top margin collapses into this one) */
 
 .primary-nav ul { display: flex; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
 .primary-nav a { display: block; padding: 0.5rem 0.65rem; font-weight: 600; font-size: var(--fs-sm); color: var(--steel-800); text-decoration: none; border-radius: var(--radius); position: relative; }

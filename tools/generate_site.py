@@ -64,7 +64,6 @@ NAV = [("index.html", "Home"), ("about.html", "About"), ("services.html", "Servi
 
 FONTS = ("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700"
          "&family=Source+Serif+4:wght@700&display=swap")
-FONT_JAWI = "https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500&display=swap&text=" + quote(JAWI.replace(" ", ""))
 
 ORG_LD = {
     "@context": "https://schema.org",
@@ -146,8 +145,6 @@ def head(page, title, desc, extra_ld=None):
 <!-- Fonts -->
 <link rel="preload" href="assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{FONT_JAWI}">
 {preload}<link rel="stylesheet" href="assets/css/styles.css">
 <script src="assets/js/main.js" defer></script>
 {ld}
@@ -174,7 +171,7 @@ def header(page):
       <img src="assets/logo/logo.svg" width="56" height="43" alt="">
       <span class="brand-text">
         <span class="brand-name">BWS Engineering Sdn Bhd</span>
-        <span class="jawi" dir="rtl" lang="ms-Arab">{JAWI}</span>
+        <span class="jawi" role="img" lang="ms-Arab" aria-label="{JAWI}"></span>
       </span>
       <span class="visually-hidden">: home</span>
     </a>
@@ -221,7 +218,7 @@ def footer():
     <div class="footer-brand">
       <img src="assets/logo/logo-white.svg" width="74" height="56" alt="">
       <span class="brand-name">BWS Engineering Sdn Bhd</span>
-      <span class="jawi" dir="rtl" lang="ms-Arab">{JAWI}</span>
+      <span class="jawi" role="img" lang="ms-Arab" aria-label="{JAWI}"></span>
       <p>Wholly owned Bumiputera engineering construction and maintenance contractor for the oil and gas industries, since October 2002.</p>
       <div class="licences">
         <span>PETRONAS Licensed</span><span>CIDB Registered</span><span>ISO 9001:2015 · TÜV NORD</span>
