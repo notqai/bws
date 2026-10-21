@@ -814,32 +814,33 @@ def about():
     <div class="section-head">
       <div>{eyebrow("04", "Organisation")}<h2 id="org-title">Organisation chart</h2></div>
     </div>
-    <!-- ORGANISATION CHARTS: structure from the BWS Company Profile (updated 10.26). Roles only, no names. -->
+    <!-- ORGANISATION CHARTS: structure and names from the BWS Company Profile (updated 10.26).
+         Update names here (or in tools/generate_site.py) when staff change. -->
     <figure class="org" aria-labelledby="org-title">
       <div class="org-top">
-        <div class="org-node org-node--lead">Managing Director</div>
-        <div class="org-staff"><span class="org-staff-line" aria-hidden="true"></span><div class="org-node org-node--staff">HSE Secretary</div></div>
+        <div class="org-node org-node--lead">Managing Director<span class="org-person">Bundan anak Ngila</span></div>
+        <div class="org-staff"><span class="org-staff-line" aria-hidden="true"></span><div class="org-node org-node--staff">HSE Secretary<span class="org-person">Dominic Saga</span></div></div>
       </div>
       <ul class="org-sections" role="list">
-        <li><ol class="org-chain"><li class="org-node org-node--section">Personnel &amp; Administration Section</li><li class="org-node">Personnel &amp; Administration Manager</li><li class="org-node">Administration Support</li><li class="org-split"><span class="org-node org-node--leaf">Miri Office</span><span class="org-node org-node--leaf">Bintulu Office</span></li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Account Section</li><li class="org-node">Accounts Manager</li><li class="org-node">Accounts Assistants</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Engineering / Contract Section</li><li class="org-split org-split--sub"><ol class="org-chain"><li class="org-node">Engineering / Project</li><li class="org-node">Project Manager</li><li class="org-node org-node--leaf">Project Team</li></ol><ol class="org-chain"><li class="org-node">Contract / Procurement</li><li class="org-node">Contract Manager</li><li class="org-node org-node--leaf">Procurement</li></ol></li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Quality Assurance Section</li><li class="org-node">Quality Management Representative (QMR)</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">Health, Safety &amp; Environment Section</li><li class="org-node">HSE Officer</li><li class="org-split"><span class="org-node org-node--leaf">Site Safety Supervisors</span><span class="org-node org-node--leaf">HSE Committee</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Personnel &amp; Administration Section</li><li class="org-node">Personnel &amp; Administration Manager<span class="org-person">Mazinah binti Mohd Masri</span></li><li class="org-node">Administration Support</li><li class="org-split"><span class="org-node org-node--leaf">Miri Office<span class="org-person">Siti Yasmeen</span><span class="org-person">Mary Maja</span></span><span class="org-node org-node--leaf">Bintulu Office<span class="org-person">Umah @ Timah</span></span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Account Section</li><li class="org-node">Accounts Manager<span class="org-person">Salmah binti Ahmad</span></li><li class="org-node">Accounts Assistants<span class="org-person">Stacy Ganin</span><span class="org-person">Francisca</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Engineering / Contract Section</li><li class="org-split org-split--sub"><ol class="org-chain"><li class="org-node">Engineering / Project</li><li class="org-node">Project Manager<span class="org-person">Fabian anak Raymond Langin</span></li><li class="org-node org-node--leaf">Project Team</li></ol><ol class="org-chain"><li class="org-node">Contract / Procurement</li><li class="org-node">Contract Manager<span class="org-person">Mohd Qhadaffie Siew</span></li><li class="org-node org-node--leaf">Procurement<span class="org-person">Kasfalela Manja</span><span class="org-person">Hafizah binti Mohedin</span></li></ol></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Quality Assurance Section</li><li class="org-node">Quality Management Representative (QMR)<span class="org-person">Martin Jau</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">Health, Safety &amp; Environment Section</li><li class="org-node">HSE Officer<span class="org-person">Dominic Saga</span></li><li class="org-split"><span class="org-node org-node--leaf">Site Safety Supervisors<span class="org-person">Yvonne Ilam anak James</span><span class="org-person">Esther Annie</span></span><span class="org-node org-node--leaf">HSE Committee</span></li></ol></li>
       </ul>
     </figure>
 
     <h3 class="org-subtitle" id="porg-title">Project organisation</h3>
     <p class="small">How BWS staffs a typical project.</p>
     <figure class="org org--project" aria-labelledby="porg-title">
-      <div class="org-top"><div class="org-node org-node--lead">Project Manager</div></div>
+      <div class="org-top"><div class="org-node org-node--lead">Project Manager<span class="org-person">Fabian anak Raymond Langin</span></div></div>
       <ul class="org-sections" role="list" style="--cols: 6">
         <li><ol class="org-chain"><li class="org-node org-node--section">Engineering Design</li><li class="org-node org-node--leaf">Consultant</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Quantity Surveyor</li><li class="org-node">Material Coordinator</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Planning &amp; Measurement Engineers</li><li class="org-node">Document Controller</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">Construction Superintendent</li><li class="org-node">Construction Engineers</li><li class="org-node">Construction Supervisor</li><li class="org-node org-node--leaf">Civil &amp; Structural · Mechanical &amp; Piping · E&amp;I teams</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section">QA/QC Engineer</li><li class="org-node">QA/QC Inspectors</li></ol></li>
-        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">HSE Manager</li><li class="org-node">Site Safety Supervisors</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Quantity Surveyor<span class="org-person">Nur Zukrina</span></li><li class="org-node">Material Coordinator<span class="org-person">Kunjan Tipong</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Planning &amp; Measurement Engineers<span class="org-person">Nurhaziqah</span><span class="org-person">Vallery Ramlee</span></li><li class="org-node">Document Controller<span class="org-person">Assa Adenna</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">Construction Superintendent<span class="org-person">Chia Shuck Ping</span></li><li class="org-node">Construction Engineers<span class="org-person">Paul Yeo Ing Ming</span><span class="org-person">Nur Aida binti Ali</span></li><li class="org-node">Construction Supervisor<span class="org-person">Roysten Alyster</span></li><li class="org-node">C&amp;S Supervisor<span class="org-person">Chung Tech Poh</span></li><li class="org-node org-node--leaf">Civil &amp; Structural · Mechanical &amp; Piping · E&amp;I teams</li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section">QA/QC Engineer<span class="org-person">Roland bin Andrew</span></li><li class="org-node">QA/QC Inspectors<span class="org-person">Sylvester Linang</span><span class="org-person">Hamka bin Aslan</span></li></ol></li>
+        <li><ol class="org-chain"><li class="org-node org-node--section org-node--hse">HSE Manager<span class="org-person">Dominic Saga</span></li><li class="org-node">Site Safety Supervisors<span class="org-person">Joshua Emang</span><span class="org-person">Azumanor Ahmad Majid</span><span class="org-person">Dennis Bengau</span></li></ol></li>
       </ul>
     </figure>
   </div>

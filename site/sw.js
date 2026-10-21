@@ -3,13 +3,13 @@
    dropped connection. Forms, the BWS Portal and Google Maps always go straight to the network,
    and nothing personal is stored. */
 "use strict";
-const VERSION = "aae49d8b";
+const VERSION = "f8ca4af0";
 const CORE = "bws-core-" + VERSION;   // stylesheet, script, fonts, logo, offline page
 const PAGES = "bws-pages";             // pages the visitor has opened
 const MEDIA = "bws-media";             // photos, drawings, PDF
 const MEDIA_LIMIT = 80;
 const PAGE_TIMEOUT = 4000;             // after this, show the saved copy (if any) while the network finishes
-const PRECACHE = ["/offline.html", "/assets/css/styles.css?v=aae49d8b", "/assets/js/main.js?v=aae49d8b", "/assets/fonts/source-sans-3-latin.woff2", "/assets/fonts/source-serif-4-700-latin.woff2", "/assets/fonts/noto-naskh-arabic-500-jawi.woff2", "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"];
+const PRECACHE = ["/offline.html", "/assets/css/styles.css?v=f8ca4af0", "/assets/js/main.js?v=f8ca4af0", "/assets/fonts/source-sans-3-latin.woff2", "/assets/fonts/source-serif-4-700-latin.woff2", "/assets/fonts/noto-naskh-arabic-500-jawi.woff2", "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CORE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));

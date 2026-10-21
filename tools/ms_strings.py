@@ -647,6 +647,7 @@ MS = {
 'Direct email contacts': 'Hubungan e-mel terus',
 'Founded in October 2002 by Bumiputera professionals from the oil and gas industry, BWS has grown from minor plant maintenance in Miri into a Grade G7 contractor delivering complete EPCC packages.': 'Diasaskan pada Oktober 2002 oleh profesional Bumiputera dari industri minyak dan gas, BWS telah berkembang daripada kerja penyelenggaraan loji kecil di Miri kepada kontraktor Gred G7 yang melaksanakan pakej EPCC lengkap.',
 "For quotations and general enquiries, please complete the form below.": "Bagi sebut harga dan pertanyaan umum, sila lengkapkan borang di bawah.",
+"C&S Supervisor": "Penyelia Awam & Struktur",
 # ---------------------------------------------------------------- 404
 "Page not found": "Halaman tidak ditemui",
 "We couldn’t find that page": "Kami tidak dapat menemui halaman tersebut",

@@ -238,3 +238,9 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .enquiry-card .lead { margin-bottom: var(--space-6); }
 .apply-card { grid-template-columns: 1fr !important; }
 .apply-card { max-width: 52rem; margin-inline: auto; }
+
+/* Names in org charts */
+.org .org-node .org-person { display: block; margin-top: 2px; font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 400; line-height: 1.35; color: #3F4A5A; }
+.org .org-node--lead .org-person { font-size: var(--fs-sm); color: #C9D1F2; }
+.org .org-node--section:not(.org-node--hse) .org-person { color: #E2E8FF; }
+.org .org-node--hse .org-person { color: #2A2200; }

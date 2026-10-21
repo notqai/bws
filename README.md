@@ -183,7 +183,7 @@ CIDB and TÜV NORD details were also checked against their public online registe
 - The PETRONAS certificate for KP220 is for the **36"** SSGP pipeline (the site previously said 30"; corrected Oct 2026).
 - **Key projects** (`PROJECTS` in `tools/generate_site.py`): 29 selected from the profile's work-experience list. Projects marked "Ongoing" have end dates after Oct 2026, or are listed as ongoing in the profile. **Remove the Ongoing badge when a project completes.**
 - **Full project list** (`ALL_PROJECTS`, shown under "View all projects" on the Projects page): every work-experience entry from 2003 on, with team size where recorded. Entries 1–3 (1997–2001) pre-date incorporation and are left out; the profile has no entry 69.
-- **Org charts** (About page): company and project organisation from the profile (updated 10.26), with roles only.
+- **Org charts** (About page): company and project organisation with staff names, from the profile (updated 10.26). Update the names in `tools/generate_site.py` when staff change.
 - **Awards** (`hse.html#awards`) and the **plant & equipment** summary (`services.html#equipment`) are summarised from the profile.
 
 ### Page header illustrations
