@@ -434,10 +434,11 @@ def calibration():
     b += dim_h(210, 290, 160, "TRANSMITTER") + dim_h(630, 730, 180, "REFERENCE")
     return sheet(b, "Line drawing of a pressure transmitter being calibrated on a bench against a reference gauge")
 
-for name, fn in [("plant", plant), ("crane-lift", crane), ("workshop", building), ("offshore", platform),
-                 ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map),
-                 ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration)]:
-    svg = fn()
-    with open(os.path.join(OUT, name + ".svg"), "w") as f:
-        f.write(svg)
-    print(name, len(svg))
+if __name__ == "__main__":
+    for name, fn in [("plant", plant), ("crane-lift", crane), ("workshop", building), ("offshore", platform),
+                     ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map),
+                     ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration)]:
+        svg = fn()
+        with open(os.path.join(OUT, name + ".svg"), "w") as f:
+            f.write(svg)
+        print(name, len(svg))
