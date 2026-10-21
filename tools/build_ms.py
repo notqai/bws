@@ -60,7 +60,7 @@ def translate_html(doc):
     parts = re.split(r"(<script\b.*?</script>|<style\b.*?</style>)", doc, flags=re.S)
     for i in range(0, len(parts), 2):
         seg = parts[i]
-        seg = re.sub(r'\b(alt|aria-label|placeholder|title|data-title|content)="([^"]*)"', tr_attr, seg)
+        seg = re.sub(r'\b(alt|aria-label|placeholder|title|data-title|data-map-title|content)="([^"]*)"', tr_attr, seg)
         seg = re.sub(r">([^<>]+)<", lambda m: ">" + tr_text(m.group(1)) + "<", seg)
         parts[i] = seg
     return "".join(parts)
@@ -105,7 +105,7 @@ def build():
         src = os.path.join(SITE_DIR, page)
         en = open(src, encoding="utf-8").read()
         if 'class="lang-switch"' in en:  # already processed this run
-            en = re.sub(r'\n?<a class="lang-switch[^>]*>.*?</a>', "", en)
+            en = re.sub(r'<a class="lang-switch[^>]*>.*?</a>\n[ \t]*', "", en)
             en = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]+">\n', "", en)
         ms = translate_html(en)
         ms = fix_paths(ms)
