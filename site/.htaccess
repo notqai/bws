@@ -1,4 +1,4 @@
-# For Apache / cPanel hosting. Netlify and Vercel ignore this file.
+# For Apache / cPanel hosting. Netlify, Vercel and Cloudflare Pages ignore this file.
 ErrorDocument 404 /404.html
 
 <IfModule mod_deflate.c>
@@ -24,12 +24,17 @@ ErrorDocument 404 /404.html
 
 # Security headers (keep in sync with vercel.json)
 <IfModule mod_headers.c>
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; upgrade-insecure-requests; frame-ancestors 'none'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self' https://formspree.io https://cloudflareinsights.com; form-action 'self' https://formspree.io; base-uri 'self'; object-src 'none'; upgrade-insecure-requests; frame-ancestors 'none'"
   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
   Header always set X-Frame-Options "DENY"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   Header always set Cross-Origin-Opener-Policy "same-origin"
 </IfModule>
+
+# Do not serve the Cloudflare Pages headers file
+<Files "_headers">
+  Require all denied
+</Files>
 
 # Force HTTPS
 <IfModule mod_rewrite.c>
