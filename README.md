@@ -30,7 +30,7 @@ site/
 ├── projects.html       Filterable photo gallery with lightbox
 ├── hse.html            HSE policy, Quality policy, ISO / licences
 ├── careers.html        Working at BWS + job openings (apply by email)
-├── contact.html        Two offices + site drawings (Google Maps on request) + enquiry form
+├── contact.html        Two offices + blueprint site drawings + enquiry form
 ├── 404.html            "Page not found"
 ├── ms/                 Bahasa Melayu versions of every page (generated)
 ├── sitemap.xml  robots.txt  site.webmanifest  favicon.ico  .htaccess  _headers
@@ -102,7 +102,7 @@ The form is on `contact.html` (search for `CONTACT FORM`).
 - Netlify users can instead add `data-netlify="true"` and `name="enquiry"` to the `<form>` and remove the `action`.
 
 ### Map pins
-The two location cards on `contact.html` show a blueprint drawing of each site (`assets/illustrations/loc-*.svg`, see `make_locations.py` under Tools) and load the Google Maps embed only when clicked. The embeds are pinned to the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`), and "Open in Google Maps" opens those listings. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, or edit the `q=` coordinates in the `data-map-src` attribute and the link `href` in `contact.html`.
+The two location cards on `contact.html` show a blueprint drawing of each site (`assets/illustrations/loc-*.svg`, see `make_locations.py` under Tools) drawn around the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`); "Open in Google Maps" opens those listings. No Google Maps code loads on the site. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, update the office point in `SITES` in `tools/make_locations.py` (then run it with `--fetch`), the `--pin-x/--pin-y` style on the card and the link `href` in `contact.html`.
 
 ### Change colours or fonts
 Edit the variables at the top of `site/assets/css/styles.css`. To change fonts, replace the `.woff2` files in `site/assets/fonts/`, update the `@font-face` rules at the top of the CSS, and update the preload `<link>`s in each page's `<head>`.

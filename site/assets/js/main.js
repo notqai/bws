@@ -1,6 +1,6 @@
 /* BWS Engineering Sdn Bhd: site script (no dependencies)
    Mobile menu · header shadow · footer year · scroll reveal · stat counters
-   · gallery filter + lightbox · contact form · map loader · careers apply links */
+   · gallery filter + lightbox · contact form · careers apply links */
 (function () {
   "use strict";
   var doc = document.documentElement;
@@ -294,20 +294,5 @@
     var position = a.getAttribute("data-apply");
     var subject = "Job Application – " + position;
     a.href = "mailto:bwsesbhr@gmail.com?subject=" + encodeURIComponent(subject);
-  });
-
-  /* ---- Contact: the site drawings swap in the Google map only when asked ---- */
-  document.querySelectorAll(".map-wrap[data-map-src]").forEach(function (wrap) {
-    var load = wrap.querySelector(".map-load");
-    if (!load) return;
-    load.addEventListener("click", function () {
-      var frame = document.createElement("iframe");
-      frame.className = "map";
-      frame.src = wrap.getAttribute("data-map-src");
-      frame.title = wrap.getAttribute("data-map-title");
-      frame.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
-      wrap.replaceChildren(frame);
-      frame.focus();
-    });
   });
 })();

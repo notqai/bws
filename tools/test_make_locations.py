@@ -100,12 +100,10 @@ class LocationDrawingTests(unittest.TestCase):
             for x, y in f["pts"]:
                 self.assertTrue(0 <= x <= 800 and 0 <= y <= 430, (x, y))
 
-    def test_no_amber_and_title_block_cell_is_empty(self):
-        for name, svg in (("miri", make_locations.miri()), ("bintulu", make_locations.bintulu())):
+    def test_no_amber_and_sheet_numbers(self):
+        for sheet, svg in ((1, make_locations.miri()), (2, make_locations.bintulu())):
             self.assertNotIn("#F2A900", svg)
-            for t in ET.fromstring(svg).iter(NS + "text"):
-                x, y = float(t.get("x", 0)), float(t.get("y", 0))
-                self.assertFalse(530 <= x <= 780 and 440 <= y <= 484, f"{name}: text at {x},{y}")
+            self.assertIn(f"SHEET {sheet} OF 2", svg)
 
     def test_pin_percentages(self):
         for name, (x, y) in make_locations.PINS.items():

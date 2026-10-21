@@ -1,5 +1,5 @@
-# Generates the "site drawing" cards shown on the contact page in place of the Google maps, until the
-# visitor clicks "Load interactive map". Same blueprint style as make_illustrations.py, 800 x 500 (16:10).
+# Generates the "site drawing" cards shown for each office on the contact page (the "Open in Google Maps"
+# link next to them goes to the live listing). Same blueprint style as make_illustrations.py, 800 x 500 (16:10).
 # The geometry is traced from OpenStreetMap (© OpenStreetMap contributors, ODbL), cached in tools/data/osm-*.json,
 # and drawn to true scale on a local equirectangular projection centred on each office, north up.
 # Output: ../site/assets/illustrations/loc-miri.svg, loc-bintulu.svg
@@ -513,8 +513,8 @@ def coords(x, y, s):
             f'stroke="{INK}" stroke-width="3.5" paint-order="stroke" text-anchor="end">{s}</text>')
 
 
-def title_block(dwg, site):
-    """Engineering title block along the bottom. The right-hand cell is left blank: the HTML button sits there."""
+def title_block(dwg, site, sheet):
+    """Engineering title block along the bottom: drawing number, site, revision, sheet."""
     y, h = 440, 44
     out = rect(20, y, 760, h, CYAN, 1.5, INK)
     for x in (230, 430, 530):
@@ -522,6 +522,7 @@ def title_block(dwg, site):
     out += text(36, y + 28, f"DWG {dwg}", 13, CYAN, "start", 700, 2)
     out += text(246, y + 28, site, 13, CYAN, "start", 700, 2)
     out += text(446, y + 28, "REV A", 13, SKY, "start", 700, 2)
+    out += text(546, y + 28, f"SHEET {sheet} OF 2", 13, SKY, "start", 700, 2)
     return out
 
 
@@ -557,7 +558,7 @@ def miri():
     m += pin(*PINS[k])
     m += scale_bar(k, 46, 398, 200) + attribution(40, 422)
     m += north_arrow(740, 62) + coords(780, 422, "4.4469° N  114.0116° E")
-    b = map_frame(m, k) + title_block("BWS-LOC-01", "MIRI HQ")
+    b = map_frame(m, k) + title_block("BWS-LOC-01", "MIRI HQ", 1)
     return sheet(b, "Site drawing of the BWS Engineering main office location, Piasau Industrial Estate, Miri", k)
 
 
@@ -573,7 +574,7 @@ def bintulu():
     m += pin(x, y)
     m += scale_bar(k, 612, 380, 500, 5) + attribution(40, 422)
     m += north_arrow(740, 62) + coords(780, 422, "3.2725° N  113.0802° E")
-    b = map_frame(m, k) + title_block("BWS-LOC-02", "BINTULU")
+    b = map_frame(m, k) + title_block("BWS-LOC-02", "BINTULU", 2)
     return sheet(b, "Site drawing of the BWS Engineering office location, Kidurong, Bintulu", k)
 
 
