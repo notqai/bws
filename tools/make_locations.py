@@ -31,6 +31,11 @@ LINKS = tuple(c + "_link" for c in MAJOR)
 PATHS = ("track", "path", "footway")
 
 
+# metres per degree of longitude at the equator / of latitude
+M_PER_DEG_LON = 111320
+M_PER_DEG_LAT = 110540
+
+
 def pin_style(key):
     x, y = PINS[key]
     return f"--pin-x:{x / W * 100:.1f}%;--pin-y:{y / H * 100:.1f}%"
@@ -39,8 +44,8 @@ def pin_style(key):
 def project(key, lat, lon):
     """Local equirectangular projection centred on the office, in drawing units (y down, north up)."""
     s = SITES[key]
-    xm = (lon - s["lon"]) * math.cos(math.radians(s["lat"])) * 111320
-    ym = (lat - s["lat"]) * 110540
+    xm = (lon - s["lon"]) * math.cos(math.radians(s["lat"])) * M_PER_DEG_LON
+    ym = (lat - s["lat"]) * M_PER_DEG_LAT
     return s["pin"][0] + xm * s["scale"], s["pin"][1] - ym * s["scale"]
 
 
@@ -166,8 +171,8 @@ def overpass_query(key):
     r = view_radius(key)
     return (f'[out:json][timeout:90];('
             f'way["highway"](around:{r},{a});way["building"](around:{r},{a});way["landuse"](around:{r},{a});'
-            f'way["natural"="coastline"](around:4000,{a});way["waterway"](around:2000,{a});'
-            f'way["natural"="water"](around:1500,{a}););out geom;')
+            f'way["natural"="coastline"](around:4000,{a});way["waterway"](around:{max(r, 2000)},{a});'
+            f'way["natural"="water"](around:{max(r, 1500)},{a}););out geom;')
 
 
 def fetch(key):
@@ -225,8 +230,8 @@ def trim(raw, key, margin=60):
     cosl = math.cos(math.radians(s["lat"]))
 
     def unproject(x, y):
-        return (round(s["lat"] - (y - s["pin"][1]) / s["scale"] / 110540, 6),
-                round(s["lon"] + (x - s["pin"][0]) / s["scale"] / (cosl * 111320), 6))
+        return (round(s["lat"] - (y - s["pin"][1]) / s["scale"] / M_PER_DEG_LAT, 6),
+                round(s["lon"] + (x - s["pin"][0]) / s["scale"] / (cosl * M_PER_DEG_LON), 6))
 
     feats, coast = [], []
     for el in raw["elements"]:

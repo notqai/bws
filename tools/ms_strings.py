@@ -573,6 +573,7 @@ MS = {
 "Bintulu: Office cum Fabrication Yard": "Bintulu: Pejabat dan Limbungan Fabrikasi",
 "Fabrication yard:": "Limbungan fabrikasi:",
 "Map: BWS Engineering fabrication yard, Kidurong, Bintulu": "Peta: Limbungan fabrikasi BWS Engineering, Kidurong, Bintulu",
+"Map: BWS Engineering Bintulu office, Kidurong, Bintulu": "Peta: Pejabat BWS Engineering di Bintulu, Kidurong, Bintulu",
 "Load interactive map": "Muatkan peta interaktif",
 "Site drawing of the BWS Engineering main office location, Piasau Industrial Estate, Miri": "Lukisan tapak lokasi pejabat utama BWS Engineering, Kawasan Perindustrian Piasau, Miri",
 "Site drawing of the BWS Engineering Bintulu office location, Kidurong Industrial Estate": "Lukisan tapak lokasi pejabat BWS Engineering di Bintulu, Kawasan Perindustrian Kidurong",
