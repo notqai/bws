@@ -153,11 +153,19 @@ def inside_polygon(pt, poly):
 
 # ------------------------------------------------------------------ OSM data: fetch, trim, load
 
+def view_radius(key):
+    """Metres from the office to the farthest corner of the map area, plus a margin, so nothing stops short."""
+    s = SITES[key]
+    px, py = s["pin"]
+    return round(max(math.hypot(x - px, y - py) for x in (0, W) for y in (0, MAP_H)) / s["scale"] * 1.1)
+
+
 def overpass_query(key):
     s = SITES[key]
     a = f'{s["lat"]},{s["lon"]}'
-    return (f'[out:json][timeout:60];('
-            f'way["highway"](around:500,{a});way["building"](around:300,{a});way["landuse"](around:500,{a});'
+    r = view_radius(key)
+    return (f'[out:json][timeout:90];('
+            f'way["highway"](around:{r},{a});way["building"](around:{r},{a});way["landuse"](around:{r},{a});'
             f'way["natural"="coastline"](around:4000,{a});way["waterway"](around:2000,{a});'
             f'way["natural"="water"](around:1500,{a}););out geom;')
 
