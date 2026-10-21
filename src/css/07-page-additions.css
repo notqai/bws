@@ -258,3 +258,9 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .board-table th { text-align: left; padding: .6rem .9rem; font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); border-bottom: 2px solid var(--ink); }
 .board-table td { padding: .7rem .9rem; border-bottom: 1px solid var(--steel-200); color: var(--steel-800); vertical-align: top; }
 .board-table td:last-child { font-weight: 600; color: var(--ink); }
+/* Board of Directors: centred block */
+#board-title { text-align: center; }
+.board-table { margin-left: auto; margin-right: auto; }
+#corg-title, #porg-title { text-align: center; }
+#porg-title + .small { text-align: center; }
+#corg-title { margin-bottom: var(--space-6); }
