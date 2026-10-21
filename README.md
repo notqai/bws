@@ -102,7 +102,7 @@ The form is on `contact.html` (search for `CONTACT FORM`).
 - Netlify users can instead add `data-netlify="true"` and `name="enquiry"` to the `<form>` and remove the `action`.
 
 ### Map pins
-The two location cards on `contact.html` show a blueprint drawing of each site (`assets/illustrations/loc-*.svg`, see `make_locations.py` under Tools) drawn around the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`); "Open in Google Maps" opens those listings. No Google Maps code loads on the site. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, update the office point in `SITES` in `tools/make_locations.py` (then run it with `--fetch`), the `--pin-x/--pin-y` style on the card and the link `href` in `contact.html`.
+The two location cards on `contact.html` show a blueprint drawing of each site (`assets/illustrations/loc-*.svg`, see `make_locations.py` under Tools) drawn around the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`); "Open in Google Maps" opens those listings. No Google Maps code loads on the site. If an office moves, update the office point in `SITES` in `tools/make_locations.py` (then run it with `--fetch`), the `--pin-x/--pin-y` style on the card and the link `href` in `contact.html`, then run `python3 tools/build_ms.py`.
 
 ### Change colours or fonts
 Edit the variables at the top of `site/assets/css/styles.css`. To change fonts, replace the `.woff2` files in `site/assets/fonts/`, update the `@font-face` rules at the top of the CSS, and update the preload `<link>`s in each page's `<head>`.
@@ -146,7 +146,7 @@ Inner pages use blueprint-style line drawings (`site/assets/illustrations/*.svg`
 
 ## Bahasa Melayu version
 The Malay site lives in `site/ms/` (e.g. `/ms/about.html`). The **EN | BM** button in the header switches between the same page in each language. Both versions carry `hreflang` links, and `sitemap.xml` lists both.
-- Pages are **generated automatically** from the English ones when you run `python3 tools/generate_site.py` (via `tools/build_ms.py`).
+- Pages are **generated** from the English ones: after editing any English page, run `python3 tools/build_ms.py`. It is safe to re-run.
 - Translations are in `tools/ms_strings.py`, keyed by the exact English text. If you change English copy, add or update its Malay line too, or that text stays in English on the BM page. Each build writes the list of strings kept in English to `/tmp/ms_untranslated.txt`.
 - **Kept in English on purpose:** project titles, client and agency names, certificate scopes, and codes, as they appear in the official records.
 - ⚠️ **Have a native speaker at BWS proofread the Malay before launch.** It's written in formal business Bahasa Malaysia, but not yet reviewed by a person.
@@ -175,10 +175,10 @@ To add a person: add an entry to `PEOPLE`, copy `mazinah.html` to `<name>.html` 
 **After the domain cutover:** run `tools/make_card.py https://www.bwsengineeringsb.com`, and change the temporary `og:image` URL, the Website button and the footer link in each card from `bwsengsdnbhd.vercel.app` to the `.com` domain, and set `url` in `PEOPLE` (`tools/make_card.py`) to the `.com` domain before regenerating. Do not print or hand out the QR code before this is done.
 
 ## Tools (optional)
-- `tools/generate_site.py` is the script that generated the HTML pages from shared header/footer templates. Use it **or** hand-edit the HTML, not both: running it overwrites every page. Run with `python3 tools/generate_site.py`.
+- `tools/generate_site.py` is the script that first generated the HTML pages from shared header/footer templates. ⚠️ **Do not run it any more:** the pages have been hand-edited since, and it would overwrite every page (including the contact-page drawings) with out-of-date versions. Edit the HTML directly, then run `tools/build_ms.py`.
 - `tools/make_logo.py` rebuilds the logo SVGs. It needs `pip install fonttools` and the Noto Serif variable font (`NotoSerif[wdth,wght].ttf` from github.com/google/fonts, saved as `fonts/NotoSerif.ttf`).
 - `tools/make_locations.py`: the blueprint site drawings on the contact page (`assets/illustrations/loc-*.svg`), traced from cached OpenStreetMap data in `tools/data/`; `--fetch` refreshes the data. The drawings must keep the "© OpenStreetMap contributors" credit.
-- `tools/optimize_images.py`: re-encodes the WebP photos; only keeps a file if it gets smaller.
+- `tools/optimize_images.py`: re-encodes the WebP photos; only keeps a file if it gets smaller. It is lossy, so run it once on newly added photos, not repeatedly on the same ones.
 - `tools/make_jawi.py`: draws the Jawi name into `assets/logo/jawi.svg` (needs the `bws-card` venv with fonttools + uharfbuzz, and the Noto Naskh Arabic font in `tools/fonts/`, which is not committed).
 
 ## Assets still needed from BWS (placeholders)

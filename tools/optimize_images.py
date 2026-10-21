@@ -1,6 +1,7 @@
 # Re-encodes the site's WebP photos (name-480/800/1600.webp) with tuned cwebp settings and keeps a
 # file only if the new one is smaller. Smaller sizes are rebuilt from the largest sibling at their own
 # pixel size, so the width/height in the HTML stay valid. og-image.jpg and client logos are not touched.
+# Lossy: run it once on newly added photos, not repeatedly on the same files.
 # Needs cwebp (brew install webp). Run: python3 tools/optimize_images.py
 import os, re, shutil, subprocess, sys, tempfile
 

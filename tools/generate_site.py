@@ -1,4 +1,5 @@
 # Page generator for the BWS static site: writes plain HTML into ../site.
+# FROZEN: the pages have been hand-edited since this last ran. Do not run it (it overwrites every page); see README.
 # Optional. If you edit the HTML files by hand, do NOT re-run this (it overwrites them).
 import json, os
 from urllib.parse import quote

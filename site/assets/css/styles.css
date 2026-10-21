@@ -481,7 +481,7 @@ a.card--media:hover .card-photo img { transform: scale(1.05); }
 .contact-list svg { width: 20px; height: 20px; flex: none; margin-top: .2em; color: var(--brand-blue); }
 .contact-list a { font-weight: 600; }
 .map-wrap { position: relative; margin-top: auto; border-top: 1px solid var(--steel-200); background: var(--ink); }
-/* Site drawing shown until the visitor loads the Google map (make_locations.py) */
+/* Blueprint site drawing of each office, traced from OpenStreetMap (make_locations.py) */
 .map-drawing { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; }
 .map-pulse { position: absolute; left: var(--pin-x); top: var(--pin-y); width: 7%; aspect-ratio: 1; border: 2px solid var(--brand-sky); border-radius: 50%; transform: translate(-50%, -50%) scale(.4); opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) { .map-pulse { animation: map-pulse 2.4s var(--ease) infinite; } }
@@ -545,7 +545,10 @@ a.card--media:hover .card-photo img { transform: scale(1.05); }
   .site-header, .mobile-menu, .cta-band, .hero-media, .map-wrap, .filters { display: none !important; }
   .hero, .page-hero, .section--ink, .site-footer { background: none !important; color: #000 !important; }
   .hero *, .page-hero * { color: #000 !important; }
+  /* the Jawi name is a mask filled with background-color, which browsers drop when printing by default */
+  .jawi { color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+@media (forced-colors: active) { .jawi { forced-color-adjust: none; background-color: CanvasText; } }
 a[href^="tel:"] { white-space: nowrap; }
 @media (max-width: 47.99rem) {
   .client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
