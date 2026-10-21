@@ -803,6 +803,11 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 .org .org-node--lead .org-person { font-size: var(--fs-sm); color: #C9D1F2; }
 .org .org-node--section:not(.org-node--hse) .org-person { color: #E2E8FF; }
 .org .org-node--hse .org-person { color: #2A2200; }
+/* Construction teams under the Construction Supervisor (project chart) */
+.org--teams { max-width: 46rem; margin: var(--space-3) auto 0; }
+.org-caption { margin: var(--space-7) 0 0; text-align: center; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--steel-600); }
+.org--teams .org-top .org-node { display: inline-block; min-width: 14rem; text-align: center; }
+@media (min-width: 64rem) { .org--teams .org-top { padding-bottom: var(--gap); } .org--teams .org-top::after { height: var(--gap); } }
 
 /* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
 .vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
