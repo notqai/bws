@@ -107,7 +107,7 @@ def build():
         src = os.path.join(SITE_DIR, page)
         en = open(src, encoding="utf-8").read()
         if 'class="lang-switch"' in en:  # already processed this run
-            en = re.sub(r'\n?<a class="lang-switch[^>]*>.*?</a>', "", en)
+            en = re.sub(r'<a class="lang-switch[^>]*>.*?</a>\n[ \t]*', "", en)
             en = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]+">\n', "", en)
         ms = translate_html(en)
         ms = fix_paths(ms)
