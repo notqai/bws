@@ -36,6 +36,8 @@ def tr(t):
     if m: return "· " + tr(m.group(1))
     m = re.fullmatch(r"(\d{1,2}) (" + "|".join(MONTHS) + r") (\d{4})", t)
     if m: return f"{m.group(1)} {MONTHS[m.group(2)]} {m.group(3)}"
+    m = re.fullmatch(r"(.+): (\d+) projects?, show (?:it|them) in the list", t)   # project map pins
+    if m: return f"{m.group(1)}: {m.group(2)} projek, tunjukkan dalam senarai"
     m = re.fullmatch(r"View all (\d+) projects since (\d{4})", t)
     if m: return f"Lihat kesemua {m.group(1)} projek sejak {m.group(2)}"
     if re.search(r"[a-z]{3,}", t) and not re.match(r"https?:|[\w.+-]+@|width=|index,|noindex|summary_|website$", t): missing.add(t)

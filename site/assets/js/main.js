@@ -295,6 +295,33 @@
     });
   });
 
+  /* ---- Project map (projects.html): a pin lists only that place's key projects. Without JS it links to the list. ---- */
+  var pmList = document.querySelector("[data-pm-list]"), pmBar = document.querySelector("[data-pm-bar]");
+  if (pmList && pmBar) {
+    var pmLast = null;
+    var pmShow = function (place) {
+      var n = 0;
+      pmList.querySelectorAll("li[data-places]").forEach(function (li) {
+        var ok = !place || li.getAttribute("data-places").split("|").indexOf(place) !== -1;
+        li.hidden = !ok; if (ok) n++;
+      });
+      var msg = place ? T(n + (n === 1 ? " key project in " : " key projects in ") + place, n + " projek utama di " + place) : "";
+      pmBar.querySelector("[data-pm-text]").textContent = msg;
+      document.querySelector("[data-pm-status]").textContent = msg || T("All key projects shown", "Semua projek utama dipaparkan");
+      pmBar.hidden = !place;
+    };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[data-place]");
+      if (!a) return;
+      e.preventDefault();
+      pmLast = a;
+      pmShow(a.getAttribute("data-place"));
+      pmBar.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      pmBar.querySelector("[data-pm-reset]").focus({ preventScroll: true });
+    });
+    pmBar.querySelector("[data-pm-reset]").addEventListener("click", function () { pmShow(null); if (pmLast) pmLast.focus(); });
+  }
+
   /* ---- Language switch: open the other language at the section being read ----
      Both versions have the same element ids, so the nearest section heading above the
      top of the screen is carried over as #id (the browser then scrolls straight to it). */

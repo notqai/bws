@@ -525,8 +525,10 @@ def project_rows(items, compact=False):
     out = ""
     for years, client, name, loc, tags, _svc, ongoing in items:
         tag_html = "" if compact else '<ul class="proj-tags" role="list">' + "".join(f"<li>{t}</li>" for t in tags) + "</ul>"
+        # projects.html: the place names on the project map (tools/make_project_map.py), so a pin can filter the list
+        places = "" if compact else ' data-places="' + "|".join(make_project_map.PLACES[k]["name"] for k in make_project_map.places_for(loc)) + '"'
         out += f'''
-      <li class="proj">
+      <li class="proj"{places}>
         <span class="proj-years">{years}{'<span class="proj-status">Ongoing</span>' if ongoing else ''}</span>
         <div class="proj-main"><p class="proj-client">{client}</p><h3 class="proj-name">{name}</h3>{tag_html}</div>
         <span class="proj-loc">{icon("pin")}{loc}</span>
@@ -1028,6 +1030,9 @@ def clients():
 {CTA}''' + footer()
 
 # ================================================================ PROJECTS
+# The project locations map is drawn by tools/make_project_map.py (PLACES, cached Natural Earth + Nominatim data)
+import make_project_map
+
 GALLERY = [
     ("plant", "power-import-aerial-1", 675, 520, "Power Import Project, MLNG", "Aerial view of the new power import buildings under construction at the MLNG complex"),
     ("plant", "power-import-aerial-2", 686, 520, "Power Import Project, MLNG", "Aerial view of the power import facility buildings and pipe racks"),
@@ -1169,6 +1174,20 @@ def projects():
   </div>
 </section>
 
+<section class="section" id="locations" aria-labelledby="map-title">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>{eyebrow("", "Where we work")}<h2 id="map-title">Project locations</h2></div>
+      <p class="lead">Where the key projects below were carried out, from our bases in Miri and Bintulu. Select a place to list its projects.</p>
+    </div>
+    <!-- PROJECT MAP: drawn by tools/make_project_map.py from the PROJECTS locations; add new places to PLACES there. -->
+    <figure class="pm">
+      {make_project_map.svg(PROJECTS)}
+      <figcaption class="small">Circle area shows the number of key projects at each place.</figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="section section--steel" id="track" aria-labelledby="track-title">
   <div class="container">
     <div class="section-head section-head--split">
@@ -1176,7 +1195,9 @@ def projects():
       <p class="lead">Selected from more than 80 contracts delivered since 2002 for oil and gas operators, EPC contractors and government agencies across Malaysia.</p>
     </div>
     <!-- KEY PROJECTS: edit the PROJECTS list in tools/generate_site.py, or edit the <li class="proj"> items below. -->
-    <ol class="proj-list" role="list">{project_rows(PROJECTS)}
+    <div class="pm-filter" data-pm-bar hidden><p class="mb-0" data-pm-text></p><button class="btn btn--ghost" type="button" data-pm-reset>Show all key projects</button></div>
+    <p class="visually-hidden" role="status" data-pm-status></p>
+    <ol class="proj-list" role="list" data-pm-list>{project_rows(PROJECTS)}
     </ol>
     {full_project_list()}
   </div>

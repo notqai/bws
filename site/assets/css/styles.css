@@ -849,6 +849,28 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
   .timeline p { max-width: none; }
 }
 
+/* Projects: blueprint map of project locations (inline SVG from tools/make_project_map.py). Pins are links. */
+.pm { margin: 0 auto; max-width: 60rem; }
+.pm-svg { display: block; width: 100%; height: auto; background: var(--ink); }
+.pm figcaption { margin-top: var(--space-3); color: var(--steel-600); }
+.pm-l { font-size: 13px; letter-spacing: 1.5px; fill: var(--brand-cyan); stroke: var(--ink); stroke-width: 4px; stroke-opacity: .9; stroke-linejoin: round; paint-order: stroke; }
+.pm-c { fill: var(--brand-sky); }
+.pm-b { font-size: 9.5px; letter-spacing: 2px; fill: var(--brand-sky); }
+.pm-ring { fill: none; stroke: var(--white); stroke-width: 3px; opacity: 0; }
+.pm-pin { cursor: pointer; }
+.pm-pin:focus { outline: none; }
+.pm-pin:hover .pm-ring, .pm-pin:focus-visible .pm-ring { opacity: 1; }
+.pm-pin:hover .pm-l, .pm-pin:focus-visible .pm-l { fill: var(--white); }
+.pm-pin:focus-visible .pm-dot { outline: 3px solid var(--white); outline-offset: 4px; }
+/* Phones: the drawing is about 0.37x, so the labels are drawn larger (offsets in PLACES leave room for this) */
+@media (max-width: 40rem) {
+  .pm-l { font-size: 26px; letter-spacing: .5px; stroke-width: 6px; }
+  .pm-b { font-size: 17px; letter-spacing: 1px; }
+}
+.pm-filter { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); margin-bottom: var(--space-5); padding: var(--space-4) var(--space-5); background: var(--white); border-left: 4px solid var(--brand-blue); }
+.pm-filter[hidden] { display: none; }
+.pm-filter p { font-weight: 600; color: var(--ink); }
+
 /* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
 .vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
 @media (min-width: 52rem) { .vacancies { grid-template-columns: 1fr 1fr; } }
