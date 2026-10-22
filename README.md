@@ -89,7 +89,7 @@ Replace `site/assets/logo/logo.svg` and `logo-white.svg` (keep the file names). 
 
 ### Client logos
 Logos live in `site/assets/img/clients/` and are each client's **current** brand mark (checked October 2026):
-- **PETRONAS mark** (`petronas.svg`) for Malaysia LNG, PETRONAS Carigali and PETRONAS Dagangan, which use the group brand.
+- **PETRONAS and Shell subsidiaries** (Malaysia LNG, Carigali, Dagangan, PRPC; Sarawak Shell, Sabah Shell, Shell MDS) officially use the group mark (`petronas.svg`, `shell.svg`) with no separate logos. Each card shows the unchanged group mark with the company's short name beside it as an HTML/CSS lockup (`.client-lockup`), so the cards are distinct. The name is the 6th field of `CLIENTS` in `tools/generate_site.py`; the lockup text is decorative (`aria-hidden`) because the full legal name is in the card text. The home-page strip still shows each group mark once.
 - **JX Nippon Oil & Gas Exploration** was renamed **ENEOS Xplora** in 2023, so its card shows the ENEOS Xplora logo with a "Now ENEOS Xplora" note.
 - **PT Rekayasa Industri** trades as **Rekind**.
 - **Sources:** Wikimedia Commons / Wikipedia for JGC, Chiyoda, Mitsui & Co, Shell, ENEOS Xplora, PETRONAS and Rekind; Taihei Dengyo from its own website.

@@ -535,30 +535,35 @@ def project_rows(items, compact=False):
       </li>'''
     return out
 
-# (name, logo file in assets/img/clients/, intrinsic width, height, note)
+# (name, logo file in assets/img/clients/, intrinsic width, height, note, lockup)
+# lockup: short name set beside the group mark (PETRONAS/Shell subsidiaries share one mark); None for everyone else.
 # Logos are the clients' current brand marks (PETRONAS subsidiaries use the group mark).
 CLIENTS = [
-    ("Malaysia LNG Sdn Bhd", "petronas.svg", 544, 558, "PETRONAS Group"),
-    ("PETRONAS Carigali Sdn Bhd", "petronas.svg", 544, 558, ""),
-    ("PETRONAS Dagangan Berhad", "petronas.svg", 544, 558, ""),
-    ("PRPC Utilities &amp; Facilities Sdn Bhd", "petronas.svg", 544, 558, "RAPID, Pengerang"),
-    ("Sarawak Shell Berhad", "shell.svg", 150, 139, ""),
-    ("Sabah Shell Petroleum Co. Ltd", "shell.svg", 150, 139, ""),
-    ("Shell MDS (Malaysia) Sdn Bhd", "shell.svg", 150, 139, ""),
-    ("Samsung E&amp;A Co. Ltd", "samsung-ena.svg", 168, 21, ""),
-    ("JGC (Malaysia) Sdn Bhd &amp; JGC SP (M) Sdn Bhd", "jgc.svg", 373, 202, ""),
-    ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, ""),
-    ("JX Nippon Oil &amp; Gas Exploration (M) Ltd", "eneos-xplora.webp", 640, 91, "Now ENEOS Xplora"),
-    ("PTTEP", "pttep.svg", 240, 212, "Bintulu Onshore Receiving Facility"),
-    ("ASEAN Bintulu Fertilizer Sdn Bhd", "abf.webp", 150, 97, ""),
-    ("PT Rekayasa Industri", "rekind.webp", 360, 404, "Rekind"),
-    ("Mitsui &amp; Co. Ltd", "mitsui.svg", 512, 636, ""),
-    ("Taihei Dengyo Kaisha, Ltd", "taihei-dengyo.webp", 122, 90, ""),
-    ("Jabatan Kerja Raya (JKR)", "jkr.webp", 300, 222, "Public Works Department"),
-    ("Ibu Pejabat Tanah dan Survei", None, 0, 0, "Land and Survey Department, Sarawak"),
+    ("Malaysia LNG Sdn Bhd", "petronas.svg", 544, 558, "PETRONAS Group", "Malaysia LNG"),
+    ("PETRONAS Carigali Sdn Bhd", "petronas.svg", 544, 558, "", "Carigali"),
+    ("PETRONAS Dagangan Berhad", "petronas.svg", 544, 558, "", "Dagangan"),
+    ("PRPC Utilities &amp; Facilities Sdn Bhd", "petronas.svg", 544, 558, "RAPID, Pengerang", "PRPC Utilities &amp; Facilities"),
+    ("Sarawak Shell Berhad", "shell.svg", 150, 139, "", "Sarawak Shell"),
+    ("Sabah Shell Petroleum Co. Ltd", "shell.svg", 150, 139, "", "Sabah Shell"),
+    ("Shell MDS (Malaysia) Sdn Bhd", "shell.svg", 150, 139, "", "Shell MDS"),
+    ("Samsung E&amp;A Co. Ltd", "samsung-ena.svg", 168, 21, "", None),
+    ("JGC (Malaysia) Sdn Bhd &amp; JGC SP (M) Sdn Bhd", "jgc.svg", 373, 202, "", None),
+    ("Chiyoda Malaysia Sdn Bhd", "chiyoda.svg", 201, 64, "", None),
+    ("JX Nippon Oil &amp; Gas Exploration (M) Ltd", "eneos-xplora.webp", 640, 91, "Now ENEOS Xplora", None),
+    ("PTTEP", "pttep.svg", 240, 212, "Bintulu Onshore Receiving Facility", None),
+    ("ASEAN Bintulu Fertilizer Sdn Bhd", "abf.webp", 150, 97, "", None),
+    ("PT Rekayasa Industri", "rekind.webp", 360, 404, "Rekind", None),
+    ("Mitsui &amp; Co. Ltd", "mitsui.svg", 512, 636, "", None),
+    ("Taihei Dengyo Kaisha, Ltd", "taihei-dengyo.webp", 122, 90, "", None),
+    ("Jabatan Kerja Raya (JKR)", "jkr.webp", 300, 222, "Public Works Department", None),
+    ("Ibu Pejabat Tanah dan Survei", None, 0, 0, "Land and Survey Department, Sarawak", None),
 ]
 
-def client_logo(logo, w, h, alt=""):
+def client_logo(logo, w, h, alt="", lockup=None):
+    if lockup:  # group mark + subsidiary name; full legal name is in .client-name, so the lockup is decorative
+        cls = "shell" if logo == "shell.svg" else "petronas"
+        return (f'<span class="client-lockup client-lockup--{cls}"><img src="assets/img/clients/{logo}" width="{w}" height="{h}" alt="" loading="lazy" decoding="async">'
+                f'<span class="lockup-name" aria-hidden="true">{lockup}</span></span>')
     if not logo:  # no published logo: clean text mark
         return f'<span class="client-textmark"{" role=\"img\" aria-label=\"" + alt + "\"" if alt else " aria-hidden=\"true\""}>Land &amp; Survey<small>Sarawak</small></span>'
     return f'<img src="assets/img/clients/{logo}" width="{w}" height="{h}" alt="{alt}" loading="lazy" decoding="async">'
@@ -566,9 +571,9 @@ def client_logo(logo, w, h, alt=""):
 def client_grid():
     # To change a logo: replace the file in assets/img/clients/ (keep the name) or edit the <img> below.
     lis = "".join(
-        f'<li class="client"><span class="client-logo">{client_logo(logo, w, h)}</span>'
+        f'<li class="client"><span class="client-logo">{client_logo(logo, w, h, "", lockup)}</span>'
         f'<span class="client-name">{n}{f"<small>{note}</small>" if note else ""}</span></li>'
-        for n, logo, w, h, note in CLIENTS)
+        for n, logo, w, h, note, lockup in CLIENTS)
     return f'<ul class="client-grid reveal-stagger" role="list">{lis}</ul>'
 
 TRUST = f'''
@@ -606,7 +611,7 @@ def home():
         for k, w, h, c, t in work)
     # One logo per brand in the scrolling strip (PETRONAS and Shell cover several client companies)
     brands = {}
-    for n, logo, w, h, _ in CLIENTS:
+    for n, logo, w, h, _, _l in CLIENTS:
         if not logo: continue  # text-only badges stay on the Clients page, not the logo wall
         key = logo
         if key in brands: brands[key][3].append(n)

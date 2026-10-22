@@ -878,6 +878,21 @@ html[lang^="ms"] .primary-nav a { padding-inline: .45rem; font-size: .875rem; } 
 .pm-filter[hidden] { display: none; }
 .pm-filter p { font-weight: 600; color: var(--ink); }
 
+/* Client lockups: PETRONAS / Shell group mark + subsidiary name (colours taken from petronas.svg #00a19b and shell.svg #DA291C) */
+.client-lockup { --lock-c: var(--ink); display: inline-flex; align-items: center; justify-content: center; gap: .6rem; max-width: 100%; text-align: left; }
+.client-lockup--petronas { --lock-c: #00a19b; }
+.client-lockup--shell { --lock-c: #da291c; }
+.client-lockup img { flex: none; height: 48px; width: auto; max-height: 48px; max-width: 48px; }
+.lockup-name { font-family: var(--font-body); font-weight: 700; font-size: 1.15rem; line-height: 1.12; letter-spacing: -.005em; color: var(--lock-c); min-width: 0; overflow-wrap: anywhere; }
+.client-logo:has(.client-lockup) { height: auto; min-height: 64px; }
+@media (max-width: 40rem) {
+  .client-lockup { flex-direction: column; gap: .35rem; text-align: center; }
+  .client-lockup img { height: 36px; max-height: 36px; max-width: 36px; }
+  .lockup-name { font-size: 1rem; }
+  .client-logo:has(.client-lockup) { min-height: 48px; }
+}
+@media (max-width: 40rem) { .client-logo .client-textmark { min-width: 0; width: 100%; padding: .3rem .4rem; font-size: .8rem; } }
+
 /* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
 .vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
 @media (min-width: 52rem) { .vacancies { grid-template-columns: 1fr 1fr; } }
