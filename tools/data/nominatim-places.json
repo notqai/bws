@@ -1,0 +1,96 @@
+{
+ "source": "OpenStreetMap Nominatim (© OpenStreetMap contributors, ODbL)",
+ "places": {
+  "kuching_division": {
+   "q": "Sematan, Sarawak",
+   "lat": 1.8053,
+   "lon": 109.7783,
+   "type": "town",
+   "display_name": "Sematan, Lundu, Bahagian Kuching, Sarawak, Malaysia"
+  },
+  "padawan": {
+   "q": "Padawan, Sarawak",
+   "lat": 1.4277,
+   "lon": 110.3256,
+   "type": "town",
+   "display_name": "Kota Padawan, Samarahan, Bahagian Samarahan, Sarawak, Malaysia"
+  },
+  "samarahan": {
+   "q": "Kota Samarahan, Sarawak",
+   "lat": 1.4637,
+   "lon": 110.4891,
+   "type": "city",
+   "display_name": "Kota Samarahan, Samarahan, Bahagian Samarahan, Sarawak, Malaysia"
+  },
+  "bintulu": {
+   "q": "Bintulu, Sarawak",
+   "lat": 3.1874,
+   "lon": 113.0473,
+   "type": "city",
+   "display_name": "Bintulu, Bahagian Bintulu, Sarawak, 97000, Malaysia"
+  },
+  "miri": {
+   "q": "Miri, Sarawak",
+   "lat": 4.394,
+   "lon": 113.988,
+   "type": "city",
+   "display_name": "Miri, Bahagian Miri, Sarawak, 98000, Malaysia"
+  },
+  "mulu": {
+   "q": "Mulu, Sarawak",
+   "lat": 4.0444,
+   "lon": 114.8086,
+   "type": "town",
+   "display_name": "Mulu, Marudi, Bahagian Miri, Sarawak, 98008, Malaysia"
+  },
+  "telang_usan": {
+   "q": "Telang Usan, Sarawak",
+   "lat": 3.3172,
+   "lon": 114.8258,
+   "type": "county",
+   "display_name": "Telang Usan, Bahagian Miri, Sarawak, Malaysia"
+  },
+  "bario": {
+   "q": "Bario, Sarawak",
+   "lat": 3.7479,
+   "lon": 115.4604,
+   "type": "town",
+   "display_name": "Bario, Miri, Bahagian Miri, Sarawak, Malaysia"
+  },
+  "lawas": {
+   "q": "Lawas, Sarawak",
+   "lat": 4.8597,
+   "lon": 115.4083,
+   "type": "town",
+   "display_name": "Lawas, Bahagian Limbang, Sarawak, 98857, Malaysia"
+  },
+  "sipitang": {
+   "q": "Sipitang, Sabah",
+   "lat": 5.0764,
+   "lon": 115.5494,
+   "type": "town",
+   "display_name": "Sipitang, Bahagian Pedalaman, Sabah, 89857, Malaysia"
+  },
+  "labuan": {
+   "q": "Labuan",
+   "lat": 5.3168,
+   "lon": 115.2199,
+   "type": "state",
+   "display_name": "Labuan, Malaysia"
+  },
+  "port_dickson": {
+   "q": "Port Dickson, Negeri Sembilan",
+   "lat": 2.5262,
+   "lon": 101.8106,
+   "type": "city",
+   "display_name": "Port Dickson, Negeri Sembilan, 71000, Malaysia"
+  },
+  "pengerang": {
+   "q": "Pengerang, Johor",
+   "lat": 1.3944,
+   "lon": 104.2155,
+   "type": "town",
+   "display_name": "Pengerang, Kota Tinggi, Johor, 81600, Malaysia"
+  }
+ }
+}
