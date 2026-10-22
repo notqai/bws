@@ -223,7 +223,7 @@ CTA = f'''
 </section>'''
 
 def footer():
-    links = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)
+    links = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV + [("privacy.html", "Privacy Notice")])
     return f'''
 </main>
 <footer class="site-footer on-dark">
@@ -1576,7 +1576,7 @@ def careers():
           <div class="field"><label for="a-cv">CV <span class="req" aria-hidden="true">*</span></label><input id="a-cv" name="cv" type="file" accept=".pdf,.doc,.docx" required aria-describedby="a-cv-hint a-cv-error"><span class="form-note" id="a-cv-hint">PDF or Word, up to 5 MB. Please include your certificates in the same file.</span><span class="field-error" id="a-cv-error" hidden>Please attach your CV as a PDF or Word file of up to 5 MB.</span></div>
         </div>
         <div class="field"><label for="a-message">Anything else we should know</label><textarea id="a-message" name="message" maxlength="3000"></textarea></div>
-        <div class="field field--check"><input id="a-consent" name="consent" type="checkbox" value="1" required aria-describedby="a-consent-error"><label for="a-consent">I agree to BWS Engineering Sdn Bhd using my personal data to consider my application, as described in the <a href="privacy.html">Privacy Notice</a>. <span class="req" aria-hidden="true">*</span></label><span class="field-error" id="a-consent-error" hidden>Please tick to agree before sending your application.</span></div>
+        <div class="field field--check"><input id="a-consent" name="consent" type="checkbox" value="1" required aria-describedby="a-consent-error"><label for="a-consent">I consent to BWS Engineering Sdn Bhd processing my personal data for the purpose of considering my application, in accordance with the <a href="privacy.html">Privacy Notice</a>. <span class="req" aria-hidden="true">*</span></label><span class="field-error" id="a-consent-error" hidden>Please tick to agree before sending your application.</span></div>
         <div class="hp" aria-hidden="true"><label for="a-hp">Leave this empty</label><input id="a-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
         <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields.</p>
         <div><button class="btn btn--primary" type="submit">Submit application {icon("arrow")}</button></div>
@@ -1686,7 +1686,7 @@ def contact():
         </div>
         <div class="field"><label for="f-message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="f-message" name="message" required aria-describedby="f-message-error"></textarea><span class="field-error" id="f-message-error" hidden>Please tell us about your enquiry.</span></div>
         <div class="hp" aria-hidden="true"><label for="f-hp">Leave this empty</label><input id="f-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-        <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields. We use your details only to reply to your enquiry, as described in our <a href="privacy.html">Privacy Notice</a>.</p>
+        <p class="form-note mb-0"><span aria-hidden="true">*</span> Required fields. Your personal data will be used solely to respond to your enquiry, in accordance with our <a href="privacy.html">Privacy Notice</a>.</p>
         <div><button class="btn btn--primary" type="submit">Send enquiry {icon("arrow")}</button></div>
         <div class="form-status" role="status" aria-live="polite" hidden></div>
       </form>
@@ -1700,40 +1700,42 @@ def contact():
 PRIVACY_VERSION = "October 2026"
 
 PRIVACY_SECTIONS = [
-    ("p-who", "Who we are", """<p>BWS Engineering Sdn Bhd (597192-V), Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia, is responsible for the personal data described in this notice.</p>"""),
-    ("p-what", "What we collect", """<ul>
-        <li><strong>Enquiries:</strong> your name, company, email address, phone number, the service you are interested in and your message.</li>
-        <li><strong>Job applications:</strong> your name, email address, phone number, location, years of experience, the position you are applying for, your message, and your CV with anything it contains, such as qualifications, work history and certificates.</li>
-        <li><strong>Technical data:</strong> like most websites, our web host keeps short-term server logs (IP address, browser type, pages requested) to run the site securely. We also count visits with Cloudflare Web Analytics, which does not use cookies or identify you. This website does not use advertising or tracking cookies.</li>
+    ("p-who", "1. Data user", """<p>BWS Engineering Sdn Bhd (Company No. 200201029529 (597192-V)), Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak, Malaysia, is the data user responsible for the personal data described in this Notice.</p>"""),
+    ("p-what", "2. Personal data collected", """<ul>
+        <li><strong>Enquiries:</strong> name, company, email address, telephone number, service of interest and the content of your message.</li>
+        <li><strong>Job applications:</strong> name, email address, telephone number, location, years of experience, position applied for, any accompanying message, and your curriculum vitae together with the information it contains, including qualifications, employment history and certificates.</li>
+        <li><strong>Technical data:</strong> our web hosting provider retains server logs for a limited period, including IP address, browser type and pages requested, for the secure operation of the website. Visits are also counted using Cloudflare Web Analytics, which does not use cookies and does not identify individual visitors. This website does not use advertising or tracking cookies.</li>
       </ul>
-      <p>Fields marked with an asterisk (*) are required. If you do not provide them, we cannot reply to your enquiry or consider your application. Everything else is optional.</p>"""),
-    ("p-why", "Why we use it", """<ul>
-        <li>To reply to your enquiry and prepare quotations.</li>
-        <li>To assess your job application, contact you about it and, if you are hired, start your employment records.</li>
-        <li>To keep the website secure and prevent misuse of its forms.</li>
-        <li>To meet our legal and regulatory obligations.</li>
-      </ul>
-      <p>We do not sell your personal data or use it for marketing.</p>"""),
-    ("p-share", "Who we share it with", """<ul>
-        <li>BWS staff who need it to handle your enquiry or application.</li>
-        <li>Service providers that run our website, email and application system for us, under confidentiality obligations.</li>
-        <li>Government or regulatory authorities, where the law requires it.</li>
-      </ul>
-      <p>Some of these providers, such as our email services, may store data on servers outside Malaysia. Where that happens, we take reasonable steps to make sure your data is protected to a standard comparable to Malaysian law.</p>"""),
-    ("p-keep", "How long we keep it", """<ul>
-        <li><strong>Enquiries</strong> are kept for as long as needed to deal with them and for our business records.</li>
-        <li><strong>Job applications and CVs</strong> are kept for up to 12 months after they are received and then deleted, unless you join BWS. You can ask us to delete yours sooner.</li>
-      </ul>"""),
-    ("p-safe", "How we protect it", """<p>The website uses an encrypted connection (HTTPS). CVs and enquiries are kept in BWS’s own email and records, and only the staff who handle them can see them.</p>"""),
-    ("p-rights", "Your rights", """<p>You may ask us to:</p>
+      <p>Fields marked with an asterisk (*) are obligatory. If obligatory information is not provided, we will be unable to respond to your enquiry or to consider your application. The provision of all other information is voluntary.</p>"""),
+    ("p-why", "3. Purposes of processing", """<p>Personal data is processed for the following purposes:</p>
       <ul>
-        <li>give you access to the personal data we hold about you;</li>
-        <li>correct data that is inaccurate, incomplete or out of date;</li>
-        <li>stop or limit using your data, or withdraw your consent (we may then be unable to continue with your enquiry or application);</li>
-        <li>delete your job application and CV.</li>
+        <li>to respond to enquiries and prepare quotations;</li>
+        <li>to assess job applications, communicate with applicants and, where an applicant is employed, establish employment records;</li>
+        <li>to maintain the security of the website and prevent misuse of its forms; and</li>
+        <li>to comply with applicable legal and regulatory obligations.</li>
       </ul>
-      <p>Email <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a> or write to our Miri office. We will reply within 21 days.</p>"""),
-    ("p-changes", "Changes to this notice", """<p>We may update this notice from time to time. The latest version is always on this page, with the date it was last updated.</p>"""),
+      <p>BWS does not sell personal data and does not use it for direct marketing.</p>"""),
+    ("p-share", "4. Disclosure of personal data", """<p>Personal data may be disclosed to:</p>
+      <ul>
+        <li>BWS personnel who require it to handle your enquiry or application;</li>
+        <li>service providers engaged to operate our website, email and application systems on our behalf, who are bound by obligations of confidentiality; and</li>
+        <li>government or regulatory authorities, where disclosure is required by law.</li>
+      </ul>
+      <p>Certain service providers, including email service providers, may store personal data on servers located outside Malaysia. In such cases, BWS takes reasonable steps to ensure that the personal data is protected to a standard comparable to that required under the laws of Malaysia.</p>"""),
+    ("p-keep", "5. Retention", """<ul>
+        <li><strong>Enquiries</strong> are retained for as long as necessary to address them and to maintain our business records.</li>
+        <li><strong>Job applications and curricula vitae</strong> are retained for up to twelve (12) months from the date of receipt and are deleted thereafter, unless the applicant is employed by BWS. You may request earlier deletion.</li>
+      </ul>"""),
+    ("p-safe", "6. Security", """<p>The website uses an encrypted connection (HTTPS). Curricula vitae and enquiries are held within BWS’s own email and records systems, and access is restricted to the personnel responsible for handling them.</p>"""),
+    ("p-rights", "7. Your rights", """<p>Subject to the Personal Data Protection Act 2010, you may request BWS to:</p>
+      <ul>
+        <li>provide access to the personal data held about you;</li>
+        <li>correct personal data that is inaccurate, incomplete, misleading or not up to date;</li>
+        <li>cease or limit the processing of your personal data, or withdraw your consent, in which case we may be unable to continue with your enquiry or application; and</li>
+        <li>delete your job application and curriculum vitae.</li>
+      </ul>
+      <p>Requests should be made in writing to <a href="mailto:bws@bwsengineeringsb.com">bws@bwsengineeringsb.com</a> or to our office in Miri at the address stated above. We will respond within twenty-one (21) days of receipt.</p>"""),
+    ("p-changes", "8. Amendments to this Notice", """<p>BWS may amend this Notice from time to time. The current version, together with the date of its last update, will always be published on this page.</p>"""),
 ]
 
 def privacy():
@@ -1743,14 +1745,14 @@ def privacy():
       {body}
     </section>''' for sid, title, body in PRIVACY_SECTIONS)
     return head("privacy.html", "Privacy Notice | BWS Engineering Sdn Bhd",
-        "How BWS Engineering Sdn Bhd collects, uses and protects personal data under Malaysia’s Personal Data Protection Act 2010.") + header("") + page_hero(
-        "Privacy Notice", "Privacy notice",
-        "How we collect, use and protect your personal data, in line with the Personal Data Protection Act 2010.",
+        "Privacy Notice of BWS Engineering Sdn Bhd issued under the Personal Data Protection Act 2010 (Act 709).") + header("") + page_hero(
+        "Privacy Notice", "Privacy Notice",
+        "This Privacy Notice is issued in accordance with the Personal Data Protection Act 2010 (Act 709).",
         ) + f'''
 
 <section class="section">
   <div class="container measure privacy-doc">
-    <p class="lead">This notice explains what personal data BWS Engineering Sdn Bhd collects through this website, why we collect it, and the choices and rights you have. It is published in English and Bahasa Melayu.</p>
+    <p class="lead">This Privacy Notice sets out how BWS Engineering Sdn Bhd (“BWS”, “we”, “us” or “our”) collects, uses, discloses and protects personal data obtained through this website, and the rights available to you as a data subject. This Notice is published in English and Bahasa Melayu.</p>
     <p class="small">Last updated: {PRIVACY_VERSION}</p>{blocks}
   </div>
 </section>''' + footer()
