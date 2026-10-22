@@ -29,7 +29,7 @@
 .topbar span[aria-hidden] { color: var(--brand-sky); opacity: .7; }
 .topbar a { color: var(--white); text-decoration: none; font-weight: 600; }
 .topbar a:hover { color: var(--brand-sky); text-decoration: underline; }
-.topbar-creds { letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--white); }
+.topbar-creds { letter-spacing: .05em; text-transform: uppercase; font-weight: 600; color: var(--white); }
 @media (max-width: 63.99rem) { .topbar { display: none; } }
 
 /* ---------- Recent work strip (home) ---------- */
@@ -160,6 +160,8 @@
 .org-subtitle { margin: var(--space-8) 0 var(--space-1); }
 @media (min-width: 64rem) {
   .org-sections { grid-template-columns: repeat(var(--cols, 5), 1fr); }
+  /* IBM Plex Sans sets wider than Source Sans: slimmer side padding keeps the five-column chart inside 1024px */
+  .org-sections .org-node { padding-inline: .7rem; }
   .org--project .org-top { padding-bottom: var(--gap); }
   .org--project .org-top::after { height: var(--gap); }
 }
@@ -193,7 +195,7 @@
 .lang-switch--mobile { display: none; }
 @media (max-width: 79.99rem) { .header-inner > .lang-switch:not(.lang-switch--mobile) { display: none; } .lang-switch--mobile { display: inline-grid; } }
 .primary-nav a { white-space: nowrap; }
-html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
+html[lang^="ms"] .primary-nav a { padding-inline: .45rem; font-size: .875rem; }   /* .45rem: room for the wider IBM Plex Sans */
 
 /* ---------- Static client logo wall (home) ---------- */
 .logo-wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--steel-200); border-left: 1px solid var(--steel-200); }
@@ -289,6 +291,7 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 /* Projects: blueprint map of project locations (inline SVG from tools/make_project_map.py). Pins are links. */
 .pm { margin: 0 auto; max-width: 60rem; }
 .pm-svg { display: block; width: 100%; height: auto; background: var(--ink); }
+.pm-svg text { font-family: var(--font-body); }   /* inline SVG: uses the page's IBM Plex Sans (and its fallback) */
 .pm figcaption { margin-top: var(--space-3); color: var(--steel-600); }
 .pm-l { font-size: 13px; letter-spacing: 1.5px; fill: var(--brand-cyan); stroke: var(--ink); stroke-width: 4px; stroke-opacity: .9; stroke-linejoin: round; paint-order: stroke; }
 .pm-c { fill: var(--brand-sky); }

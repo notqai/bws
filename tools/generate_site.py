@@ -156,8 +156,8 @@ def head(page, title, desc, extra_ld=None):
 <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <!-- Fonts -->
-<link rel="preload" href="assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-serif-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 {preload}<link rel="stylesheet" href="assets/css/styles.css?v={ASSET_V}">
 <script src="assets/js/main.js?v={ASSET_V}" defer></script>
 {ld}
@@ -1914,7 +1914,8 @@ def offline_page():
 
 def write_service_worker():
     core = ["/offline.html", f"/assets/css/styles.css?v={ASSET_V}", f"/assets/js/main.js?v={ASSET_V}",
-            "/assets/fonts/source-sans-3-latin.woff2", "/assets/fonts/source-serif-4-700-latin.woff2",
+            "/assets/fonts/ibm-plex-serif-700-latin.woff2", "/assets/fonts/ibm-plex-sans-400-latin.woff2",
+            "/assets/fonts/ibm-plex-sans-600-latin.woff2", "/assets/fonts/ibm-plex-sans-700-latin.woff2",
             "/assets/fonts/noto-naskh-arabic-500-jawi.woff2",
             "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"]
     tpl = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sw_template.js"), encoding="utf-8").read()
