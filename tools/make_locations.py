@@ -4,14 +4,14 @@
 # and drawn to true scale on a local equirectangular projection centred on each office, north up.
 # Output: ../site/assets/illustrations/loc-miri.svg, loc-bintulu.svg
 # Run: python3 tools/make_locations.py            (draws from the cached data, no network)
+#      (needs pip install fonttools brotli for the embedded label font, see make_illustrations.embed_fonts)
 #      python3 tools/make_locations.py --fetch    (re-downloads from the Overpass API and rewrites the cache first)
 import json, math, os, sys
 
-from make_illustrations import INK, BLUE, SKY, CYAN, FONT, OUT, line, rect, circle, text
+from make_illustrations import INK, BLUE, SKY, CYAN, FONT, MONO, OUT, line, rect, circle, text, embed_fonts
 
 W, H = 800, 500
 MAP_H = 430                                   # map area is y 0-430; the title block sits below it
-MONO = 'font-family="ui-monospace, Menlo, Consolas, monospace"'
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 SOURCE = "© OpenStreetMap contributors, ODbL. Trimmed Overpass API extract, see tools/make_locations.py --fetch"
 OVERPASS = "https://overpass-api.de/api/interpreter"
@@ -488,13 +488,20 @@ def scale_bar(key, x, y, metres, parts=4):
     return out
 
 
-# Arial Bold advance widths (per 1000 em) for the capitals, digits and space used in labels
-_AW = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ", (722, 722, 722, 722, 667, 611, 778, 722, 278, 556, 722, 611, 833, 722,
-                                               778, 667, 778, 722, 667, 611, 722, 667, 944, 667, 667, 611)), **{" ": 278})
+# IBM Plex Sans Bold advance widths (per 1000 em) for printable ASCII and the few other characters used in labels,
+# taken from site/assets/fonts/ibm-plex-sans-700-latin.woff2 (tools/test_make_locations.py checks them against it),
+# so the label plates and the project map's overlap check need no font library.
+AW_CHARS = "".join(map(chr, range(32, 127))) + "·°©–Ω"
+_AW = dict(zip(AW_CHARS,
+      (236, 320, 493, 632, 601, 974, 721, 268, 338, 338, 601, 600, 310, 403, 310, 460, 600, 600, 600, 600,
+       600, 600, 600, 600, 600, 600, 330, 330, 600, 600, 600, 500, 903, 685, 667, 651, 697, 607, 585, 719,
+       724, 432, 559, 696, 530, 819, 724, 714, 656, 714, 674, 624, 584, 694, 650, 973, 673, 649, 607, 334,
+       460, 334, 600, 556, 600, 569, 608, 517, 608, 562, 361, 552, 596, 286, 286, 577, 303, 894, 596, 564,
+       608, 608, 404, 504, 383, 596, 538, 841, 560, 534, 518, 372, 402, 372, 600, 358, 470, 792, 588, 724)))
 
 
 def text_width(s, size, spacing):
-    return sum(_AW.get(c, 556) for c in s) * size / 1000 + spacing * len(s)
+    return sum(_AW.get(c, 600) for c in s) * size / 1000 + spacing * len(s)
 
 
 def plate(x, y, s, size=12, spacing=3, color=SKY):
@@ -584,7 +591,7 @@ if __name__ == "__main__":
             print("fetching", key)
             save(trim(fetch(key), key), key)
     for name, fn in [("loc-miri", miri), ("loc-bintulu", bintulu)]:
-        svg = fn()
+        svg = embed_fonts(fn())
         with open(os.path.join(OUT, name + ".svg"), "w") as f:
             f.write(svg)
         print(name, len(svg.encode()), pin_style(name[4:]))

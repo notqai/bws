@@ -1,14 +1,60 @@
 # Generates the blueprint-style line illustrations used in the inner-page headers.
 # Output: ../site/assets/illustrations/*.svg  (800 x 600, navy drawing sheet with grid)
-# Run: python3 tools/make_illustrations.py
-import math, os
+# Run: python3 tools/make_illustrations.py      (needs pip install fonttools brotli, for the embedded label font)
+#
+# Labels are set in IBM Plex Sans (and IBM Plex Mono for coordinates in make_locations.py). An SVG shown as an <img>
+# can't use the page's web fonts, so embed_fonts() puts a subset of each weight used, holding only the characters
+# that drawing's labels use, into the SVG as a base64 woff2 @font-face. Sources: site/assets/fonts/ (Sans) and
+# tools/data/fonts/ (Mono), written by tools/fetch_fonts.py.
+import base64, html, io, math, os, re
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "assets", "illustrations")
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.join(HERE, "..", "site", "assets", "illustrations")
 os.makedirs(OUT, exist_ok=True)
 
 INK, BLUE, SKY, CYAN, AMBER = "#0A1240", "#0A18D9", "#4797E6", "#E4FCFC", "#F2A900"
 W, H = 800, 600
-FONT = "font-family=\"Arial, Helvetica, sans-serif\""
+FONT = 'font-family="\'IBM Plex Sans\', Arial, Helvetica, sans-serif"'
+MONO = 'font-family="\'IBM Plex Mono\', ui-monospace, Menlo, Consolas, monospace"'
+# (family in FONT / MONO, weight) -> source font file
+FONT_FILES = {
+    ("IBM Plex Sans", "600"): os.path.join(HERE, "..", "site", "assets", "fonts", "ibm-plex-sans-600-latin.woff2"),
+    ("IBM Plex Sans", "700"): os.path.join(HERE, "..", "site", "assets", "fonts", "ibm-plex-sans-700-latin.woff2"),
+    ("IBM Plex Mono", "600"): os.path.join(HERE, "data", "fonts", "ibm-plex-mono-600-latin.woff2"),
+}
+
+
+def font_subset(path, chars):
+    """woff2 bytes of the font at path cut down to chars (deterministic: no timestamps, fixed glyph order)."""
+    from fontTools import subset as ftsubset
+    from fontTools.ttLib import TTFont
+    opts = ftsubset.Options()
+    opts.flavor = "woff2"
+    opts.hinting = False
+    opts.name_IDs = [0, 1, 2, 13, 14]                   # copyright, family, style, licence
+    opts.layout_features = ["kern"]
+    font = TTFont(path, recalcTimestamp=False)
+    sub = ftsubset.Subsetter(opts)
+    sub.populate(unicodes=sorted({ord(c) for c in chars}))
+    sub.subset(font)
+    buf = io.BytesIO()
+    font.save(buf)
+    return buf.getvalue()
+
+
+def embed_fonts(svg):
+    """Add a <style> with an @font-face per (family, weight) the drawing's <text> uses, holding only its characters."""
+    used = {}
+    for attrs, body in re.findall(r"<text ([^>]*)>(.*?)</text>", svg, re.S):
+        fam = re.search(r"font-family=\"'([^']+)'", attrs).group(1)
+        weight = re.search(r'font-weight="(\d+)"', attrs).group(1)
+        used.setdefault((fam, weight), set()).update(html.unescape(re.sub(r"<[^>]+>", "", body)))
+    faces = ""
+    for (fam, weight), chars in sorted(used.items()):
+        data = base64.b64encode(font_subset(FONT_FILES[(fam, weight)], chars | {" "})).decode()
+        faces += (f'@font-face{{font-family:"{fam}";font-weight:{weight};'
+                  f'src:url(data:font/woff2;base64,{data}) format("woff2")}}')
+    return re.sub(r"(</title>)", lambda m: m.group(1) + f"<style>{faces}</style>", svg, count=1) if faces else svg
 
 
 def sheet(body, title):
@@ -438,7 +484,7 @@ if __name__ == "__main__":
     for name, fn in [("plant", plant), ("crane-lift", crane), ("workshop", building), ("offshore", platform),
                      ("hard-hat", hardhat), ("tools", tools), ("coast-map", coast_map),
                      ("blasting-painting", blasting), ("cable-laying", cable), ("instrument-calibration", calibration)]:
-        svg = fn()
+        svg = embed_fonts(fn())
         with open(os.path.join(OUT, name + ".svg"), "w") as f:
             f.write(svg)
-        print(name, len(svg))
+        print(name, len(svg.encode()))

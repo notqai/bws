@@ -110,5 +110,52 @@ class LocationDrawingTests(unittest.TestCase):
             self.assertEqual(make_locations.pin_style(name), f"--pin-x:{x / 8:.1f}%;--pin-y:{y / 5:.1f}%")
 
 
+class DrawingFontTests(unittest.TestCase):
+    """Labels are drawn in IBM Plex; SVGs shown as <img> carry their own subset of it (make_illustrations.embed_fonts)."""
+    ILL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "assets", "illustrations")
+
+    def setUp(self):
+        try:
+            import fontTools, brotli  # noqa: F401
+        except ImportError:
+            self.skipTest("needs fonttools and brotli")
+
+    def test_label_fonts(self):
+        self.assertIn("'IBM Plex Sans'", make_locations.FONT)
+        self.assertIn("'IBM Plex Mono'", make_locations.MONO)
+        self.assertTrue(make_locations.FONT.startswith('font-family="\'IBM Plex Sans\','))
+        self.assertIn(make_locations.MONO + ' font-size="12"', make_locations.miri())   # coordinates in Plex Mono
+
+    def test_width_table_matches_plex_sans_bold(self):
+        from fontTools.ttLib import TTFont
+        import make_illustrations
+        font = TTFont(make_illustrations.FONT_FILES[("IBM Plex Sans", "700")])
+        cmap, hmtx = font.getBestCmap(), font["hmtx"]
+        for c in make_locations.AW_CHARS:
+            self.assertEqual(make_locations._AW[c], hmtx[cmap[ord(c)]][0], c)
+
+    def test_every_drawing_embeds_the_glyphs_it_uses(self):
+        import base64, html, io, re
+        from fontTools.ttLib import TTFont
+        for name in sorted(os.listdir(self.ILL)):
+            with open(os.path.join(self.ILL, name), encoding="utf-8") as f:
+                svg = f.read()
+            faces = {(fam, w): TTFont(io.BytesIO(base64.b64decode(data))).getBestCmap()
+                     for fam, w, data in re.findall(r'@font-face\{font-family:"([^"]+)";font-weight:(\d+);'
+                                                    r'src:url\(data:font/woff2;base64,([^)]+)\)', svg)}
+            texts = re.findall(r"<text ([^>]*)>(.*?)</text>", svg, re.S)
+            self.assertTrue(texts and faces, name)
+            for attrs, body in texts:
+                fam = re.search(r"font-family=\"'([^']+)'", attrs).group(1)
+                w = re.search(r'font-weight="(\d+)"', attrs).group(1)
+                for ch in html.unescape(re.sub(r"<[^>]+>", "", body)):
+                    self.assertIn(ord(ch), faces[(fam, w)], f"{name}: {ch!r} missing from {fam} {w}")
+
+    def test_location_drawings_are_up_to_date(self):
+        for key, fn in (("miri", make_locations.miri), ("bintulu", make_locations.bintulu)):
+            with open(os.path.join(self.ILL, f"loc-{key}.svg"), encoding="utf-8") as f:
+                self.assertEqual(f.read(), make_locations.embed_fonts(fn()), key)
+
+
 if __name__ == "__main__":
     unittest.main()
