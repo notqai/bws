@@ -743,9 +743,9 @@ def home():
 # each row says where. Each row: (datetime attribute, date label, text). Edit here, then regenerate.
 TIMELINE = [
     # about.html "Who we are" and index.html: formed in October 2002 by Bumiputera from the oil and gas industry; Miri base
-    ("2002-10", "Oct 2002", "Incorporated in Miri by Bumiputera professionals from the oil and gas industry"),
+    ("2002-10", "Oct 2002", "Incorporated by Bumiputera professionals from the oil and gas industry"),
     # index.html "Licences": CIDB since 2003, Grade G7; ALL_PROJECTS no. 4 (2003 – 2005, turnkey, Sarawak Shell, Bintulu Integrated Facilities)
-    ("2003", "2003", "Registered with CIDB at Grade G7; first turnkey contract, for Sarawak Shell’s Bintulu Integrated Facilities"),
+    ("2003", "2003", "Registered with CIDB at Grade G7; turnkey civil works begin for Sarawak Shell’s Bintulu Integrated Facilities"),
     # index.html "PETRONAS & PETROS" card and hse.html PETRONAS licence card: licensed since 2004
     ("2004", "2004", "Licensed by PETRONAS"),
     # index.html "Licences": quality management certified by TÜV NORD since 2007
