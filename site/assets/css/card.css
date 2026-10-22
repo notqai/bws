@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Digital business card: page-specific styles.
+   Loaded after styles.css, which provides all colour, type and spacing tokens.
+   ========================================================================== */
+
+.card-page { background: var(--steel-100); min-height: 100vh; }
+.bcard { max-width: 440px; margin-inline: auto; background: var(--steel-50); box-shadow: var(--shadow-2); }
+
+/* Header */
+.card-head { background: var(--ink); color: var(--on-ink); padding: var(--space-6) var(--space-5) var(--space-5); text-align: center; }
+.card-head img { display: block; margin: 0 auto var(--space-3); width: 120px; height: auto; }
+.card-head .jawi { display: block; color: var(--on-ink-muted); text-align: center; font-size: 1rem; margin: 0; }
+
+/* Identity */
+.card-id { padding: var(--space-5); text-align: center; background: var(--white); border-bottom: 1px solid var(--steel-200); }
+.card-id h1 { font: 700 var(--fs-h3)/1.2 var(--font-head); color: var(--ink); margin: 0 0 var(--space-2); }
+.card-id .role { margin: 0 0 var(--space-1); color: var(--steel-800); font-size: var(--fs-sm); }
+.card-id .company { margin: 0; color: var(--steel-600); font-size: var(--fs-sm); }
+.card-save { display: flex; width: 100%; margin-top: var(--space-5); }
+
+/* Quick actions */
+.card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); padding: var(--space-5) var(--space-5) 0; }
+.card-actions .btn { width: 100%; }
+
+/* Sections */
+.card-section { padding: var(--space-5); }
+.card-section h2 { font: 700 var(--fs-xs)/1.2 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-600); margin: 0 0 var(--space-3); }
+
+/* Offices */
+.loc { background: var(--white); border: 1px solid var(--steel-200); border-radius: var(--radius); padding: var(--space-4); box-shadow: var(--shadow-1); }
+.loc + .loc { margin-top: var(--space-3); }
+.loc h3 { font: 700 var(--fs-base)/1.2 var(--font-head); color: var(--ink); margin: 0 0 var(--space-2); }
+.loc address { font-style: normal; font-size: var(--fs-sm); color: var(--steel-800); margin: 0 0 var(--space-3); }
+.loc ul { list-style: none; margin: 0 0 var(--space-3); padding: 0; font-size: var(--fs-sm); }
+.loc li { padding: var(--space-1) 0; color: var(--steel-800); }
+.loc a { color: var(--brand-blue); font-weight: 600; text-decoration: none; }
+.loc a:hover { text-decoration: underline; }
+.loc .btn { width: 100%; }
+
+/* Credentials */
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
+.chip { background: var(--brand-cyan); color: var(--ink); border-radius: 999px; padding: var(--space-2) var(--space-3); font-size: var(--fs-xs); font-weight: 600; }
+.reg { margin: var(--space-3) 0 0; font-size: var(--fs-xs); color: var(--steel-600); }
+
+/* Share + QR */
+.card-share { text-align: center; }
+.card-share .btn { width: 100%; }
+.card-share .btn[hidden] { display: none; }
+.card-qr { margin: var(--space-5) auto 0; width: 160px; }
+.card-qr img { display: block; width: 160px; height: 160px; }
+.card-qr p { margin: var(--space-2) 0 0; font-size: var(--fs-xs); color: var(--steel-600); }
+.card-foot { padding: var(--space-4) var(--space-5) var(--space-6); text-align: center; font-size: var(--fs-xs); color: var(--steel-600); }
+.card-foot a { color: var(--brand-blue); }
+
+@media (min-width: 480px) {
+  .card-page { padding: var(--space-6) var(--space-4); }
+  .bcard { border-radius: 8px; overflow: hidden; }
+}
