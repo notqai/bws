@@ -1,7 +1,7 @@
 {
  "source": "OpenStreetMap Nominatim (© OpenStreetMap contributors, ODbL)",
  "places": {
-  "kuching_division": {
+  "sematan": {
    "q": "Sematan, Sarawak",
    "lat": 1.8053,
    "lon": 109.7783,
@@ -22,6 +22,27 @@
    "type": "city",
    "display_name": "Kota Samarahan, Samarahan, Bahagian Samarahan, Sarawak, Malaysia"
   },
+  "betong": {
+   "q": "Betong, Sarawak",
+   "lat": 1.4116,
+   "lon": 111.5281,
+   "type": "city",
+   "display_name": "Betong, Bahagian Betong, Sarawak, Malaysia"
+  },
+  "sibu": {
+   "q": "Sibu, Sarawak",
+   "lat": 2.2906,
+   "lon": 111.8256,
+   "type": "city",
+   "display_name": "Sibu, Bahagian Sibu, Sarawak, 96000, Malaysia"
+  },
+  "tanjung_manis": {
+   "q": "Tanjung Manis, Sarawak",
+   "lat": 2.1338,
+   "lon": 111.3357,
+   "type": "suburb",
+   "display_name": "Tanjung Manis, Bahagian Mukah, Sarawak, Malaysia"
+  },
   "bintulu": {
    "q": "Bintulu, Sarawak",
    "lat": 3.1874,
@@ -35,6 +56,13 @@
    "lon": 113.988,
    "type": "city",
    "display_name": "Miri, Bahagian Miri, Sarawak, 98000, Malaysia"
+  },
+  "long_lama": {
+   "q": "Long Lama, Sarawak",
+   "lat": 3.7624,
+   "lon": 114.4052,
+   "type": "town",
+   "display_name": "Long Lama, Telang Usan, Bahagian Miri, Sarawak, 98300, Malaysia"
   },
   "mulu": {
    "q": "Mulu, Sarawak",
@@ -84,6 +112,13 @@
    "lon": 101.8106,
    "type": "city",
    "display_name": "Port Dickson, Negeri Sembilan, 71000, Malaysia"
+  },
+  "melaka": {
+   "q": "Melaka",
+   "lat": 2.1943,
+   "lon": 102.2487,
+   "type": "city",
+   "display_name": "Bandaraya Melaka, Melaka Tengah, Melaka, 75100, Malaysia"
   },
   "pengerang": {
    "q": "Pengerang, Johor",

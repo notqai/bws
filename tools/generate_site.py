@@ -495,8 +495,9 @@ MANPOWER = {4: 90, 5: 50, 6: 20, 7: 30, 8: 15, 9: 10, 10: 77, 11: 15, 12: 151, 1
 
 def full_project_list():
     n = len(ALL_PROJECTS)
+    # data-places: the row's places on the project map (CONTRACT_PLACES in tools/make_project_map.py), for the pins
     rows = "".join(
-        f'<tr data-sector="{sec}"><td class="fl-year">{yrs}</td><td>{title}{f"<span class=\"fl-team\">Team of {MANPOWER[no]}</span>" if no in MANPOWER else ""}</td><td>{client}</td></tr>'
+        f'<tr data-sector="{sec}" data-places="{make_project_map.place_names((no, yrs, title))}"><td class="fl-year">{yrs}</td><td>{title}{f"<span class=\"fl-team\">Team of {MANPOWER[no]}</span>" if no in MANPOWER else ""}</td><td>{client}</td></tr>'
         for no, yrs, title, client, sec in reversed(ALL_PROJECTS))
     og = sum(1 for x in ALL_PROJECTS if x[4] == "og"); gov = n - og
     return f'''
@@ -511,6 +512,7 @@ def full_project_list():
           <button class="filter-btn" type="button" data-fl="gov" aria-pressed="false">Government &amp; infrastructure<span class="count">({gov})</span></button>
         </div>
       </div>
+      <div class="pm-filter" data-pm-bar hidden><p class="mb-0" data-pm-text></p><button class="btn btn--ghost" type="button" data-pm-reset>Show all contracts</button></div>
       <p class="visually-hidden" role="status" data-fl-status></p>
       <div class="fl-scroll">
         <table class="fl-table">
@@ -525,10 +527,8 @@ def project_rows(items, compact=False):
     out = ""
     for years, client, name, loc, tags, _svc, ongoing in items:
         tag_html = "" if compact else '<ul class="proj-tags" role="list">' + "".join(f"<li>{t}</li>" for t in tags) + "</ul>"
-        # projects.html: the place names on the project map (tools/make_project_map.py), so a pin can filter the list
-        places = "" if compact else ' data-places="' + "|".join(make_project_map.PLACES[k]["name"] for k in make_project_map.places_for(loc)) + '"'
         out += f'''
-      <li class="proj"{places}>
+      <li class="proj">
         <span class="proj-years">{years}{'<span class="proj-status">Ongoing</span>' if ongoing else ''}</span>
         <div class="proj-main"><p class="proj-client">{client}</p><h3 class="proj-name">{name}</h3>{tag_html}</div>
         <span class="proj-loc">{icon("pin")}{loc}</span>
@@ -1030,8 +1030,13 @@ def clients():
 {CTA}''' + footer()
 
 # ================================================================ PROJECTS
-# The project locations map is drawn by tools/make_project_map.py (PLACES, cached Natural Earth + Nominatim data)
+# The project locations map is drawn by tools/make_project_map.py from ALL_PROJECTS, with each contract's places in
+# CONTRACT_PLACES there (PLACES, cached Natural Earth + Nominatim data). The build stops if a contract has no entry.
 import make_project_map
+_pm_problems = make_project_map.check(ALL_PROJECTS)
+if _pm_problems:
+    raise SystemExit("Project map: " + "\n".join(_pm_problems))
+make_project_map.summary(ALL_PROJECTS)
 
 GALLERY = [
     ("plant", "power-import-aerial-1", 675, 520, "Power Import Project, MLNG", "Aerial view of the new power import buildings under construction at the MLNG complex"),
@@ -1178,12 +1183,12 @@ def projects():
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("", "Where we work")}<h2 id="map-title">Project locations</h2></div>
-      <p class="lead">Where the key projects below were carried out, from our bases in Miri and Bintulu. Select a place to list its projects.</p>
+      <p class="lead">Every contract in our record, by place, from our bases in Miri and Bintulu. Select a place to list its contracts.</p>
     </div>
-    <!-- PROJECT MAP: drawn by tools/make_project_map.py from the PROJECTS locations; add new places to PLACES there. -->
+    <!-- PROJECT MAP: drawn by tools/make_project_map.py from ALL_PROJECTS; each contract's places are in CONTRACT_PLACES there. -->
     <figure class="pm">
-      {make_project_map.svg(PROJECTS)}
-      <figcaption class="small">Circle area shows the number of key projects at each place.</figcaption>
+      {make_project_map.svg(ALL_PROJECTS)}
+      <figcaption class="small">{make_project_map.caption(ALL_PROJECTS)}</figcaption>
     </figure>
   </div>
 </section>
@@ -1195,9 +1200,7 @@ def projects():
       <p class="lead">Selected from more than 80 contracts delivered since 2002 for oil and gas operators, EPC contractors and government agencies across Malaysia.</p>
     </div>
     <!-- KEY PROJECTS: edit the PROJECTS list in tools/generate_site.py, or edit the <li class="proj"> items below. -->
-    <div class="pm-filter" data-pm-bar hidden><p class="mb-0" data-pm-text></p><button class="btn btn--ghost" type="button" data-pm-reset>Show all key projects</button></div>
-    <p class="visually-hidden" role="status" data-pm-status></p>
-    <ol class="proj-list" role="list" data-pm-list>{project_rows(PROJECTS)}
+    <ol class="proj-list" role="list">{project_rows(PROJECTS)}
     </ol>
     {full_project_list()}
   </div>

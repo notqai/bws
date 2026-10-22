@@ -292,17 +292,17 @@ MS = {
 # projects.html: project locations map (tools/make_project_map.py); place names stay as proper nouns
 "Where we work": "Kawasan kerja kami",
 "Project locations": "Lokasi projek",
-"Where the key projects below were carried out, from our bases in Miri and Bintulu. Select a place to list its projects.": "Lokasi projek utama di bawah, dari pangkalan kami di Miri dan Bintulu. Pilih satu lokasi untuk menyenaraikan projeknya.",
-"Circle area shows the number of key projects at each place.": "Saiz bulatan menunjukkan bilangan projek utama di setiap lokasi.",
+"Every contract in our record, by place, from our bases in Miri and Bintulu. Select a place to list its contracts.": "Setiap kontrak dalam rekod kami, mengikut lokasi, dari pangkalan kami di Miri dan Bintulu. Pilih satu lokasi untuk menyenaraikan kontraknya.",
+# the map caption (with numbers) and the pin labels are translated by patterns in build_ms.tr()
 "Map of BWS project locations": "Peta lokasi projek BWS",
-"Blueprint map of northern Borneo with an inset of Peninsular Malaysia, marking the places of BWS key projects. Each marker is a link that shows that place's projects in the list below.": "Peta pelan biru utara Borneo dengan peta kecil Semenanjung Malaysia, menandakan lokasi projek utama BWS. Setiap penanda ialah pautan yang memaparkan projek di lokasi itu dalam senarai di bawah.",
+"Blueprint map of northern Borneo with an inset of Peninsular Malaysia, marking the places of BWS contracts. Each marker is a link that shows that place's contracts in the full project list below.": "Peta pelan biru utara Borneo dengan peta kecil Semenanjung Malaysia, menandakan lokasi kontrak BWS. Setiap penanda ialah pautan yang memaparkan kontrak di lokasi itu dalam senarai penuh projek di bawah.",
 "PROJECT LOCATIONS": "LOKASI PROJEK",
 "BWS BASE": "PANGKALAN BWS",
 "PENINSULAR MALAYSIA": "SEMENANJUNG MALAYSIA",
 "SOUTH CHINA SEA": "LAUT CHINA SELATAN",
 "SUMATRA": "SUMATERA",
 "© OpenStreetMap contributors · Natural Earth": "© OpenStreetMap contributors · Natural Earth",   # credit stays as is
-"Show all key projects": "Tunjukkan semua projek utama",
+"Show all contracts": "Tunjukkan semua kontrak",
 "Selected from more than 80 contracts delivered since 2002 for oil and gas operators, EPC contractors and government agencies across Malaysia.": "Dipilih daripada lebih 80 kontrak yang disiapkan sejak 2002 bagi pengendali minyak dan gas, kontraktor EPC dan agensi kerajaan di seluruh Malaysia.",
 "Equipment installation": "Pemasangan peralatan",
 "Piping": "Paip",

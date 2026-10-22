@@ -269,58 +269,56 @@
     });
   }
 
-  /* ---- Searchable lists (full project list, equipment register): search + filter buttons ---- */
+  /* ---- Searchable lists (full project list, equipment register): search + filter buttons.
+     On projects.html the map pins (a[data-place], see tools/make_project_map.py) also filter the full project
+     list by place: the list opens, search and sector are cleared, and a bar shows the count with a reset.
+     Typing a search or picking a sector drops the place filter, so only one kind of filter is ever active
+     and the visible list always matches what the controls show. Without JS a pin just links to the list. ---- */
   document.querySelectorAll("[data-fl-body]").forEach(function (flBody) {
     var box = flBody.closest(".full-list");
     var flRows = Array.prototype.slice.call(flBody.querySelectorAll("tr"));
     var flSearch = box.querySelector("[data-fl-search]");
     var flFilters = box.querySelector("[data-fl-filters]");
     var flStatus = box.querySelector("[data-fl-status]");
+    var pmBar = box.querySelector("[data-pm-bar]");
     var unit = (flBody.getAttribute("data-fl-unit") || "items|item").split("|");
-    var sector = "all";
+    var sector = "all", place = null, pmLast = null;
     var apply = function () {
       var q = (flSearch.value || "").toLowerCase().trim(), shown = 0;
       flRows.forEach(function (tr) {
-        var ok = (sector === "all" || tr.getAttribute("data-sector") === sector) && (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
+        var ok = place ? (tr.getAttribute("data-places") || "").split("|").indexOf(place) !== -1
+          : (sector === "all" || tr.getAttribute("data-sector") === sector) && (!q || tr.textContent.toLowerCase().indexOf(q) !== -1);
         tr.hidden = !ok; if (ok) shown++;
       });
-      if (flStatus) flStatus.textContent = T(shown + " " + unit[0] + " shown", shown + " " + unit[1] + " dipaparkan");
+      var msg = place ? T(shown + (shown === 1 ? " contract in " : " contracts in ") + place, shown + " kontrak di " + place)
+        : T(shown + " " + unit[0] + " shown", shown + " " + unit[1] + " dipaparkan");
+      if (pmBar) { pmBar.hidden = !place; pmBar.querySelector("[data-pm-text]").textContent = place ? msg : ""; }
+      if (flStatus) flStatus.textContent = msg;
     };
-    flSearch.addEventListener("input", apply);
+    var setSector = function (s) {
+      sector = s;
+      flFilters.querySelectorAll("button[data-fl]").forEach(function (x) { x.setAttribute("aria-pressed", String(x.getAttribute("data-fl") === s)); });
+    };
+    flSearch.addEventListener("input", function () { place = null; apply(); });
     flFilters.addEventListener("click", function (e) {
       var b = e.target.closest("button[data-fl]"); if (!b) return;
-      sector = b.getAttribute("data-fl");
-      flFilters.querySelectorAll("button[data-fl]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
-      apply();
+      place = null; setSector(b.getAttribute("data-fl")); apply();
     });
-  });
-
-  /* ---- Project map (projects.html): a pin lists only that place's key projects. Without JS it links to the list. ---- */
-  var pmList = document.querySelector("[data-pm-list]"), pmBar = document.querySelector("[data-pm-bar]");
-  if (pmList && pmBar) {
-    var pmLast = null;
-    var pmShow = function (place) {
-      var n = 0;
-      pmList.querySelectorAll("li[data-places]").forEach(function (li) {
-        var ok = !place || li.getAttribute("data-places").split("|").indexOf(place) !== -1;
-        li.hidden = !ok; if (ok) n++;
-      });
-      var msg = place ? T(n + (n === 1 ? " key project in " : " key projects in ") + place, n + " projek utama di " + place) : "";
-      pmBar.querySelector("[data-pm-text]").textContent = msg;
-      document.querySelector("[data-pm-status]").textContent = msg || T("All key projects shown", "Semua projek utama dipaparkan");
-      pmBar.hidden = !place;
-    };
+    if (!pmBar) return;
     document.addEventListener("click", function (e) {
       var a = e.target.closest && e.target.closest("a[data-place]");
       if (!a) return;
       e.preventDefault();
-      pmLast = a;
-      pmShow(a.getAttribute("data-place"));
+      pmLast = a; place = a.getAttribute("data-place");
+      box.open = true; flSearch.value = ""; setSector("all"); apply();
       pmBar.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       pmBar.querySelector("[data-pm-reset]").focus({ preventScroll: true });
     });
-    pmBar.querySelector("[data-pm-reset]").addEventListener("click", function () { pmShow(null); if (pmLast) pmLast.focus(); });
-  }
+    pmBar.querySelector("[data-pm-reset]").addEventListener("click", function () {
+      place = null; apply();
+      if (pmLast) pmLast.focus();
+    });
+  });
 
   /* ---- Language switch: open the other language at the section being read ----
      Both versions have the same element ids, so the nearest section heading above the
