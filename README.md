@@ -17,6 +17,10 @@ The **`portal/`** folder is a separate Laravel app for **vacancies, online job a
 | **Vercel** | Import the repo and set the *Root Directory* to `site`. Framework preset: *Other*. |
 | **cPanel / Apache** | Upload the **contents** of `site/` into `public_html/`. The included `.htaccess` turns on compression, caching and the 404 page, and `contact.php` delivers enquiries by email (see "Contact form"). |
 
+**Cloudflare Pages (recommended):** create a Pages project from this repo with *Build output directory* `site` and no build command. `site/_headers` sets the security headers and caching (it mirrors `vercel.json` and `.htaccess`, so keep all three in step when changing the CSP).
+
+**Visitor statistics:** in the Pages project open *Metrics → Web Analytics → Enable*. Cloudflare adds its own small script; it uses no cookies, so no consent banner is needed. The CSP already allows it.
+
 After going live on the real domain, submit `https://www.bwsengineeringsb.com/sitemap.xml` in Google Search Console.
 If the domain changes, search and replace `https://www.bwsengineeringsb.com` across `site/` (it appears in canonical links, Open Graph tags, JSON-LD, `sitemap.xml` and `robots.txt`).
 
@@ -31,17 +35,19 @@ site/
 ├── projects.html       Filterable photo gallery with lightbox
 ├── hse.html            HSE policy, Quality policy, ISO / licences
 ├── careers.html        Working at BWS + job openings (apply by email)
-├── contact.html        Two offices + Google Maps + enquiry form
+├── contact.html        Two offices + blueprint site drawings + enquiry form
 ├── privacy.html        Privacy Notice (PDPA 2010), linked from the footer and both forms
 ├── vendor.html         Vendor information for procurement teams: particulars, registrations, downloads
 ├── capability.html     Capability statement (A4, English only), also saved as assets/docs/bws-capability-statement.pdf
 ├── 404.html            "Page not found"
 ├── ms/                 Bahasa Melayu versions of every page (generated)
+├── card/               Staff digital business cards (hand-written, see "Digital business cards")
 ├── contact.php         Enquiry form handler (PHP hosts only; ignored elsewhere)
-├── sitemap.xml  robots.txt  site.webmanifest  favicon.ico  .htaccess
+├── sitemap.xml  robots.txt  site.webmanifest  favicon.ico  .htaccess  _headers
 └── assets/
     ├── css/styles.css  All styles, built from src/css/ (don't edit directly)
     ├── js/main.js      Menu, counters, reveal animations, gallery filter/lightbox, contact form
+    ├── css/card.css  js/card.js   Digital business card styles and Share button
     ├── logo/           logo.svg, logo-white.svg, favicon.svg, PNG app icons
     └── img/            Photos (WebP, 480 / 800 / 1600 px wide) + og-image.jpg (social share card)
 src/css/                Stylesheet partials, joined in file-name order into site/assets/css/styles.css.
@@ -64,7 +70,7 @@ Every page repeats the same header and footer. If you change a phone number, a m
 | `--steel-*` | greys | Body text `#2C3440`, secondary text `#5B6675` |
 | `--safety` | `#F2A900` | **HSE callouts only** |
 
-- **Fonts:** *Source Serif 4* Bold (headings) and *Source Sans 3* (body) are **self-hosted** in `site/assets/fonts/` and preloaded, so text never jumps when they load. *Noto Naskh Arabic* for the Jawi name comes from Google Fonts and downloads only the letters in that name.
+- **Fonts:** *Source Serif 4* Bold (headings) and *Source Sans 3* (body) are **self-hosted** in `site/assets/fonts/` and preloaded, so text never jumps when they load. *Noto Naskh Arabic* for the Jawi name is self-hosted too, as a subset with only the letters in that name.
 - **Logo:** `logo.svg` is a clean rebuild of the original mark: same three panels and proportions, the sky-blue glow behind the "W", and white serif capitals converted to outlines (no font needed). `logo-white.svg` is a single-colour version for dark backgrounds. `favicon.svg` is just the three panels.
 
 ## Common edits
@@ -146,8 +152,13 @@ About `contact.php`:
 - **Formspree instead:** create a form at **formspree.io** and set the form's `action` to `https://formspree.io/f/<your form ID>` in `contact()` in `tools/generate_site.py`.
 - Netlify users can instead add `data-netlify="true"` and `name="enquiry"` to the `<form>` and remove the `action`.
 
-### Map pins
-The two maps on `contact.html` are pinned to the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`), and "Open in Google Maps" opens those listings. If an office moves, change `MIRI_LL` / `BTU_LL` and the place links in `tools/generate_site.py`, or edit the `q=` coordinates in the iframe `src` and the link `href` in `contact.html`.
+### Office location drawings
+The two office cards on `contact.html` show a blueprint site drawing of each location (`assets/illustrations/loc-miri.svg`, `loc-bintulu.svg`), drawn by `tools/make_locations.py` from OpenStreetMap data around the exact coordinates of BWS's own Google Maps business listings (Miri `4.446917,114.011563`, Bintulu `3.2724729,113.0802423`). A pulsing ring marks the office on each drawing, and "Open in Google Maps" opens the listing. No Google Maps code loads on the site.
+
+If an office moves:
+1. Change its `lat`/`lon` (and if needed `scale` and `pin`, the point on the drawing where the office sits) in `SITES` in `tools/make_locations.py`.
+2. Run `python3 tools/make_locations.py --fetch` to download the OpenStreetMap data for the new spot and redraw the SVG.
+3. Update `MIRI_PLACE` / `BTU_PLACE` (the Google Maps links) in `tools/generate_site.py`, then run `python3 tools/generate_site.py`. The ring position comes from `make_locations.pin_style()`, so it follows the drawing automatically.
 
 ### Change colours or fonts
 Edit the variables in `src/css/00-fonts-tokens.css`, then run `python3 tools/build_css.py` (or the full generator). To change fonts, replace the `.woff2` files in `site/assets/fonts/`, update the `@font-face` rules in the same file, and update the preload `<link>`s in each page's `<head>`.
@@ -190,7 +201,7 @@ CIDB and TÜV NORD details were also checked against their public online registe
 Inner pages use blueprint-style line drawings (`site/assets/illustrations/*.svg`), generated by `tools/make_illustrations.py`. Edit the script and re-run it to change them, or replace an SVG with any 4:3 image.
 
 ### Security headers
-`vercel.json` sets a Content-Security-Policy, HSTS, X-Frame-Options, Referrer-Policy and Permissions-Policy, plus caching rules (`site/.htaccess` does the same on Apache/cPanel). If you add a new external service (analytics, a chat widget, another embed), add its domain to the CSP or the browser will block it.
+`vercel.json` sets a Content-Security-Policy, HSTS, X-Frame-Options, Referrer-Policy and Permissions-Policy, plus caching rules. `site/_headers` (Cloudflare Pages) and `site/.htaccess` (Apache/cPanel) do the same, with the same CSP. The site embeds no other sites, so the CSP has no `frame-src`; it allows Cloudflare Web Analytics (`static.cloudflareinsights.com`, `cloudflareinsights.com`). If you add a new external service (analytics, a chat widget, another embed), add its domain to the CSP or the browser will block it.
 
 ## Speed on slow connections and caching
 - **No outside requests on page load:** all three fonts, including the Jawi name (`assets/fonts/noto-naskh-arabic-500-jawi.woff2`, a 5 KB subset with only the letters of the name), are served from the site, so a slow phone connection never waits on Google Fonts. If the Jawi name changes, download a new subset for the new letters.
@@ -198,7 +209,7 @@ Inner pages use blueprint-style line drawings (`site/assets/illustrations/*.svg`
 - **Service worker** (`site/sw.js`, generated from `tools/sw_template.js`): keeps a copy of the stylesheet, script, fonts, logo and every page a visitor opens.
   - Pages always try the network first. If it takes longer than 4 seconds and a saved copy exists, the saved copy is shown while the fresh one downloads.
   - With no connection, visited pages still open, and others show `offline.html` (phone numbers and email).
-  - Each build changes its version, so the old copies of CSS/JS are replaced automatically. Forms, the BWS Portal and Google Maps always go to the network; nothing personal is stored.
+  - Each build changes its version, so the old copies of CSS/JS are replaced automatically. Forms, the BWS Portal and other sites always go to the network; nothing personal is stored.
   - It only runs over HTTPS (or on localhost).
 
 ## Bahasa Melayu version
@@ -215,11 +226,35 @@ The Malay site lives in `site/ms/` (e.g. `/ms/about.html`). The **EN | BM** butt
 - Lighthouse (mobile, local test server): **Performance 98–99, Accessibility 100, Best Practices 100, SEO 100**, layout shift 0, blocking time 0 ms.
 - Scrolling is kept cheap: no backdrop blur or blend modes, only opacity/transform animations, and a throttled scroll handler. It measured a steady 60 fps.
 
+## Digital business cards
+Staff cards live in `site/card/<name>.html` (the first is `mazinah.html`), with a vCard (`<name>.vcf`) and a QR code (`<name>-qr.svg`) beside it. Cards are `noindex` and are not in `sitemap.xml`. Card-specific styles are in `assets/css/card.css` (class names are prefixed `bcard`/`card-`/`loc` so they don't clash with the site's own `.card` and `.office`), and the Share button's code is in `assets/js/card.js` (the CSP allows no inline scripts).
+
+Cards are written by hand: the generator doesn't build them, but each run updates the `?v=` on their stylesheet and script links so visitors get the current files.
+
+Regenerate the vCard and QR codes after editing the `PEOPLE` data in `tools/make_card.py`:
+
+```
+python3 -m venv ~/.venvs/bws-card && ~/.venvs/bws-card/bin/python -m pip install segno
+~/.venvs/bws-card/bin/python tools/make_card.py [base_url]
+```
+
+To add a person: add an entry to `PEOPLE`, copy `mazinah.html` to `<name>.html` and change the text and links, then regenerate. `tools/card-image/` holds a WhatsApp-size PNG version of the card (`render.sh` renders it with headless Chrome).
+
+**After the domain cutover:** run `tools/make_card.py https://www.bwsengineeringsb.com`, and change the temporary `og:image` URL, the Website button and the footer link in each card from `bwsengsdnbhd.vercel.app` to the `.com` domain, and set `url` in `PEOPLE` (`tools/make_card.py`) to the `.com` domain before regenerating. Do not print or hand out the QR code before this is done.
+
 ## Tools (optional)
 - `tools/generate_site.py` is the script that generated the HTML pages from shared header/footer templates. Use it **or** hand-edit the HTML, not both: running it overwrites every page. Run with `python3 tools/generate_site.py`.
 - `tools/build_css.py` joins `src/css/*.css` into `site/assets/css/styles.css`. The generator runs it first; run it on its own after a CSS-only change.
 - `tools/check_site.py` checks every page for broken links and image paths, `#section` links to missing ids, images without alt text and duplicate ids. Run it after any edit: `python3 tools/check_site.py`.
 - **GitHub check** (`.github/workflows/check-site.yml`): on every push it rebuilds the pages, warns if the committed HTML differs from what the generator produces, runs `check_site.py` and syntax-checks `contact.php`. A second job runs the portal's code-style check and tests.
+- `tools/make_locations.py` draws the office site drawings on the contact page (`assets/illustrations/loc-*.svg`) from cached OpenStreetMap data in `tools/data/`; `python3 tools/make_locations.py --fetch` refreshes the data first. The drawings must keep the "© OpenStreetMap contributors" credit.
+- `tools/make_illustrations.py` draws the page header illustrations (`python3 tools/make_illustrations.py`).
+- `tools/optimize_images.py` re-encodes the WebP photos in `site/assets/img/` (needs `cwebp`: `brew install webp`) and only keeps a file if it gets smaller, at the same pixel size. It is lossy, so run it once on newly added photos, not repeatedly on the same ones.
+- `tools/make_card.py` builds the vCard and QR code for each digital business card (see above).
+- **Tests:** `tools/test_*.py` cover the location drawings, the image tool, the BM build and the cards. The card tests need `segno`, so run them with the `bws-card` venv, with `cwebp` on the `PATH`:
+  ```
+  PATH=/opt/homebrew/bin:$PATH ~/.venvs/bws-card/bin/python -m unittest discover -s tools -p "test_*.py"
+  ```
 - `tools/make_logo.py` rebuilds the logo SVGs. It needs `pip install fonttools` and the Noto Serif variable font (`NotoSerif[wdth,wght].ttf` from github.com/google/fonts, saved as `fonts/NotoSerif.ttf`).
 
 ## Assets still needed from BWS (placeholders)
