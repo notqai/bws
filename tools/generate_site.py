@@ -1892,3 +1892,22 @@ write_service_worker()
 # Bahasa Melayu version (site/ms/) + language switch and hreflang on both versions
 import build_ms
 build_ms.build()
+
+# Digital business cards (site/card/*.html) are written by hand, not by this script. Their stylesheets and
+# script are cached for a year, so give each link a ?v= hash of the file it loads; nothing else is changed.
+def stamp_cards():
+    card_dir = OUT + "card/"
+    if not os.path.isdir(card_dir):
+        return
+    def ver(m):
+        return m.group(1) + "?v=" + _hl.md5(open(OUT + "assets/" + m.group(2), "rb").read()).hexdigest()[:8] + '"'
+    for name in sorted(os.listdir(card_dir)):
+        if name.endswith(".html"):
+            path = card_dir + name
+            html = open(path, encoding="utf-8").read()
+            new = re.sub(r'(="\.\./assets/((?:css|js)/[\w.-]+\.(?:css|js)))(?:\?v=\w+)?"', ver, html)
+            if new != html:
+                with open(path, "w", encoding="utf-8") as f:
+                    f.write(new)
+
+stamp_cards()
