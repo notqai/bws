@@ -1539,13 +1539,11 @@ def careers():
 {CTA}''' + footer()
 
 # ================================================================ CONTACT
-# Exact pins: coordinates and listings of BWS's own Google Maps business entries (verified Oct 2026).
-MIRI_LL, BTU_LL = "4.446917,114.011563", "3.2724729,113.0802423"
+# Listings of BWS's own Google Maps business entries (verified Oct 2026). The office coordinates and the
+# site drawings next to each office come from tools/make_locations.py (SITES); pin_style() places the pulse ring.
+import make_locations
 MIRI_PLACE = "https://www.google.com/maps/place/Bws+Engineering+Sdn.+Bhd./@4.446917,114.011563,17z/data=!4m6!3m5!1s0x321f4eff4ad03523:0x3a7d83606d409313!8m2!3d4.446917!4d114.011563"
 BTU_PLACE = "https://www.google.com/maps/place/BWS+Engineering+Sdn.+Bhd./@3.2724729,113.0802423,17z/data=!4m6!3m5!1s0x321dc31223ffffff:0x53e0ada3f9e5e7f2!8m2!3d3.2724729!4d113.0802423"
-
-def maps_embed(ll):
-    return f"https://maps.google.com/maps?q={ll}&z=17&hl=en&output=embed"
 
 def contact():
     miri_q = "Lot 1743, Block 3 MCLD, Piasau Industrial Estate Phase III, Jalan Prunus 1, 98000 Miri, Sarawak"
@@ -1574,7 +1572,10 @@ def contact():
           </ul>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{MIRI_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
-        <div class="map-wrap"><iframe class="map" src="{maps_embed(MIRI_LL)}" title="Map: BWS Engineering main office, Piasau Industrial Estate, Miri" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="map-wrap" style="{make_locations.pin_style("miri")}">
+          <img class="map-drawing" fetchpriority="low" src="assets/illustrations/loc-miri.svg" alt="Site drawing of the BWS Engineering main office location, Piasau Industrial Estate, Miri" width="800" height="500" loading="lazy" decoding="async">
+          <span class="map-pulse" aria-hidden="true"></span>
+        </div>
       </article>
       <article class="office" aria-labelledby="btu-title">
         <div class="office-body">
@@ -1588,7 +1589,10 @@ def contact():
           <p class="mt-4 small mb-0"><strong>Fabrication yard:</strong> Lot 124–128, Block 20, Kemena Land District, Jalan Kidurong, 97000 Bintulu, Sarawak</p>
           <p class="mt-5 mb-0"><a class="link-arrow" href="{BTU_PLACE}" target="_blank" rel="noopener">Open in Google Maps<span class="visually-hidden"> (opens in a new tab)</span></a></p>
         </div>
-        <div class="map-wrap"><iframe class="map" src="{maps_embed(BTU_LL)}" title="Map: BWS Engineering fabrication yard, Kidurong, Bintulu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        <div class="map-wrap" style="{make_locations.pin_style("bintulu")}">
+          <img class="map-drawing" fetchpriority="low" src="assets/illustrations/loc-bintulu.svg" alt="Site drawing of the BWS Engineering Bintulu office location, Kidurong Industrial Estate" width="800" height="500" loading="lazy" decoding="async">
+          <span class="map-pulse" aria-hidden="true"></span>
+        </div>
       </article>
     </div>
   </div>
