@@ -901,6 +901,18 @@ MS = {
 "Registered vendor of Petroleum Sarawak Berhad and its group. Registration no. P250528-S": "Vendor berdaftar Petroleum Sarawak Berhad dan kumpulannya. No. pendaftaran P250528-S",
 "Ministry of Finance registered supplier and Bumiputera company. Certificate no. KQ24038211643726829": "Pembekal berdaftar Kementerian Kewangan dan syarikat Bumiputera. No. sijil KQ24038211643726829",
 "Copies of the MOF, PETROS, UPKJ and DOSH certificates": "Salinan sijil MOF, PETROS, UPKJ dan JKKP",
+# About page: "Since 2002" timeline
+"Our history": "Sejarah kami",
+"Since 2002": "Sejak 2002",
+"Oct 2002": "Okt 2002",
+"Incorporated in Miri by Bumiputera professionals from the oil and gas industry": "Diperbadankan di Miri oleh profesional Bumiputera dari industri minyak dan gas",
+"Registered with CIDB at Grade G7; first turnkey contract, for Sarawak Shell’s Bintulu Integrated Facilities": "Berdaftar dengan CIDB pada Gred G7; kontrak turnkey pertama, untuk Bintulu Integrated Facilities milik Sarawak Shell",
+"Licensed by PETRONAS": "Dilesenkan oleh PETRONAS",
+"ISO 9001 quality management certified by TÜV NORD": "Pengurusan kualiti ISO 9001 disahkan oleh TÜV NORD",
+"MCOT Rejuvenation Phase 2 for PETRONAS Carigali, with teams of up to 150; 3,000,000 man-hours without LTI (2010)": "MCOT Rejuvenation Phase 2 untuk PETRONAS Carigali, dengan pasukan sehingga 150 orang; 3,000,000 jam-kerja tanpa LTI (2010)",
+"EPCC of the PDB Miri Fuel Terminal": "EPCC Terminal Bahan Api PDB Miri",
+"EPCC of the MLNG Power Import Project (Transgrid-BWS JV)": "EPCC MLNG Power Import Project (Transgrid-BWS JV)",
+"PSIEA Silver Award; registered PETROS vendor": "Anugerah Perak PSIEA; vendor berdaftar PETROS",
 }
 
 MONTHS = {"January": "Januari", "February": "Februari", "March": "Mac", "April": "April", "May": "Mei", "June": "Jun",

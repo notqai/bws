@@ -739,6 +739,29 @@ def home():
 {CTA}''' + footer()
 
 # ================================================================ ABOUT
+# "Since 2002" timeline on the About page. Built only from facts already stated elsewhere on the site; the comment on
+# each row says where. Each row: (datetime attribute, date label, text). Edit here, then regenerate.
+TIMELINE = [
+    # about.html "Who we are" and index.html: formed in October 2002 by Bumiputera from the oil and gas industry; Miri base
+    ("2002-10", "Oct 2002", "Incorporated in Miri by Bumiputera professionals from the oil and gas industry"),
+    # index.html "Licences": CIDB since 2003, Grade G7; ALL_PROJECTS no. 4 (2003 – 2005, turnkey, Sarawak Shell, Bintulu Integrated Facilities)
+    ("2003", "2003", "Registered with CIDB at Grade G7; first turnkey contract, for Sarawak Shell’s Bintulu Integrated Facilities"),
+    # index.html "PETRONAS & PETROS" card and hse.html PETRONAS licence card: licensed since 2004
+    ("2004", "2004", "Licensed by PETRONAS"),
+    # index.html "Licences": quality management certified by TÜV NORD since 2007
+    ("2007", "2007", "ISO 9001 quality management certified by TÜV NORD"),
+    # PROJECTS featured card "Teams of up to 150" (MCOT Rejuvenation Phase 2, PETRONAS Carigali); HSE_RECORD / awards: 3,000,000 man-hours without LTI, 2010
+    ("2007", "2007 – 2011", "MCOT Rejuvenation Phase 2 for PETRONAS Carigali, with teams of up to 150; 3,000,000 man-hours without LTI (2010)"),
+    # ALL_PROJECTS no. 42 and HSE_RECORD: EPCC of the PDB Miri Fuel Terminal, 2014 – 2015
+    ("2014", "2014 – 2015", "EPCC of the PDB Miri Fuel Terminal"),
+    # ALL_PROJECTS no. 68 and PROJECTS: EPCC of the Power Import Project for Malaysia LNG (Transgrid-BWS JV), 2022 – 2025
+    ("2022", "2022 – 2025", "EPCC of the MLNG Power Import Project (Transgrid-BWS JV)"),
+    # hse.html awards: National OSH Award, 2023
+    ("2023", "2023", "National OSH Award"),
+    # hse.html awards: PSIEA Silver Award, 2025; REG_CARDS: PETROS registered vendor (registered since 7 December 2025)
+    ("2025", "2025", "PSIEA Silver Award; registered PETROS vendor"),
+]
+
 def about():
     return head("about.html", "About Us | BWS Engineering Sdn Bhd, Miri, Sarawak",
         "Company profile of BWS Engineering Sdn Bhd: a wholly owned Bumiputera oil &amp; gas construction and maintenance contractor formed in October 2002, with facilities in Miri and Bintulu.") + header("about.html") + page_hero(
@@ -767,6 +790,16 @@ def about():
         <div><dt>Licensing</dt><dd>PETRONAS · PETROS · CIDB G7</dd></div>
       </dl>
     </div>
+  </div>
+</section>
+
+<section class="section section--steel" aria-labelledby="history-title">
+  <div class="container">
+    <div class="section-head">
+      {eyebrow("02", "Our history")}
+      <h2 id="history-title">Since 2002</h2>
+    </div>
+    <ol class="timeline">{"".join(f'<li class="timeline-item"><time datetime="{dt}">{label}</time><p>{text}</p></li>' for dt, label, text in TIMELINE)}</ol>
   </div>
 </section>
 

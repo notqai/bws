@@ -268,3 +268,4 @@ See the list below. Each placeholder is marked in the HTML with a `PLACEHOLDER` 
 | 8 | Home | Confirm the stats (20+ years, 80+ contracts, 2 bases, 15+ clients) |
 | 9 | Logo | If an original vector logo exists (from the printer/sign maker), swap it in for the rebuilt SVG |
 | 10 | `privacy.html` | **Privacy notice sign-off:** confirm how long enquiries are kept (it currently says "as long as needed"), who handles data requests, and whether BWS must appoint a Data Protection Officer under the PDPA (Amendment) Act 2024; have a native speaker proofread the Malay version. This notice is a template, not legal advice |
+| 11 | `about.html` | Confirm the "Since 2002" timeline milestones (built only from facts already on the site) |

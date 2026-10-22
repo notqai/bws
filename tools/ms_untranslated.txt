@@ -56,7 +56,6 @@ EPCC for upgrading the loading metering system, Sibu Depot
 EPCC of Kenyalang Project 2.0: tie-ins and associated facilities, PETRONAS LNG Complex
 EPCC of Kenyalang Project 2.0: tie-ins to the LNG loading, vapour return and firewater lines
 EPCC of metering facilities for backloading, Tanjung Manis OGC Jetty, Mukah
-EPCC of the PDB Miri Fuel Terminal
 EPCC of the PETRONAS Dagangan aviation depot, Bintulu Airport
 EPCC of the Power Import Project (Transgrid-BWS JV)
 EPCC of the Power Import Project for MLNG

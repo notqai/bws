@@ -828,6 +828,27 @@ html[lang^="ms"] .primary-nav a { padding-inline: .5rem; font-size: .875rem; }
 #porg-title + .small { text-align: center; }
 #corg-title { margin-bottom: var(--space-6); }
 
+/* About: "Since 2002" timeline. Phones: vertical line on the left. Wide screens: horizontal rail wrapped into rows of five. */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline-item { position: relative; padding: 0 0 var(--space-6) var(--space-7); }
+.timeline-item::before { content: ""; position: absolute; left: 0.45rem; top: 0.5rem; bottom: -0.5rem; width: 2px; background: var(--steel-400); }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item:last-child::before { bottom: auto; height: 0.5rem; }
+.timeline-item::after { content: ""; position: absolute; left: 0; top: 0.35rem; width: 0.95rem; height: 0.95rem; border-radius: 50%; background: var(--white); border: 3px solid var(--brand-blue); box-sizing: border-box; }
+.timeline-item:nth-child(odd)::after { border-color: var(--brand-sky); }
+.timeline time { display: block; font-family: var(--font-head); font-weight: 700; font-size: 1.35rem; line-height: 1.2; color: var(--brand-blue); margin-bottom: var(--space-2); }
+.timeline p { margin: 0; color: var(--steel-800); font-size: var(--fs-sm); line-height: 1.55; max-width: 36rem; }
+@media (min-width: 60rem) {
+  .timeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: var(--space-7); }
+  .timeline-item { padding: var(--space-5) var(--space-5) 0 0; }
+  .timeline-item::before { left: 0; right: 0; top: 0.4rem; bottom: auto; width: auto; height: 2px; }
+  .timeline-item:last-child::before { height: 2px; }
+  .timeline-item::after { top: 0; }
+  .timeline-item:nth-child(5n)::before { right: var(--space-5); }
+  .timeline-item:last-child::before { right: var(--space-5); }
+  .timeline p { max-width: none; }
+}
+
 /* ---------- Vacancies + online application (careers; filled in by main.js from the BWS Portal) ---------- */
 .vacancies { list-style: none; margin: 0 0 var(--space-7); padding: 0; display: grid; gap: var(--space-4); }
 @media (min-width: 52rem) { .vacancies { grid-template-columns: 1fr 1fr; } }
