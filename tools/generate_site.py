@@ -616,9 +616,15 @@ def home():
         key = logo
         if key in brands: brands[key][3].append(n)
         else: brands[key] = (logo, w, h, [n])
+    # Logos whose name sits in small type under the mark get a little extra size
+    STRIP_BOOST = {"abf.webp": 1.25, "taihei-dengyo.webp": 1.1, "mitsui.svg": 1.05}
     def strip_logo(logo, w, h, names):
-        # Exact display size per logo (44px tall, max 150px wide) so every browser lays the row out the same
-        dw = min(150, round(44 * w / h)); dh = round(dw * h / w)
+        # Optical sizing: wide wordmarks get shorter, square marks taller, so each logo carries similar visual weight.
+        # Exact pixel sizes so every browser (Safari included) lays the row out the same.
+        r = w / h
+        dh = 54 * r ** -0.35 * STRIP_BOOST.get(logo, 1); dw = dh * r
+        if dw > 160: dw = 160; dh = dw / r
+        dw, dh = round(dw), round(dh)
         return (f'<li style="--lw:{dw}px;--lh:{dh}px"><img src="assets/img/clients/{logo}" width="{dw}" height="{dh}" '
                 f'alt="{", ".join(names)}" loading="lazy" decoding="async"></li>')
     marq = lambda alt: "".join(strip_logo(logo, w, h, names) for logo, w, h, names in brands.values())
@@ -703,15 +709,15 @@ def home():
   </div>
 </section>
 
-<section class="section" aria-labelledby="clients-title">
+<section class="section section--clients" aria-labelledby="clients-title">
   <div class="container">
     <div class="section-head section-head--split">
       <div>{eyebrow("03", "Clients")}<h2 id="clients-title">Trusted by operators and EPC contractors</h2></div>
       <p class="lead">Our main clients include national and international oil and gas operators, EPC contractors and industrial companies. <a href="clients.html">See all clients</a></p>
     </div>
-  </div>
-  <div class="marquee marquee--static" tabindex="0" aria-label="Main clients (scroll sideways for more)">
-    <ul role="list" aria-label="Main clients">{marq(True)}</ul>
+    <div class="marquee marquee--static" tabindex="0" aria-label="Main clients (scroll sideways for more)">
+      <ul role="list" aria-label="Main clients">{marq(True)}</ul>
+    </div>
   </div>
 </section>
 
