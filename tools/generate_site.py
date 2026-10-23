@@ -785,8 +785,7 @@ def about():
 <section class="section" aria-labelledby="profile-title">
   <div class="container split split--wide-text">
     <div>
-      {eyebrow("01", "Company profile")}
-      <h2 id="profile-title">Who we are</h2>
+      <p class="eyebrow" id="profile-title">Company profile</p>
       <p class="lead">BWS Engineering Sdn. Bhd. is a wholly owned Bumiputera company whose core business is engineering construction and maintenance services for the oil and gas industries.</p>
       <p>The company was formed in October 2002 by a group of Bumiputera with many years of experience in the oil and gas industry, particularly in construction and maintenance services.</p>
       <p>The company is run by its shareholders, who are members of the Board of Directors and Management. It also employs qualified professionals with thorough experience in various engineering and construction disciplines.</p>
