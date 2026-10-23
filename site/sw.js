@@ -3,13 +3,13 @@
    dropped connection. Forms, the BWS Portal and other sites always go straight to the network,
    and nothing personal is stored. */
 "use strict";
-const VERSION = "f9a6267e";
+const VERSION = "4f513ed0";
 const CORE = "bws-core-" + VERSION;   // stylesheet, script, fonts, logo, offline page
 const PAGES = "bws-pages";             // pages the visitor has opened
 const MEDIA = "bws-media";             // photos, drawings, PDF
 const MEDIA_LIMIT = 80;
 const PAGE_TIMEOUT = 4000;             // after this, show the saved copy (if any) while the network finishes
-const PRECACHE = ["/offline.html", "/assets/css/styles.css?v=f9a6267e", "/assets/js/main.js?v=f9a6267e", "/assets/fonts/ibm-plex-serif-700-latin.woff2", "/assets/fonts/ibm-plex-sans-400-latin.woff2", "/assets/fonts/ibm-plex-sans-600-latin.woff2", "/assets/fonts/ibm-plex-sans-700-latin.woff2", "/assets/fonts/noto-naskh-arabic-500-jawi.woff2", "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"];
+const PRECACHE = ["/offline.html", "/assets/css/styles.css?v=4f513ed0", "/assets/js/main.js?v=4f513ed0", "/assets/fonts/ibm-plex-serif-700-latin.woff2", "/assets/fonts/ibm-plex-sans-400-latin.woff2", "/assets/fonts/ibm-plex-sans-600-latin.woff2", "/assets/fonts/ibm-plex-sans-700-latin.woff2", "/assets/fonts/noto-naskh-arabic-500-jawi.woff2", "/assets/logo/logo.svg", "/assets/logo/logo-white.svg", "/assets/logo/favicon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CORE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
